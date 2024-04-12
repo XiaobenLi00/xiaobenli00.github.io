@@ -3,7 +3,7 @@ layout: about
 title: About
 permalink: /
 # subtitle: Schoole of BME, ShanghaiTech, Shanghai, China
-subtitle: Live a life.
+subtitle: <i> Live a life. </i>
 
 profile:
   align: left
