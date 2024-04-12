@@ -2,10 +2,11 @@
 layout: about
 title: About
 permalink: /
-subtitle: Schoole of BME, ShanghaiTech, Shanghai, China
+# subtitle: Schoole of BME, ShanghaiTech, Shanghai, China
+subtitle: Live a life.
 
 profile:
-  align: right
+  align: left
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: #>
@@ -27,6 +28,8 @@ social: false # includes social icons at the bottom of the page
 <!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
 
 I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Dr. Dinggang Shen. I received my Bachelor’s degrees in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
+
+Feel free to contact me for potential collaborations and discussions.
 
 <table>
   <tr>
