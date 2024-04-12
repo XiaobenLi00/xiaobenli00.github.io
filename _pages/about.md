@@ -17,7 +17,7 @@ news: true # includes a list of news items
 # selected_papers: true # includes a list of papers marked as "selected={true}"
 latest_posts: false  # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+social: false # includes social icons at the bottom of the page
 ---
 
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder. -->
@@ -27,3 +27,15 @@ social: true # includes social icons at the bottom of the page
 <!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
 
 I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Dr. Dinggang Shen. I received my Bachelor’s degrees in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
+
+<table>
+  <tr>
+    <td>
+      <strong>Email</strong>: lixb1@shanghaitech.edu.cn <br>
+      <strong>Github</strong>: <a href="https://www.github.com/xiaobenli00">XiaobenLi00</a> <br>
+      <strong>Linkedin</strong>: <a href="https://www.linkedin.com/in/xiaobenli/">/in/XiaobenLi</a> <br>
+      <strong>X</strong>: <a href="https://twitter.com/XiaobenLi00">@XiaobenLi00</a> <br>
+      <!-- <strong>Google Scholar</strong>: <a href="https://scholar.google.com/citations?user=DBXWBqcAAAAJ&hl=en">Click Here.</a><br> -->
+    </td>
+  </tr>
+</table>
