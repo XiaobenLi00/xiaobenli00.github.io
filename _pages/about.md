@@ -29,6 +29,8 @@ social: false # includes social icons at the bottom of the page
 
 I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Dr. Dinggang Shen. I received my Bachelor’s degrees in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
 
+My current research interests focus on 3D human body modeling.
+
 Feel free to contact me for potential collaborations and discussions.
 
 <table>
