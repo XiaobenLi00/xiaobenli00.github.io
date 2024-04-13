@@ -27,7 +27,7 @@ social: false # includes social icons at the bottom of the page
 
 <!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
 
-I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Dr. Dinggang Shen. I received my Bachelor’s degrees in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
+I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Prof. Dinggang Shen. I received my Bachelor’s degrees in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
 
 My current research interests focus on 3D human body modeling.
 
