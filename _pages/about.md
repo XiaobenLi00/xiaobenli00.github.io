@@ -40,7 +40,7 @@ Feel free to contact me for potential collaborations and discussions.
       <strong>Github</strong>: <a href="https://www.github.com/xiaobenli00">XiaobenLi00</a> <br>
       <strong>Linkedin</strong>: <a href="https://www.linkedin.com/in/xiaobenli/">/in/XiaobenLi</a> <br>
       <strong>X</strong>: <a href="https://twitter.com/XiaobenLi00">@XiaobenLi00</a> <br>
-      <!-- <strong>Google Scholar</strong>: <a href="https://scholar.google.com/citations?user=DBXWBqcAAAAJ&hl=en">Click Here.</a><br> -->
+      <strong>Google Scholar</strong>: <a href="https://scholar.google.com/citations?user=yci11EkAAAAJ">Xiaoben Li</a><br>
     </td>
   </tr>
 </table>
