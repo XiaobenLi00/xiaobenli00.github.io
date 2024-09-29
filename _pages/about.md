@@ -27,16 +27,16 @@ social: false # includes social icons at the bottom of the page
 
 <!-- Link to your social media connections, too. This theme is set up to use [Font Awesome icons](https://fontawesome.com/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them. -->
 
-I’m currently a graduate student at IDEA Lab, School of BME, ShanghaiTech University, supervised by Prof. Dinggang Shen. I received my Bachelor’s degree in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
+I am currently a research assistant working at <a href="https://endless.do">Endless AI Lab</a>, School of Engineering, Westlake University, with <a href="https://xiuyuliang.cn/">Yuliang Xiu</a>. I received my Master’s degree in Computer Science from ShanghaiTech University, working at <a href="https://idea.bme.shanghaitech.edu.cn/">IDEA Lab</a>, supervised by <a href="https://scholar.google.com/citations?user=v6VYQC8AAAAJ&hl=en">Prof. Dinggang Shen</a>. I received my Bachelor’s degree in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
 
-My current research interests focus on 3D human body modeling.
+My current research interests focus on musculoskeletal models of human body and related research topics.
 
 Feel free to contact me for potential collaborations and discussions.
 
 <table>
   <tr>
     <td>
-      <strong>Email</strong>: lixb1@shanghaitech.edu.cn <br>
+      <strong>Email</strong>: lixiaoben@westlake.edu.cn <br>
       <strong>Github</strong>: <a href="https://www.github.com/xiaobenli00">XiaobenLi00</a> <br>
       <strong>Linkedin</strong>: <a href="https://www.linkedin.com/in/xiaobenli/">/in/XiaobenLi</a> <br>
       <strong>X</strong>: <a href="https://twitter.com/XiaobenLi00">@XiaobenLi00</a> <br>

@@ -1,12 +1,19 @@
 {
   "basics": {
     "name": "Xiaoben Li",
-    "label": "Master Student",
+    "label": "Research Assistant",
     "image": "",
-    "email": "lixb1@shanghaitech.edu.cn",
+    "email": "lixiaoben@westlake.edu.cn",
     "url": "https://xiaobenli00.github.io/"
   },
-  "work": [],
+  "work": [
+    {
+      "company": "Westlake University, Hangzhou, China",
+      "position": "Research Assistant",
+      "startDate": "2024-08-01",
+      "endDate": "Present"
+    }
+  ],
   "volunteer": [],
   "education": [
     {
