@@ -166,6 +166,13 @@
       {% if entry.code %}
         <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button">Code</a>
       {% endif %}
+      {% if entry.page %}
+        {% if entry.page contains '://' %}
+          <a href="{{ entry.page }}" class="btn btn-sm z-depth-0" role="button">Page</a>
+        {% else %}
+          <a href="{{ entry.page | relative_url }}" class="btn btn-sm z-depth-0" role="button">Page</a>
+        {% endif %}
+      {% endif %}
       {% if entry.poster %}
         {% if entry.poster contains '://' %}
           <a href="{{ entry.poster }}" class="btn btn-sm z-depth-0" role="button">Poster</a>
