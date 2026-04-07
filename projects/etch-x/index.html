@@ -1,562 +1,593 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <title>ETCH-X</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  <script src="static/js/index.js"></script>
+    <meta charset="utf-8">
+    <title>ETCH-X</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <script src="static/js/index.js"></script>
 </head>
 
 <body>
-  <section class="hero" style="background-color: #ff9d2e00;">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">
-              <span style="font-size: 3.3rem;">ETCH-X</span><br>
-              <span style="font-size: 1.9rem;">Robustify Body Fitting to Any Clothed Human Scans
-                with Composable Synthetic Data</span>
-              <!-- <span class="paper-id">Paper ID #6026</span><br> -->
-            </h1>
-            <div class="publication-authors"
-              style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-              <span class="author-block">
-                <a href="https://xiaobenli00.github.io/" target="_blank">Xiaoben Li</a><sup>1,2,3</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://orcid.org/0000-0001-8283-0646" target="_blank">Jingyi Wu</a><sup>2,4</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://zcai0612.github.io/" target="_blank">Zeyu Cai</a><sup>2,5</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://ysysimon.com/" target="_blank">Siyuan Yu</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://boqian-li.github.io/" target="_blank">Boqian Li</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://xiuyuliang.cn/index.html" target="_blank">Yuliang Xiu</a><sup>2</sup>,
-              </span>
-            </div>
-            <div class="publication-institutions"
-              style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-              <span class="institution-block"><sup>1</sup>Zhejiang University</span>
-              <span class="institution-block"><sup>2</sup>Westlake University</span>
-              <span class="institution-block"><sup>3</sup>Shanghai Innovation Institute</span>
-              <span class="institution-block"><sup>4</sup>Fudan University</span>
-              <span class="institution-block"><sup>5</sup>Nanjing University</span>
-            </div>
-            <div class="publication-links">
-              <span class="link-block">
-                <a href="https://github.com/XiaobenLi00/ETCH-X" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2604.00000" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-            </div>
-            <!-- <div class="has-text-centered mt-2"
+    <section class="hero" style="background-color: #ff9d2e00;">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-2 publication-title">
+                            <span style="font-size: 3.3rem;">ETCH-X</span><br>
+                            <span style="font-size: 1.9rem;">Robustify Body Fitting to Any Clothed Human Scans
+                                with Composable Synthetic Data</span>
+                            <!-- <span class="paper-id">Paper ID #6026</span><br> -->
+                        </h1>
+                        <div class="publication-authors"
+                            style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                            <span class="author-block">
+                                <a href="https://xiaobenli00.github.io/" target="_blank">Xiaoben Li</a><sup>1,2,3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://orcid.org/0000-0001-8283-0646" target="_blank">Jingyi
+                                    Wu</a><sup>2,4</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://zcai0612.github.io/" target="_blank">Zeyu Cai</a><sup>2,5</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://ysysimon.com/" target="_blank">Siyuan Yu</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://boqian-li.github.io/" target="_blank">Boqian Li</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://xiuyuliang.cn/index.html" target="_blank">Yuliang Xiu</a><sup>2</sup>,
+                            </span>
+                        </div>
+                        <div class="publication-institutions"
+                            style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                            <span class="institution-block"><sup>1</sup>Zhejiang University</span>
+                            <span class="institution-block"><sup>2</sup>Westlake University</span>
+                            <span class="institution-block"><sup>3</sup>Shanghai Innovation Institute</span>
+                            <span class="institution-block"><sup>4</sup>Fudan University</span>
+                            <span class="institution-block"><sup>5</sup>Nanjing University</span>
+                        </div>
+                        <div class="publication-links">
+                            <span class="link-block">
+                                <a href="https://github.com/XiaobenLi00/ETCH-X" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>Code</span>
+                                </a>
+                            </span>
+                            <span class="link-block">
+                                <a href="https://arxiv.org/abs/2604.00000" target="_blank"
+                                    class="external-link button is-normal is-rounded is-dark">
+                                    <span class="icon">
+                                        <i class="ai ai-arxiv"></i>
+                                    </span>
+                                    <span>arXiv</span>
+                                </a>
+                            </span>
+                        </div>
+                        <!-- <div class="has-text-centered mt-2"
               style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
               <span class="eql-cntrb"><sup>*</sup>Project Lead</span>
               <span class="eql-cntrb"><sup>&dagger;</sup>Corresponding Author</span>
             </div> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <img src="static/images/ETCH-X_teaser_new_3.png" alt="Project Teaser Image" width="100%">
-
-        <h2 class="subtitle has-text-justified is-6">
-          <p>
-            <strong>Strengths of ETCH-X</strong>. While NICP, which uses implicit dense correspondence but lacks
-            tightness-aware undressing, consistently produces overweight bodies from clothed scans <strong>(A)</strong>,
-            ETCH, with tightness-aware undressing but sparse markers, fails to capture detailed body parts such as hands
-            and face <strong>(B)</strong>, and struggles with partial inputs due to missing markers
-            <strong>(C)</strong>. In contrast, our ETCH-X combines the strengths of both approaches, achieving robust
-            and expressive fitting across diverse clothing, poses, and levels of input completeness
-            <strong>(D)</strong>.
-          </p>
-        </h2>
-      </div>
-    </div>
-  </section>
-
-  <section class="section hero is-light">
-    <div class="container is-max-desktop abstract-container">
-      <div class="columns is-centered abstract-layout">
-        <div class="column abstract-text-column">
-          <h2 class="title is-4 has-text-centered abstract-section-title">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Human body fitting, which aligns parametric body models such as SMPL to raw 3D point clouds of clothed
-              humans, serves as a crucial first step for downstream tasks like animation and texturing. An effective
-              fitting method should be both <strong>locally expressive</strong> — capturing fine details such as hands
-              and facial
-              features — and <strong>globally robust</strong> to handle real-world challenges, including clothing
-              dynamics, pose
-              variations, and noisy or partial inputs. Existing approaches typically excel in only one aspect, lacking
-              an all-in-one solution. We upgrade ETCH to <strong><i>ETCH-X</i></strong>, which leverages a
-              tightness-aware fitting
-              paradigm to
-              filter out clothing dynamics ("undress"), extends expressiveness with SMPL-X, and replaces explicit sparse
-              markers (which are highly sensitive to partial data) with implicit dense correspondences ("dense fit") for
-              more robust and fine-grained body fitting. Our disentangled "undress" and "dense fit" modular stages
-              enable separate and scalable training on composable synthetic data, including simulated garments such as
-              CLOTH3D and large-scale pose libraries
-              such as AMASS for body poses and InterHand2.6M for hand poses, improving outfit generalization and pose
-              robustness, respectively. Our approach achieves
-              robust and expressive fitting across diverse clothing, poses, and levels of input completeness, delivering
-              a substantial performance improvement over ETCH on both (1) seen data, such as 4D-DRESS (MPJPE-All,
-              <span style="color: ForestGreen;">33.0%</span>) and CAPE (V2V-Hands, <span
-                style="color: ForestGreen;">35.8%</span>), and (2) unseen data, such as BEDLAM2.0 (MPJPE-All, <span
-                style="color: ForestGreen;">80.8%</span>; V2V-All,
-              <span style="color: ForestGreen;">80.5%</span>).
-            </p>
-          </div>
-        </div>
-        <div class="column abstract-chart-column">
-          <div class="abstract-chart">
-            <h3 class="abstract-chart-title">Improvement Over ETCH</h3>
-            <div class="abstract-chart-list">
-              <div class="abstract-chart-item">
-                <div class="abstract-chart-meta">
-                  <span class="abstract-chart-label">4D-DRESS</span>
-                  <span class="abstract-chart-metric">MPJPE-All</span>
-                  <span class="abstract-chart-value">33.0%</span>
-                </div>
-                <div class="abstract-chart-compare">
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH-X</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;"></div>
                     </div>
-                  </div>
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-bottom" style="width: 67%;"></div>
-                    </div>
-                  </div>
                 </div>
-              </div>
-              <div class="abstract-chart-item">
-                <div class="abstract-chart-meta">
-                  <span class="abstract-chart-label">CAPE</span>
-                  <span class="abstract-chart-metric">V2V-Hands</span>
-                  <span class="abstract-chart-value">35.8%</span>
-                </div>
-                <div class="abstract-chart-compare">
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH-X</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;"></div>
-                    </div>
-                  </div>
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-bottom" style="width: 64.2%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="abstract-chart-item">
-                <div class="abstract-chart-meta">
-                  <span class="abstract-chart-label">BEDLAM2.0</span>
-                  <span class="abstract-chart-metric">MPJPE-All</span>
-                  <span class="abstract-chart-value">80.8%</span>
-                </div>
-                <div class="abstract-chart-compare">
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH-X</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;"></div>
-                    </div>
-                  </div>
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-bottom" style="width: 19.2%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="abstract-chart-item">
-                <div class="abstract-chart-meta">
-                  <span class="abstract-chart-label">BEDLAM2.0</span>
-                  <span class="abstract-chart-metric">V2V-All</span>
-                  <span class="abstract-chart-value">80.5%</span>
-                </div>
-                <div class="abstract-chart-compare">
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH-X</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;"></div>
-                    </div>
-                  </div>
-                  <div class="abstract-chart-row">
-                    <span class="abstract-chart-series">ETCH</span>
-                    <div class="abstract-chart-track">
-                      <div class="abstract-chart-bar abstract-chart-bar-bottom" style="width: 19.5%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <img src="static/images/ETCH-X_teaser_new_3.png" alt="Project Teaser Image" width="100%">
 
-
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Comparison Results with ETCH</h2>
-      <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, ETCH Result, ETCH-X Result)</h3>
-
-      <div class="columns is-multiline">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00123_Outer_Take11_00111.mp4" type="video/mp4">
-          </video>
+                <h2 class="subtitle has-text-justified is-6">
+                    <p>
+                        <strong>Strengths of ETCH-X</strong>. While NICP, which uses implicit dense correspondence but
+                        lacks
+                        tightness-aware undressing, consistently produces overweight bodies from clothed scans
+                        <strong>(A)</strong>,
+                        ETCH, with tightness-aware undressing but sparse markers, fails to capture detailed body parts
+                        such as hands
+                        and face <strong>(B)</strong>, and struggles with partial inputs due to missing markers
+                        <strong>(C)</strong>. In contrast, our ETCH-X combines the strengths of both approaches,
+                        achieving robust
+                        and expressive fitting across diverse clothing, poses, and levels of input completeness
+                        <strong>(D)</strong>.
+                    </p>
+                </h2>
+            </div>
         </div>
+    </section>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00127_Inner_Take8_00101.mp4" type="video/mp4">
-          </video>
+    <section class="section hero is-light">
+        <div class="container is-max-desktop abstract-container">
+            <div class="columns is-centered abstract-layout">
+                <div class="column abstract-text-column">
+                    <h2 class="title is-4 has-text-centered abstract-section-title">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            Human body fitting, which aligns parametric body models such as SMPL to raw 3D point clouds
+                            of clothed
+                            humans, serves as a crucial first step for downstream tasks like animation and texturing. An
+                            effective
+                            fitting method should be both <strong>locally expressive</strong> — capturing fine details
+                            such as hands
+                            and facial
+                            features — and <strong>globally robust</strong> to handle real-world challenges, including
+                            clothing
+                            dynamics, pose
+                            variations, and noisy or partial inputs. Existing approaches typically excel in only one
+                            aspect, lacking
+                            an all-in-one solution. We upgrade ETCH to <strong><i>ETCH-X</i></strong>, which leverages a
+                            tightness-aware fitting
+                            paradigm to
+                            filter out clothing dynamics ("undress"), extends expressiveness with SMPL-X, and replaces
+                            explicit sparse
+                            markers (which are highly sensitive to partial data) with implicit dense correspondences
+                            ("dense fit") for
+                            more robust and fine-grained body fitting. Our disentangled "undress" and "dense fit"
+                            modular stages
+                            enable separate and scalable training on composable synthetic data, including simulated
+                            garments such as
+                            CLOTH3D and large-scale pose libraries
+                            such as AMASS for body poses and InterHand2.6M for hand poses, improving outfit
+                            generalization and pose
+                            robustness, respectively. Our approach achieves
+                            robust and expressive fitting across diverse clothing, poses, and levels of input
+                            completeness, delivering
+                            a substantial performance improvement over ETCH on both (1) seen data, such as 4D-DRESS
+                            (MPJPE-All,
+                            <span style="color: ForestGreen;">33.0%</span>) and CAPE (V2V-Hands, <span
+                                style="color: ForestGreen;">35.8%</span>), and (2) unseen data, such as BEDLAM2.0
+                            (MPJPE-All, <span style="color: ForestGreen;">80.8%</span>; V2V-All,
+                            <span style="color: ForestGreen;">80.5%</span>).
+                        </p>
+                    </div>
+                </div>
+                <div class="column abstract-chart-column">
+                    <div class="abstract-chart">
+                        <h3 class="abstract-chart-title">Improvement Over ETCH</h3>
+                        <div class="abstract-chart-list">
+                            <div class="abstract-chart-item">
+                                <div class="abstract-chart-meta">
+                                    <span class="abstract-chart-label">4D-DRESS</span>
+                                    <span class="abstract-chart-metric">MPJPE-All</span>
+                                    <span class="abstract-chart-value">33.0%</span>
+                                </div>
+                                <div class="abstract-chart-compare">
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH-X</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-bottom"
+                                                style="width: 67%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="abstract-chart-item">
+                                <div class="abstract-chart-meta">
+                                    <span class="abstract-chart-label">CAPE</span>
+                                    <span class="abstract-chart-metric">V2V-Hands</span>
+                                    <span class="abstract-chart-value">35.8%</span>
+                                </div>
+                                <div class="abstract-chart-compare">
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH-X</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-bottom"
+                                                style="width: 64.2%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="abstract-chart-item">
+                                <div class="abstract-chart-meta">
+                                    <span class="abstract-chart-label">BEDLAM2.0</span>
+                                    <span class="abstract-chart-metric">MPJPE-All</span>
+                                    <span class="abstract-chart-value">80.8%</span>
+                                </div>
+                                <div class="abstract-chart-compare">
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH-X</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-bottom"
+                                                style="width: 19.2%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="abstract-chart-item">
+                                <div class="abstract-chart-meta">
+                                    <span class="abstract-chart-label">BEDLAM2.0</span>
+                                    <span class="abstract-chart-metric">V2V-All</span>
+                                    <span class="abstract-chart-value">80.5%</span>
+                                </div>
+                                <div class="abstract-chart-compare">
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH-X</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-top" style="width: 100%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="abstract-chart-row">
+                                        <span class="abstract-chart-series">ETCH</span>
+                                        <div class="abstract-chart-track">
+                                            <div class="abstract-chart-bar abstract-chart-bar-bottom"
+                                                style="width: 19.5%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00129_Inner_Take3_00141.mp4" type="video/mp4">
-          </video>
+
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-3 has-text-centered">Comparison Results with ETCH</h2>
+            <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, ETCH Result, ETCH-X Result)</h3>
+
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00123_Outer_Take11_00111.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00127_Inner_Take8_00101.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00129_Inner_Take3_00141.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00129_Outer_Take13_00051.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00149_Outer_Take14_00131.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00151_Inner_Take9_00121.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="has-text-centered mt-5">
+                <button class="button is-primary is-medium toggle-videos-btn"
+                    onclick="toggleMoreResults(this, 'more-videos')">Check out more
+                    results</button>
+            </div>
+
+            <div id="more-videos" class="columns is-multiline mt-4" style="display: none;">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00151_Outer_Take15_00111.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00152_Inner_Take8_00051.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00160_Outer_Take17_00061.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00168_Outer_Take11_00111.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00170_Inner_Take9_00141.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/comparison/00170_Inner_Take11_00141.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00129_Outer_Take13_00051.mp4" type="video/mp4">
-          </video>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-3 has-text-centered">Results From Partial Inputs</h2>
+            <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, Partial Input, ETCH-X Result)</h3>
+
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00122_Outer_Take16_00226.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00123_Inner_Take5_00061.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00127_Outer_Take18_00056.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00134_Inner_Take5_00146.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00134_Outer_Take12_00091.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00137_Inner_Take5_00071.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="has-text-centered mt-5">
+                <button class="button is-primary is-medium toggle-videos-btn"
+                    onclick="toggleMoreResults(this, 'more-videos-2')">Check out more
+                    results</button>
+            </div>
+
+            <div id="more-videos-2" class="columns is-multiline mt-4" style="display: none;">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00140_Outer_Take19_00061.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00147_Inner_Take11_00051.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00148_Outer_Take19_00041.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00149_Inner_Take4_00071.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00151_Inner_Take4_00071.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/single_view/00151_Outer_Take15_00151.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00149_Outer_Take14_00131.mp4" type="video/mp4">
-          </video>
+    <section class="section">
+        <div class="container">
+            <h2 class="title is-3 has-text-centered">Comparison Results w/o and w/ Hand Refinement</h2>
+            <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, ETCH-X w/o Hand Refinement, ETCH-X w/ Hand
+                Refinement)
+            </h3>
+
+            <div class="columns is-multiline">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00135_Inner_Take7_00166.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00136_Inner_Take12_00131.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00149_Inner_Take12_00021.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="columns is-multiline mt-2">
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00135_Inner_Take7_00166.png"
+                        alt="Hand refinement comparison 1" width="100%">
+                </div>
+
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00136_Inner_Take12_00131.png"
+                        alt="Hand refinement comparison 2" width="100%">
+                </div>
+
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00149_Inner_Take12_00021.png"
+                        alt="Hand refinement comparison 3" width="100%">
+                </div>
+            </div>
+
+            <div class="has-text-centered mt-5">
+                <button class="button is-primary is-medium toggle-videos-btn"
+                    onclick="toggleMoreResults(this, 'more-videos-3')">Check out more
+                    results</button>
+            </div>
+
+            <div id="more-videos-3" class="columns is-multiline mt-4" style="display: none;">
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00174_Inner_Take6_00081.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00187_Inner_Take4_00121.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <video autoplay controls muted loop preload="metadata" width="100%">
+                        <source src="static/videos/hand_comparison/00188_Outer_Take18_00161.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00174_Inner_Take6_00081.png"
+                        alt="Hand refinement comparison 4" width="100%">
+                </div>
+
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00187_Inner_Take4_00121.png"
+                        alt="Hand refinement comparison 5" width="100%">
+                </div>
+
+                <div class="column is-one-third">
+                    <img src="static/videos/hand_comparison/00188_Outer_Take18_00161.png"
+                        alt="Hand refinement comparison 6" width="100%">
+                </div>
+            </div>
+
         </div>
+    </section>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00151_Inner_Take9_00121.mp4" type="video/mp4">
-          </video>
+    <section class="section" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2 class="title is-3 has-text-centered">Method</h2>
+
+            <div class="columns is-centered">
+                <div class="column">
+                    <div class="pdf-figure-wide">
+                        <img src="static/images/pipeline_with_hand_new.png" alt="ETCH Pipeline" width="100%">
+                    </div>
+
+                    <h3 class="subtitle has-text-justified is-6">
+                        <p>
+                            <strong>Two stages of ETCH-X: (A) Masked Undress, (B) Dense Fit.</strong> In the Masked
+                            Undress stage, we
+                            take a clothed
+                            scan as input and compute the undressed body. In the Dense Fit stage, we implicitly learns
+                            the deforming
+                            field, which deforms the canonical SMPL-X into a posed one. Thanks to the decoupled design,
+                            the robustness
+                            to dynamic clothing and pose variations could be improved with simulated garments,
+                            <i>i.e.</i>, CLOTH3D,
+                            and pose libraries, <i>i.e.</i>, AMASS for body poses and InterHand2.6M for hand poses,
+                            respectively.
+                        </p>
+                    </h3>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="has-text-centered mt-5">
-        <button class="button is-primary is-medium toggle-videos-btn"
-          onclick="toggleMoreResults(this, 'more-videos')">Check out more
-          results</button>
-      </div>
 
-      <div id="more-videos" class="columns is-multiline mt-4" style="display: none;">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00151_Outer_Take15_00111.mp4" type="video/mp4">
-          </video>
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content">
+
+                        <p>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00152_Inner_Take8_00051.mp4" type="video/mp4">
-          </video>
-        </div>
+    <script>
+        function toggleMoreResults(btn, targetId) {
+            var moreVideos = document.getElementById(targetId);
 
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00160_Outer_Take17_00061.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00168_Outer_Take11_00111.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00170_Inner_Take9_00141.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/comparison/00170_Inner_Take11_00141.mp4" type="video/mp4">
-          </video>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Results From Partial Inputs</h2>
-      <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, Partial Input, ETCH-X Result)</h3>
-
-      <div class="columns is-multiline">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00122_Outer_Take16_00226.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00123_Inner_Take5_00061.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00127_Outer_Take18_00056.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00134_Inner_Take5_00146.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00134_Outer_Take12_00091.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00137_Inner_Take5_00071.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="has-text-centered mt-5">
-        <button class="button is-primary is-medium toggle-videos-btn"
-          onclick="toggleMoreResults(this, 'more-videos-2')">Check out more
-          results</button>
-      </div>
-
-      <div id="more-videos-2" class="columns is-multiline mt-4" style="display: none;">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00140_Outer_Take19_00061.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00147_Inner_Take11_00051.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00148_Outer_Take19_00041.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00149_Inner_Take4_00071.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00151_Inner_Take4_00071.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/single_view/00151_Outer_Take15_00151.mp4" type="video/mp4">
-          </video>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Comparison Results w/o and w/ Hand Refinement</h2>
-      <h3 class="subtitle is-5 has-text-centered mb-5">(Scan, ETCH-X w/o Hand Refinement, ETCH-X w/ Hand Refinement)
-      </h3>
-
-      <div class="columns is-multiline">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00135_Inner_Take7_00166.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00136_Inner_Take12_00131.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00149_Inner_Take12_00021.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-
-      <div class="columns is-multiline mt-2">
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00135_Inner_Take7_00166.png" alt="Hand refinement comparison 1"
-            width="100%">
-        </div>
-
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00136_Inner_Take12_00131.png" alt="Hand refinement comparison 2"
-            width="100%">
-        </div>
-
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00149_Inner_Take12_00021.png" alt="Hand refinement comparison 3"
-            width="100%">
-        </div>
-      </div>
-
-      <div class="has-text-centered mt-5">
-        <button class="button is-primary is-medium toggle-videos-btn"
-          onclick="toggleMoreResults(this, 'more-videos-3')">Check out more
-          results</button>
-      </div>
-
-      <div id="more-videos-3" class="columns is-multiline mt-4" style="display: none;">
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00174_Inner_Take6_00081.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00187_Inner_Take4_00121.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <video autoplay controls muted loop preload="metadata" width="100%">
-            <source src="static/videos/hand_comparison/00188_Outer_Take18_00161.mp4" type="video/mp4">
-          </video>
-        </div>
-
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00174_Inner_Take6_00081.png" alt="Hand refinement comparison 4"
-            width="100%">
-        </div>
-
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00187_Inner_Take4_00121.png" alt="Hand refinement comparison 5"
-            width="100%">
-        </div>
-
-        <div class="column is-one-third">
-          <img src="static/videos/hand_comparison/00188_Outer_Take18_00161.png" alt="Hand refinement comparison 6"
-            width="100%">
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section class="section" style="background-color: #f5f5f5;">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Method</h2>
-
-      <div class="columns is-centered">
-        <div class="column">
-          <div class="pdf-figure-wide">
-            <img src="static/images/pipeline_with_hand_new.png" alt="ETCH Pipeline" width="100%">
-          </div>
-
-          <h3 class="subtitle has-text-justified is-6">
-            <p>
-              <strong>Two stages of ETCH-X: (A) Masked Undress, (B) Dense Fit.</strong> In the Masked Undress stage, we
-              take a clothed
-              scan as input and compute the undressed body. In the Dense Fit stage, we implicitly learns the deforming
-              field, which deforms the canonical SMPL-X into a posed one. Thanks to the decoupled design, the robustness
-              to dynamic clothing and pose variations could be improved with simulated garments, <i>i.e.</i>, CLOTH3D,
-              and pose libraries, <i>i.e.</i>, AMASS for body poses and InterHand2.6M for hand poses, respectively.
-            </p>
-          </h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <footer class="footer">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-8">
-          <div class="content">
-
-            <p>
-            </p>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMoreResults(btn, targetId) {
-      var moreVideos = document.getElementById(targetId);
-
-      if (moreVideos.style.display === "none") {
-        moreVideos.style.display = "flex";
-        btn.textContent = "Hide more results";
-      } else {
-        moreVideos.style.display = "none";
-        btn.textContent = "Check out more results";
-      }
-    }
-  </script>
+            if (moreVideos.style.display === "none") {
+                moreVideos.style.display = "flex";
+                btn.textContent = "Hide more results";
+            } else {
+                moreVideos.style.display = "none";
+                btn.textContent = "Check out more results";
+            }
+        }
+    </script>
 
 </body>
 
