@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll("video").forEach(function(e){if(!e.closest(".video-hover-card")){var o=document.createElement("div");o.className="video-hover-card",e.parentNode.insertBefore(o,e),o.appendChild(e)}})});
