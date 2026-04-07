@@ -29,7 +29,7 @@ social: false # includes social icons at the bottom of the page
 
 I am currently a research assistant working at <a href="https://endless.do">Endless AI Lab</a>, School of Engineering, Westlake University, with <a href="https://xiuyuliang.cn/">Yuliang Xiu</a>. I received my Master’s degree in Computer Science from ShanghaiTech University, working at <a href="https://idea.bme.shanghaitech.edu.cn/">IDEA Lab</a>, supervised by <a href="https://scholar.google.com/citations?user=v6VYQC8AAAAJ&hl=en">Prof. Dinggang Shen</a>. I received my Bachelor’s degree in Computer Science and Technology from Xi'an Jiaotong University, Xi'an, China.
 
-My current research interests focus on musculoskeletal models of human body and related research topics.
+My current research interests focus on 3D human body fitting and related research topics.
 
 Feel free to contact me for potential collaborations and discussions.
 
