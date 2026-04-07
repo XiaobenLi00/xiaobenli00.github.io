@@ -36,23 +36,38 @@
 "li":
   - firstname: ["Xiaoben", "X."]
     url: https://xiaobenli00.github.io/
+  - firstname: ["Boqian", "B."]
+    url: https://boqian-li.github.io/
 
 "meng":
   - firstname: ["Mancheng", "M."]
-    url: https://example.com/mancheng-meng
+    url: https://scholar.google.com/citations?user=mrZ0qtMAAAAJ&hl=zh-CN
 
 "wu":
   - firstname: ["Ziyan", "Z."]
-    url: https://example.com/ziyan-wu
+    url: https://wuziyan.com
+  - firstname: ["Jingyi", "J."]
+    url: https://orcid.org/0000-0001-8283-0646
 
 "chen":
   - firstname: ["Terrence", "T."]
-    url: https://example.com/terrence-chen
+    url: https://scholar.google.com/citations?user=S2BT6ogAAAAJ&hl=en
 
 "yang":
   - firstname: ["Fan", "F."]
-    url: https://example.com/fan-yang
+    url: https://fyangneil.github.io
 
 "shen":
   - firstname: ["Dinggang", "D."]
-    url: https://example.com/dinggang-shen
+    url: http://idea.bme.shanghaitech.edu.cn
+"cai":
+  - firstname: ["Zeyu", "Z."]
+    url: https://zcai0612.github.io/
+"yu":
+  - firstname: ["Siyuan", "S."]
+    url: https://ysysimon.com/
+  
+"xiu":
+  - firstname: ["Yuliang", "Y."]
+    url: https://xiuyuliang.cn/index.html
+  

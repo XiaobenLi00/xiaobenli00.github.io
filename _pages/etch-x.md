@@ -3,17 +3,34 @@ layout: none
 permalink: /ETCH-X/
 ---
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; url={{ '/projects/etch-x/' | relative_url }}">
-    <link rel="canonical" href="{{ '/projects/etch-x/' | absolute_url }}">
-    <script>
-      window.location.replace("{{ '/projects/etch-x/' | relative_url }}");
-    </script>
-    <title>Redirecting to ETCH-X</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{ '/ETCH-X/' | absolute_url }}">
+    <title>ETCH-X</title>
+    <style>
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .etchx-frame {
+        border: 0;
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+    </style>
   </head>
   <body>
-    <p>Redirecting to <a href="{{ '/projects/etch-x/' | relative_url }}">ETCH-X page</a>...</p>
+    <iframe
+      class="etchx-frame"
+      src="{{ '/projects/etch-x/index.html' | relative_url }}"
+      title="ETCH-X"
+    ></iframe>
   </body>
 </html>
