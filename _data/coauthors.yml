@@ -32,3 +32,27 @@
 "planck":
   - firstname: ["Max"]
     url: https://en.wikipedia.org/wiki/Max_Planck
+
+"li":
+  - firstname: ["Xiaoben", "X."]
+    url: https://xiaobenli00.github.io/
+
+"meng":
+  - firstname: ["Mancheng", "M."]
+    url: https://example.com/mancheng-meng
+
+"wu":
+  - firstname: ["Ziyan", "Z."]
+    url: https://example.com/ziyan-wu
+
+"chen":
+  - firstname: ["Terrence", "T."]
+    url: https://example.com/terrence-chen
+
+"yang":
+  - firstname: ["Fan", "F."]
+    url: https://example.com/fan-yang
+
+"shen":
+  - firstname: ["Dinggang", "D."]
+    url: https://example.com/dinggang-shen
