@@ -2,6 +2,7 @@
 layout: none
 permalink: /ETCH-X/
 ---
+
 <!-- <!doctype html> -->
 <html lang="en">
   <head>
@@ -25,6 +26,7 @@ permalink: /ETCH-X/
         display: block;
       }
     </style>
+
   </head>
   <body>
     <iframe

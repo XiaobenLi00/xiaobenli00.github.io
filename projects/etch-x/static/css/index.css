@@ -1,5 +1,5 @@
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .teaser .hero-body {
@@ -8,11 +8,11 @@ body {
 }
 
 .teaser {
-  font-family: 'Google Sans', sans-serif;
+  font-family: "Google Sans", sans-serif;
 }
 
 .publication-title {
-  font-family: 'Google Sans', sans-serif;
+  font-family: "Google Sans", sans-serif;
   margin-bottom: 0.5rem !important;
 }
 
@@ -23,7 +23,7 @@ body {
 
 .publication-institutions {
   font-size: 0.99rem !important;
-  line-height: 1.0;
+  line-height: 1;
   /* margin-bottom: 0.25rem; */
 }
 
@@ -65,7 +65,9 @@ body {
   border-radius: 14px;
   overflow: visible;
   position: relative;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
   z-index: 0;
 }
 
@@ -77,15 +79,15 @@ body {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .columns.is-multiline>.column.is-one-third:nth-child(3n + 1) .video-hover-card {
+  .columns.is-multiline > .column.is-one-third:nth-child(3n + 1) .video-hover-card {
     transform-origin: left center;
   }
 
-  .columns.is-multiline>.column.is-one-third:nth-child(3n + 2) .video-hover-card {
+  .columns.is-multiline > .column.is-one-third:nth-child(3n + 2) .video-hover-card {
     transform-origin: center center;
   }
 
-  .columns.is-multiline>.column.is-one-third:nth-child(3n) .video-hover-card {
+  .columns.is-multiline > .column.is-one-third:nth-child(3n) .video-hover-card {
     transform-origin: right center;
   }
 
@@ -101,10 +103,7 @@ body {
   }
 }
 
-@media screen and (max-width: 768px),
-(hover: none),
-(pointer: coarse) {
-
+@media screen and (max-width: 768px), (hover: none), (pointer: coarse) {
   .video-hover-card:hover,
   .video-hover-card.is-expanded {
     box-shadow: none;
