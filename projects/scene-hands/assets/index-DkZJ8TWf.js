@@ -44,7 +44,7 @@ var e = `modulepreload`,
         throw ((e[t] = void 0), n);
       }
     );
-    return ((e[t] = i), i);
+    return (e[t] = i), i;
   },
   a = function (a, o, s) {
     let c = Promise.resolve();
@@ -77,7 +77,7 @@ var e = `modulepreload`,
                 let e = document.getElementsByTagName(`link`);
                 for (let t = e.length - 1; t >= 0; t--) {
                   let n = e[t];
-                  (a.all.add(n.href), n.rel === `stylesheet` && a.styles.add(n.href));
+                  a.all.add(n.href), n.rel === `stylesheet` && a.styles.add(n.href);
                 }
               }
               if ((l ? a.styles : a.all).has(c.href)) return;
@@ -92,7 +92,7 @@ var e = `modulepreload`,
                 l)
               )
                 return new Promise((e, n) => {
-                  (t.addEventListener(`load`, e), t.addEventListener(`error`, () => n(Error(`Unable to preload CSS for ${c}`))));
+                  t.addEventListener(`load`, e), t.addEventListener(`error`, () => n(Error(`Unable to preload CSS for ${c}`)));
                 });
             });
           })
@@ -109,9 +109,9 @@ var e = `modulepreload`,
     });
   };
 a(() => import(`./main-BUZh08il.js`), [], import.meta.url).catch((e) => {
-  (console.error(e), (document.getElementById(`loading`).hidden = !0));
+  console.error(e), (document.getElementById(`loading`).hidden = !0);
   let t = document.getElementById(`error`);
-  ((t.textContent = /WebGL|context/i.test(String(e)) ? `浏览器未能启动3D显示，请启用硬件加速后刷新。` : `页面资源加载失败，请刷新重试。`),
-    (t.hidden = !1));
+  (t.textContent = /WebGL|context/i.test(String(e)) ? `浏览器未能启动3D显示，请启用硬件加速后刷新。` : `页面资源加载失败，请刷新重试。`),
+    (t.hidden = !1);
 });
 export { a as t };

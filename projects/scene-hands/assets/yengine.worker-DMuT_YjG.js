@@ -8,12 +8,11 @@ var e = Object.create,
   s = (e, i, o, s) => {
     if ((i && typeof i == `object`) || typeof i == `function`)
       for (var c = r(i), l = 0, ee = c.length, te; l < ee; l++)
-        ((te = c[l]), !a.call(e, te) && te !== o && t(e, te, { get: ((e) => i[e]).bind(null, te), enumerable: !(s = n(i, te)) || s.enumerable }));
+        (te = c[l]), !a.call(e, te) && te !== o && t(e, te, { get: ((e) => i[e]).bind(null, te), enumerable: !(s = n(i, te)) || s.enumerable });
     return e;
   },
   c = (n, r, o) => (
-    (o = n == null ? {} : e(i(n))),
-    s(r || !n || !n.__esModule || !a.call(n, `default`) ? t(o, `default`, { value: n, enumerable: !0 }) : o, n)
+    (o = n == null ? {} : e(i(n))), s(r || !n || !n.__esModule || !a.call(n, `default`) ? t(o, `default`, { value: n, enumerable: !0 }) : o, n)
   );
 const l = (1n << 56n) - 1n;
 function ee(e) {
@@ -22,7 +21,7 @@ function ee(e) {
 }
 var te;
 (function (e) {
-  ((e[(e.EngineInstance = 1)] = `EngineInstance`), (e[(e.World = 2)] = `World`), (e[(e.Entity = 3)] = `Entity`));
+  (e[(e.EngineInstance = 1)] = `EngineInstance`), (e[(e.World = 2)] = `World`), (e[(e.Entity = 3)] = `Entity`);
 })((te ||= {}));
 function ne(e, t) {
   if (t < 0n || t > l) throw RangeError(`Handle payload must fit in 56 bits`);
@@ -67,7 +66,7 @@ var se = class {
   }
   fail(e) {
     if (!this.canTransition(`Error`)) throw Error(`Runtime cannot fail while in ${this.#t}`);
-    ((this.#e = e), (this.#t = `Error`));
+    (this.#e = e), (this.#t = `Error`);
   }
 };
 function ce() {
@@ -128,7 +127,7 @@ function fe(e, t) {
   for (let i of e) {
     if (i.kind !== t) throw Error(`Runtime protocol expected ${t} channel, received ${i.kind}: ${i.type}`);
     if (n.has(i) || r.has(i.type)) throw Error(`Duplicate runtime ${t} channel: ${i.type}`);
-    (n.add(i), r.add(i.type));
+    n.add(i), r.add(i.type);
   }
   return [...e].sort((e, t) => ge(e.type, t.type));
 }
@@ -161,7 +160,7 @@ function _e(e, t, n) {
 }
 function ve(e) {
   let t = 2166136261;
-  for (let n = 0; n < e.length; n += 1) ((t ^= e.charCodeAt(n)), (t = Math.imul(t, 16777619)));
+  for (let n = 0; n < e.length; n += 1) (t ^= e.charCodeAt(n)), (t = Math.imul(t, 16777619));
   return `fnv1a32:${(t >>> 0).toString(16).padStart(8, `0`)}`;
 }
 const ye = Object.freeze({ bodyControl: !1, kinematic: !1, jointTypes: Object.freeze([]), collisionPairs: !1, contacts: !1 }),
@@ -292,7 +291,7 @@ function Ae(e) {
   return Object.freeze(e);
 }
 function je(e, t) {
-  return (ze(e, `Snapshot channel`), Object.freeze({ kind: `snapshot`, type: e, policy: t }));
+  return ze(e, `Snapshot channel`), Object.freeze({ kind: `snapshot`, type: e, policy: t });
 }
 const Me = Ae({ id: `engine.snapshot-policy.transferable-latest`, version: 1 }),
   Ne = Ae({ id: `engine.snapshot-policy.transferable-interpolated`, version: 1 });
@@ -311,14 +310,14 @@ function Le(e, t, n) {
   let i = r / 4,
     a = new Uint32Array(e),
     o = new Float32Array(e);
-  ((a[i] = n.proxyId),
+  (a[i] = n.proxyId),
     (o[i + 1] = n.position[0]),
     (o[i + 2] = n.position[1]),
     (o[i + 3] = n.position[2]),
     (o[i + 4] = n.rotation[0]),
     (o[i + 5] = n.rotation[1]),
     (o[i + 6] = n.rotation[2]),
-    (o[i + 7] = n.rotation[3]));
+    (o[i + 7] = n.rotation[3]);
 }
 function Re(e) {
   if (e !== 7) throw Error(`Engine protocol mismatch: expected v7, received v${e}`);
@@ -338,7 +337,7 @@ var Ve = class {
   #n = 0;
   constructor(e) {
     if (e.fixedHz <= 0 || e.maxCatchUpTicks < 1 || e.maxFrameDeltaMs <= 0) throw RangeError(`Invalid FixedStepClock configuration`);
-    ((this.fixedDeltaMs = 1e3 / e.fixedHz), (this.#e = e.maxCatchUpTicks), (this.#t = e.maxFrameDeltaMs));
+    (this.fixedDeltaMs = 1e3 / e.fixedHz), (this.#e = e.maxCatchUpTicks), (this.#t = e.maxFrameDeltaMs);
   }
   advance(e) {
     let t = Math.max(0, Number.isFinite(e) ? e : 0),
@@ -349,7 +348,7 @@ var Ve = class {
       a = Math.min(i, this.#e);
     if (((this.#n -= a * this.fixedDeltaMs), i > this.#e)) {
       let e = Math.floor(this.#n / this.fixedDeltaMs) * this.fixedDeltaMs;
-      ((r += e), (this.#n -= e));
+      (r += e), (this.#n -= e);
     }
     return { ticks: a, alpha: this.#n / this.fixedDeltaMs, droppedMs: r, clampedMs: n };
   }
@@ -358,13 +357,13 @@ var Ve = class {
   }
 };
 function He(e) {
-  return (_t(e.id, `Component`), Object.freeze({ ...e, kind: `component` }));
+  return _t(e.id, `Component`), Object.freeze({ ...e, kind: `component` });
 }
 function Ue(e) {
-  return (_t(e.id, `Resource`), Object.freeze({ ...e, kind: `resource` }));
+  return _t(e.id, `Resource`), Object.freeze({ ...e, kind: `resource` });
 }
 function We(e) {
-  return (_t(e.id, `Phase`), Object.freeze({ kind: `phase`, id: e.id, schedule: e.schedule, before: gt(e.before), after: gt(e.after) }));
+  return _t(e.id, `Phase`), Object.freeze({ kind: `phase`, id: e.id, schedule: e.schedule, before: gt(e.before), after: gt(e.after) });
 }
 const Ge = We({ id: `engine.phase.startup`, schedule: `startup` }),
   Ke = We({ id: `engine.phase.pre-physics`, schedule: `tick` }),
@@ -445,7 +444,7 @@ function st(e) {
   });
 }
 function ct(e) {
-  return (_t(e.id, `Simulation plugin`), Object.freeze(e));
+  return _t(e.id, `Simulation plugin`), Object.freeze(e);
 }
 function lt(e) {
   if ((_t(e.id, `Simulation app`), !Number.isSafeInteger(e.version) || e.version < 1))
@@ -546,11 +545,11 @@ function bt(e, t) {
   for (let r of e) {
     for (let e of r.before) {
       let i = Mt(e, t, r.id);
-      (Pt(r, i), Ft(n, r.id, i.id));
+      Pt(r, i), Ft(n, r.id, i.id);
     }
     for (let e of r.after) {
       let i = Mt(e, t, r.id);
-      (Pt(r, i), Ft(n, i.id, r.id));
+      Pt(r, i), Ft(n, i.id, r.id);
     }
   }
   for (let t of [`startup`, `tick`, `shutdown`])
@@ -681,22 +680,22 @@ function At(e, t, n, r) {
   let o = [],
     s = [...i.keys()].filter((e) => a.get(e) === 0).sort((e, t) => e.localeCompare(t)),
     c = 0;
-  for (; s.length > 0;) {
+  for (; s.length > 0; ) {
     let e = s;
     s = [];
     let n = [];
     for (let r of e) {
       let e = i.get(r);
       if (e) {
-        (n.push(e), (c += 1));
+        n.push(e), (c += 1);
         for (let e of t.get(r) ?? []) {
           if (!i.has(e)) continue;
           let t = (a.get(e) ?? 0) - 1;
-          (a.set(e, t), t === 0 && s.push(e));
+          a.set(e, t), t === 0 && s.push(e);
         }
       }
     }
-    (s.sort((e, t) => e.localeCompare(t)), o.push(Object.freeze(n)));
+    s.sort((e, t) => e.localeCompare(t)), o.push(Object.freeze(n));
   }
   if (c !== e.length) throw Error(`Cycle detected in ${r}`);
   return Object.freeze(o);
@@ -725,12 +724,12 @@ function Pt(e, t) {
 function Ft(e, t, n) {
   if (t === n) throw Error(`Self dependency is not allowed: ${t}`);
   let r = e.get(t);
-  (r || ((r = /* @__PURE__ */ new Set()), e.set(t, r)), r.add(n));
+  r || ((r = /* @__PURE__ */ new Set()), e.set(t, r)), r.add(n);
 }
 function It(e, t, n) {
   let r = [t],
     i = /* @__PURE__ */ new Set();
-  for (; r.length > 0;) {
+  for (; r.length > 0; ) {
     let t = r.pop();
     if (!(t === void 0 || i.has(t))) {
       i.add(t);
@@ -751,7 +750,7 @@ function Rt(e) {
 }
 function zt(e) {
   let t = new Bt(e.id, e.version);
-  return (t.install(e.plugins), t.finalize());
+  return t.install(e.plugins), t.finalize();
 }
 var Bt = class {
   #e;
@@ -769,15 +768,15 @@ var Bt = class {
   #f;
   #p = !1;
   constructor(e, t) {
-    ((this.#e = e), (this.#t = t));
+    (this.#e = e), (this.#t = t);
     for (let e of Ze) this.addPhase(e);
-    (this.addComponent(ut), this.addComponent(dt), this.addComponent(ft), this.addResource(pt), this.addSystem(Vt), this.addSystem(Ht));
+    this.addComponent(ut), this.addComponent(dt), this.addComponent(ft), this.addResource(pt), this.addSystem(Vt), this.addSystem(Ht);
   }
   install(e) {
     this.#b();
     for (let t of e) {
       if (this.#s.has(t.id)) throw Error(`Duplicate simulation plugin id: ${t.id}`);
-      (this.#s.add(t.id), this.#n.push(t), (this.#d = t.id));
+      this.#s.add(t.id), this.#n.push(t), (this.#d = t.id);
       try {
         let e = t.install(this);
         if (Ut(e)) throw (Promise.resolve(e).catch(() => void 0), Error(`Simulation plugin ${t.id} returned a Promise from install`));
@@ -787,31 +786,31 @@ var Bt = class {
     }
   }
   addComponent(e) {
-    return (this.#y(e), this.#r.push(e), this);
+    return this.#y(e), this.#r.push(e), this;
   }
   addResource(e) {
-    return (this.#y(e), this.#i.push(e), this);
+    return this.#y(e), this.#i.push(e), this;
   }
   addPhase(e) {
     if ((this.#b(), this.#l.has(e.id))) throw Error(`Duplicate phase id: ${e.id}`);
-    return (this.#l.set(e.id, e), this.#a.push(e), this);
+    return this.#l.set(e.id, e), this.#a.push(e), this;
   }
   addSystem(e) {
     if ((this.#b(), this.#u.has(e.id))) throw Error(`Duplicate system id: ${e.id}`);
-    return (this.#u.add(e.id), this.#o.push(e), this);
+    return this.#u.add(e.id), this.#o.push(e), this;
   }
   setPhysicsProvider(e) {
     this.#b();
     let t = this.#d;
     if (!t) throw Error(`Physics provider must be installed by a Simulation plugin`);
     if (this.#f) throw Error(`Duplicate physics providers: ${this.#f.pluginId}, ${t}`);
-    return ((this.#f = { pluginId: t, factory: e }), this);
+    return (this.#f = { pluginId: t, factory: e }), this;
   }
   finalize() {
     this.#b();
     let e = this.#f;
     if (!e) throw Error(`Simulation app requires exactly one Physics provider`);
-    (this.#m(), this.#g());
+    this.#m(), this.#g();
     let t = vt(this.#a, this.#o),
       { protocol: n, commandOwnerBySlot: r } = this.#h(t),
       i = this.#o.some((e) => e.params.some((e) => e.kind === `physics-characters-read` || e.kind === `physics-characters-write`));
@@ -892,10 +891,10 @@ var Bt = class {
             n.set(e.token, s.ordinal);
             break;
           case `events-read`:
-            (o(e.token), r.add(e.token));
+            o(e.token), r.add(e.token);
             break;
           case `events-write`:
-            (o(e.token), r.add(e.token), i.add(e.token));
+            o(e.token), r.add(e.token), i.add(e.token);
             break;
           case `snapshots-write`: {
             o(e.channel);
@@ -1002,10 +1001,10 @@ var Wt = (e, t, n) => Object.defineProperty(e, t, { value: n, enumerable: !1, wr
     if (e.aliveCount < e.dense.length) {
       let t = e.dense[e.aliveCount],
         n = t;
-      return ((e.sparse[n] = e.aliveCount), e.aliveCount++, t);
+      return (e.sparse[n] = e.aliveCount), e.aliveCount++, t;
     }
     let t = ++e.maxId;
-    return (e.dense.push(t), (e.sparse[t] = e.aliveCount), e.aliveCount++, t);
+    return e.dense.push(t), (e.sparse[t] = e.aliveCount), e.aliveCount++, t;
   },
   Xt = (e, t) => {
     let n = e.sparse[t];
@@ -1068,7 +1067,7 @@ var tn = () => {
       sparse: t,
       dense: e,
       reset: () => {
-        ((e.length = 0), (t.length = 0));
+        (e.length = 0), (t.length = 0);
       },
       sort: (n) => {
         e.sort(n);
@@ -1087,9 +1086,9 @@ var tn = () => {
         if (!i(e)) {
           if (n >= r.length) {
             let e = new Uint32Array(new nn(r.length * 2 * 4));
-            (e.set(r), (r = e));
+            e.set(r), (r = e);
           }
-          ((r[n] = e), (t[e] = n), n++);
+          (r[n] = e), (t[e] = n), n++;
         }
       },
       remove: (e) => {
@@ -1097,7 +1096,7 @@ var tn = () => {
         n--;
         let a = t[e],
           o = r[n];
-        ((r[a] = o), (t[o] = a));
+        (r[a] = o), (t[o] = a);
       },
       has: i,
       sparse: t,
@@ -1105,7 +1104,7 @@ var tn = () => {
         return new Uint32Array(r.buffer, 0, n);
       },
       reset: () => {
-        ((n = 0), (t.length = 0));
+        (n = 0), (t.length = 0);
       },
       sort: (e) => {
         let i = Array.from(r.subarray(0, n));
@@ -1142,11 +1141,11 @@ var tn = () => {
         let r = n === `*` ? gn : n;
         if (!e.pairsMap.has(r)) {
           let i = e.initStore ? e.initStore(n) : {};
-          (Wt(i, on, t), Wt(i, sn, r), Wt(i, cn, !0), e.pairsMap.set(r, i));
+          Wt(i, on, t), Wt(i, sn, r), Wt(i, cn, !0), e.pairsMap.set(r, i);
         }
         return e.pairsMap.get(r);
       };
-    return (Wt(t, ln, e), t);
+    return Wt(t, ln, e), t;
   },
   dn = (e, t) => {
     if (e === void 0) throw Error(`Relation is undefined`);
@@ -1161,11 +1160,11 @@ var tn = () => {
   pn = Symbol.for(`bitecs-wildcard`);
 function mn() {
   let e = un();
-  return (Object.defineProperty(e, pn, { value: !0, enumerable: !1, writable: !1, configurable: !1 }), e);
+  return Object.defineProperty(e, pn, { value: !0, enumerable: !1, writable: !1, configurable: !1 }), e;
 }
 function hn() {
   let e = Symbol.for(`bitecs-global-wildcard`);
-  return (globalThis[e] || (globalThis[e] = mn()), globalThis[e]);
+  return globalThis[e] || (globalThis[e] = mn()), globalThis[e];
 }
 var gn = hn();
 function _n() {
@@ -1173,7 +1172,7 @@ function _n() {
 }
 function vn() {
   let e = Symbol.for(`bitecs-global-isa`);
-  return (globalThis[e] || (globalThis[e] = _n()), globalThis[e]);
+  return globalThis[e] || (globalThis[e] = _n()), globalThis[e];
 }
 var yn = vn();
 function bn(e) {
@@ -1187,7 +1186,7 @@ function wn(e, t) {
   if (t < n.length) return n;
   let r = Math.max(t + 1, n.length * 2, n.length + Cn),
     i = new Uint32Array(r);
-  return (i.fill(Sn), i.set(n), (e.depths = i), i);
+  return i.fill(Sn), i.set(n), (e.depths = i), i;
 }
 function Tn(e, t, n, r) {
   let { depthToEntities: i } = e;
@@ -1201,14 +1200,14 @@ function En(e, t) {
   t > e.maxDepth && (e.maxDepth = t);
 }
 function Dn(e, t, n, r) {
-  ((e.depths[t] = n), Tn(e, t, n, r), En(e, n));
+  (e.depths[t] = n), Tn(e, t, n, r), En(e, n);
 }
 function On(e, t) {
   e[Qt].hierarchyQueryCache.delete(t);
 }
 function kn(e, t) {
   let n = e[Qt];
-  return (n.hierarchyActiveRelations.has(t) || (n.hierarchyActiveRelations.add(t), jn(e, t), An(e, t)), n.hierarchyData.get(t));
+  return n.hierarchyActiveRelations.has(t) || (n.hierarchyActiveRelations.add(t), jn(e, t), An(e, t)), n.hierarchyData.get(t);
 }
 function An(e, t) {
   let n = Qn(e, [dn(t, gn)]);
@@ -1221,7 +1220,7 @@ function jn(e, t) {
   if (!n.hierarchyData.has(t)) {
     let e = Math.max(Cn, n.entityIndex.dense.length * 2),
       r = new Uint32Array(e);
-    (r.fill(Sn), n.hierarchyData.set(t, { depths: r, dirty: tn(), depthToEntities: /* @__PURE__ */ new Map(), maxDepth: 0 }));
+    r.fill(Sn), n.hierarchyData.set(t, { depths: r, dirty: tn(), depthToEntities: /* @__PURE__ */ new Map(), maxDepth: 0 });
   }
 }
 function Mn(e, t, n, r = /* @__PURE__ */ new Set()) {
@@ -1244,7 +1243,7 @@ function Nn(e, t, n, r) {
     { depths: o } = a;
   if (((o = wn(a, n)), o[n] === Sn)) {
     let i = Mn(e, t, n, r);
-    return (Dn(a, n, i), i);
+    return Dn(a, n, i), i;
   }
   return o[n];
 }
@@ -1255,7 +1254,7 @@ function Fn(e, t, n, r, i = tn()) {
   if (i.has(n)) return;
   i.add(n);
   let a = Qn(e, [t(n)]);
-  for (let n of a) (r.add(n), Fn(e, t, n, r, i));
+  for (let n of a) r.add(n), Fn(e, t, n, r, i);
 }
 function In(e, t, n, r, i = /* @__PURE__ */ new Set()) {
   let a = e[Qt];
@@ -1271,14 +1270,14 @@ function In(e, t, n, r, i = /* @__PURE__ */ new Set()) {
     l = r === void 0 ? 0 : Pn(e, t, r) + 1;
   if (l > xn) return;
   let ee = s[n];
-  (Dn(o, n, l, ee === Sn ? void 0 : ee), ee !== l && (Fn(e, t, n, c, tn()), On(e, t)));
+  Dn(o, n, l, ee === Sn ? void 0 : ee), ee !== l && (Fn(e, t, n, c, tn()), On(e, t));
 }
 function Ln(e, t, n) {
   let r = e[Qt];
   if (!r.hierarchyActiveRelations.has(t)) return;
   let i = r.hierarchyData.get(t),
     { depths: a } = i;
-  ((a = wn(i, n)), Rn(e, t, n, a, tn()), On(e, t));
+  (a = wn(i, n)), Rn(e, t, n, a, tn()), On(e, t);
 }
 function Rn(e, t, n, r, i) {
   if (i.has(n)) return;
@@ -1306,7 +1305,7 @@ function Bn(e, t, n, r = {}) {
   let a = Yn(e, [t, ...n]),
     o = i.hierarchyQueryCache.get(t);
   if (o && o.hash === a) return o.result;
-  (zn(e, t), Zn(e, n, r));
+  zn(e, t), Zn(e, n, r);
   let s = i.queriesHashMap.get(Yn(e, n)),
     { depths: c } = i.hierarchyData.get(t);
   s.sort((e, t) => {
@@ -1315,7 +1314,7 @@ function Bn(e, t, n, r = {}) {
     return n === r ? e - t : n - r;
   });
   let l = (r.buffered, s.dense);
-  return (i.hierarchyQueryCache.set(t, { hash: a, result: l }), l);
+  return i.hierarchyQueryCache.set(t, { hash: a, result: l }), l;
 }
 function Vn(e, t, n, r = {}) {
   let i = kn(e, t);
@@ -1349,7 +1348,7 @@ var Hn = Symbol.for(`bitecs-opType`),
       l = [],
       ee = (t, n) => {
         n.forEach((n) => {
-          (r.componentMap.has(n) || ir(e, n), t.push(n));
+          r.componentMap.has(n) || ir(e, n), t.push(n);
         });
       };
     t.forEach((t) => {
@@ -1359,7 +1358,7 @@ var Hn = Symbol.for(`bitecs-opType`),
         else if (e === `Or`) ee(l, n);
         else if (e === `And`) ee(s, n);
         else throw Error(`Nested combinator ${e} not supported yet - use simple queries for best performance`);
-      } else (r.componentMap.has(t) || ir(e, t), s.push(t));
+      } else r.componentMap.has(t) || ir(e, t), s.push(t);
     });
     let te = a.map((e) => r.componentMap.get(e)),
       ne = [...new Set(te.map((e) => e.generationId))],
@@ -1382,12 +1381,12 @@ var Hn = Symbol.for(`bitecs-opType`),
         removeObservable: an(),
         queues: {},
       });
-    (r.queries.add(ce),
+    r.queries.add(ce),
       r.queriesHashMap.set(i, ce),
       te.forEach((e) => {
         e.queries.add(ce);
       }),
-      c.length && r.notQueries.add(ce));
+      c.length && r.notQueries.add(ce);
     let le = r.entityIndex;
     for (let t = 0; t < le.aliveCount; t++) {
       let n = le.dense[t];
@@ -1399,7 +1398,7 @@ function Zn(e, t, n = {}) {
   let r = e[Qt],
     i = Yn(e, t),
     a = r.queriesHashMap.get(i);
-  return (a ? n.buffered && !(`buffer` in a.dense) && (a = Xn(e, t, { buffered: !0 })) : (a = Xn(e, t, n)), n.buffered, a.dense);
+  return a ? n.buffered && !(`buffer` in a.dense) && (a = Xn(e, t, { buffered: !0 })) : (a = Xn(e, t, n)), n.buffered, a.dense;
 }
 function Qn(e, t, ...n) {
   let r = t.find((e) => e && typeof e == `object` && Wn in e),
@@ -1410,16 +1409,16 @@ function Qn(e, t, ...n) {
   for (let e of n)
     if (s && e && typeof e == `object` && qn in e) {
       let t = e;
-      (t[qn] === `buffer` && (a = !0), t[qn] === `nested` && (o = !1));
+      t[qn] === `buffer` && (a = !0), t[qn] === `nested` && (o = !1);
     } else if (!s) {
       let t = e;
-      (t.buffered !== void 0 && (a = t.buffered), t.commit !== void 0 && (o = t.commit));
+      t.buffered !== void 0 && (a = t.buffered), t.commit !== void 0 && (o = t.commit);
     }
   if (r) {
     let { [Gn]: t, [Kn]: n } = r;
     return n === void 0 ? Bn(e, t, i, { buffered: a }) : Vn(e, t, n, { buffered: a });
   }
-  return (o && nr(e), Zn(e, i, { buffered: a }));
+  return o && nr(e), Zn(e, i, { buffered: a });
 }
 function $n(e, t, n) {
   let r = e[Qt],
@@ -1467,7 +1466,7 @@ var er = (e, t) => {
         setObservable: an(),
         getObservable: an(),
       };
-    return (n.componentMap.set(t, i), (n.bitflag *= 2), n.bitflag >= 2 ** 31 && ((n.bitflag = 1), n.entityMasks.push([])), i);
+    return n.componentMap.set(t, i), (n.bitflag *= 2), n.bitflag >= 2 ** 31 && ((n.bitflag = 1), n.entityMasks.push([])), i;
   },
   ar = (e, t, n) => {
     let r = e[Qt],
@@ -1482,7 +1481,7 @@ var er = (e, t) => {
   },
   sr = (e, t, n, r, i = /* @__PURE__ */ new Set()) => {
     if (!i.has(r)) {
-      (i.add(r), cr(t, n, yn(r)));
+      i.add(r), cr(t, n, yn(r));
       for (let i of mr(t, r))
         if (i !== dr && !ar(t, n, i)) {
           cr(t, n, i);
@@ -1502,7 +1501,7 @@ var er = (e, t) => {
       a = `data` in n ? n.data : void 0;
     r.componentMap.has(i) || ir(e, i);
     let o = r.componentMap.get(i);
-    if (ar(e, t, i)) return (a !== void 0 && o.setObservable.notify(t, a), !1);
+    if (ar(e, t, i)) return a !== void 0 && o.setObservable.notify(t, a), !1;
     let { generationId: s, bitflag: c, queries: l } = o;
     if (
       ((r.entityMasks[s][t] |= c),
@@ -1547,17 +1546,17 @@ var ur = (e, t, ...n) => {
       if (
         ((r.entityMasks[i][t] &= ~a),
         o.forEach((n) => {
-          (n.toRemove.remove(t), $n(e, n, t) ? er(n, t) : rr(e, n, t));
+          n.toRemove.remove(t), $n(e, n, t) ? er(n, t) : rr(e, n, t);
         }),
         r.entityComponents.get(t).delete(n),
         n[cn])
       ) {
         let r = n[sn],
           i = n[on];
-        (Ln(e, i, t),
+        Ln(e, i, t),
           ur(e, t, dn(gn, r)),
           typeof r == `number` && hr(e, r) && (ur(e, r, dn(gn, t)), ur(e, r, dn(gn, i))),
-          fn(e, t, i).length === 0 && ur(e, t, dn(i, gn)));
+          fn(e, t, i).length === 0 && ur(e, t, dn(i, gn));
       }
     });
   },
@@ -1579,7 +1578,7 @@ var pr = (e, t) => {
     if (!Zt(n.entityIndex, t)) return;
     let r = [t],
       i = /* @__PURE__ */ new Set();
-    for (; r.length > 0;) {
+    for (; r.length > 0; ) {
       let t = r.shift();
       if (i.has(t)) continue;
       i.add(t);
@@ -1590,16 +1589,16 @@ var pr = (e, t) => {
             for (let o of n.entityComponents.get(i)) {
               if (!o[cn]) continue;
               let n = o[on][ln];
-              (a.push(() => ur(e, i, dn(gn, t))),
+              a.push(() => ur(e, i, dn(gn, t))),
                 o[sn] === t &&
-                  (a.push(() => ur(e, i, o)), n.autoRemoveSubject && r.push(i), n.onTargetRemoved && a.push(() => n.onTargetRemoved(e, i, t))));
+                  (a.push(() => ur(e, i, o)), n.autoRemoveSubject && r.push(i), n.onTargetRemoved && a.push(() => n.onTargetRemoved(e, i, t)));
             }
         n.entitiesWithRelations.delete(t);
       }
       for (let e of a) e();
       for (let t of r) pr(e, t);
       for (let r of n.queries) rr(e, r, t);
-      (Xt(n.entityIndex, t), n.entityComponents.delete(t));
+      Xt(n.entityIndex, t), n.entityComponents.delete(t);
       for (let e = 0; e < n.entityMasks.length; e++) n.entityMasks[e][t] = 0;
     }
   },
@@ -1635,7 +1634,7 @@ var pr = (e, t) => {
     reserveEntityHandle() {
       this.#d();
       let e = re(this.#s++);
-      return (this.#a.add(e), e);
+      return this.#a.add(e), e;
     }
     createEntity(e) {
       if ((this.#d(), this.entityCount >= this.capacity)) throw Error(`ECS entity capacity exceeded (${this.capacity})`);
@@ -1644,13 +1643,13 @@ var pr = (e, t) => {
       if (n < 0 || n >= this.capacity) throw (pr(this.#e, t), Error(`bitECS entity ${t} exceeds configured capacity ${this.capacity}`));
       let r = e ?? this.reserveEntityHandle();
       if (!this.#a.delete(r)) throw (pr(this.#e, t), Error(`Entity handle was not reserved by this World`));
-      return (this.#n.add(n), this.#r.set(r, n), this.#i.set(n, r), n);
+      return this.#n.add(n), this.#r.set(r, n), this.#i.set(n, r), n;
     }
     destroyEntity(e) {
       if (!this.#n.has(e)) return;
       for (let t of this.#o) t(e);
       let t = this.#i.get(e);
-      (t !== void 0 && this.#r.delete(t), this.#i.delete(e), this.#n.delete(e), pr(this.#e, this.#f(e)));
+      t !== void 0 && this.#r.delete(t), this.#i.delete(e), this.#n.delete(e), pr(this.#e, this.#f(e));
     }
     hasEntity(e) {
       return this.#n.has(e);
@@ -1671,7 +1670,7 @@ var pr = (e, t) => {
       return this.#t.has(e);
     }
     add(e, t) {
-      (this.#u(e), cr(this.#e, this.#f(e), this.write(t)));
+      this.#u(e), cr(this.#e, this.#f(e), this.write(t));
     }
     remove(e, t) {
       this.#n.has(e) && ur(this.#e, this.#f(e), this.write(t));
@@ -1697,12 +1696,12 @@ var pr = (e, t) => {
       return this.#t.get(e);
     }
     onDestroy(e) {
-      return (this.#o.add(e), () => this.#o.delete(e));
+      return this.#o.add(e), () => this.#o.delete(e);
     }
     dispose() {
       if (!this.#c) {
         for (let e of [...this.#n]) this.destroyEntity(e);
-        (this.#o.clear(), this.#a.clear(), (this.#c = !0));
+        this.#o.clear(), this.#a.clear(), (this.#c = !0);
       }
     }
     #u(e) {
@@ -1718,7 +1717,7 @@ var pr = (e, t) => {
   _r = class extends Error {
     code;
     constructor(e, t) {
-      (super(t), (this.code = e));
+      super(t), (this.code = e);
     }
   },
   vr = class {
@@ -1729,7 +1728,7 @@ var pr = (e, t) => {
     reader;
     jointReader;
     constructor(e) {
-      ((this.#e = e),
+      (this.#e = e),
         (this.reader = {
           capabilities: e.backend.capabilities ?? ye,
           readBodyState: (t) => {
@@ -1751,10 +1750,10 @@ var pr = (e, t) => {
             let n = this.#t.get(t);
             return n ? e.backend.joints?.readState(n.handle) : void 0;
           },
-        }));
+        });
     }
     entityRemoving(e) {
-      (this.#c(e), this.bodyRemoving(e));
+      this.#c(e), this.bodyRemoving(e);
     }
     bodyRemoving(e) {
       for (let t of [...(this.#n.get(e) ?? [])]) this.#c(t);
@@ -1765,15 +1764,15 @@ var pr = (e, t) => {
     }
     commit(e, t) {
       if (!Array.isArray(e) || e.length === 0 || e.length > 256)
-        ((t.status = `rejected`), (t.error = { code: `invalid-input`, message: `Physics batch needs 1–256 operations` }));
+        (t.status = `rejected`), (t.error = { code: `invalid-input`, message: `Physics batch needs 1–256 operations` });
       else {
         for (let n = 0; n < e.length; n++)
           try {
-            (this.#o(e[n]), t.appliedCount++);
+            this.#o(e[n]), t.appliedCount++;
           } catch (e) {
-            ((t.status = `rejected`),
+            (t.status = `rejected`),
               (t.failedIndex = n),
-              (t.error = { code: e instanceof _r ? e.code : `invalid-input`, message: e instanceof Error ? e.message : String(e) }));
+              (t.error = { code: e instanceof _r ? e.code : `invalid-input`, message: e instanceof Error ? e.message : String(e) });
             return;
           }
         t.status = `applied`;
@@ -1796,16 +1795,16 @@ var pr = (e, t) => {
           this.#s(e);
           return;
         case `detach-body`:
-          (this.#i(e.entity), this.#e.detach(e.entity));
+          this.#i(e.entity), this.#e.detach(e.entity);
           return;
         case `detach-joint`:
-          (this.#i(e.entity), this.#c(e.entity));
+          this.#i(e.entity), this.#c(e.entity);
           return;
         case `set-motor`: {
           if ((this.#i(e.entity), !t.joints)) throw new _r(`unsupported`, `Backend does not support joints`);
           let n = this.#t.get(e.entity);
           if (!n) throw new _r(`stale-entity`, `Entity has no joint`);
-          (Ce(e.motor), Te(n.descriptor.kind, e.motor), t.joints.setMotor(n.handle, e.motor));
+          Ce(e.motor), Te(n.descriptor.kind, e.motor), t.joints.setMotor(n.handle, e.motor);
           return;
         }
         case `set-six-dof-motor`: {
@@ -1813,7 +1812,7 @@ var pr = (e, t) => {
           let n = this.#t.get(e.entity);
           if (!n) throw new _r(`stale-entity`, `Entity has no joint`);
           if (n.descriptor.kind !== `six-dof`) throw Error(`SixDOF motor requires a six-dof joint`);
-          (De(e.motor, n.descriptor.axes), t.joints.setSixDOFMotor(n.handle, e.motor));
+          De(e.motor, n.descriptor.axes), t.joints.setSixDOFMotor(n.handle, e.motor);
           return;
         }
         case `collision-pair`:
@@ -1842,23 +1841,23 @@ var pr = (e, t) => {
       if (!r) throw new _r(`unsupported`, `Backend does not support body control`);
       switch (e.kind) {
         case `set-pose`:
-          (Se(e.pose), r.setPose(n, e.pose, e.options), this.#e.synchronize());
+          Se(e.pose), r.setPose(n, e.pose, e.options), this.#e.synchronize();
           break;
         case `set-velocity`:
-          (xe(e.velocity?.linear), xe(e.velocity?.angular), r.setVelocity(n, e.velocity));
+          xe(e.velocity?.linear), xe(e.velocity?.angular), r.setVelocity(n, e.velocity);
           break;
         case `wake`:
           r.wake(n);
           break;
         case `kinematic-target`:
-          (Se(e.pose), r.setKinematicTarget(n, e.pose));
+          Se(e.pose), r.setKinematicTarget(n, e.pose);
           break;
         case `impulse`:
         case `force`:
-          (xe(e.value), e.point && xe(e.point), e.kind === `impulse` ? r.applyImpulse(n, e.value, e.point) : r.applyForce(n, e.value, e.point));
+          xe(e.value), e.point && xe(e.point), e.kind === `impulse` ? r.applyImpulse(n, e.value, e.point) : r.applyForce(n, e.value, e.point);
           break;
         case `torque`:
-          (xe(e.value), r.applyTorque(n, e.value));
+          xe(e.value), r.applyTorque(n, e.value);
       }
     }
     #s(e) {
@@ -1909,7 +1908,7 @@ var pr = (e, t) => {
         ee = [],
         te = [];
       try {
-        for (let t of e.bodies) (this.#e.attach(t.entity, t.descriptor), ee.push(t.entity));
+        for (let t of e.bodies) this.#e.attach(t.entity, t.descriptor), ee.push(t.entity);
         for (let e of l) {
           let n = structuredClone(e.descriptor),
             r = t.joints.create({
@@ -1920,14 +1919,14 @@ var pr = (e, t) => {
               bodyA: this.#a(n.bodyA),
               bodyB: this.#a(n.bodyB),
             });
-          (this.#t.set(e.entity, { handle: r, descriptor: n }), te.push(e.entity));
+          this.#t.set(e.entity, { handle: r, descriptor: n }), te.push(e.entity);
           for (let t of Ee(n)) {
             let n = this.#r.get(t);
-            (n || this.#r.set(t, (n = /* @__PURE__ */ new Set())), n.add(e.entity));
+            n || this.#r.set(t, (n = /* @__PURE__ */ new Set())), n.add(e.entity);
           }
           for (let t of [n.bodyA, n.bodyB]) {
             let n = this.#n.get(t);
-            (n || this.#n.set(t, (n = /* @__PURE__ */ new Set())), n.add(e.entity));
+            n || this.#n.set(t, (n = /* @__PURE__ */ new Set())), n.add(e.entity);
           }
         }
         this.#e.synchronize();
@@ -1944,12 +1943,12 @@ var pr = (e, t) => {
         this.#r.delete(e);
         for (let n of Ee(t.descriptor)) {
           let t = this.#r.get(n);
-          (t?.delete(e), t?.size || this.#r.delete(n));
+          t?.delete(e), t?.size || this.#r.delete(n);
         }
-        (this.#e.backend.joints.destroy(t.handle), this.#t.delete(e));
+        this.#e.backend.joints.destroy(t.handle), this.#t.delete(e);
         for (let n of [t.descriptor.bodyA, t.descriptor.bodyB]) {
           let t = this.#n.get(n);
-          (t?.delete(e), t?.size === 0 && this.#n.delete(n));
+          t?.delete(e), t?.size === 0 && this.#n.delete(n);
         }
       }
     }
@@ -1995,7 +1994,7 @@ var pr = (e, t) => {
     constructor(e, t) {
       if (t.registry.requiresCharacterPhysics && !e.characters)
         throw Error(`Physics backend ${e.name} does not support the required character capability`);
-      ((this.#e = t.registry),
+      (this.#e = t.registry),
         (this.#t = new gr(t.maxEntities, t.registry.components)),
         (this.#c = t.now ?? Or),
         (this.#i = new br(t.registry, t.maxPendingCommands)),
@@ -2003,7 +2002,7 @@ var pr = (e, t) => {
         (this.#o = new wr(t.registry, t.maxEntities, t.snapshotBufferCount ?? 3, () => {
           this.#y += 1;
         })),
-        (this.#r = new Cr(e, this.#t)));
+        (this.#r = new Cr(e, this.#t));
       let n = () => this.#t.capacity,
         r = () => this.#t.entityCount,
         i = () => this.#t.available;
@@ -2037,9 +2036,9 @@ var pr = (e, t) => {
       try {
         for (let t of this.#e.resources) {
           let n = await t.create({ capacity: this.#t.capacity });
-          (this.#n.set(t, n), e.push(t));
+          this.#n.set(t, n), e.push(t);
         }
-        (this.#w(`startup`, 0), this.#T(`startup`), this.#E(), (this.#S = !0), this.#L());
+        this.#w(`startup`, 0), this.#T(`startup`), this.#E(), (this.#S = !0), this.#L();
       } catch (t) {
         throw (await this.#R(e), t);
       }
@@ -2048,15 +2047,15 @@ var pr = (e, t) => {
       this.#_ = e;
     }
     routeCommands(e) {
-      (this.#B(), this.#i.enqueue(e));
+      this.#B(), this.#i.enqueue(e);
     }
     recycleSnapshot(e, t) {
-      (this.#B(), this.#o.recycle(e, t));
+      this.#B(), this.#o.recycle(e, t);
     }
     step(e) {
       this.#z();
       let t = this.#c();
-      ((this.#h += 1),
+      (this.#h += 1),
         (this.#g += e * 1e3),
         (this.#m = Object.freeze({ tick: this.#h, simulationTimeMs: this.#g, deltaSeconds: e, frameSequence: this.#_ })),
         this.#i.beginTick(),
@@ -2064,7 +2063,7 @@ var pr = (e, t) => {
         this.#T(`tick`),
         this.#E(),
         this.#I(Math.max(0, this.#c() - t)),
-        this.#L());
+        this.#L();
     }
     noteDroppedPulses(e) {
       this.#v += Math.max(0, e);
@@ -2078,7 +2077,7 @@ var pr = (e, t) => {
       for (let e of t) Ar(e.snapshot) && (this.#b += e.snapshot.buffer.byteLength);
       this.#L();
       let n = this.#d.splice(0);
-      return (this.#x && n.push({ kind: `diagnostics`, diagnostics: this.#x }), { events: e, snapshots: t, control: n });
+      return this.#x && n.push({ kind: `diagnostics`, diagnostics: this.#x }), { events: e, snapshots: t, control: n };
     }
     async dispose() {
       if (this.#C) return;
@@ -2086,7 +2085,7 @@ var pr = (e, t) => {
       let e;
       if (this.#S)
         try {
-          (this.#w(`shutdown`, this.#h), this.#T(`shutdown`), this.#E());
+          this.#w(`shutdown`, this.#h), this.#T(`shutdown`), this.#E();
         } catch (t) {
           e = t;
         }
@@ -2119,7 +2118,7 @@ var pr = (e, t) => {
       let t = e.definition.params.map((t) => this.#O(t, e)),
         n = e.definition.execute(t);
       if (kr(n)) throw Error(`System ${e.definition.id} returned a Promise; Systems must be synchronous`);
-      return (this.#i.completeOwner(e.ordinal), this.#a.completeProducer(e), n);
+      return this.#i.completeOwner(e.ordinal), this.#a.completeProducer(e), n;
     }
     #O(e, t) {
       switch (e.kind) {
@@ -2165,13 +2164,13 @@ var pr = (e, t) => {
     }
     #k(e) {
       let t = this.#p.get(e.definition.id);
-      return (t || ((t = { systemId: e.definition.id, world: [], physics: [] }), this.#p.set(e.definition.id, t)), t);
+      return t || ((t = { systemId: e.definition.id, world: [], physics: [] }), this.#p.set(e.definition.id, t)), t;
     }
     #A(e) {
       return {
         create: () => {
           let t = this.#t.reserveEntityHandle();
-          return (e.world.push({ kind: `create`, handle: t }), t);
+          return e.world.push({ kind: `create`, handle: t }), t;
         },
         destroy: (t) => e.world.push({ kind: `destroy`, handle: t }),
         add: (t, n, r) => {
@@ -2201,7 +2200,7 @@ var pr = (e, t) => {
           if (n) return n;
           if (this.#t.resolve(e) === void 0) return;
           let r = { exists: !0, destroyed: !1, components: /* @__PURE__ */ new Map() };
-          return (t.set(e, r), r);
+          return t.set(e, r), r;
         },
         i = (e, t, n) => {
           let r = t.components.get(n);
@@ -2215,13 +2214,13 @@ var pr = (e, t) => {
         if (a.kind === `create`) {
           if (!this.#t.isPending(a.handle) || r(a.handle)) throw Error(`Pending Entity handle is invalid or already committed`);
           if (n < 1) throw Error(`ECS entity capacity exceeded (${this.#t.capacity})`);
-          (--n, t.set(a.handle, { exists: !0, destroyed: !1, components: /* @__PURE__ */ new Map() }));
+          --n, t.set(a.handle, { exists: !0, destroyed: !1, components: /* @__PURE__ */ new Map() });
           continue;
         }
         let e = r(a.handle);
         if (a.kind === `destroy`) {
           if (!e || e.destroyed) continue;
-          ((e.destroyed = !0), (e.exists = !1), (n += 1));
+          (e.destroyed = !0), (e.exists = !1), (n += 1);
           continue;
         }
         if (!e || !e.exists || e.destroyed) throw Error(`World mutation targets an unknown or destroyed Entity: ${String(a.handle)}`);
@@ -2247,7 +2246,7 @@ var pr = (e, t) => {
         }
         case `add`: {
           let t = this.#F(e.handle);
-          (this.#t.add(t, e.component), e.initialize?.(this.#t.write(e.component), t));
+          this.#t.add(t, e.component), e.initialize?.(this.#t.write(e.component), t);
           break;
         }
         case `remove`:
@@ -2260,7 +2259,7 @@ var pr = (e, t) => {
       return t;
     }
     #I(e) {
-      (this.#l.push(e), this.#l.length > 120 && this.#l.shift());
+      this.#l.push(e), this.#l.length > 120 && this.#l.shift();
     }
     #L() {
       let e = [...this.#l].sort((e, t) => e - t);
@@ -2306,7 +2305,7 @@ var pr = (e, t) => {
     #r = /* @__PURE__ */ new Map();
     #i = 0;
     constructor(e, t) {
-      ((this.#e = e), (this.#t = t));
+      (this.#e = e), (this.#t = t);
     }
     get credits() {
       return this.#t - this.#i;
@@ -2322,11 +2321,11 @@ var pr = (e, t) => {
         if (!this.#e.commandOwnerBySlot.has(t.slot)) throw Error(`Command slot has no owner: ${t.slot}`);
         if (t.payloads.length === 0) continue;
         let e = this.#n.get(t.slot);
-        (e ? e.push(...t.payloads) : this.#n.set(t.slot, [...t.payloads]), (this.#i += t.payloads.length));
+        e ? e.push(...t.payloads) : this.#n.set(t.slot, [...t.payloads]), (this.#i += t.payloads.length);
       }
     }
     beginTick() {
-      ((this.#r = new Map([...this.#n].map(([e, t]) => [e, Object.freeze(t)]))), (this.#n = /* @__PURE__ */ new Map()), (this.#i = 0));
+      (this.#r = new Map([...this.#n].map(([e, t]) => [e, Object.freeze(t)]))), (this.#n = /* @__PURE__ */ new Map()), (this.#i = 0);
     }
     reader(e, t) {
       let n = this.#e.protocol.commandSlotByToken.get(e);
@@ -2345,10 +2344,10 @@ var pr = (e, t) => {
     #n = /* @__PURE__ */ new Map();
     #r = 0;
     constructor(e, t) {
-      ((this.#e = e), (this.#t = t));
+      (this.#e = e), (this.#t = t);
     }
     begin(e, t) {
-      ((this.#r = t), this.#n.clear());
+      (this.#r = t), this.#n.clear();
       for (let t of this.#e.protocol.events) {
         let n = this.#e.protocol.eventSlotByToken.get(t);
         if (n === void 0) continue;
@@ -2378,7 +2377,7 @@ var pr = (e, t) => {
           if (n.sealed) throw Error(`Event channel is sealed: ${e.type}`);
           if (n.count >= this.#t) throw Error(`runtime-event-channel-overflow:${e.type}:${this.#r}`);
           let i = n.byProducer.get(t);
-          (i || ((i = []), n.byProducer.set(t, i)), i.push(r[0]), (n.count += 1));
+          i || ((i = []), n.byProducer.set(t, i)), i.push(r[0]), (n.count += 1);
         },
       });
     }
@@ -2397,7 +2396,7 @@ var pr = (e, t) => {
     #i(e) {
       if (e.sealed) return e.sealed;
       if (!e.expected.every((t) => e.completed.has(t))) throw Error(`Event channel read before all producers completed: ${e.token.type}`);
-      return ((e.sealed = Object.freeze([...e.byProducer].sort(([e], [t]) => e - t).flatMap(([, e]) => e))), e.sealed);
+      return (e.sealed = Object.freeze([...e.byProducer].sort(([e], [t]) => e - t).flatMap(([, e]) => e))), e.sealed;
     }
     #a(e) {
       let t = this.#n.get(e);
@@ -2412,11 +2411,11 @@ var pr = (e, t) => {
     #n;
     #r;
     constructor(e, t) {
-      ((this.#e = e),
+      (this.#e = e),
         (this.#t = new Set(t.read)),
         (this.#n = new Set(t.write)),
         (this.entities = Object.freeze([...e.query(...t.read, ...t.write)])),
-        (this.#r = new Set(this.entities)));
+        (this.#r = new Set(this.entities));
     }
     read(e) {
       if (!this.#t.has(e) && !this.#n.has(e)) throw Error(`Query did not declare read access: ${e.id}`);
@@ -2444,7 +2443,7 @@ var pr = (e, t) => {
     reader;
     characterReader;
     constructor(e, t) {
-      ((this.#e = e),
+      (this.#e = e),
         (this.#t = t),
         (this.controls = new vr({
           backend: e,
@@ -2455,9 +2454,9 @@ var pr = (e, t) => {
           attach: (e, t) => this.#l(e, t),
           detach: (e) => this.#u(e),
           synchronize: () => this.#b(),
-        })));
+        }));
       let n = () => this.dynamicBodyCount;
-      ((this.reader = Object.freeze({
+      (this.reader = Object.freeze({
         get dynamicBodyCount() {
           return n();
         },
@@ -2469,8 +2468,8 @@ var pr = (e, t) => {
         (this.characterReader = Object.freeze({ has: (e) => this.#i.has(e), readState: (e, t) => this.#m(e, t) })),
         t.onDestroy((e) => {
           let n = t.handle(e);
-          (this.controls.entityRemoving(n), this.#d(n), this.#p(n));
-        }));
+          this.controls.entityRemoving(n), this.#d(n), this.#p(n);
+        });
     }
     get dynamicBodyCount() {
       return this.#o.size;
@@ -2497,7 +2496,7 @@ var pr = (e, t) => {
         ...this.controls.reader,
         submit: (t) => {
           let n = { status: `pending`, appliedCount: 0 };
-          return (e.physics.push({ kind: `control-batch`, operations: structuredClone(t), receipt: n }), n);
+          return e.physics.push({ kind: `control-batch`, operations: structuredClone(t), receipt: n }), n;
         },
       };
     }
@@ -2561,9 +2560,9 @@ var pr = (e, t) => {
       this.controls.dispose();
       let e = this.#e.characters;
       if (e) for (let t of [...this.#a.keys()]) e.detach(t);
-      (this.#i.clear(), this.#a.clear());
+      this.#i.clear(), this.#a.clear();
       for (let e of [...this.#r.keys()]) this.#e.destroyBody(e);
-      (this.#n.clear(), this.#r.clear(), this.#o.clear(), this.#s.clear(), this.#e.dispose());
+      this.#n.clear(), this.#r.clear(), this.#o.clear(), this.#s.clear(), this.#e.dispose();
     }
     #l(e, t) {
       let n = this.#t.resolve(e);
@@ -2574,22 +2573,22 @@ var pr = (e, t) => {
       let r = this.#e.createBody(t);
       if ((this.#n.set(e, r), this.#r.set(r, e), this.#s.set(e, t.motion), t.motion === `dynamic` && this.#o.add(e), this.#t.has(n, dt)))
         throw (
-          this.#e.destroyBody(r),
+          (this.#e.destroyBody(r),
           this.#n.delete(e),
           this.#r.delete(r),
           this.#o.delete(e),
           this.#s.delete(e),
-          Error(`PhysicsBody Component is managed by the Physics capability`)
+          Error(`PhysicsBody Component is managed by the Physics capability`))
         );
       this.#t.add(n, dt);
       let i = this.#t.write(dt);
-      ((i.body[n] = Number(r) + 1), (i.dynamic[n] = +(t.motion === `dynamic`)));
+      (i.body[n] = Number(r) + 1), (i.dynamic[n] = +(t.motion === `dynamic`));
     }
     #u(e) {
       let t = this.#t.resolve(e);
       if ((this.#d(e), t !== void 0 && this.#t.has(t, dt))) {
         let e = this.#t.write(dt);
-        ((e.body[t] = 0), (e.dynamic[t] = 0), this.#t.remove(t, dt));
+        (e.body[t] = 0), (e.dynamic[t] = 0), this.#t.remove(t, dt);
       }
     }
     #d(e) {
@@ -2601,7 +2600,7 @@ var pr = (e, t) => {
       if (this.#t.resolve(e) === void 0) throw Error(`Cannot attach Physics character to unknown Entity: ${String(e)}`);
       if (this.#i.has(e)) throw Error(`Entity already has a Physics character: ${String(e)}`);
       let n = this.#g().attach(t);
-      (this.#i.set(e, n), this.#a.set(n, e));
+      this.#i.set(e, n), this.#a.set(n, e);
     }
     #p(e) {
       let t = this.#i.get(e);
@@ -2668,7 +2667,7 @@ var pr = (e, t) => {
     #s = /* @__PURE__ */ new Map();
     #c = /* @__PURE__ */ new Map();
     constructor(e, t, n, r) {
-      ((this.#e = e), (this.#t = t * 32), (this.#n = n), (this.#i = r));
+      (this.#e = e), (this.#t = t * 32), (this.#n = n), (this.#i = r);
       for (let [t, n] of e.protocol.snapshotBySlot) Pe(n.policy) === 2 && this.#r.set(t, 3);
     }
     writer(e) {
@@ -2688,10 +2687,10 @@ var pr = (e, t) => {
     }
     drain() {
       let e = [...this.#c.values()].sort((e, t) => e.slot - t.slot);
-      return (this.#c.clear(), e);
+      return this.#c.clear(), e;
     }
     dispose() {
-      (this.#a.clear(), this.#o.clear(), this.#s.clear(), this.#c.clear());
+      this.#a.clear(), this.#o.clear(), this.#s.clear(), this.#c.clear();
     }
     #l(e, t) {
       if (!Number.isSafeInteger(t) || t <= 0) throw RangeError(`Snapshot byteLength must be a positive integer`);
@@ -2707,7 +2706,7 @@ var pr = (e, t) => {
         return;
       }
       let a = this.#s.get(e);
-      return (a || ((a = /* @__PURE__ */ new Set()), this.#s.set(e, a)), a.add(r), { buffer: r });
+      return a || ((a = /* @__PURE__ */ new Set()), this.#s.set(e, a)), a.add(r), { buffer: r };
     }
     #u(e, t, n) {
       if (!Number.isSafeInteger(n.count) || n.count < 0 || n.count * 32 > t.buffer.byteLength)
@@ -2725,7 +2724,7 @@ var pr = (e, t) => {
     #f(e, t) {
       let n = Tr(e, t),
         r = this.#a.get(n);
-      return (r || ((r = []), this.#a.set(n, r)), r);
+      return r || ((r = []), this.#a.set(n, r)), r;
     }
   };
 function Tr(e, t) {
@@ -2735,7 +2734,7 @@ function Er(e) {
   return Pe(e.policy) !== void 0;
 }
 function Dr(e, t) {
-  return e.length === 0 ? 0 : (e[Math.min(e.length - 1, Math.max(0, Math.ceil(e.length * t) - 1))] ?? 0);
+  return e.length === 0 ? 0 : e[Math.min(e.length - 1, Math.max(0, Math.ceil(e.length * t) - 1))] ?? 0;
 }
 function Or() {
   return globalThis.performance?.now() ?? Date.now();
@@ -2748,7 +2747,7 @@ function Ar(e) {
 }
 function jr(e, t) {
   let n = new Mr(e, t);
-  return (n.attach(), () => n.detach());
+  return n.attach(), () => n.detach();
 }
 var Mr = class {
   #e;
@@ -2761,7 +2760,7 @@ var Mr = class {
   #s = !1;
   #c = !1;
   constructor(e, t) {
-    ((this.#e = e), (this.#t = t));
+    (this.#e = e), (this.#t = t);
   }
   attach() {
     this.#e.addEventListener(`message`, this.#l);
@@ -2790,7 +2789,7 @@ var Mr = class {
           break;
         case `pause`:
           if (!this.#a || ![`Ready`, `Running`, `Suspended`].includes(this.#n.state)) throw Error(`Runtime cannot pause in its current state`);
-          (this.#h(), this.#C({ type: `paused`, version: 7, sequence: t.sequence, tick: this.#a.tick, simulationTimeMs: this.#a.simulationTimeMs }));
+          this.#h(), this.#C({ type: `paused`, version: 7, sequence: t.sequence, tick: this.#a.tick, simulationTimeMs: this.#a.simulationTimeMs });
           break;
         case `resume`:
           this.#g();
@@ -2814,7 +2813,7 @@ var Mr = class {
   #u() {
     if (!(this.#c || this.#s) && this.#n.state === `Created`)
       try {
-        ((this.#i ??= zt(this.#t)), this.#C({ type: `runtime-offer`, version: 7, protocol: this.#i.registry.protocol.descriptor }));
+        (this.#i ??= zt(this.#t)), this.#C({ type: `runtime-offer`, version: 7, protocol: this.#i.registry.protocol.descriptor });
       } catch (e) {
         this.#b(`worker-negotiation-failed`, e);
       }
@@ -2832,7 +2831,7 @@ var Mr = class {
   }
   async #f(e, t) {
     if (this.#o || this.#n.state !== `Created`) return;
-    ((this.#o = !0), this.#n.transition(`Initializing`));
+    (this.#o = !0), this.#n.transition(`Initializing`);
     let n, r;
     try {
       if (((n = await e.createPhysicsBackend()), this.#c)) {
@@ -2852,10 +2851,10 @@ var Mr = class {
         await r.initialize(),
         this.#c)
       ) {
-        (await r.dispose(), this.#a === r && (this.#a = void 0));
+        await r.dispose(), this.#a === r && (this.#a = void 0);
         return;
       }
-      ((this.#r = new Ve(t)), this.#n.transition(`Ready`));
+      (this.#r = new Ve(t)), this.#n.transition(`Ready`);
       let i = r.drainOutput();
       this.#S({
         type: `ready`,
@@ -2908,7 +2907,7 @@ var Mr = class {
     let n = this.#a,
       r = this.#r;
     if (!n || !r || this.#n.state !== `Suspended`) throw Error(`Runtime must be suspended before stepping`);
-    (n.routeCommands(t), n.beginFrame(e), n.step(r.fixedDeltaMs / 1e3), this.#v(e, n.drainOutput()));
+    n.routeCommands(t), n.beginFrame(e), n.step(r.fixedDeltaMs / 1e3), this.#v(e, n.drainOutput());
   }
   #v(e, t) {
     this.#S({
@@ -2923,14 +2922,14 @@ var Mr = class {
   }
   async #y() {
     if (!(this.#s || this.#c)) {
-      ((this.#s = !0), this.#n.state !== `Destroying` && this.#n.state !== `Destroyed` && this.#n.transition(`Destroying`));
+      (this.#s = !0), this.#n.state !== `Destroying` && this.#n.state !== `Destroyed` && this.#n.transition(`Destroying`);
       try {
-        (await this.#a?.dispose(),
+        await this.#a?.dispose(),
           (this.#a = void 0),
           (this.#c = !0),
           this.#n.transition(`Destroyed`),
           this.#C({ type: `disposed`, version: 7 }),
-          this.detach());
+          this.detach();
       } catch (e) {
         this.#b(`worker-dispose-failed`, e);
       }
@@ -2938,8 +2937,8 @@ var Mr = class {
   }
   #b(e, t) {
     let n = t instanceof Error ? t.message : String(t);
-    (this.#n.canTransition(`Error`) && this.#n.fail({ code: e, message: n, cause: t }),
-      this.#C({ type: `fatal-error`, version: 7, code: e, message: n }));
+    this.#n.canTransition(`Error`) && this.#n.fail({ code: e, message: n, cause: t }),
+      this.#C({ type: `fatal-error`, version: 7, code: e, message: n });
   }
   #x() {
     this.#C({ type: `state`, version: 7, state: this.#n.state });
@@ -2986,24 +2985,24 @@ async function Ir(e = {}) {
     te;
   if (i) {
     var ne = a(`node:fs`);
-    (s.startsWith(`file:`) && (l = a(`node:path`).dirname(a(`node:url`).fileURLToPath(s)) + `/`),
+    s.startsWith(`file:`) && (l = a(`node:path`).dirname(a(`node:url`).fileURLToPath(s)) + `/`),
       (te = (e) => ((e = oe(e) ? new URL(e) : e), ne.readFileSync(e))),
       (ee = async (e) => ((e = oe(e) ? new URL(e) : e), ne.readFileSync(e, void 0))),
       process.argv.length > 1 && (o = process.argv[1].replace(/\\/g, `/`)),
-      process.argv.slice(2));
+      process.argv.slice(2);
   } else if (n || r) {
     try {
       l = new URL(`.`, s).href;
     } catch {}
-    (r &&
+    r &&
       (te = (e) => {
         var t = new XMLHttpRequest();
-        return (t.open(`GET`, e, !1), (t.responseType = `arraybuffer`), t.send(null), new Uint8Array(t.response));
+        return t.open(`GET`, e, !1), (t.responseType = `arraybuffer`), t.send(null), new Uint8Array(t.response);
       }),
       (ee = async (e) => {
         if (((e = await fetch(e, { credentials: `same-origin` })), e.ok)) return e.arrayBuffer();
         throw Error(e.status + ` : ` + e.url);
-      }));
+      });
   }
   var re = console.log.bind(console),
     ie = console.error.bind(console),
@@ -3012,11 +3011,11 @@ async function Ir(e = {}) {
     se = !1;
   function ce() {
     var e = t.preRun;
-    (e && (typeof e == `function` && (e = [e]), Se.push(...e)), be(Se));
+    e && (typeof e == `function` && (e = [e]), Se.push(...e)), be(Se);
   }
   function le() {
     var e = t.postRun;
-    (e && (typeof e == `function` && (e = [e]), xe.push(...e)), be(xe));
+    e && (typeof e == `function` && (e = [e]), xe.push(...e)), be(xe);
   }
   function ue(e) {
     throw (t.onAbort?.(e), (e = `Aborted(${e})`), ie(e), (ae = !0), new WebAssembly.RuntimeError(e + `. Build with -sASSERTIONS for more info.`));
@@ -3036,7 +3035,7 @@ async function Ir(e = {}) {
       var n = await fe(e);
       return await WebAssembly.instantiate(n, t);
     } catch (e) {
-      (ie(`failed to asynchronously prepare wasm: ${e}`), ue(e));
+      ie(`failed to asynchronously prepare wasm: ${e}`), ue(e);
     }
   }
   async function me(e) {
@@ -3046,7 +3045,7 @@ async function Ir(e = {}) {
         var n = fetch(t, { credentials: `same-origin` });
         return await WebAssembly.instantiateStreaming(n, e);
       } catch (e) {
-        (ie(`wasm streaming compile failed: ${e}`), ie(`falling back to ArrayBuffer instantiation`));
+        ie(`wasm streaming compile failed: ${e}`), ie(`falling back to ArrayBuffer instantiation`);
       }
     return pe(t, e);
   }
@@ -3056,7 +3055,7 @@ async function Ir(e = {}) {
     ve,
     ye,
     be = (e) => {
-      for (; e.length > 0;) e.shift()(t);
+      for (; e.length > 0; ) e.shift()(t);
     },
     xe = [],
     Se = [],
@@ -3071,23 +3070,23 @@ async function Ir(e = {}) {
           t[n++] = o;
         } else if (o <= 2047) {
           if (n + 1 >= r) break;
-          ((t[n++] = 192 | (o >> 6)), (t[n++] = 128 | (o & 63)));
+          (t[n++] = 192 | (o >> 6)), (t[n++] = 128 | (o & 63));
         } else if (o <= 65535) {
           if (n + 2 >= r) break;
-          ((t[n++] = 224 | (o >> 12)), (t[n++] = 128 | ((o >> 6) & 63)), (t[n++] = 128 | (o & 63)));
+          (t[n++] = 224 | (o >> 12)), (t[n++] = 128 | ((o >> 6) & 63)), (t[n++] = 128 | (o & 63));
         } else {
           if (n + 3 >= r) break;
-          ((t[n++] = 240 | (o >> 18)), (t[n++] = 128 | ((o >> 12) & 63)), (t[n++] = 128 | ((o >> 6) & 63)), (t[n++] = 128 | (o & 63)), a++);
+          (t[n++] = 240 | (o >> 18)), (t[n++] = 128 | ((o >> 12) & 63)), (t[n++] = 128 | ((o >> 6) & 63)), (t[n++] = 128 | (o & 63)), a++;
         }
       }
-      return ((t[n] = 0), n - i);
+      return (t[n] = 0), n - i;
     },
     we = [],
     Te = (e, t, n) => {
       we.length = 0;
-      for (var r; (r = ye[t++]);) {
+      for (var r; (r = ye[t++]); ) {
         var i = r != 105;
-        ((i &= r != 112), (n += i && n % 8 ? 4 : 0), we.push(r == 112 ? ve[n >> 2] : r == 105 ? he[n >> 2] : _e[n >> 3]), (n += i ? 8 : 4));
+        (i &= r != 112), (n += i && n % 8 ? 4 : 0), we.push(r == 112 ? ve[n >> 2] : r == 105 ? he[n >> 2] : _e[n >> 3]), (n += i ? 8 : 4);
       }
       return Ie[e](...we);
     },
@@ -3125,27 +3124,27 @@ async function Ir(e = {}) {
       var i = t;
       if (((n = i + n), r)) r = n;
       else {
-        for (; e[i] && !(i >= n);) ++i;
+        for (; e[i] && !(i >= n); ) ++i;
         r = i;
       }
       if (r - t > 16 && e.buffer && je) return je.decode(e.subarray(t, r));
-      for (i = ``; t < r;)
+      for (i = ``; t < r; )
         if (((n = e[t++]), n & 128)) {
           var a = e[t++] & 63;
           if ((n & 224) == 192) i += String.fromCharCode(((n & 31) << 6) | a);
           else {
             var o = e[t++] & 63;
-            ((n = (n & 240) == 224 ? ((n & 15) << 12) | (a << 6) | o : ((n & 7) << 18) | (a << 12) | (o << 6) | (e[t++] & 63)),
-              n < 65536 ? (i += String.fromCharCode(n)) : ((n -= 65536), (i += String.fromCharCode(55296 | (n >> 10), 56320 | (n & 1023)))));
+            (n = (n & 240) == 224 ? ((n & 15) << 12) | (a << 6) | o : ((n & 7) << 18) | (a << 12) | (o << 6) | (e[t++] & 63)),
+              n < 65536 ? (i += String.fromCharCode(n)) : ((n -= 65536), (i += String.fromCharCode(55296 | (n >> 10), 56320 | (n & 1023))));
           }
         } else i += String.fromCharCode(n);
       return i;
     },
     Ne = (e, t, n) => (e ? Me(ye, e, t, n) : ``),
     Pe = [];
-  (t.print && (re = t.print), t.printErr && (ie = t.printErr), t.thisProgram && (o = t.thisProgram));
+  t.print && (re = t.print), t.printErr && (ie = t.printErr), t.thisProgram && (o = t.thisProgram);
   var Fe = t.preInit;
-  if (Fe) for (typeof Fe == `function` && (t.preInit = Fe = [Fe]); Fe.length > 0;) Fe.shift()();
+  if (Fe) for (typeof Fe == `function` && (t.preInit = Fe = [Fe]); Fe.length > 0; ) Fe.shift()();
   t.UTF8ToString = Ne;
   var Ie = {
       34474: (e) => {
@@ -8599,7 +8598,7 @@ async function Ir(e = {}) {
       l: (e, t, n, r) => {
         var i = /* @__PURE__ */ new Date().getFullYear(),
           a = new Date(i, 0, 1).getTimezoneOffset();
-        ((i = new Date(i, 6, 1).getTimezoneOffset()),
+        (i = new Date(i, 6, 1).getTimezoneOffset()),
           (ve[e >> 2] = Math.max(a, i) * 60),
           (he[t >> 2] = Number(a != i)),
           (t = (e) => {
@@ -8608,7 +8607,7 @@ async function Ir(e = {}) {
           }),
           (e = t(a)),
           (t = t(i)),
-          i < a ? (Ce(e, ye, n, 17), Ce(t, ye, r, 17)) : (Ce(e, ye, r, 17), Ce(t, ye, n, 17)));
+          i < a ? (Ce(e, ye, n, 17), Ce(t, ye, r, 17)) : (Ce(e, ye, r, 17), Ce(t, ye, n, 17));
       },
       c: (e, t, n) => Te(e, t, n),
       a: (e, t, n) => Te(e, t, n),
@@ -8624,15 +8623,15 @@ async function Ir(e = {}) {
           i;
         for (i of De()) {
           var a = t + n;
-          ((ve[(e + r) >> 2] = a), (n += Ce(i, ye, a, 1 / 0) + 1), (r += 4));
+          (ve[(e + r) >> 2] = a), (n += Ce(i, ye, a, 1 / 0) + 1), (r += 4);
         }
         return 0;
       },
       e: (e, t) => {
         var n = De();
-        ((ve[e >> 2] = n.length), (e = 0));
+        (ve[e >> 2] = n.length), (e = 0);
         for (var r of n) e += ke(r) + 1;
-        return ((ve[t >> 2] = e), 0);
+        return (ve[t >> 2] = e), 0;
       },
       f: () => 52,
       g: () => 52,
@@ -8652,7 +8651,7 @@ async function Ir(e = {}) {
           }
           i += s;
         }
-        return ((ve[r >> 2] = i), 0);
+        return (ve[r >> 2] = i), 0;
       },
     },
     x3 = await (async function () {
@@ -13790,11 +13789,11 @@ async function Ir(e = {}) {
   await (async function () {
     ce();
     var e = t.setStatus;
-    (e && (e(`Running...`), await new Promise((e) => setTimeout(e, 1)), setTimeout(e, 1, ``)),
-      ae || ((se = !0), be(Pe), x3.p(), t.onRuntimeInitialized?.(), le()));
+    e && (e(`Running...`), await new Promise((e) => setTimeout(e, 1)), setTimeout(e, 1, ``)),
+      ae || ((se = !0), be(Pe), x3.p(), t.onRuntimeInitialized?.(), le());
   })();
   function u() {}
-  ((u.prototype = Object.create(u.prototype)), (u.prototype.constructor = u), (u.prototype.SDa = u), (u.TDa = {}), (t.WrapperObject = u));
+  (u.prototype = Object.create(u.prototype)), (u.prototype.constructor = u), (u.prototype.SDa = u), (u.TDa = {}), (t.WrapperObject = u);
   function d(e) {
     return (e || u).TDa;
   }
@@ -13804,14 +13803,14 @@ async function Ir(e = {}) {
       r = n[e];
     return r || ((r = Object.create((t || u).prototype)), (r.RDa = e), (n[e] = r));
   }
-  ((t.wrapPointer = f),
+  (t.wrapPointer = f),
     (t.castObject = function (e, t) {
       return f(e.RDa, t);
     }),
     (t.NULL = f(0)),
     (t.destroy = function (e) {
       if (!e.__destroy__) throw `Error: Cannot destroy object. (Did you create it yourself?)`;
-      (e.__destroy__(), delete d(e.SDa)[e.RDa]);
+      e.__destroy__(), delete d(e.SDa)[e.RDa];
     }),
     (t.compare = function (e, t) {
       return e.RDa === t.RDa;
@@ -13821,7 +13820,7 @@ async function Ir(e = {}) {
     }),
     (t.getClass = function (e) {
       return e.SDa;
-    }));
+    });
   var S3 = 0,
     C3 = 0,
     w3 = 0,
@@ -13830,18 +13829,18 @@ async function Ir(e = {}) {
   function UIe() {
     if (E3) {
       for (var e = 0; e < T3.length; e++) t._webidl_free(T3[e]);
-      ((T3.length = 0), t._webidl_free(S3), (S3 = 0), (C3 += E3), (E3 = 0));
+      (T3.length = 0), t._webidl_free(S3), (S3 = 0), (C3 += E3), (E3 = 0);
     }
-    (S3 || ((C3 += 128), (S3 = t._webidl_malloc(C3)) || ue()), (w3 = 0));
+    S3 || ((C3 += 128), (S3 = t._webidl_malloc(C3)) || ue()), (w3 = 0);
   }
   function D3(e) {
     if (typeof e == `string`) {
       var n = Array(ke(e) + 1);
       if ((Ce(e, n, 0, n.length), (e = ge), S3 || ue(), (e = n.length * e.BYTES_PER_ELEMENT), (e = Math.ceil(e / 8) * 8), w3 + e >= C3)) {
-        (e > 0 || ue(), (E3 += e));
+        e > 0 || ue(), (E3 += e);
         var r = t._webidl_malloc(e);
         T3.push(r);
-      } else ((r = S3 + w3), (w3 += e));
+      } else (r = S3 + w3), (w3 += e);
       for (e = r, r = 0; r < n.length; r++) ge[e + r] = n[r];
       return e;
     }
@@ -13850,7 +13849,7 @@ async function Ir(e = {}) {
   function O3() {
     throw `cannot construct a ShapeSettings, no constructor in IDL`;
   }
-  ((O3.prototype = Object.create(u.prototype)),
+  (O3.prototype = Object.create(u.prototype)),
     (O3.prototype.constructor = O3),
     (O3.prototype.SDa = O3),
     (O3.TDa = {}),
@@ -13877,16 +13876,16 @@ async function Ir(e = {}) {
     (O3.prototype.set_mUserData = O3.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ue(t, e);
       }),
     Object.defineProperty(O3.prototype, "mUserData", { get: O3.prototype.UDa, set: O3.prototype.VDa }),
     (O3.prototype.__destroy__ = function () {
       We(this.RDa);
-    }));
+    });
   function p() {
     throw `cannot construct a Shape, no constructor in IDL`;
   }
-  ((p.prototype = Object.create(u.prototype)),
+  (p.prototype = Object.create(u.prototype)),
     (p.prototype.constructor = p),
     (p.prototype.SDa = p),
     (p.TDa = {}),
@@ -13914,7 +13913,7 @@ async function Ir(e = {}) {
     }),
     (p.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qe(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qe(n, e, t), w);
     }),
     (p.prototype.GetCenterOfMass = function () {
       return f($e(this.RDa), v);
@@ -13924,7 +13923,7 @@ async function Ir(e = {}) {
     }),
     (p.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), tt(t, e));
+      e && typeof e == `object` && (e = e.RDa), tt(t, e);
     }),
     (p.prototype.GetSubShapeIDBitsRecursive = function () {
       return nt(this.RDa);
@@ -13937,19 +13936,19 @@ async function Ir(e = {}) {
     }),
     (p.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(at(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(at(n, e, t), p);
     }),
     (p.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ot(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(ot(t, e), c8);
     }),
     (p.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(st(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(st(n, e, t), v);
     }),
     (p.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ct(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ct(t, e);
     }),
     (p.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -13967,23 +13966,23 @@ async function Ir(e = {}) {
     }),
     (p.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!dt(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!dt(t, e);
     }),
     (p.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ft(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ft(t, e), v);
     }),
     (p.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pt(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(pt(t, e), h8);
     }),
     (p.prototype.__destroy__ = function () {
       mt(this.RDa);
-    }));
+    });
   function k3() {
     throw `cannot construct a ConstraintSettings, no constructor in IDL`;
   }
-  ((k3.prototype = Object.create(u.prototype)),
+  (k3.prototype = Object.create(u.prototype)),
     (k3.prototype.constructor = k3),
     (k3.prototype.SDa = k3),
     (k3.TDa = {}),
@@ -14004,7 +14003,7 @@ async function Ir(e = {}) {
     (k3.prototype.set_mEnabled = k3.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yt(t, e));
+        e && typeof e == `object` && (e = e.RDa), yt(t, e);
       }),
     Object.defineProperty(k3.prototype, "mEnabled", { get: k3.prototype.$Da, set: k3.prototype.aEa }),
     (k3.prototype.get_mNumVelocityStepsOverride = k3.prototype.XDa =
@@ -14014,7 +14013,7 @@ async function Ir(e = {}) {
     (k3.prototype.set_mNumVelocityStepsOverride = k3.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xt(t, e));
+        e && typeof e == `object` && (e = e.RDa), xt(t, e);
       }),
     Object.defineProperty(k3.prototype, "mNumVelocityStepsOverride", { get: k3.prototype.XDa, set: k3.prototype.ZDa }),
     (k3.prototype.get_mNumPositionStepsOverride = k3.prototype.WDa =
@@ -14024,16 +14023,16 @@ async function Ir(e = {}) {
     (k3.prototype.set_mNumPositionStepsOverride = k3.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ct(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ct(t, e);
       }),
     Object.defineProperty(k3.prototype, "mNumPositionStepsOverride", { get: k3.prototype.WDa, set: k3.prototype.YDa }),
     (k3.prototype.__destroy__ = function () {
       wt(this.RDa);
-    }));
+    });
   function A3() {
     throw `cannot construct a Constraint, no constructor in IDL`;
   }
-  ((A3.prototype = Object.create(u.prototype)),
+  (A3.prototype = Object.create(u.prototype)),
     (A3.prototype.constructor = A3),
     (A3.prototype.SDa = A3),
     (A3.TDa = {}),
@@ -14058,25 +14057,25 @@ async function Ir(e = {}) {
     }),
     (A3.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jt(t, e));
+      e && typeof e == `object` && (e = e.RDa), jt(t, e);
     }),
     (A3.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mt(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mt(t, e);
     }),
     (A3.prototype.GetNumVelocityStepsOverride = function () {
       return Nt(this.RDa);
     }),
     (A3.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pt(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pt(t, e);
     }),
     (A3.prototype.GetNumPositionStepsOverride = function () {
       return Ft(this.RDa);
     }),
     (A3.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), It(t, e));
+      e && typeof e == `object` && (e = e.RDa), It(t, e);
     }),
     (A3.prototype.GetEnabled = function () {
       return !!Lt(this.RDa);
@@ -14089,26 +14088,26 @@ async function Ir(e = {}) {
     }),
     (A3.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bt(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bt(t, e);
     }),
     (A3.prototype.ResetWarmStart = function () {
       Vt(this.RDa);
     }),
     (A3.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ht(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ht(t, e);
     }),
     (A3.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ut(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ut(t, e);
     }),
     (A3.prototype.__destroy__ = function () {
       Wt(this.RDa);
-    }));
+    });
   function j3() {
     throw `cannot construct a PathConstraintPath, no constructor in IDL`;
   }
-  ((j3.prototype = Object.create(u.prototype)),
+  (j3.prototype = Object.create(u.prototype)),
     (j3.prototype.constructor = j3),
     (j3.prototype.SDa = j3),
     (j3.TDa = {}),
@@ -14118,7 +14117,7 @@ async function Ir(e = {}) {
     }),
     (j3.prototype.SetIsLooping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Kt(t, e));
+      e && typeof e == `object` && (e = e.RDa), Kt(t, e);
     }),
     (j3.prototype.GetRefCount = function () {
       return qt(this.RDa);
@@ -14131,102 +14130,102 @@ async function Ir(e = {}) {
     }),
     (j3.prototype.__destroy__ = function () {
       Xt(this.RDa);
-    }));
+    });
   function M3() {
     throw `cannot construct a StateRecorder, no constructor in IDL`;
   }
-  ((M3.prototype = Object.create(u.prototype)),
+  (M3.prototype = Object.create(u.prototype)),
     (M3.prototype.constructor = M3),
     (M3.prototype.SDa = M3),
     (M3.TDa = {}),
     (t.StateRecorder = M3),
     (M3.prototype.SetValidating = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Zt(t, e));
+      e && typeof e == `object` && (e = e.RDa), Zt(t, e);
     }),
     (M3.prototype.IsValidating = function () {
       return !!Qt(this.RDa);
     }),
     (M3.prototype.SetIsLastPart = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $t(t, e));
+      e && typeof e == `object` && (e = e.RDa), $t(t, e);
     }),
     (M3.prototype.IsLastPart = function () {
       return !!en(this.RDa);
     }),
     (M3.prototype.__destroy__ = function () {
       tn(this.RDa);
-    }));
+    });
   function N3() {
     throw `cannot construct a ContactListener, no constructor in IDL`;
   }
-  ((N3.prototype = Object.create(u.prototype)),
+  (N3.prototype = Object.create(u.prototype)),
     (N3.prototype.constructor = N3),
     (N3.prototype.SDa = N3),
     (N3.TDa = {}),
     (t.ContactListener = N3),
     (N3.prototype.__destroy__ = function () {
       nn(this.RDa);
-    }));
+    });
   function P3() {
     throw `cannot construct a SoftBodyContactListener, no constructor in IDL`;
   }
-  ((P3.prototype = Object.create(u.prototype)),
+  (P3.prototype = Object.create(u.prototype)),
     (P3.prototype.constructor = P3),
     (P3.prototype.SDa = P3),
     (P3.TDa = {}),
     (t.SoftBodyContactListener = P3),
     (P3.prototype.__destroy__ = function () {
       rn(this.RDa);
-    }));
+    });
   function F3() {
     throw `cannot construct a BodyActivationListener, no constructor in IDL`;
   }
-  ((F3.prototype = Object.create(u.prototype)),
+  (F3.prototype = Object.create(u.prototype)),
     (F3.prototype.constructor = F3),
     (F3.prototype.SDa = F3),
     (F3.TDa = {}),
     (t.BodyActivationListener = F3),
     (F3.prototype.__destroy__ = function () {
       an(this.RDa);
-    }));
+    });
   function I3() {
     throw `cannot construct a CharacterContactListener, no constructor in IDL`;
   }
-  ((I3.prototype = Object.create(u.prototype)),
+  (I3.prototype = Object.create(u.prototype)),
     (I3.prototype.constructor = I3),
     (I3.prototype.SDa = I3),
     (I3.TDa = {}),
     (t.CharacterContactListener = I3),
     (I3.prototype.__destroy__ = function () {
       on(this.RDa);
-    }));
+    });
   function L3() {
-    ((this.RDa = sn()), (d(L3)[this.RDa] = this));
+    (this.RDa = sn()), (d(L3)[this.RDa] = this);
   }
-  ((L3.prototype = Object.create(u.prototype)),
+  (L3.prototype = Object.create(u.prototype)),
     (L3.prototype.constructor = L3),
     (L3.prototype.SDa = L3),
     (L3.TDa = {}),
     (t.ObjectVsBroadPhaseLayerFilter = L3),
     (L3.prototype.__destroy__ = function () {
       cn(this.RDa);
-    }));
+    });
   function R3() {
     throw `cannot construct a VehicleControllerSettings, no constructor in IDL`;
   }
-  ((R3.prototype = Object.create(u.prototype)),
+  (R3.prototype = Object.create(u.prototype)),
     (R3.prototype.constructor = R3),
     (R3.prototype.SDa = R3),
     (R3.TDa = {}),
     (t.VehicleControllerSettings = R3),
     (R3.prototype.__destroy__ = function () {
       ln(this.RDa);
-    }));
+    });
   function z3() {
     throw `cannot construct a VehicleController, no constructor in IDL`;
   }
-  ((z3.prototype = Object.create(u.prototype)),
+  (z3.prototype = Object.create(u.prototype)),
     (z3.prototype.constructor = z3),
     (z3.prototype.SDa = z3),
     (z3.TDa = {}),
@@ -14236,11 +14235,11 @@ async function Ir(e = {}) {
     }),
     (z3.prototype.__destroy__ = function () {
       dn(this.RDa);
-    }));
+    });
   function B3() {
     throw `cannot construct a BroadPhaseLayerInterface, no constructor in IDL`;
   }
-  ((B3.prototype = Object.create(u.prototype)),
+  (B3.prototype = Object.create(u.prototype)),
     (B3.prototype.constructor = B3),
     (B3.prototype.SDa = B3),
     (B3.TDa = {}),
@@ -14250,11 +14249,11 @@ async function Ir(e = {}) {
     }),
     (B3.prototype.__destroy__ = function () {
       pn(this.RDa);
-    }));
+    });
   function V3() {
-    ((this.RDa = mn()), (d(V3)[this.RDa] = this));
+    (this.RDa = mn()), (d(V3)[this.RDa] = this);
   }
-  ((V3.prototype = Object.create(u.prototype)),
+  (V3.prototype = Object.create(u.prototype)),
     (V3.prototype.constructor = V3),
     (V3.prototype.SDa = V3),
     (V3.TDa = {}),
@@ -14269,7 +14268,7 @@ async function Ir(e = {}) {
     (V3.prototype.set_mBodyID = V3.prototype.SEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _n(t, e));
+        e && typeof e == `object` && (e = e.RDa), _n(t, e);
       }),
     Object.defineProperty(V3.prototype, "mBodyID", { get: V3.prototype.JEa, set: V3.prototype.SEa }),
     (V3.prototype.get_mFraction = V3.prototype.MEa =
@@ -14279,16 +14278,16 @@ async function Ir(e = {}) {
     (V3.prototype.set_mFraction = V3.prototype.VEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yn(t, e));
+        e && typeof e == `object` && (e = e.RDa), yn(t, e);
       }),
     Object.defineProperty(V3.prototype, "mFraction", { get: V3.prototype.MEa, set: V3.prototype.VEa }),
     (V3.prototype.__destroy__ = function () {
       bn(this.RDa);
-    }));
+    });
   function H3() {
     throw `cannot construct a ConvexShapeSettings, no constructor in IDL`;
   }
-  ((H3.prototype = Object.create(O3.prototype)),
+  (H3.prototype = Object.create(O3.prototype)),
     (H3.prototype.constructor = H3),
     (H3.prototype.SDa = H3),
     (H3.TDa = {}),
@@ -14315,7 +14314,7 @@ async function Ir(e = {}) {
     (H3.prototype.set_mMaterial = H3.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dn(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dn(t, e);
       }),
     Object.defineProperty(H3.prototype, "mMaterial", { get: H3.prototype.dEa, set: H3.prototype.fEa }),
     (H3.prototype.get_mDensity = H3.prototype.hEa =
@@ -14325,7 +14324,7 @@ async function Ir(e = {}) {
     (H3.prototype.set_mDensity = H3.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kn(t, e));
+        e && typeof e == `object` && (e = e.RDa), kn(t, e);
       }),
     Object.defineProperty(H3.prototype, "mDensity", { get: H3.prototype.hEa, set: H3.prototype.jEa }),
     (H3.prototype.get_mUserData = H3.prototype.UDa =
@@ -14335,30 +14334,30 @@ async function Ir(e = {}) {
     (H3.prototype.set_mUserData = H3.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jn(t, e));
+        e && typeof e == `object` && (e = e.RDa), jn(t, e);
       }),
     Object.defineProperty(H3.prototype, "mUserData", { get: H3.prototype.UDa, set: H3.prototype.VDa }),
     (H3.prototype.__destroy__ = function () {
       Mn(this.RDa);
-    }));
+    });
   function U3() {
     throw `cannot construct a ConvexShape, no constructor in IDL`;
   }
-  ((U3.prototype = Object.create(p.prototype)),
+  (U3.prototype = Object.create(p.prototype)),
     (U3.prototype.constructor = U3),
     (U3.prototype.SDa = U3),
     (U3.TDa = {}),
     (t.ConvexShape = U3),
     (U3.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Nn(t, e));
+      e && typeof e == `object` && (e = e.RDa), Nn(t, e);
     }),
     (U3.prototype.GetDensity = function () {
       return Pn(this.RDa);
     }),
     (U3.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fn(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fn(t, e);
     }),
     (U3.prototype.GetRefCount = function () {
       return In(this.RDa);
@@ -14383,7 +14382,7 @@ async function Ir(e = {}) {
     }),
     (U3.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Un(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Un(n, e, t), w);
     }),
     (U3.prototype.GetCenterOfMass = function () {
       return f(Wn(this.RDa), v);
@@ -14393,7 +14392,7 @@ async function Ir(e = {}) {
     }),
     (U3.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Kn(t, e));
+      e && typeof e == `object` && (e = e.RDa), Kn(t, e);
     }),
     (U3.prototype.GetSubShapeIDBitsRecursive = function () {
       return qn(this.RDa);
@@ -14406,19 +14405,19 @@ async function Ir(e = {}) {
     }),
     (U3.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Xn(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Xn(n, e, t), p);
     }),
     (U3.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Zn(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Zn(t, e), c8);
     }),
     (U3.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qn(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qn(n, e, t), v);
     }),
     (U3.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), $n(t, e));
+      return e && typeof e == `object` && (e = e.RDa), $n(t, e);
     }),
     (U3.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -14436,50 +14435,50 @@ async function Ir(e = {}) {
     }),
     (U3.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!nr(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!nr(t, e);
     }),
     (U3.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(rr(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(rr(t, e), v);
     }),
     (U3.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ir(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(ir(t, e), h8);
     }),
     (U3.prototype.__destroy__ = function () {
       ar(this.RDa);
-    }));
+    });
   function W3() {
     throw `cannot construct a CompoundShapeSettings, no constructor in IDL`;
   }
-  ((W3.prototype = Object.create(O3.prototype)),
+  (W3.prototype = Object.create(O3.prototype)),
     (W3.prototype.constructor = W3),
     (W3.prototype.SDa = W3),
     (W3.TDa = {}),
     (t.CompoundShapeSettings = W3),
     (W3.prototype.AddShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        or(i, e, t, n, r));
+        or(i, e, t, n, r);
     }),
     (W3.prototype.AddShapeShapeSettings = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        sr(i, e, t, n, r));
+        sr(i, e, t, n, r);
     }),
     (W3.prototype.AddShapeShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        cr(i, e, t, n, r));
+        cr(i, e, t, n, r);
     }),
     (W3.prototype.GetRefCount = function () {
       return lr(this.RDa);
@@ -14503,16 +14502,16 @@ async function Ir(e = {}) {
     (W3.prototype.set_mUserData = W3.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hr(t, e));
+        e && typeof e == `object` && (e = e.RDa), hr(t, e);
       }),
     Object.defineProperty(W3.prototype, "mUserData", { get: W3.prototype.UDa, set: W3.prototype.VDa }),
     (W3.prototype.__destroy__ = function () {
       gr(this.RDa);
-    }));
+    });
   function G3() {
     throw `cannot construct a CompoundShape, no constructor in IDL`;
   }
-  ((G3.prototype = Object.create(p.prototype)),
+  (G3.prototype = Object.create(p.prototype)),
     (G3.prototype.constructor = G3),
     (G3.prototype.SDa = G3),
     (G3.TDa = {}),
@@ -14522,7 +14521,7 @@ async function Ir(e = {}) {
     }),
     (G3.prototype.GetSubShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(vr(t, e), j8));
+      return e && typeof e == `object` && (e = e.RDa), f(vr(t, e), j8);
     }),
     (G3.prototype.GetRefCount = function () {
       return yr(this.RDa);
@@ -14547,7 +14546,7 @@ async function Ir(e = {}) {
     }),
     (G3.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Er(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Er(n, e, t), w);
     }),
     (G3.prototype.GetCenterOfMass = function () {
       return f(Dr(this.RDa), v);
@@ -14557,7 +14556,7 @@ async function Ir(e = {}) {
     }),
     (G3.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kr(t, e));
+      e && typeof e == `object` && (e = e.RDa), kr(t, e);
     }),
     (G3.prototype.GetSubShapeIDBitsRecursive = function () {
       return Ar(this.RDa);
@@ -14570,19 +14569,19 @@ async function Ir(e = {}) {
     }),
     (G3.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Nr(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Nr(n, e, t), p);
     }),
     (G3.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Pr(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Pr(t, e), c8);
     }),
     (G3.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Fr(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Fr(n, e, t), v);
     }),
     (G3.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Ir(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Ir(t, e);
     }),
     (G3.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -14600,23 +14599,23 @@ async function Ir(e = {}) {
     }),
     (G3.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!zr(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!zr(t, e);
     }),
     (G3.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Br(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Br(t, e), v);
     }),
     (G3.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Vr(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(Vr(t, e), h8);
     }),
     (G3.prototype.__destroy__ = function () {
       Hr(this.RDa);
-    }));
+    });
   function K3() {
     throw `cannot construct a DecoratedShapeSettings, no constructor in IDL`;
   }
-  ((K3.prototype = Object.create(O3.prototype)),
+  (K3.prototype = Object.create(O3.prototype)),
     (K3.prototype.constructor = K3),
     (K3.prototype.SDa = K3),
     (K3.TDa = {}),
@@ -14643,16 +14642,16 @@ async function Ir(e = {}) {
     (K3.prototype.set_mUserData = K3.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Yr(t, e));
+        e && typeof e == `object` && (e = e.RDa), Yr(t, e);
       }),
     Object.defineProperty(K3.prototype, "mUserData", { get: K3.prototype.UDa, set: K3.prototype.VDa }),
     (K3.prototype.__destroy__ = function () {
       Xr(this.RDa);
-    }));
+    });
   function q3() {
     throw `cannot construct a DecoratedShape, no constructor in IDL`;
   }
-  ((q3.prototype = Object.create(p.prototype)),
+  (q3.prototype = Object.create(p.prototype)),
     (q3.prototype.constructor = q3),
     (q3.prototype.SDa = q3),
     (q3.TDa = {}),
@@ -14683,7 +14682,7 @@ async function Ir(e = {}) {
     }),
     (q3.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ai(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ai(n, e, t), w);
     }),
     (q3.prototype.GetCenterOfMass = function () {
       return f(oi(this.RDa), v);
@@ -14693,7 +14692,7 @@ async function Ir(e = {}) {
     }),
     (q3.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ci(t, e));
+      e && typeof e == `object` && (e = e.RDa), ci(t, e);
     }),
     (q3.prototype.GetSubShapeIDBitsRecursive = function () {
       return li(this.RDa);
@@ -14706,19 +14705,19 @@ async function Ir(e = {}) {
     }),
     (q3.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(fi(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(fi(n, e, t), p);
     }),
     (q3.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pi(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(pi(t, e), c8);
     }),
     (q3.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(mi(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(mi(n, e, t), v);
     }),
     (q3.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), hi(t, e));
+      return e && typeof e == `object` && (e = e.RDa), hi(t, e);
     }),
     (q3.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -14736,30 +14735,30 @@ async function Ir(e = {}) {
     }),
     (q3.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!vi(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!vi(t, e);
     }),
     (q3.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(yi(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(yi(t, e), v);
     }),
     (q3.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(bi(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(bi(t, e), h8);
     }),
     (q3.prototype.__destroy__ = function () {
       xi(this.RDa);
-    }));
+    });
   function J3() {
     throw `cannot construct a TwoBodyConstraintSettings, no constructor in IDL`;
   }
-  ((J3.prototype = Object.create(k3.prototype)),
+  (J3.prototype = Object.create(k3.prototype)),
     (J3.prototype.constructor = J3),
     (J3.prototype.SDa = J3),
     (J3.TDa = {}),
     (t.TwoBodyConstraintSettings = J3),
     (J3.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Si(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Si(n, e, t), A3);
     }),
     (J3.prototype.GetRefCount = function () {
       return Ci(this.RDa);
@@ -14777,7 +14776,7 @@ async function Ir(e = {}) {
     (J3.prototype.set_mEnabled = J3.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Di(t, e));
+        e && typeof e == `object` && (e = e.RDa), Di(t, e);
       }),
     Object.defineProperty(J3.prototype, "mEnabled", { get: J3.prototype.$Da, set: J3.prototype.aEa }),
     (J3.prototype.get_mNumVelocityStepsOverride = J3.prototype.XDa =
@@ -14787,7 +14786,7 @@ async function Ir(e = {}) {
     (J3.prototype.set_mNumVelocityStepsOverride = J3.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ki(t, e));
+        e && typeof e == `object` && (e = e.RDa), ki(t, e);
       }),
     Object.defineProperty(J3.prototype, "mNumVelocityStepsOverride", { get: J3.prototype.XDa, set: J3.prototype.ZDa }),
     (J3.prototype.get_mNumPositionStepsOverride = J3.prototype.WDa =
@@ -14797,16 +14796,16 @@ async function Ir(e = {}) {
     (J3.prototype.set_mNumPositionStepsOverride = J3.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ji(t, e));
+        e && typeof e == `object` && (e = e.RDa), ji(t, e);
       }),
     Object.defineProperty(J3.prototype, "mNumPositionStepsOverride", { get: J3.prototype.WDa, set: J3.prototype.YDa }),
     (J3.prototype.__destroy__ = function () {
       Mi(this.RDa);
-    }));
+    });
   function Y3() {
     throw `cannot construct a TwoBodyConstraint, no constructor in IDL`;
   }
-  ((Y3.prototype = Object.create(A3.prototype)),
+  (Y3.prototype = Object.create(A3.prototype)),
     (Y3.prototype.constructor = Y3),
     (Y3.prototype.SDa = Y3),
     (Y3.TDa = {}),
@@ -14843,25 +14842,25 @@ async function Ir(e = {}) {
     }),
     (Y3.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ui(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ui(t, e);
     }),
     (Y3.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Wi(t, e));
+      e && typeof e == `object` && (e = e.RDa), Wi(t, e);
     }),
     (Y3.prototype.GetNumVelocityStepsOverride = function () {
       return Gi(this.RDa);
     }),
     (Y3.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ki(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ki(t, e);
     }),
     (Y3.prototype.GetNumPositionStepsOverride = function () {
       return qi(this.RDa);
     }),
     (Y3.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ji(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ji(t, e);
     }),
     (Y3.prototype.GetEnabled = function () {
       return !!Yi(this.RDa);
@@ -14874,26 +14873,26 @@ async function Ir(e = {}) {
     }),
     (Y3.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nee(t, e));
+      e && typeof e == `object` && (e = e.RDa), nee(t, e);
     }),
     (Y3.prototype.ResetWarmStart = function () {
       ree(this.RDa);
     }),
     (Y3.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), iee(t, e));
+      e && typeof e == `object` && (e = e.RDa), iee(t, e);
     }),
     (Y3.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), aee(t, e));
+      e && typeof e == `object` && (e = e.RDa), aee(t, e);
     }),
     (Y3.prototype.__destroy__ = function () {
       oee(this.RDa);
-    }));
+    });
   function X3() {
     throw `cannot construct a PathConstraintPathEm, no constructor in IDL`;
   }
-  ((X3.prototype = Object.create(j3.prototype)),
+  (X3.prototype = Object.create(j3.prototype)),
     (X3.prototype.constructor = X3),
     (X3.prototype.SDa = X3),
     (X3.TDa = {}),
@@ -14903,7 +14902,7 @@ async function Ir(e = {}) {
     }),
     (X3.prototype.SetIsLooping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cee(t, e));
+      e && typeof e == `object` && (e = e.RDa), cee(t, e);
     }),
     (X3.prototype.GetRefCount = function () {
       return lee(this.RDa);
@@ -14916,11 +14915,11 @@ async function Ir(e = {}) {
     }),
     (X3.prototype.__destroy__ = function () {
       fee(this.RDa);
-    }));
+    });
   function Z3() {
     throw `cannot construct a MotionProperties, no constructor in IDL`;
   }
-  ((Z3.prototype = Object.create(u.prototype)),
+  (Z3.prototype = Object.create(u.prototype)),
     (Z3.prototype.constructor = Z3),
     (Z3.prototype.SDa = Z3),
     (Z3.TDa = {}),
@@ -14939,40 +14938,40 @@ async function Ir(e = {}) {
     }),
     (Z3.prototype.SetLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _ee(t, e));
+      e && typeof e == `object` && (e = e.RDa), _ee(t, e);
     }),
     (Z3.prototype.SetLinearVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vee(t, e));
+      e && typeof e == `object` && (e = e.RDa), vee(t, e);
     }),
     (Z3.prototype.GetAngularVelocity = function () {
       return f(yee(this.RDa), v);
     }),
     (Z3.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bee(t, e));
+      e && typeof e == `object` && (e = e.RDa), bee(t, e);
     }),
     (Z3.prototype.SetAngularVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xee(t, e));
+      e && typeof e == `object` && (e = e.RDa), xee(t, e);
     }),
     (Z3.prototype.MoveKinematic = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), See(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), See(r, e, t, n);
     }),
     (Z3.prototype.GetMaxLinearVelocity = function () {
       return Cee(this.RDa);
     }),
     (Z3.prototype.SetMaxLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), wee(t, e));
+      e && typeof e == `object` && (e = e.RDa), wee(t, e);
     }),
     (Z3.prototype.GetMaxAngularVelocity = function () {
       return Tee(this.RDa);
     }),
     (Z3.prototype.SetMaxAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Eee(t, e));
+      e && typeof e == `object` && (e = e.RDa), Eee(t, e);
     }),
     (Z3.prototype.ClampLinearVelocity = function () {
       Dee(this.RDa);
@@ -14985,25 +14984,25 @@ async function Ir(e = {}) {
     }),
     (Z3.prototype.SetLinearDamping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Aee(t, e));
+      e && typeof e == `object` && (e = e.RDa), Aee(t, e);
     }),
     (Z3.prototype.GetAngularDamping = function () {
       return jee(this.RDa);
     }),
     (Z3.prototype.SetAngularDamping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mee(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mee(t, e);
     }),
     (Z3.prototype.GetGravityFactor = function () {
       return Nee(this.RDa);
     }),
     (Z3.prototype.SetGravityFactor = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pee(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pee(t, e);
     }),
     (Z3.prototype.SetMassProperties = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Fee(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Fee(n, e, t);
     }),
     (Z3.prototype.GetInverseMass = function () {
       return Iee(this.RDa);
@@ -15013,7 +15012,7 @@ async function Ir(e = {}) {
     }),
     (Z3.prototype.SetInverseMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ree(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ree(t, e);
     }),
     (Z3.prototype.GetInverseInertiaDiagonal = function () {
       return f(zee(this.RDa), v);
@@ -15023,26 +15022,26 @@ async function Ir(e = {}) {
     }),
     (Z3.prototype.SetInverseInertia = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Vee(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Vee(n, e, t);
     }),
     (Z3.prototype.ScaleToMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Hee(t, e));
+      e && typeof e == `object` && (e = e.RDa), Hee(t, e);
     }),
     (Z3.prototype.GetLocalSpaceInverseInertia = function () {
       return f(Uee(this.RDa), S);
     }),
     (Z3.prototype.GetInverseInertiaForRotation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Wee(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Wee(t, e), S);
     }),
     (Z3.prototype.MultiplyWorldSpaceInverseInertiaByVector = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Gee(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Gee(n, e, t), v);
     }),
     (Z3.prototype.GetPointVelocityCOM = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Kee(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Kee(t, e), v);
     }),
     (Z3.prototype.GetAccumulatedForce = function () {
       return f(qee(this.RDa), v);
@@ -15061,33 +15060,33 @@ async function Ir(e = {}) {
     }),
     (Z3.prototype.LockTranslation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Qee(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Qee(t, e), v);
     }),
     (Z3.prototype.LockAngular = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f($ee(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f($ee(t, e), v);
     }),
     (Z3.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ete(t, e));
+      e && typeof e == `object` && (e = e.RDa), ete(t, e);
     }),
     (Z3.prototype.GetNumVelocityStepsOverride = function () {
       return tte(this.RDa);
     }),
     (Z3.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nte(t, e));
+      e && typeof e == `object` && (e = e.RDa), nte(t, e);
     }),
     (Z3.prototype.GetNumPositionStepsOverride = function () {
       return rte(this.RDa);
     }),
     (Z3.prototype.__destroy__ = function () {
       ite(this.RDa);
-    }));
+    });
   function Q3() {
     throw `cannot construct a GroupFilter, no constructor in IDL`;
   }
-  ((Q3.prototype = Object.create(u.prototype)),
+  (Q3.prototype = Object.create(u.prototype)),
     (Q3.prototype.constructor = Q3),
     (Q3.prototype.SDa = Q3),
     (Q3.TDa = {}),
@@ -15103,62 +15102,62 @@ async function Ir(e = {}) {
     }),
     (Q3.prototype.__destroy__ = function () {
       cte(this.RDa);
-    }));
+    });
   function $3() {
     throw `cannot construct a StateRecorderFilter, no constructor in IDL`;
   }
-  (($3.prototype = Object.create(u.prototype)),
+  ($3.prototype = Object.create(u.prototype)),
     ($3.prototype.constructor = $3),
     ($3.prototype.SDa = $3),
     ($3.TDa = {}),
     (t.StateRecorderFilter = $3),
     ($3.prototype.__destroy__ = function () {
       lte(this.RDa);
-    }));
+    });
   function e6() {
     throw `cannot construct a StateRecorderEm, no constructor in IDL`;
   }
-  ((e6.prototype = Object.create(M3.prototype)),
+  (e6.prototype = Object.create(M3.prototype)),
     (e6.prototype.constructor = e6),
     (e6.prototype.SDa = e6),
     (e6.TDa = {}),
     (t.StateRecorderEm = e6),
     (e6.prototype.SetValidating = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ute(t, e));
+      e && typeof e == `object` && (e = e.RDa), ute(t, e);
     }),
     (e6.prototype.IsValidating = function () {
       return !!dte(this.RDa);
     }),
     (e6.prototype.SetIsLastPart = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), fte(t, e));
+      e && typeof e == `object` && (e = e.RDa), fte(t, e);
     }),
     (e6.prototype.IsLastPart = function () {
       return !!pte(this.RDa);
     }),
     (e6.prototype.__destroy__ = function () {
       mte(this.RDa);
-    }));
+    });
   function t6() {
     throw `cannot construct a BodyLockInterface, no constructor in IDL`;
   }
-  ((t6.prototype = Object.create(u.prototype)),
+  (t6.prototype = Object.create(u.prototype)),
     (t6.prototype.constructor = t6),
     (t6.prototype.SDa = t6),
     (t6.TDa = {}),
     (t.BodyLockInterface = t6),
     (t6.prototype.TryGetBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(hte(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(hte(t, e), I);
     }),
     (t6.prototype.__destroy__ = function () {
       gte(this.RDa);
-    }));
+    });
   function m() {
-    ((this.RDa = _te()), (d(m)[this.RDa] = this));
+    (this.RDa = _te()), (d(m)[this.RDa] = this);
   }
-  ((m.prototype = Object.create(u.prototype)),
+  (m.prototype = Object.create(u.prototype)),
     (m.prototype.constructor = m),
     (m.prototype.SDa = m),
     (m.TDa = {}),
@@ -15170,7 +15169,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mContactPointOn1 = m.prototype.yIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yte(t, e));
+        e && typeof e == `object` && (e = e.RDa), yte(t, e);
       }),
     Object.defineProperty(m.prototype, "mContactPointOn1", { get: m.prototype.aHa, set: m.prototype.yIa }),
     (m.prototype.get_mContactPointOn2 = m.prototype.bHa =
@@ -15180,7 +15179,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mContactPointOn2 = m.prototype.zIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xte(t, e));
+        e && typeof e == `object` && (e = e.RDa), xte(t, e);
       }),
     Object.defineProperty(m.prototype, "mContactPointOn2", { get: m.prototype.bHa, set: m.prototype.zIa }),
     (m.prototype.get_mPenetrationAxis = m.prototype.LHa =
@@ -15190,7 +15189,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mPenetrationAxis = m.prototype.iJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Cte(t, e));
+        e && typeof e == `object` && (e = e.RDa), Cte(t, e);
       }),
     Object.defineProperty(m.prototype, "mPenetrationAxis", { get: m.prototype.LHa, set: m.prototype.iJa }),
     (m.prototype.get_mPenetrationDepth = m.prototype.wFa =
@@ -15200,7 +15199,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mPenetrationDepth = m.prototype.lGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Tte(t, e));
+        e && typeof e == `object` && (e = e.RDa), Tte(t, e);
       }),
     Object.defineProperty(m.prototype, "mPenetrationDepth", { get: m.prototype.wFa, set: m.prototype.lGa }),
     (m.prototype.get_mSubShapeID1 = m.prototype.BFa =
@@ -15210,7 +15209,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mSubShapeID1 = m.prototype.qGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dte(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dte(t, e);
       }),
     Object.defineProperty(m.prototype, "mSubShapeID1", { get: m.prototype.BFa, set: m.prototype.qGa }),
     (m.prototype.get_mSubShapeID2 = m.prototype.GEa =
@@ -15220,7 +15219,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mSubShapeID2 = m.prototype.HEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kte(t, e));
+        e && typeof e == `object` && (e = e.RDa), kte(t, e);
       }),
     Object.defineProperty(m.prototype, "mSubShapeID2", { get: m.prototype.GEa, set: m.prototype.HEa }),
     (m.prototype.get_mBodyID2 = m.prototype.RGa =
@@ -15230,7 +15229,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mBodyID2 = m.prototype.pIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jte(t, e));
+        e && typeof e == `object` && (e = e.RDa), jte(t, e);
       }),
     Object.defineProperty(m.prototype, "mBodyID2", { get: m.prototype.RGa, set: m.prototype.pIa }),
     (m.prototype.get_mShape1Face = m.prototype.QHa =
@@ -15240,7 +15239,7 @@ async function Ir(e = {}) {
     (m.prototype.set_mShape1Face = m.prototype.oJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nte(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nte(t, e);
       }),
     Object.defineProperty(m.prototype, "mShape1Face", { get: m.prototype.QHa, set: m.prototype.oJa }),
     (m.prototype.get_mShape2Face = m.prototype.RHa =
@@ -15250,38 +15249,38 @@ async function Ir(e = {}) {
     (m.prototype.set_mShape2Face = m.prototype.pJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fte(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fte(t, e);
       }),
     Object.defineProperty(m.prototype, "mShape2Face", { get: m.prototype.RHa, set: m.prototype.pJa }),
     (m.prototype.__destroy__ = function () {
       Ite(this.RDa);
-    }));
+    });
   function n6() {
     throw `cannot construct a ContactListenerEm, no constructor in IDL`;
   }
-  ((n6.prototype = Object.create(N3.prototype)),
+  (n6.prototype = Object.create(N3.prototype)),
     (n6.prototype.constructor = n6),
     (n6.prototype.SDa = n6),
     (n6.TDa = {}),
     (t.ContactListenerEm = n6),
     (n6.prototype.__destroy__ = function () {
       Lte(this.RDa);
-    }));
+    });
   function r6() {
     throw `cannot construct a SoftBodyContactListenerEm, no constructor in IDL`;
   }
-  ((r6.prototype = Object.create(P3.prototype)),
+  (r6.prototype = Object.create(P3.prototype)),
     (r6.prototype.constructor = r6),
     (r6.prototype.SDa = r6),
     (r6.TDa = {}),
     (t.SoftBodyContactListenerEm = r6),
     (r6.prototype.__destroy__ = function () {
       Rte(this.RDa);
-    }));
+    });
   function i6() {
     throw `cannot construct a RayCastBodyCollector, no constructor in IDL`;
   }
-  ((i6.prototype = Object.create(u.prototype)),
+  (i6.prototype = Object.create(u.prototype)),
     (i6.prototype.constructor = i6),
     (i6.prototype.SDa = i6),
     (i6.TDa = {}),
@@ -15291,18 +15290,18 @@ async function Ir(e = {}) {
     }),
     (i6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bte(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bte(t, e);
     }),
     (i6.prototype.GetContext = function () {
       return f(Vte(this.RDa), T);
     }),
     (i6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Hte(t, e));
+      e && typeof e == `object` && (e = e.RDa), Hte(t, e);
     }),
     (i6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Ute(t) : Wte(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Ute(t) : Wte(t, e);
     }),
     (i6.prototype.ForceEarlyOut = function () {
       Gte(this.RDa);
@@ -15318,11 +15317,11 @@ async function Ir(e = {}) {
     }),
     (i6.prototype.__destroy__ = function () {
       Yte(this.RDa);
-    }));
+    });
   function a6() {
     throw `cannot construct a CollideShapeBodyCollector, no constructor in IDL`;
   }
-  ((a6.prototype = Object.create(u.prototype)),
+  (a6.prototype = Object.create(u.prototype)),
     (a6.prototype.constructor = a6),
     (a6.prototype.SDa = a6),
     (a6.TDa = {}),
@@ -15332,18 +15331,18 @@ async function Ir(e = {}) {
     }),
     (a6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Zte(t, e));
+      e && typeof e == `object` && (e = e.RDa), Zte(t, e);
     }),
     (a6.prototype.GetContext = function () {
       return f(Qte(this.RDa), T);
     }),
     (a6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $te(t, e));
+      e && typeof e == `object` && (e = e.RDa), $te(t, e);
     }),
     (a6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? ene(t) : tne(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? ene(t) : tne(t, e);
     }),
     (a6.prototype.ForceEarlyOut = function () {
       nne(this.RDa);
@@ -15359,11 +15358,11 @@ async function Ir(e = {}) {
     }),
     (a6.prototype.__destroy__ = function () {
       one(this.RDa);
-    }));
+    });
   function o6() {
     throw `cannot construct a CastShapeBodyCollector, no constructor in IDL`;
   }
-  ((o6.prototype = Object.create(u.prototype)),
+  (o6.prototype = Object.create(u.prototype)),
     (o6.prototype.constructor = o6),
     (o6.prototype.SDa = o6),
     (o6.TDa = {}),
@@ -15373,18 +15372,18 @@ async function Ir(e = {}) {
     }),
     (o6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cne(t, e));
+      e && typeof e == `object` && (e = e.RDa), cne(t, e);
     }),
     (o6.prototype.GetContext = function () {
       return f(lne(this.RDa), T);
     }),
     (o6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), une(t, e));
+      e && typeof e == `object` && (e = e.RDa), une(t, e);
     }),
     (o6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? dne(t) : fne(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? dne(t) : fne(t, e);
     }),
     (o6.prototype.ForceEarlyOut = function () {
       pne(this.RDa);
@@ -15400,11 +15399,11 @@ async function Ir(e = {}) {
     }),
     (o6.prototype.__destroy__ = function () {
       _ne(this.RDa);
-    }));
+    });
   function s6() {
     throw `cannot construct a CastRayCollector, no constructor in IDL`;
   }
-  ((s6.prototype = Object.create(u.prototype)),
+  (s6.prototype = Object.create(u.prototype)),
     (s6.prototype.constructor = s6),
     (s6.prototype.SDa = s6),
     (s6.TDa = {}),
@@ -15414,18 +15413,18 @@ async function Ir(e = {}) {
     }),
     (s6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), yne(t, e));
+      e && typeof e == `object` && (e = e.RDa), yne(t, e);
     }),
     (s6.prototype.GetContext = function () {
       return f(bne(this.RDa), T);
     }),
     (s6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xne(t, e));
+      e && typeof e == `object` && (e = e.RDa), xne(t, e);
     }),
     (s6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Sne(t) : Cne(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Sne(t) : Cne(t, e);
     }),
     (s6.prototype.ForceEarlyOut = function () {
       wne(this.RDa);
@@ -15441,11 +15440,11 @@ async function Ir(e = {}) {
     }),
     (s6.prototype.__destroy__ = function () {
       One(this.RDa);
-    }));
+    });
   function c6() {
     throw `cannot construct a CollidePointCollector, no constructor in IDL`;
   }
-  ((c6.prototype = Object.create(u.prototype)),
+  (c6.prototype = Object.create(u.prototype)),
     (c6.prototype.constructor = c6),
     (c6.prototype.SDa = c6),
     (c6.TDa = {}),
@@ -15455,18 +15454,18 @@ async function Ir(e = {}) {
     }),
     (c6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ane(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ane(t, e);
     }),
     (c6.prototype.GetContext = function () {
       return f(jne(this.RDa), T);
     }),
     (c6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mne(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mne(t, e);
     }),
     (c6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Nne(t) : Pne(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Nne(t) : Pne(t, e);
     }),
     (c6.prototype.ForceEarlyOut = function () {
       Fne(this.RDa);
@@ -15482,11 +15481,11 @@ async function Ir(e = {}) {
     }),
     (c6.prototype.__destroy__ = function () {
       zne(this.RDa);
-    }));
+    });
   function l6() {
     throw `cannot construct a CollideSettingsBase, no constructor in IDL`;
   }
-  ((l6.prototype = Object.create(u.prototype)),
+  (l6.prototype = Object.create(u.prototype)),
     (l6.prototype.constructor = l6),
     (l6.prototype.SDa = l6),
     (l6.TDa = {}),
@@ -15498,7 +15497,7 @@ async function Ir(e = {}) {
     (l6.prototype.set_mActiveEdgeMode = l6.prototype.PFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vne(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vne(t, e);
       }),
     Object.defineProperty(l6.prototype, "mActiveEdgeMode", { get: l6.prototype.aFa, set: l6.prototype.PFa }),
     (l6.prototype.get_mCollectFacesMode = l6.prototype.dFa =
@@ -15508,7 +15507,7 @@ async function Ir(e = {}) {
     (l6.prototype.set_mCollectFacesMode = l6.prototype.SFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Une(t, e));
+        e && typeof e == `object` && (e = e.RDa), Une(t, e);
       }),
     Object.defineProperty(l6.prototype, "mCollectFacesMode", { get: l6.prototype.dFa, set: l6.prototype.SFa }),
     (l6.prototype.get_mCollisionTolerance = l6.prototype.KEa =
@@ -15518,7 +15517,7 @@ async function Ir(e = {}) {
     (l6.prototype.set_mCollisionTolerance = l6.prototype.TEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gne(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gne(t, e);
       }),
     Object.defineProperty(l6.prototype, "mCollisionTolerance", { get: l6.prototype.KEa, set: l6.prototype.TEa }),
     (l6.prototype.get_mPenetrationTolerance = l6.prototype.xFa =
@@ -15528,7 +15527,7 @@ async function Ir(e = {}) {
     (l6.prototype.set_mPenetrationTolerance = l6.prototype.mGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qne(t, e));
+        e && typeof e == `object` && (e = e.RDa), qne(t, e);
       }),
     Object.defineProperty(l6.prototype, "mPenetrationTolerance", { get: l6.prototype.xFa, set: l6.prototype.mGa }),
     (l6.prototype.get_mActiveEdgeMovementDirection = l6.prototype.bFa =
@@ -15538,16 +15537,16 @@ async function Ir(e = {}) {
     (l6.prototype.set_mActiveEdgeMovementDirection = l6.prototype.QFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Yne(t, e));
+        e && typeof e == `object` && (e = e.RDa), Yne(t, e);
       }),
     Object.defineProperty(l6.prototype, "mActiveEdgeMovementDirection", { get: l6.prototype.bFa, set: l6.prototype.QFa }),
     (l6.prototype.__destroy__ = function () {
       Xne(this.RDa);
-    }));
+    });
   function u6() {
     throw `cannot construct a CollideShapeCollector, no constructor in IDL`;
   }
-  ((u6.prototype = Object.create(u.prototype)),
+  (u6.prototype = Object.create(u.prototype)),
     (u6.prototype.constructor = u6),
     (u6.prototype.SDa = u6),
     (u6.TDa = {}),
@@ -15557,18 +15556,18 @@ async function Ir(e = {}) {
     }),
     (u6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qne(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qne(t, e);
     }),
     (u6.prototype.GetContext = function () {
       return f($ne(this.RDa), T);
     }),
     (u6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ere(t, e));
+      e && typeof e == `object` && (e = e.RDa), ere(t, e);
     }),
     (u6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? tre(t) : nre(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? tre(t) : nre(t, e);
     }),
     (u6.prototype.ForceEarlyOut = function () {
       rre(this.RDa);
@@ -15584,11 +15583,11 @@ async function Ir(e = {}) {
     }),
     (u6.prototype.__destroy__ = function () {
       sre(this.RDa);
-    }));
+    });
   function d6() {
     throw `cannot construct a CastShapeCollector, no constructor in IDL`;
   }
-  ((d6.prototype = Object.create(u.prototype)),
+  (d6.prototype = Object.create(u.prototype)),
     (d6.prototype.constructor = d6),
     (d6.prototype.SDa = d6),
     (d6.TDa = {}),
@@ -15598,18 +15597,18 @@ async function Ir(e = {}) {
     }),
     (d6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), lre(t, e));
+      e && typeof e == `object` && (e = e.RDa), lre(t, e);
     }),
     (d6.prototype.GetContext = function () {
       return f(ure(this.RDa), T);
     }),
     (d6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dre(t, e));
+      e && typeof e == `object` && (e = e.RDa), dre(t, e);
     }),
     (d6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? fre(t) : pre(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? fre(t) : pre(t, e);
     }),
     (d6.prototype.ForceEarlyOut = function () {
       mre(this.RDa);
@@ -15625,11 +15624,11 @@ async function Ir(e = {}) {
     }),
     (d6.prototype.__destroy__ = function () {
       vre(this.RDa);
-    }));
+    });
   function f6() {
     throw `cannot construct a TransformedShapeCollector, no constructor in IDL`;
   }
-  ((f6.prototype = Object.create(u.prototype)),
+  (f6.prototype = Object.create(u.prototype)),
     (f6.prototype.constructor = f6),
     (f6.prototype.SDa = f6),
     (f6.TDa = {}),
@@ -15639,18 +15638,18 @@ async function Ir(e = {}) {
     }),
     (f6.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bre(t, e));
+      e && typeof e == `object` && (e = e.RDa), bre(t, e);
     }),
     (f6.prototype.GetContext = function () {
       return f(xre(this.RDa), T);
     }),
     (f6.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Sre(t, e));
+      e && typeof e == `object` && (e = e.RDa), Sre(t, e);
     }),
     (f6.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Cre(t) : wre(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Cre(t) : wre(t, e);
     }),
     (f6.prototype.ForceEarlyOut = function () {
       Tre(this.RDa);
@@ -15666,31 +15665,31 @@ async function Ir(e = {}) {
     }),
     (f6.prototype.__destroy__ = function () {
       kre(this.RDa);
-    }));
+    });
   function p6() {
     throw `cannot construct a PhysicsStepListener, no constructor in IDL`;
   }
-  ((p6.prototype = Object.create(u.prototype)),
+  (p6.prototype = Object.create(u.prototype)),
     (p6.prototype.constructor = p6),
     (p6.prototype.SDa = p6),
     (p6.TDa = {}),
     (t.PhysicsStepListener = p6),
     (p6.prototype.__destroy__ = function () {
       Are(this.RDa);
-    }));
+    });
   function m6() {
     throw `cannot construct a BodyActivationListenerEm, no constructor in IDL`;
   }
-  ((m6.prototype = Object.create(F3.prototype)),
+  (m6.prototype = Object.create(F3.prototype)),
     (m6.prototype.constructor = m6),
     (m6.prototype.SDa = m6),
     (m6.TDa = {}),
     (t.BodyActivationListenerEm = m6),
     (m6.prototype.__destroy__ = function () {
       jre(this.RDa);
-    }));
+    });
   function h(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
@@ -15707,9 +15706,9 @@ async function Ir(e = {}) {
                 : i === void 0
                   ? _emscripten_bind_BodyCreationSettings_BodyCreationSettings_4(e, t, n, r)
                   : Nre(e, t, n, r, i)),
-      (d(h)[this.RDa] = this));
+      (d(h)[this.RDa] = this);
   }
-  ((h.prototype = Object.create(u.prototype)),
+  (h.prototype = Object.create(u.prototype)),
     (h.prototype.constructor = h),
     (h.prototype.SDa = h),
     (h.TDa = {}),
@@ -15719,7 +15718,7 @@ async function Ir(e = {}) {
     }),
     (h.prototype.SetShapeSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fre(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fre(t, e);
     }),
     (h.prototype.ConvertShapeSettings = function () {
       return f(Ire(this.RDa), h8);
@@ -15729,7 +15728,7 @@ async function Ir(e = {}) {
     }),
     (h.prototype.SetShape = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rre(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rre(t, e);
     }),
     (h.prototype.HasMassProperties = function () {
       return !!zre(this.RDa);
@@ -15744,7 +15743,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mPosition = h.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Hre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Hre(t, e);
       }),
     Object.defineProperty(h.prototype, "mPosition", { get: h.prototype.eEa, set: h.prototype.gEa }),
     (h.prototype.get_mRotation = h.prototype.uEa =
@@ -15754,7 +15753,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mRotation = h.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wre(t, e);
       }),
     Object.defineProperty(h.prototype, "mRotation", { get: h.prototype.uEa, set: h.prototype.BEa }),
     (h.prototype.get_mLinearVelocity = h.prototype.nFa =
@@ -15764,7 +15763,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mLinearVelocity = h.prototype.cGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Kre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Kre(t, e);
       }),
     Object.defineProperty(h.prototype, "mLinearVelocity", { get: h.prototype.nFa, set: h.prototype.cGa }),
     (h.prototype.get_mAngularVelocity = h.prototype.cFa =
@@ -15774,7 +15773,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mAngularVelocity = h.prototype.RFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Jre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Jre(t, e);
       }),
     Object.defineProperty(h.prototype, "mAngularVelocity", { get: h.prototype.cFa, set: h.prototype.RFa }),
     (h.prototype.get_mUserData = h.prototype.UDa =
@@ -15784,7 +15783,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mUserData = h.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xre(t, e);
       }),
     Object.defineProperty(h.prototype, "mUserData", { get: h.prototype.UDa, set: h.prototype.VDa }),
     (h.prototype.get_mObjectLayer = h.prototype.vFa =
@@ -15794,7 +15793,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mObjectLayer = h.prototype.kGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qre(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qre(t, e);
       }),
     Object.defineProperty(h.prototype, "mObjectLayer", { get: h.prototype.vFa, set: h.prototype.kGa }),
     (h.prototype.get_mCollisionGroup = h.prototype.eFa =
@@ -15804,7 +15803,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mCollisionGroup = h.prototype.TFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eie(t, e));
+        e && typeof e == `object` && (e = e.RDa), eie(t, e);
       }),
     Object.defineProperty(h.prototype, "mCollisionGroup", { get: h.prototype.eFa, set: h.prototype.TFa }),
     (h.prototype.get_mMotionType = h.prototype.EHa =
@@ -15814,7 +15813,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mMotionType = h.prototype.bJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nie(t, e));
+        e && typeof e == `object` && (e = e.RDa), nie(t, e);
       }),
     Object.defineProperty(h.prototype, "mMotionType", { get: h.prototype.EHa, set: h.prototype.bJa }),
     (h.prototype.get_mAllowedDOFs = h.prototype.HGa =
@@ -15824,7 +15823,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mAllowedDOFs = h.prototype.fIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iie(t, e));
+        e && typeof e == `object` && (e = e.RDa), iie(t, e);
       }),
     Object.defineProperty(h.prototype, "mAllowedDOFs", { get: h.prototype.HGa, set: h.prototype.fIa }),
     (h.prototype.get_mAllowDynamicOrKinematic = h.prototype.GGa =
@@ -15834,7 +15833,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mAllowDynamicOrKinematic = h.prototype.eIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oie(t, e));
+        e && typeof e == `object` && (e = e.RDa), oie(t, e);
       }),
     Object.defineProperty(h.prototype, "mAllowDynamicOrKinematic", { get: h.prototype.GGa, set: h.prototype.eIa }),
     (h.prototype.get_mIsSensor = h.prototype.OEa =
@@ -15844,7 +15843,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mIsSensor = h.prototype.XEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cie(t, e));
+        e && typeof e == `object` && (e = e.RDa), cie(t, e);
       }),
     Object.defineProperty(h.prototype, "mIsSensor", { get: h.prototype.OEa, set: h.prototype.XEa }),
     (h.prototype.get_mUseManifoldReduction = h.prototype.KFa =
@@ -15854,7 +15853,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mUseManifoldReduction = h.prototype.zGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uie(t, e));
+        e && typeof e == `object` && (e = e.RDa), uie(t, e);
       }),
     Object.defineProperty(h.prototype, "mUseManifoldReduction", { get: h.prototype.KFa, set: h.prototype.zGa }),
     (h.prototype.get_mCollideKinematicVsNonDynamic = h.prototype.YGa =
@@ -15864,7 +15863,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mCollideKinematicVsNonDynamic = h.prototype.vIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fie(t, e));
+        e && typeof e == `object` && (e = e.RDa), fie(t, e);
       }),
     Object.defineProperty(h.prototype, "mCollideKinematicVsNonDynamic", { get: h.prototype.YGa, set: h.prototype.vIa }),
     (h.prototype.get_mApplyGyroscopicForce = h.prototype.IGa =
@@ -15874,7 +15873,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mApplyGyroscopicForce = h.prototype.gIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mie(t, e));
+        e && typeof e == `object` && (e = e.RDa), mie(t, e);
       }),
     Object.defineProperty(h.prototype, "mApplyGyroscopicForce", { get: h.prototype.IGa, set: h.prototype.gIa }),
     (h.prototype.get_mMotionQuality = h.prototype.DHa =
@@ -15884,7 +15883,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mMotionQuality = h.prototype.aJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gie(t, e));
+        e && typeof e == `object` && (e = e.RDa), gie(t, e);
       }),
     Object.defineProperty(h.prototype, "mMotionQuality", { get: h.prototype.DHa, set: h.prototype.aJa }),
     (h.prototype.get_mEnhancedInternalEdgeRemoval = h.prototype.LEa =
@@ -15894,7 +15893,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mEnhancedInternalEdgeRemoval = h.prototype.UEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vie(t, e));
+        e && typeof e == `object` && (e = e.RDa), vie(t, e);
       }),
     Object.defineProperty(h.prototype, "mEnhancedInternalEdgeRemoval", { get: h.prototype.LEa, set: h.prototype.UEa }),
     (h.prototype.get_mAllowSleeping = h.prototype.IEa =
@@ -15904,7 +15903,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mAllowSleeping = h.prototype.REa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bie(t, e));
+        e && typeof e == `object` && (e = e.RDa), bie(t, e);
       }),
     Object.defineProperty(h.prototype, "mAllowSleeping", { get: h.prototype.IEa, set: h.prototype.REa }),
     (h.prototype.get_mFriction = h.prototype.jFa =
@@ -15914,7 +15913,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mFriction = h.prototype.ZFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sie(t, e);
       }),
     Object.defineProperty(h.prototype, "mFriction", { get: h.prototype.jFa, set: h.prototype.ZFa }),
     (h.prototype.get_mRestitution = h.prototype.zFa =
@@ -15924,7 +15923,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mRestitution = h.prototype.oGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wie(t, e));
+        e && typeof e == `object` && (e = e.RDa), wie(t, e);
       }),
     Object.defineProperty(h.prototype, "mRestitution", { get: h.prototype.zFa, set: h.prototype.oGa }),
     (h.prototype.get_mLinearDamping = h.prototype.mFa =
@@ -15934,7 +15933,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mLinearDamping = h.prototype.bGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Eie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Eie(t, e);
       }),
     Object.defineProperty(h.prototype, "mLinearDamping", { get: h.prototype.mFa, set: h.prototype.bGa }),
     (h.prototype.get_mAngularDamping = h.prototype.lEa =
@@ -15944,7 +15943,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mAngularDamping = h.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Oie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Oie(t, e);
       }),
     Object.defineProperty(h.prototype, "mAngularDamping", { get: h.prototype.lEa, set: h.prototype.nEa }),
     (h.prototype.get_mMaxLinearVelocity = h.prototype.sFa =
@@ -15954,7 +15953,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mMaxLinearVelocity = h.prototype.hGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Aie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Aie(t, e);
       }),
     Object.defineProperty(h.prototype, "mMaxLinearVelocity", { get: h.prototype.sFa, set: h.prototype.hGa }),
     (h.prototype.get_mMaxAngularVelocity = h.prototype.wHa =
@@ -15964,7 +15963,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mMaxAngularVelocity = h.prototype.UIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Mie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Mie(t, e);
       }),
     Object.defineProperty(h.prototype, "mMaxAngularVelocity", { get: h.prototype.wHa, set: h.prototype.UIa }),
     (h.prototype.get_mGravityFactor = h.prototype.kFa =
@@ -15974,7 +15973,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mGravityFactor = h.prototype.$Fa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Pie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Pie(t, e);
       }),
     Object.defineProperty(h.prototype, "mGravityFactor", { get: h.prototype.kFa, set: h.prototype.$Fa }),
     (h.prototype.get_mNumVelocityStepsOverride = h.prototype.XDa =
@@ -15984,7 +15983,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mNumVelocityStepsOverride = h.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Iie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Iie(t, e);
       }),
     Object.defineProperty(h.prototype, "mNumVelocityStepsOverride", { get: h.prototype.XDa, set: h.prototype.ZDa }),
     (h.prototype.get_mNumPositionStepsOverride = h.prototype.WDa =
@@ -15994,7 +15993,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mNumPositionStepsOverride = h.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Rie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Rie(t, e);
       }),
     Object.defineProperty(h.prototype, "mNumPositionStepsOverride", { get: h.prototype.WDa, set: h.prototype.YDa }),
     (h.prototype.get_mOverrideMassProperties = h.prototype.KHa =
@@ -16004,7 +16003,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mOverrideMassProperties = h.prototype.hJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Bie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Bie(t, e);
       }),
     Object.defineProperty(h.prototype, "mOverrideMassProperties", { get: h.prototype.KHa, set: h.prototype.hJa }),
     (h.prototype.get_mInertiaMultiplier = h.prototype.kHa =
@@ -16014,7 +16013,7 @@ async function Ir(e = {}) {
     (h.prototype.set_mInertiaMultiplier = h.prototype.IIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Hie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Hie(t, e);
       }),
     Object.defineProperty(h.prototype, "mInertiaMultiplier", { get: h.prototype.kHa, set: h.prototype.IIa }),
     (h.prototype.get_mMassPropertiesOverride = h.prototype.vHa =
@@ -16024,16 +16023,16 @@ async function Ir(e = {}) {
     (h.prototype.set_mMassPropertiesOverride = h.prototype.TIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wie(t, e);
       }),
     Object.defineProperty(h.prototype, "mMassPropertiesOverride", { get: h.prototype.vHa, set: h.prototype.TIa }),
     (h.prototype.__destroy__ = function () {
       Gie(this.RDa);
-    }));
+    });
   function h6() {
     throw `cannot construct a CharacterBaseSettings, no constructor in IDL`;
   }
-  ((h6.prototype = Object.create(u.prototype)),
+  (h6.prototype = Object.create(u.prototype)),
     (h6.prototype.constructor = h6),
     (h6.prototype.SDa = h6),
     (h6.TDa = {}),
@@ -16054,7 +16053,7 @@ async function Ir(e = {}) {
     (h6.prototype.set_mUp = h6.prototype.yGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xie(t, e);
       }),
     Object.defineProperty(h6.prototype, "mUp", { get: h6.prototype.JFa, set: h6.prototype.yGa }),
     (h6.prototype.get_mSupportingVolume = h6.prototype.VHa =
@@ -16064,7 +16063,7 @@ async function Ir(e = {}) {
     (h6.prototype.set_mSupportingVolume = h6.prototype.tJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qie(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qie(t, e);
       }),
     Object.defineProperty(h6.prototype, "mSupportingVolume", { get: h6.prototype.VHa, set: h6.prototype.tJa }),
     (h6.prototype.get_mMaxSlopeAngle = h6.prototype.AHa =
@@ -16074,7 +16073,7 @@ async function Ir(e = {}) {
     (h6.prototype.set_mMaxSlopeAngle = h6.prototype.YIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eae(t, e));
+        e && typeof e == `object` && (e = e.RDa), eae(t, e);
       }),
     Object.defineProperty(h6.prototype, "mMaxSlopeAngle", { get: h6.prototype.AHa, set: h6.prototype.YIa }),
     (h6.prototype.get_mEnhancedInternalEdgeRemoval = h6.prototype.LEa =
@@ -16084,7 +16083,7 @@ async function Ir(e = {}) {
     (h6.prototype.set_mEnhancedInternalEdgeRemoval = h6.prototype.UEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nae(t, e));
+        e && typeof e == `object` && (e = e.RDa), nae(t, e);
       }),
     Object.defineProperty(h6.prototype, "mEnhancedInternalEdgeRemoval", { get: h6.prototype.LEa, set: h6.prototype.UEa }),
     (h6.prototype.get_mShape = h6.prototype.vEa =
@@ -16094,119 +16093,119 @@ async function Ir(e = {}) {
     (h6.prototype.set_mShape = h6.prototype.ZEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iae(t, e));
+        e && typeof e == `object` && (e = e.RDa), iae(t, e);
       }),
     Object.defineProperty(h6.prototype, "mShape", { get: h6.prototype.vEa, set: h6.prototype.ZEa }),
     (h6.prototype.__destroy__ = function () {
       aae(this.RDa);
-    }));
+    });
   function g6() {
     throw `cannot construct a CharacterContactListenerEm, no constructor in IDL`;
   }
-  ((g6.prototype = Object.create(I3.prototype)),
+  (g6.prototype = Object.create(I3.prototype)),
     (g6.prototype.constructor = g6),
     (g6.prototype.SDa = g6),
     (g6.TDa = {}),
     (t.CharacterContactListenerEm = g6),
     (g6.prototype.__destroy__ = function () {
       oae(this.RDa);
-    }));
+    });
   function _6() {
     throw `cannot construct a CharacterVsCharacterCollision, no constructor in IDL`;
   }
-  ((_6.prototype = Object.create(u.prototype)),
+  (_6.prototype = Object.create(u.prototype)),
     (_6.prototype.constructor = _6),
     (_6.prototype.SDa = _6),
     (_6.TDa = {}),
     (t.CharacterVsCharacterCollision = _6),
     (_6.prototype.__destroy__ = function () {
       sae(this.RDa);
-    }));
+    });
   function v6() {
-    ((this.RDa = cae()), (d(v6)[this.RDa] = this));
+    (this.RDa = cae()), (d(v6)[this.RDa] = this);
   }
-  ((v6.prototype = Object.create(u.prototype)),
+  (v6.prototype = Object.create(u.prototype)),
     (v6.prototype.constructor = v6),
     (v6.prototype.SDa = v6),
     (v6.TDa = {}),
     (t.BroadPhaseLayerFilter = v6),
     (v6.prototype.__destroy__ = function () {
       lae(this.RDa);
-    }));
+    });
   function y6() {
     throw `cannot construct a ObjectVsBroadPhaseLayerFilterEm, no constructor in IDL`;
   }
-  ((y6.prototype = Object.create(L3.prototype)),
+  (y6.prototype = Object.create(L3.prototype)),
     (y6.prototype.constructor = y6),
     (y6.prototype.SDa = y6),
     (y6.TDa = {}),
     (t.ObjectVsBroadPhaseLayerFilterEm = y6),
     (y6.prototype.__destroy__ = function () {
       uae(this.RDa);
-    }));
+    });
   function b6() {
-    ((this.RDa = dae()), (d(b6)[this.RDa] = this));
+    (this.RDa = dae()), (d(b6)[this.RDa] = this);
   }
-  ((b6.prototype = Object.create(u.prototype)),
+  (b6.prototype = Object.create(u.prototype)),
     (b6.prototype.constructor = b6),
     (b6.prototype.SDa = b6),
     (b6.TDa = {}),
     (t.ObjectLayerFilter = b6),
     (b6.prototype.__destroy__ = function () {
       fae(this.RDa);
-    }));
+    });
   function x6() {
-    ((this.RDa = pae()), (d(x6)[this.RDa] = this));
+    (this.RDa = pae()), (d(x6)[this.RDa] = this);
   }
-  ((x6.prototype = Object.create(u.prototype)),
+  (x6.prototype = Object.create(u.prototype)),
     (x6.prototype.constructor = x6),
     (x6.prototype.SDa = x6),
     (x6.TDa = {}),
     (t.ObjectLayerPairFilter = x6),
     (x6.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!mae(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!mae(n, e, t);
     }),
     (x6.prototype.__destroy__ = function () {
       hae(this.RDa);
-    }));
+    });
   function S6() {
-    ((this.RDa = gae()), (d(S6)[this.RDa] = this));
+    (this.RDa = gae()), (d(S6)[this.RDa] = this);
   }
-  ((S6.prototype = Object.create(u.prototype)),
+  (S6.prototype = Object.create(u.prototype)),
     (S6.prototype.constructor = S6),
     (S6.prototype.SDa = S6),
     (S6.TDa = {}),
     (t.BodyFilter = S6),
     (S6.prototype.__destroy__ = function () {
       _ae(this.RDa);
-    }));
+    });
   function C6() {
-    ((this.RDa = vae()), (d(C6)[this.RDa] = this));
+    (this.RDa = vae()), (d(C6)[this.RDa] = this);
   }
-  ((C6.prototype = Object.create(u.prototype)),
+  (C6.prototype = Object.create(u.prototype)),
     (C6.prototype.constructor = C6),
     (C6.prototype.SDa = C6),
     (C6.TDa = {}),
     (t.ShapeFilter = C6),
     (C6.prototype.__destroy__ = function () {
       yae(this.RDa);
-    }));
+    });
   function w6() {
-    ((this.RDa = bae()), (d(w6)[this.RDa] = this));
+    (this.RDa = bae()), (d(w6)[this.RDa] = this);
   }
-  ((w6.prototype = Object.create(u.prototype)),
+  (w6.prototype = Object.create(u.prototype)),
     (w6.prototype.constructor = w6),
     (w6.prototype.SDa = w6),
     (w6.TDa = {}),
     (t.SimShapeFilter = w6),
     (w6.prototype.__destroy__ = function () {
       xae(this.RDa);
-    }));
+    });
   function T6() {
     throw `cannot construct a CharacterBase, no constructor in IDL`;
   }
-  ((T6.prototype = Object.create(u.prototype)),
+  (T6.prototype = Object.create(u.prototype)),
     (T6.prototype.constructor = T6),
     (T6.prototype.SDa = T6),
     (T6.TDa = {}),
@@ -16222,21 +16221,21 @@ async function Ir(e = {}) {
     }),
     (T6.prototype.SetMaxSlopeAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tae(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tae(t, e);
     }),
     (T6.prototype.GetCosMaxSlopeAngle = function () {
       return Eae(this.RDa);
     }),
     (T6.prototype.SetUp = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Dae(t, e));
+      e && typeof e == `object` && (e = e.RDa), Dae(t, e);
     }),
     (T6.prototype.GetUp = function () {
       return f(Oae(this.RDa), v);
     }),
     (T6.prototype.SetSupportingVolume = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kae(t, e));
+      e && typeof e == `object` && (e = e.RDa), kae(t, e);
     }),
     (T6.prototype.GetSupportingVolume = function () {
       return f(Aae(this.RDa), s8);
@@ -16249,7 +16248,7 @@ async function Ir(e = {}) {
     }),
     (T6.prototype.IsSlopeTooSteep = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Nae(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Nae(t, e);
     }),
     (T6.prototype.IsSupported = function () {
       return !!Pae(this.RDa);
@@ -16271,19 +16270,19 @@ async function Ir(e = {}) {
     }),
     (T6.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bae(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bae(t, e);
     }),
     (T6.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Vae(t, e));
+      e && typeof e == `object` && (e = e.RDa), Vae(t, e);
     }),
     (T6.prototype.__destroy__ = function () {
       Hae(this.RDa);
-    }));
+    });
   function E6() {
     throw `cannot construct a VehicleCollisionTester, no constructor in IDL`;
   }
-  ((E6.prototype = Object.create(u.prototype)),
+  (E6.prototype = Object.create(u.prototype)),
     (E6.prototype.constructor = E6),
     (E6.prototype.SDa = E6),
     (E6.TDa = {}),
@@ -16299,41 +16298,41 @@ async function Ir(e = {}) {
     }),
     (E6.prototype.__destroy__ = function () {
       Kae(this.RDa);
-    }));
+    });
   function D6() {
     throw `cannot construct a VehicleConstraintCallbacksEm, no constructor in IDL`;
   }
-  ((D6.prototype = Object.create(u.prototype)),
+  (D6.prototype = Object.create(u.prototype)),
     (D6.prototype.constructor = D6),
     (D6.prototype.SDa = D6),
     (D6.TDa = {}),
     (t.VehicleConstraintCallbacksEm = D6),
     (D6.prototype.SetVehicleConstraint = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qae(t, e));
+      e && typeof e == `object` && (e = e.RDa), qae(t, e);
     }),
     (D6.prototype.__destroy__ = function () {
       Jae(this.RDa);
-    }));
+    });
   function O6() {
     throw `cannot construct a WheeledVehicleControllerCallbacksEm, no constructor in IDL`;
   }
-  ((O6.prototype = Object.create(u.prototype)),
+  (O6.prototype = Object.create(u.prototype)),
     (O6.prototype.constructor = O6),
     (O6.prototype.SDa = O6),
     (O6.TDa = {}),
     (t.WheeledVehicleControllerCallbacksEm = O6),
     (O6.prototype.SetWheeledVehicleController = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yae(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yae(t, e);
     }),
     (O6.prototype.__destroy__ = function () {
       Xae(this.RDa);
-    }));
+    });
   function g() {
-    ((this.RDa = Zae()), (d(g)[this.RDa] = this));
+    (this.RDa = Zae()), (d(g)[this.RDa] = this);
   }
-  ((g.prototype = Object.create(u.prototype)),
+  (g.prototype = Object.create(u.prototype)),
     (g.prototype.constructor = g),
     (g.prototype.SDa = g),
     (g.TDa = {}),
@@ -16354,7 +16353,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mPosition = g.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), noe(t, e));
+        e && typeof e == `object` && (e = e.RDa), noe(t, e);
       }),
     Object.defineProperty(g.prototype, "mPosition", { get: g.prototype.eEa, set: g.prototype.gEa }),
     (g.prototype.get_mSuspensionForcePoint = g.prototype.DFa =
@@ -16364,7 +16363,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionForcePoint = g.prototype.sGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ioe(t, e));
+        e && typeof e == `object` && (e = e.RDa), ioe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionForcePoint", { get: g.prototype.DFa, set: g.prototype.sGa }),
     (g.prototype.get_mSuspensionDirection = g.prototype.CFa =
@@ -16374,7 +16373,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionDirection = g.prototype.rGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ooe(t, e));
+        e && typeof e == `object` && (e = e.RDa), ooe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionDirection", { get: g.prototype.CFa, set: g.prototype.rGa }),
     (g.prototype.get_mSteeringAxis = g.prototype.AFa =
@@ -16384,7 +16383,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSteeringAxis = g.prototype.pGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), coe(t, e));
+        e && typeof e == `object` && (e = e.RDa), coe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSteeringAxis", { get: g.prototype.AFa, set: g.prototype.pGa }),
     (g.prototype.get_mWheelUp = g.prototype.MFa =
@@ -16394,7 +16393,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mWheelUp = g.prototype.BGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uoe(t, e));
+        e && typeof e == `object` && (e = e.RDa), uoe(t, e);
       }),
     Object.defineProperty(g.prototype, "mWheelUp", { get: g.prototype.MFa, set: g.prototype.BGa }),
     (g.prototype.get_mWheelForward = g.prototype.LFa =
@@ -16404,7 +16403,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mWheelForward = g.prototype.AGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), foe(t, e));
+        e && typeof e == `object` && (e = e.RDa), foe(t, e);
       }),
     Object.defineProperty(g.prototype, "mWheelForward", { get: g.prototype.LFa, set: g.prototype.AGa }),
     (g.prototype.get_mSuspensionSpring = g.prototype.HFa =
@@ -16414,7 +16413,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionSpring = g.prototype.wGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), moe(t, e));
+        e && typeof e == `object` && (e = e.RDa), moe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionSpring", { get: g.prototype.HFa, set: g.prototype.wGa }),
     (g.prototype.get_mSuspensionMinLength = g.prototype.FFa =
@@ -16424,7 +16423,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionMinLength = g.prototype.uGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), goe(t, e));
+        e && typeof e == `object` && (e = e.RDa), goe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionMinLength", { get: g.prototype.FFa, set: g.prototype.uGa }),
     (g.prototype.get_mSuspensionMaxLength = g.prototype.EFa =
@@ -16434,7 +16433,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionMaxLength = g.prototype.tGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), voe(t, e));
+        e && typeof e == `object` && (e = e.RDa), voe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionMaxLength", { get: g.prototype.EFa, set: g.prototype.tGa }),
     (g.prototype.get_mSuspensionPreloadLength = g.prototype.GFa =
@@ -16444,7 +16443,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mSuspensionPreloadLength = g.prototype.vGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), boe(t, e));
+        e && typeof e == `object` && (e = e.RDa), boe(t, e);
       }),
     Object.defineProperty(g.prototype, "mSuspensionPreloadLength", { get: g.prototype.GFa, set: g.prototype.vGa }),
     (g.prototype.get_mRadius = g.prototype.tEa =
@@ -16454,7 +16453,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mRadius = g.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Soe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Soe(t, e);
       }),
     Object.defineProperty(g.prototype, "mRadius", { get: g.prototype.tEa, set: g.prototype.AEa }),
     (g.prototype.get_mWidth = g.prototype.OFa =
@@ -16464,7 +16463,7 @@ async function Ir(e = {}) {
     (g.prototype.set_mWidth = g.prototype.DGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zi(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zi(t, e);
       }),
     Object.defineProperty(g.prototype, "mWidth", { get: g.prototype.OFa, set: g.prototype.DGa }),
     (g.prototype.get_mEnableSuspensionForcePoint = g.prototype.hFa =
@@ -16474,16 +16473,16 @@ async function Ir(e = {}) {
     (g.prototype.set_mEnableSuspensionForcePoint = g.prototype.XFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $i(t, e));
+        e && typeof e == `object` && (e = e.RDa), $i(t, e);
       }),
     Object.defineProperty(g.prototype, "mEnableSuspensionForcePoint", { get: g.prototype.hFa, set: g.prototype.XFa }),
     (g.prototype.__destroy__ = function () {
       ea(this.RDa);
-    }));
+    });
   function k6(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = ta(e)), (d(k6)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = ta(e)), (d(k6)[this.RDa] = this);
   }
-  ((k6.prototype = Object.create(u.prototype)),
+  (k6.prototype = Object.create(u.prototype)),
     (k6.prototype.constructor = k6),
     (k6.prototype.SDa = k6),
     (k6.TDa = {}),
@@ -16496,21 +16495,21 @@ async function Ir(e = {}) {
     }),
     (k6.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ia(t, e));
+      e && typeof e == `object` && (e = e.RDa), ia(t, e);
     }),
     (k6.prototype.GetRotationAngle = function () {
       return aa(this.RDa);
     }),
     (k6.prototype.SetRotationAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oa(t, e));
+      e && typeof e == `object` && (e = e.RDa), oa(t, e);
     }),
     (k6.prototype.GetSteerAngle = function () {
       return sa(this.RDa);
     }),
     (k6.prototype.SetSteerAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ca(t, e));
+      e && typeof e == `object` && (e = e.RDa), ca(t, e);
     }),
     (k6.prototype.HasContact = function () {
       return !!la(this.RDa);
@@ -16550,11 +16549,11 @@ async function Ir(e = {}) {
     }),
     (k6.prototype.__destroy__ = function () {
       xa(this.RDa);
-    }));
+    });
   function A6() {
     throw `cannot construct a VehicleTrackSettings, no constructor in IDL`;
   }
-  ((A6.prototype = Object.create(u.prototype)),
+  (A6.prototype = Object.create(u.prototype)),
     (A6.prototype.constructor = A6),
     (A6.prototype.SDa = A6),
     (A6.TDa = {}),
@@ -16566,7 +16565,7 @@ async function Ir(e = {}) {
     (A6.prototype.set_mDrivenWheel = A6.prototype.CIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ca(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ca(t, e);
       }),
     Object.defineProperty(A6.prototype, "mDrivenWheel", { get: A6.prototype.eHa, set: A6.prototype.CIa }),
     (A6.prototype.get_mWheels = A6.prototype.NFa =
@@ -16576,7 +16575,7 @@ async function Ir(e = {}) {
     (A6.prototype.set_mWheels = A6.prototype.CGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ta(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ta(t, e);
       }),
     Object.defineProperty(A6.prototype, "mWheels", { get: A6.prototype.NFa, set: A6.prototype.CGa }),
     (A6.prototype.get_mInertia = A6.prototype.qEa =
@@ -16586,7 +16585,7 @@ async function Ir(e = {}) {
     (A6.prototype.set_mInertia = A6.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Da(t, e));
+        e && typeof e == `object` && (e = e.RDa), Da(t, e);
       }),
     Object.defineProperty(A6.prototype, "mInertia", { get: A6.prototype.qEa, set: A6.prototype.xEa }),
     (A6.prototype.get_mAngularDamping = A6.prototype.lEa =
@@ -16596,7 +16595,7 @@ async function Ir(e = {}) {
     (A6.prototype.set_mAngularDamping = A6.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ka(t, e));
+        e && typeof e == `object` && (e = e.RDa), ka(t, e);
       }),
     Object.defineProperty(A6.prototype, "mAngularDamping", { get: A6.prototype.lEa, set: A6.prototype.nEa }),
     (A6.prototype.get_mMaxBrakeTorque = A6.prototype.qFa =
@@ -16606,7 +16605,7 @@ async function Ir(e = {}) {
     (A6.prototype.set_mMaxBrakeTorque = A6.prototype.fGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ja(t, e));
+        e && typeof e == `object` && (e = e.RDa), ja(t, e);
       }),
     Object.defineProperty(A6.prototype, "mMaxBrakeTorque", { get: A6.prototype.qFa, set: A6.prototype.fGa }),
     (A6.prototype.get_mDifferentialRatio = A6.prototype.gFa =
@@ -16616,16 +16615,16 @@ async function Ir(e = {}) {
     (A6.prototype.set_mDifferentialRatio = A6.prototype.VFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Na(t, e));
+        e && typeof e == `object` && (e = e.RDa), Na(t, e);
       }),
     Object.defineProperty(A6.prototype, "mDifferentialRatio", { get: A6.prototype.gFa, set: A6.prototype.VFa }),
     (A6.prototype.__destroy__ = function () {
       Pa(this.RDa);
-    }));
+    });
   function j6() {
-    ((this.RDa = Fa()), (d(j6)[this.RDa] = this));
+    (this.RDa = Fa()), (d(j6)[this.RDa] = this);
   }
-  ((j6.prototype = Object.create(R3.prototype)),
+  (j6.prototype = Object.create(R3.prototype)),
     (j6.prototype.constructor = j6),
     (j6.prototype.SDa = j6),
     (j6.TDa = {}),
@@ -16637,7 +16636,7 @@ async function Ir(e = {}) {
     (j6.prototype.set_mEngine = j6.prototype.YFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), La(t, e));
+        e && typeof e == `object` && (e = e.RDa), La(t, e);
       }),
     Object.defineProperty(j6.prototype, "mEngine", { get: j6.prototype.iFa, set: j6.prototype.YFa }),
     (j6.prototype.get_mTransmission = j6.prototype.IFa =
@@ -16647,7 +16646,7 @@ async function Ir(e = {}) {
     (j6.prototype.set_mTransmission = j6.prototype.xGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), za(t, e));
+        e && typeof e == `object` && (e = e.RDa), za(t, e);
       }),
     Object.defineProperty(j6.prototype, "mTransmission", { get: j6.prototype.IFa, set: j6.prototype.xGa }),
     (j6.prototype.get_mDifferentials = j6.prototype.dHa =
@@ -16657,7 +16656,7 @@ async function Ir(e = {}) {
     (j6.prototype.set_mDifferentials = j6.prototype.BIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Va(t, e));
+        e && typeof e == `object` && (e = e.RDa), Va(t, e);
       }),
     Object.defineProperty(j6.prototype, "mDifferentials", { get: j6.prototype.dHa, set: j6.prototype.BIa }),
     (j6.prototype.get_mDifferentialLimitedSlipRatio = j6.prototype.cHa =
@@ -16667,16 +16666,16 @@ async function Ir(e = {}) {
     (j6.prototype.set_mDifferentialLimitedSlipRatio = j6.prototype.AIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ua(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ua(t, e);
       }),
     Object.defineProperty(j6.prototype, "mDifferentialLimitedSlipRatio", { get: j6.prototype.cHa, set: j6.prototype.AIa }),
     (j6.prototype.__destroy__ = function () {
       Wa(this.RDa);
-    }));
+    });
   function M6() {
     throw `cannot construct a VehicleEngineSettings, no constructor in IDL`;
   }
-  ((M6.prototype = Object.create(u.prototype)),
+  (M6.prototype = Object.create(u.prototype)),
     (M6.prototype.constructor = M6),
     (M6.prototype.SDa = M6),
     (M6.TDa = {}),
@@ -16688,7 +16687,7 @@ async function Ir(e = {}) {
     (M6.prototype.set_mMaxTorque = M6.prototype.ZIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ka(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ka(t, e);
       }),
     Object.defineProperty(M6.prototype, "mMaxTorque", { get: M6.prototype.BHa, set: M6.prototype.ZIa }),
     (M6.prototype.get_mMinRPM = M6.prototype.CHa =
@@ -16698,7 +16697,7 @@ async function Ir(e = {}) {
     (M6.prototype.set_mMinRPM = M6.prototype.$Ia =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ja(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ja(t, e);
       }),
     Object.defineProperty(M6.prototype, "mMinRPM", { get: M6.prototype.CHa, set: M6.prototype.$Ia }),
     (M6.prototype.get_mMaxRPM = M6.prototype.zHa =
@@ -16708,7 +16707,7 @@ async function Ir(e = {}) {
     (M6.prototype.set_mMaxRPM = M6.prototype.XIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xa(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xa(t, e);
       }),
     Object.defineProperty(M6.prototype, "mMaxRPM", { get: M6.prototype.zHa, set: M6.prototype.XIa }),
     (M6.prototype.get_mNormalizedTorque = M6.prototype.HHa =
@@ -16718,7 +16717,7 @@ async function Ir(e = {}) {
     (M6.prototype.set_mNormalizedTorque = M6.prototype.eJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qa(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qa(t, e);
       }),
     Object.defineProperty(M6.prototype, "mNormalizedTorque", { get: M6.prototype.HHa, set: M6.prototype.eJa }),
     (M6.prototype.get_mInertia = M6.prototype.qEa =
@@ -16728,7 +16727,7 @@ async function Ir(e = {}) {
     (M6.prototype.set_mInertia = M6.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eo(t, e));
+        e && typeof e == `object` && (e = e.RDa), eo(t, e);
       }),
     Object.defineProperty(M6.prototype, "mInertia", { get: M6.prototype.qEa, set: M6.prototype.xEa }),
     (M6.prototype.get_mAngularDamping = M6.prototype.lEa =
@@ -16738,16 +16737,16 @@ async function Ir(e = {}) {
     (M6.prototype.set_mAngularDamping = M6.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), no(t, e));
+        e && typeof e == `object` && (e = e.RDa), no(t, e);
       }),
     Object.defineProperty(M6.prototype, "mAngularDamping", { get: M6.prototype.lEa, set: M6.prototype.nEa }),
     (M6.prototype.__destroy__ = function () {
       ro(this.RDa);
-    }));
+    });
   function _() {
     throw `cannot construct a VehicleTransmissionSettings, no constructor in IDL`;
   }
-  ((_.prototype = Object.create(u.prototype)),
+  (_.prototype = Object.create(u.prototype)),
     (_.prototype.constructor = _),
     (_.prototype.SDa = _),
     (_.TDa = {}),
@@ -16759,7 +16758,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mMode = _.prototype.iGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ao(t, e));
+        e && typeof e == `object` && (e = e.RDa), ao(t, e);
       }),
     Object.defineProperty(_.prototype, "mMode", { get: _.prototype.tFa, set: _.prototype.iGa }),
     (_.prototype.get_mGearRatios = _.prototype.fHa =
@@ -16769,7 +16768,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mGearRatios = _.prototype.DIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), so(t, e));
+        e && typeof e == `object` && (e = e.RDa), so(t, e);
       }),
     Object.defineProperty(_.prototype, "mGearRatios", { get: _.prototype.fHa, set: _.prototype.DIa }),
     (_.prototype.get_mReverseGearRatios = _.prototype.OHa =
@@ -16779,7 +16778,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mReverseGearRatios = _.prototype.lJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lo(t, e));
+        e && typeof e == `object` && (e = e.RDa), lo(t, e);
       }),
     Object.defineProperty(_.prototype, "mReverseGearRatios", { get: _.prototype.OHa, set: _.prototype.lJa }),
     (_.prototype.get_mSwitchTime = _.prototype.YHa =
@@ -16789,7 +16788,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mSwitchTime = _.prototype.wJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fo(t, e));
+        e && typeof e == `object` && (e = e.RDa), fo(t, e);
       }),
     Object.defineProperty(_.prototype, "mSwitchTime", { get: _.prototype.YHa, set: _.prototype.wJa }),
     (_.prototype.get_mClutchReleaseTime = _.prototype.WGa =
@@ -16799,7 +16798,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mClutchReleaseTime = _.prototype.tIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mo(t, e));
+        e && typeof e == `object` && (e = e.RDa), mo(t, e);
       }),
     Object.defineProperty(_.prototype, "mClutchReleaseTime", { get: _.prototype.WGa, set: _.prototype.tIa }),
     (_.prototype.get_mSwitchLatency = _.prototype.XHa =
@@ -16809,7 +16808,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mSwitchLatency = _.prototype.vJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), go(t, e));
+        e && typeof e == `object` && (e = e.RDa), go(t, e);
       }),
     Object.defineProperty(_.prototype, "mSwitchLatency", { get: _.prototype.XHa, set: _.prototype.vJa }),
     (_.prototype.get_mShiftUpRPM = _.prototype.THa =
@@ -16819,7 +16818,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mShiftUpRPM = _.prototype.rJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vo(t, e));
+        e && typeof e == `object` && (e = e.RDa), vo(t, e);
       }),
     Object.defineProperty(_.prototype, "mShiftUpRPM", { get: _.prototype.THa, set: _.prototype.rJa }),
     (_.prototype.get_mShiftDownRPM = _.prototype.SHa =
@@ -16829,7 +16828,7 @@ async function Ir(e = {}) {
     (_.prototype.set_mShiftDownRPM = _.prototype.qJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bo(t, e));
+        e && typeof e == `object` && (e = e.RDa), bo(t, e);
       }),
     Object.defineProperty(_.prototype, "mShiftDownRPM", { get: _.prototype.SHa, set: _.prototype.qJa }),
     (_.prototype.get_mClutchStrength = _.prototype.XGa =
@@ -16839,52 +16838,52 @@ async function Ir(e = {}) {
     (_.prototype.set_mClutchStrength = _.prototype.uIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), So(t, e));
+        e && typeof e == `object` && (e = e.RDa), So(t, e);
       }),
     Object.defineProperty(_.prototype, "mClutchStrength", { get: _.prototype.XGa, set: _.prototype.uIa }),
     (_.prototype.__destroy__ = function () {
       Co(this.RDa);
-    }));
+    });
   function N6(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = wo(e, t)), (d(N6)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = wo(e, t)), (d(N6)[this.RDa] = this);
   }
-  ((N6.prototype = Object.create(z3.prototype)),
+  (N6.prototype = Object.create(z3.prototype)),
     (N6.prototype.constructor = N6),
     (N6.prototype.SDa = N6),
     (N6.TDa = {}),
     (t.WheeledVehicleController = N6),
     (N6.prototype.SetDriverInput = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        To(i, e, t, n, r));
+        To(i, e, t, n, r);
     }),
     (N6.prototype.SetForwardInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Eo(t, e));
+      e && typeof e == `object` && (e = e.RDa), Eo(t, e);
     }),
     (N6.prototype.GetForwardInput = function () {
       return Do(this.RDa);
     }),
     (N6.prototype.SetRightInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Oo(t, e));
+      e && typeof e == `object` && (e = e.RDa), Oo(t, e);
     }),
     (N6.prototype.GetRightInput = function () {
       return ko(this.RDa);
     }),
     (N6.prototype.SetBrakeInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ao(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ao(t, e);
     }),
     (N6.prototype.GetBrakeInput = function () {
       return jo(this.RDa);
     }),
     (N6.prototype.SetHandBrakeInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mo(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mo(t, e);
     }),
     (N6.prototype.GetHandBrakeInput = function () {
       return No(this.RDa);
@@ -16903,7 +16902,7 @@ async function Ir(e = {}) {
     }),
     (N6.prototype.SetDifferentialLimitedSlipRatio = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ro(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ro(t, e);
     }),
     (N6.prototype.GetWheelSpeedAtClutch = function () {
       return zo(this.RDa);
@@ -16913,18 +16912,18 @@ async function Ir(e = {}) {
     }),
     (N6.prototype.__destroy__ = function () {
       Vo(this.RDa);
-    }));
+    });
   function P6() {
     throw `cannot construct a SkeletalAnimationJointState, no constructor in IDL`;
   }
-  ((P6.prototype = Object.create(u.prototype)),
+  (P6.prototype = Object.create(u.prototype)),
     (P6.prototype.constructor = P6),
     (P6.prototype.SDa = P6),
     (P6.TDa = {}),
     (t.SkeletalAnimationJointState = P6),
     (P6.prototype.FromMatrix = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ho(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ho(t, e);
     }),
     (P6.prototype.ToMatrix = function () {
       return f(Uo(this.RDa), S);
@@ -16936,7 +16935,7 @@ async function Ir(e = {}) {
     (P6.prototype.set_mTranslation = P6.prototype.yJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Go(t, e));
+        e && typeof e == `object` && (e = e.RDa), Go(t, e);
       }),
     Object.defineProperty(P6.prototype, "mTranslation", { get: P6.prototype.$Ha, set: P6.prototype.yJa }),
     (P6.prototype.get_mRotation = P6.prototype.uEa =
@@ -16946,16 +16945,16 @@ async function Ir(e = {}) {
     (P6.prototype.set_mRotation = P6.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qo(t, e));
+        e && typeof e == `object` && (e = e.RDa), qo(t, e);
       }),
     Object.defineProperty(P6.prototype, "mRotation", { get: P6.prototype.uEa, set: P6.prototype.BEa }),
     (P6.prototype.__destroy__ = function () {
       Jo(this.RDa);
-    }));
+    });
   function F6() {
     throw `cannot construct a BroadPhaseLayerInterfaceEm, no constructor in IDL`;
   }
-  ((F6.prototype = Object.create(B3.prototype)),
+  (F6.prototype = Object.create(B3.prototype)),
     (F6.prototype.constructor = F6),
     (F6.prototype.SDa = F6),
     (F6.TDa = {}),
@@ -16965,37 +16964,33 @@ async function Ir(e = {}) {
     }),
     (F6.prototype.__destroy__ = function () {
       Xo(this.RDa);
-    }));
+    });
   function I6() {
     throw `cannot construct a AssertFailedHandler, no constructor in IDL`;
   }
-  ((I6.prototype = Object.create(u.prototype)),
+  (I6.prototype = Object.create(u.prototype)),
     (I6.prototype.constructor = I6),
     (I6.prototype.SDa = I6),
     (I6.TDa = {}),
     (t.AssertFailedHandler = I6),
     (I6.prototype.__destroy__ = function () {
       Zo(this.RDa);
-    }));
+    });
   function L6() {
     throw `cannot construct a VoidPtr, no constructor in IDL`;
   }
-  ((L6.prototype = Object.create(u.prototype)),
+  (L6.prototype = Object.create(u.prototype)),
     (L6.prototype.constructor = L6),
     (L6.prototype.SDa = L6),
     (L6.TDa = {}),
     (t.VoidPtr = L6),
     (L6.prototype.__destroy__ = function () {
       Qo(this.RDa);
-    }));
+    });
   function R6(e, t) {
-    (UIe(),
-      (e = e && typeof e == `object` ? e.RDa : D3(e)),
-      t && typeof t == `object` && (t = t.RDa),
-      (this.RDa = $o(e, t)),
-      (d(R6)[this.RDa] = this));
+    UIe(), (e = e && typeof e == `object` ? e.RDa : D3(e)), t && typeof t == `object` && (t = t.RDa), (this.RDa = $o(e, t)), (d(R6)[this.RDa] = this);
   }
-  ((R6.prototype = Object.create(u.prototype)),
+  (R6.prototype = Object.create(u.prototype)),
     (R6.prototype.constructor = R6),
     (R6.prototype.SDa = R6),
     (R6.TDa = {}),
@@ -17009,11 +17004,11 @@ async function Ir(e = {}) {
       }),
     (R6.prototype.__destroy__ = function () {
       ns(this.RDa);
-    }));
+    });
   function z6() {
-    ((this.RDa = rs()), (d(z6)[this.RDa] = this));
+    (this.RDa = rs()), (d(z6)[this.RDa] = this);
   }
-  ((z6.prototype = Object.create(u.prototype)),
+  (z6.prototype = Object.create(u.prototype)),
     (z6.prototype.constructor = z6),
     (z6.prototype.SDa = z6),
     (z6.TDa = {}),
@@ -17029,20 +17024,20 @@ async function Ir(e = {}) {
     (z6.prototype.at = z6.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(os(t, e), v));
+        return e && typeof e == `object` && (e = e.RDa), f(os(t, e), v);
       }),
     (z6.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ss(t, e));
+      e && typeof e == `object` && (e = e.RDa), ss(t, e);
     }),
     (z6.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cs(t, e));
+      e && typeof e == `object` && (e = e.RDa), cs(t, e);
     }),
     (z6.prototype.resize = z6.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ls(t, e));
+        e && typeof e == `object` && (e = e.RDa), ls(t, e);
       }),
     (z6.prototype.clear = z6.prototype.clear =
       function () {
@@ -17054,11 +17049,11 @@ async function Ir(e = {}) {
       }),
     (z6.prototype.__destroy__ = function () {
       fs(this.RDa);
-    }));
+    });
   function B6() {
-    ((this.RDa = ps()), (d(B6)[this.RDa] = this));
+    (this.RDa = ps()), (d(B6)[this.RDa] = this);
   }
-  ((B6.prototype = Object.create(u.prototype)),
+  (B6.prototype = Object.create(u.prototype)),
     (B6.prototype.constructor = B6),
     (B6.prototype.SDa = B6),
     (B6.TDa = {}),
@@ -17074,20 +17069,20 @@ async function Ir(e = {}) {
     (B6.prototype.at = B6.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(gs(t, e), x));
+        return e && typeof e == `object` && (e = e.RDa), f(gs(t, e), x);
       }),
     (B6.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _s(t, e));
+      e && typeof e == `object` && (e = e.RDa), _s(t, e);
     }),
     (B6.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vs(t, e));
+      e && typeof e == `object` && (e = e.RDa), vs(t, e);
     }),
     (B6.prototype.resize = B6.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ys(t, e));
+        e && typeof e == `object` && (e = e.RDa), ys(t, e);
       }),
     (B6.prototype.clear = B6.prototype.clear =
       function () {
@@ -17099,11 +17094,11 @@ async function Ir(e = {}) {
       }),
     (B6.prototype.__destroy__ = function () {
       Ss(this.RDa);
-    }));
+    });
   function V6() {
-    ((this.RDa = Cs()), (d(V6)[this.RDa] = this));
+    (this.RDa = Cs()), (d(V6)[this.RDa] = this);
   }
-  ((V6.prototype = Object.create(u.prototype)),
+  (V6.prototype = Object.create(u.prototype)),
     (V6.prototype.constructor = V6),
     (V6.prototype.SDa = V6),
     (V6.TDa = {}),
@@ -17119,20 +17114,20 @@ async function Ir(e = {}) {
     (V6.prototype.at = V6.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Es(t, e), S));
+        return e && typeof e == `object` && (e = e.RDa), f(Es(t, e), S);
       }),
     (V6.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ds(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ds(t, e);
     }),
     (V6.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Os(t, e));
+      e && typeof e == `object` && (e = e.RDa), Os(t, e);
     }),
     (V6.prototype.resize = V6.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ks(t, e));
+        e && typeof e == `object` && (e = e.RDa), ks(t, e);
       }),
     (V6.prototype.clear = V6.prototype.clear =
       function () {
@@ -17144,11 +17139,11 @@ async function Ir(e = {}) {
       }),
     (V6.prototype.__destroy__ = function () {
       Ms(this.RDa);
-    }));
+    });
   function H6() {
-    ((this.RDa = Ns()), (d(H6)[this.RDa] = this));
+    (this.RDa = Ns()), (d(H6)[this.RDa] = this);
   }
-  ((H6.prototype = Object.create(u.prototype)),
+  (H6.prototype = Object.create(u.prototype)),
     (H6.prototype.constructor = H6),
     (H6.prototype.SDa = H6),
     (H6.TDa = {}),
@@ -17164,20 +17159,20 @@ async function Ir(e = {}) {
     (H6.prototype.at = H6.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Is(t, e), m5));
+        return e && typeof e == `object` && (e = e.RDa), f(Is(t, e), m5);
       }),
     (H6.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ls(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ls(t, e);
     }),
     (H6.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rs(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rs(t, e);
     }),
     (H6.prototype.resize = H6.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zs(t, e));
+        e && typeof e == `object` && (e = e.RDa), zs(t, e);
       }),
     (H6.prototype.clear = H6.prototype.clear =
       function () {
@@ -17189,11 +17184,11 @@ async function Ir(e = {}) {
       }),
     (H6.prototype.__destroy__ = function () {
       Hs(this.RDa);
-    }));
+    });
   function U6() {
-    ((this.RDa = Us()), (d(U6)[this.RDa] = this));
+    (this.RDa = Us()), (d(U6)[this.RDa] = this);
   }
-  ((U6.prototype = Object.create(u.prototype)),
+  (U6.prototype = Object.create(u.prototype)),
     (U6.prototype.constructor = U6),
     (U6.prototype.SDa = U6),
     (U6.TDa = {}),
@@ -17209,20 +17204,20 @@ async function Ir(e = {}) {
     (U6.prototype.at = U6.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Ks(t, e), I));
+        return e && typeof e == `object` && (e = e.RDa), f(Ks(t, e), I);
       }),
     (U6.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qs(t, e));
+      e && typeof e == `object` && (e = e.RDa), qs(t, e);
     }),
     (U6.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Js(t, e));
+      e && typeof e == `object` && (e = e.RDa), Js(t, e);
     }),
     (U6.prototype.resize = U6.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ys(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ys(t, e);
       }),
     (U6.prototype.clear = U6.prototype.clear =
       function () {
@@ -17234,103 +17229,103 @@ async function Ir(e = {}) {
       }),
     (U6.prototype.__destroy__ = function () {
       Qs(this.RDa);
-    }));
+    });
   function W6() {
     throw `cannot construct a Vec3MemRef, no constructor in IDL`;
   }
-  ((W6.prototype = Object.create(u.prototype)),
+  (W6.prototype = Object.create(u.prototype)),
     (W6.prototype.constructor = W6),
     (W6.prototype.SDa = W6),
     (W6.TDa = {}),
     (t.Vec3MemRef = W6),
     (W6.prototype.__destroy__ = function () {
       $s(this.RDa);
-    }));
+    });
   function G6() {
     throw `cannot construct a QuatMemRef, no constructor in IDL`;
   }
-  ((G6.prototype = Object.create(u.prototype)),
+  (G6.prototype = Object.create(u.prototype)),
     (G6.prototype.constructor = G6),
     (G6.prototype.SDa = G6),
     (G6.TDa = {}),
     (t.QuatMemRef = G6),
     (G6.prototype.__destroy__ = function () {
       ec(this.RDa);
-    }));
+    });
   function K6() {
     throw `cannot construct a Mat44MemRef, no constructor in IDL`;
   }
-  ((K6.prototype = Object.create(u.prototype)),
+  (K6.prototype = Object.create(u.prototype)),
     (K6.prototype.constructor = K6),
     (K6.prototype.SDa = K6),
     (K6.TDa = {}),
     (t.Mat44MemRef = K6),
     (K6.prototype.__destroy__ = function () {
       tc(this.RDa);
-    }));
+    });
   function q6() {
     throw `cannot construct a BodyIDMemRef, no constructor in IDL`;
   }
-  ((q6.prototype = Object.create(u.prototype)),
+  (q6.prototype = Object.create(u.prototype)),
     (q6.prototype.constructor = q6),
     (q6.prototype.SDa = q6),
     (q6.TDa = {}),
     (t.BodyIDMemRef = q6),
     (q6.prototype.__destroy__ = function () {
       nc(this.RDa);
-    }));
+    });
   function J6() {
     throw `cannot construct a BodyPtrMemRef, no constructor in IDL`;
   }
-  ((J6.prototype = Object.create(u.prototype)),
+  (J6.prototype = Object.create(u.prototype)),
     (J6.prototype.constructor = J6),
     (J6.prototype.SDa = J6),
     (J6.TDa = {}),
     (t.BodyPtrMemRef = J6),
     (J6.prototype.__destroy__ = function () {
       rc(this.RDa);
-    }));
+    });
   function Y6() {
     throw `cannot construct a FloatMemRef, no constructor in IDL`;
   }
-  ((Y6.prototype = Object.create(u.prototype)),
+  (Y6.prototype = Object.create(u.prototype)),
     (Y6.prototype.constructor = Y6),
     (Y6.prototype.SDa = Y6),
     (Y6.TDa = {}),
     (t.FloatMemRef = Y6),
     (Y6.prototype.__destroy__ = function () {
       ic(this.RDa);
-    }));
+    });
   function X6() {
     throw `cannot construct a Uint8MemRef, no constructor in IDL`;
   }
-  ((X6.prototype = Object.create(u.prototype)),
+  (X6.prototype = Object.create(u.prototype)),
     (X6.prototype.constructor = X6),
     (X6.prototype.SDa = X6),
     (X6.TDa = {}),
     (t.Uint8MemRef = X6),
     (X6.prototype.__destroy__ = function () {
       ac(this.RDa);
-    }));
+    });
   function Z6() {
     throw `cannot construct a UintMemRef, no constructor in IDL`;
   }
-  ((Z6.prototype = Object.create(u.prototype)),
+  (Z6.prototype = Object.create(u.prototype)),
     (Z6.prototype.constructor = Z6),
     (Z6.prototype.SDa = Z6),
     (Z6.TDa = {}),
     (t.UintMemRef = Z6),
     (Z6.prototype.__destroy__ = function () {
       oc(this.RDa);
-    }));
+    });
   function v(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = e === void 0 ? sc() : t === void 0 ? cc(e) : n === void 0 ? _emscripten_bind_Vec3_Vec3_2(e, t) : lc(e, t, n)),
-      (d(v)[this.RDa] = this));
+      (d(v)[this.RDa] = this);
   }
-  ((v.prototype = Object.create(u.prototype)),
+  (v.prototype = Object.create(u.prototype)),
     (v.prototype.constructor = v),
     (v.prototype.SDa = v),
     (v.TDa = {}),
@@ -17351,13 +17346,13 @@ async function Ir(e = {}) {
       return f(mc(), v);
     }),
     (v.prototype.sReplicate = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(hc(e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(hc(e), v);
     }),
     (v.prototype.sMin = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(gc(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(gc(e, t), v);
     }),
     (v.prototype.sMax = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(_c(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(_c(e, t), v);
     }),
     (v.prototype.sClamp = function (e, t, n) {
       return (
@@ -17376,28 +17371,28 @@ async function Ir(e = {}) {
       );
     }),
     (v.prototype.sOr = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bc(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bc(e, t), v);
     }),
     (v.prototype.sXor = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(xc(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(xc(e, t), v);
     }),
     (v.prototype.sAnd = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Sc(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Sc(e, t), v);
     }),
     (v.prototype.sUnitSpherical = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Cc(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Cc(e, t), v);
     }),
     (v.prototype.GetComponent = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), wc(t, e));
+      return e && typeof e == `object` && (e = e.RDa), wc(t, e);
     }),
     (v.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Tc(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Tc(t, e);
     }),
     (v.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Ec(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Ec(t, e);
     }),
     (v.prototype.LengthSq = function () {
       return Dc(this.RDa);
@@ -17410,7 +17405,7 @@ async function Ir(e = {}) {
     }),
     (v.prototype.NormalizedOr = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ac(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Ac(t, e), v);
     }),
     (v.prototype.GetNormalizedPerpendicular = function () {
       return f(jc(this.RDa), v);
@@ -17429,39 +17424,36 @@ async function Ir(e = {}) {
       }),
     (v.prototype.SetX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fc(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fc(t, e);
     }),
     (v.prototype.SetY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ic(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ic(t, e);
     }),
     (v.prototype.SetZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Lc(t, e));
+      e && typeof e == `object` && (e = e.RDa), Lc(t, e);
     }),
     (v.prototype.Set = v.prototype.Set =
       function (e, t, n) {
         var r = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa),
-          t && typeof t == `object` && (t = t.RDa),
-          n && typeof n == `object` && (n = n.RDa),
-          Rc(r, e, t, n));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Rc(r, e, t, n);
       }),
     (v.prototype.SetComponent = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zc(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zc(n, e, t);
     }),
     (v.prototype.IsNearZero = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Bc(t) : !!Vc(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Bc(t) : !!Vc(t, e);
     }),
     (v.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Hc(n, e) : !!Uc(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Hc(n, e) : !!Uc(n, e, t);
     }),
     (v.prototype.IsNormalized = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Wc(t) : !!Gc(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Wc(t) : !!Gc(t, e);
     }),
     (v.prototype.GetLowestComponentIndex = function () {
       return Kc(this.RDa);
@@ -17477,59 +17469,59 @@ async function Ir(e = {}) {
     }),
     (v.prototype.Cross = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Xc(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Xc(t, e), v);
     }),
     (v.prototype.Dot = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Zc(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Zc(t, e);
     }),
     (v.prototype.DotV = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Qc(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Qc(t, e), v);
     }),
     (v.prototype.DotV4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f($c(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f($c(t, e), b);
     }),
     (v.prototype.Add = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(el(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(el(t, e), v);
     }),
     (v.prototype.Sub = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(tl(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(tl(t, e), v);
     }),
     (v.prototype.Mul = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nl(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(nl(t, e), v);
     }),
     (v.prototype.Div = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(rl(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(rl(t, e), v);
     }),
     (v.prototype.MulVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(il(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(il(t, e), v);
     }),
     (v.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(al(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(al(t, e), v);
     }),
     (v.prototype.DivVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ol(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ol(t, e), v);
     }),
     (v.prototype.DivFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sl(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(sl(t, e), v);
     }),
     (v.prototype.AddVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cl(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(cl(t, e), v);
     }),
     (v.prototype.SubVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ll(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ll(t, e), v);
     }),
     (v.prototype.SplatX = function () {
       return f(ul(this.RDa), b);
@@ -17554,16 +17546,16 @@ async function Ir(e = {}) {
     }),
     (v.prototype.__destroy__ = function () {
       _l(this.RDa);
-    }));
+    });
   function y(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa =
         e === void 0 ? vl() : t === void 0 ? _emscripten_bind_RVec3_RVec3_1(e) : n === void 0 ? _emscripten_bind_RVec3_RVec3_2(e, t) : yl(e, t, n)),
-      (d(y)[this.RDa] = this));
+      (d(y)[this.RDa] = this);
   }
-  ((y.prototype = Object.create(u.prototype)),
+  (y.prototype = Object.create(u.prototype)),
     (y.prototype.constructor = y),
     (y.prototype.SDa = y),
     (y.TDa = {}),
@@ -17584,13 +17576,13 @@ async function Ir(e = {}) {
       return f(wl(), y);
     }),
     (y.prototype.sReplicate = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Tl(e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(Tl(e), y);
     }),
     (y.prototype.sMin = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(El(e, t), y));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(El(e, t), y);
     }),
     (y.prototype.sMax = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dl(e, t), y));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dl(e, t), y);
     }),
     (y.prototype.sClamp = function (e, t, n) {
       return (
@@ -17602,15 +17594,15 @@ async function Ir(e = {}) {
     }),
     (y.prototype.GetComponent = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), kl(t, e));
+      return e && typeof e == `object` && (e = e.RDa), kl(t, e);
     }),
     (y.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Al(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Al(t, e);
     }),
     (y.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!jl(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!jl(t, e);
     }),
     (y.prototype.LengthSq = function () {
       return Ml(this.RDa);
@@ -17635,39 +17627,36 @@ async function Ir(e = {}) {
       }),
     (y.prototype.SetX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rl(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rl(t, e);
     }),
     (y.prototype.SetY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), zl(t, e));
+      e && typeof e == `object` && (e = e.RDa), zl(t, e);
     }),
     (y.prototype.SetZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bl(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bl(t, e);
     }),
     (y.prototype.Set = y.prototype.Set =
       function (e, t, n) {
         var r = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa),
-          t && typeof t == `object` && (t = t.RDa),
-          n && typeof n == `object` && (n = n.RDa),
-          Vl(r, e, t, n));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Vl(r, e, t, n);
       }),
     (y.prototype.SetComponent = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Hl(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Hl(n, e, t);
     }),
     (y.prototype.IsNearZero = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Ul(t) : !!Wl(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Ul(t) : !!Wl(t, e);
     }),
     (y.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Gl(n, e) : !!Kl(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Gl(n, e) : !!Kl(n, e, t);
     }),
     (y.prototype.IsNormalized = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!ql(t) : !!Jl(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!ql(t) : !!Jl(t, e);
     }),
     (y.prototype.Abs = function () {
       return f(Yl(this.RDa), y);
@@ -17677,51 +17666,51 @@ async function Ir(e = {}) {
     }),
     (y.prototype.Cross = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Zl(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(Zl(t, e), y);
     }),
     (y.prototype.Dot = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Ql(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Ql(t, e);
     }),
     (y.prototype.Add = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f($l(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f($l(t, e), y);
     }),
     (y.prototype.Sub = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(eu(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(eu(t, e), y);
     }),
     (y.prototype.Mul = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(tu(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(tu(t, e), y);
     }),
     (y.prototype.Div = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nu(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(nu(t, e), y);
     }),
     (y.prototype.MulRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ru(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(ru(t, e), y);
     }),
     (y.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(iu(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(iu(t, e), y);
     }),
     (y.prototype.DivRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(au(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(au(t, e), y);
     }),
     (y.prototype.DivFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ou(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(ou(t, e), y);
     }),
     (y.prototype.AddRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(su(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(su(t, e), y);
     }),
     (y.prototype.SubRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cu(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(cu(t, e), y);
     }),
     (y.prototype.Sqrt = function () {
       return f(lu(this.RDa), y);
@@ -17731,17 +17720,17 @@ async function Ir(e = {}) {
     }),
     (y.prototype.__destroy__ = function () {
       du(this.RDa);
-    }));
+    });
   function b(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa =
         e === void 0 ? fu() : t === void 0 ? pu(e) : n === void 0 ? mu(e, t) : r === void 0 ? _emscripten_bind_Vec4_Vec4_3(e, t, n) : hu(e, t, n, r)),
-      (d(b)[this.RDa] = this));
+      (d(b)[this.RDa] = this);
   }
-  ((b.prototype = Object.create(u.prototype)),
+  (b.prototype = Object.create(u.prototype)),
     (b.prototype.constructor = b),
     (b.prototype.SDa = b),
     (b.TDa = {}),
@@ -17753,13 +17742,13 @@ async function Ir(e = {}) {
       return f(_u(), b);
     }),
     (b.prototype.sReplicate = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(vu(e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(vu(e), b);
     }),
     (b.prototype.sMin = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yu(e, t), b));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yu(e, t), b);
     }),
     (b.prototype.sMax = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bu(e, t), b));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bu(e, t), b);
     }),
     (b.prototype.sClamp = function (e, t, n) {
       return (
@@ -17778,13 +17767,13 @@ async function Ir(e = {}) {
       );
     }),
     (b.prototype.sOr = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Cu(e, t), b));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Cu(e, t), b);
     }),
     (b.prototype.sXor = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wu(e, t), b));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wu(e, t), b);
     }),
     (b.prototype.sAnd = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Tu(e, t), b));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Tu(e, t), b);
     }),
     (b.prototype.GetX = b.prototype.CEa =
       function () {
@@ -17804,44 +17793,44 @@ async function Ir(e = {}) {
       }),
     (b.prototype.SetX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Au(t, e));
+      e && typeof e == `object` && (e = e.RDa), Au(t, e);
     }),
     (b.prototype.SetY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ju(t, e));
+      e && typeof e == `object` && (e = e.RDa), ju(t, e);
     }),
     (b.prototype.SetZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mu(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mu(t, e);
     }),
     (b.prototype.SetW = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Nu(t, e));
+      e && typeof e == `object` && (e = e.RDa), Nu(t, e);
     }),
     (b.prototype.Set = b.prototype.Set =
       function (e, t, n, r) {
         var i = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa),
+        e && typeof e == `object` && (e = e.RDa),
           t && typeof t == `object` && (t = t.RDa),
           n && typeof n == `object` && (n = n.RDa),
           r && typeof r == `object` && (r = r.RDa),
-          Pu(i, e, t, n, r));
+          Pu(i, e, t, n, r);
       }),
     (b.prototype.GetComponent = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Fu(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Fu(t, e);
     }),
     (b.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Iu(n, e) : !!Lu(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Iu(n, e) : !!Lu(n, e, t);
     }),
     (b.prototype.IsNearZero = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Ru(t) : !!zu(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Ru(t) : !!zu(t, e);
     }),
     (b.prototype.IsNormalized = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Bu(t) : !!Vu(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Bu(t) : !!Vu(t, e);
     }),
     (b.prototype.GetLowestComponentIndex = function () {
       return Hu(this.RDa);
@@ -17851,51 +17840,51 @@ async function Ir(e = {}) {
     }),
     (b.prototype.Add = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Wu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Wu(t, e), b);
     }),
     (b.prototype.Sub = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Gu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Gu(t, e), b);
     }),
     (b.prototype.Mul = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ku(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Ku(t, e), b);
     }),
     (b.prototype.Div = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(qu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(qu(t, e), b);
     }),
     (b.prototype.MulVec4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ju(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Ju(t, e), b);
     }),
     (b.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Yu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Yu(t, e), b);
     }),
     (b.prototype.DivVec4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Xu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Xu(t, e), b);
     }),
     (b.prototype.DivFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Zu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Zu(t, e), b);
     }),
     (b.prototype.AddVec4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Qu(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Qu(t, e), b);
     }),
     (b.prototype.SubVec4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f($u(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f($u(t, e), b);
     }),
     (b.prototype.__destroy__ = function () {
       ed(this.RDa);
-    }));
+    });
   function Q6() {
-    ((this.RDa = td()), (d(Q6)[this.RDa] = this));
+    (this.RDa = td()), (d(Q6)[this.RDa] = this);
   }
-  ((Q6.prototype = Object.create(u.prototype)),
+  (Q6.prototype = Object.create(u.prototype)),
     (Q6.prototype.constructor = Q6),
     (Q6.prototype.SDa = Q6),
     (Q6.TDa = {}),
@@ -17908,60 +17897,60 @@ async function Ir(e = {}) {
     }),
     (Q6.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? id(n, e) : ad(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? id(n, e) : ad(n, e, t);
     }),
     (Q6.prototype.IsNormalized = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? od(t) : sd(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? od(t) : sd(t, e);
     }),
     (Q6.prototype.Normalized = function () {
       return f(cd(this.RDa), Q6);
     }),
     (Q6.prototype.GetComponent = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ld(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ld(t, e);
     }),
     (Q6.prototype.Add = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ud(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(ud(t, e), Q6);
     }),
     (Q6.prototype.Sub = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(dd(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(dd(t, e), Q6);
     }),
     (Q6.prototype.Mul = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fd(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(fd(t, e), Q6);
     }),
     (Q6.prototype.Div = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pd(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(pd(t, e), Q6);
     }),
     (Q6.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(md(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(md(t, e), Q6);
     }),
     (Q6.prototype.DivFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(hd(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(hd(t, e), Q6);
     }),
     (Q6.prototype.AddVector2 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(gd(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(gd(t, e), Q6);
     }),
     (Q6.prototype.SubVector2 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(_d(t, e), Q6));
+      return e && typeof e == `object` && (e = e.RDa), f(_d(t, e), Q6);
     }),
     (Q6.prototype.Dot = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), vd(t, e));
+      return e && typeof e == `object` && (e = e.RDa), vd(t, e);
     }),
     (Q6.prototype.__destroy__ = function () {
       yd(this.RDa);
-    }));
+    });
   function x(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
@@ -17975,9 +17964,9 @@ async function Ir(e = {}) {
               : r === void 0
                 ? _emscripten_bind_Quat_Quat_3(e, t, n)
                 : xd(e, t, n, r)),
-      (d(x)[this.RDa] = this));
+      (d(x)[this.RDa] = this);
   }
-  ((x.prototype = Object.create(u.prototype)),
+  (x.prototype = Object.create(u.prototype)),
     (x.prototype.constructor = x),
     (x.prototype.SDa = x),
     (x.TDa = {}),
@@ -17989,42 +17978,42 @@ async function Ir(e = {}) {
       return f(Cd(), x);
     }),
     (x.prototype.sRotation = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wd(e, t), x));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wd(e, t), x);
     }),
     (x.prototype.GetAngularVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Td(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Td(t, e), v);
     }),
     (x.prototype.sFromTo = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ed(e, t), x));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ed(e, t), x);
     }),
     (x.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Dd(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Dd(t, e);
     }),
     (x.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Od(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Od(t, e);
     }),
     (x.prototype.MulQuat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(kd(t, e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(kd(t, e), x);
     }),
     (x.prototype.MulVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ad(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Ad(t, e), v);
     }),
     (x.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(jd(t, e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(jd(t, e), x);
     }),
     (x.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Md(n, e) : !!Nd(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!Md(n, e) : !!Nd(n, e, t);
     }),
     (x.prototype.IsNormalized = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Pd(t) : !!Fd(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!Pd(t) : !!Fd(t, e);
     }),
     (x.prototype.Length = function () {
       return Id(this.RDa);
@@ -18036,7 +18025,7 @@ async function Ir(e = {}) {
       return f(Rd(this.RDa), x);
     }),
     (x.prototype.sEulerAngles = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(zd(e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(zd(e), x);
     }),
     (x.prototype.GetEulerAngles = function () {
       return f(Bd(this.RDa), v);
@@ -18062,36 +18051,36 @@ async function Ir(e = {}) {
     }),
     (x.prototype.SetX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Kd(t, e));
+      e && typeof e == `object` && (e = e.RDa), Kd(t, e);
     }),
     (x.prototype.SetY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qd(t, e));
+      e && typeof e == `object` && (e = e.RDa), qd(t, e);
     }),
     (x.prototype.SetZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Jd(t, e));
+      e && typeof e == `object` && (e = e.RDa), Jd(t, e);
     }),
     (x.prototype.SetW = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yd(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yd(t, e);
     }),
     (x.prototype.Set = x.prototype.Set =
       function (e, t, n, r) {
         var i = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa),
+        e && typeof e == `object` && (e = e.RDa),
           t && typeof t == `object` && (t = t.RDa),
           n && typeof n == `object` && (n = n.RDa),
           r && typeof r == `object` && (r = r.RDa),
-          Xd(i, e, t, n, r));
+          Xd(i, e, t, n, r);
       }),
     (x.prototype.sMultiplyImaginary = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Zd(n, e, t), x));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Zd(n, e, t), x);
     }),
     (x.prototype.InverseRotate = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Qd(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Qd(t, e), v);
     }),
     (x.prototype.RotateAxisX = function () {
       return f($d(this.RDa), v);
@@ -18104,7 +18093,7 @@ async function Ir(e = {}) {
     }),
     (x.prototype.Dot = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), nf(t, e));
+      return e && typeof e == `object` && (e = e.RDa), nf(t, e);
     }),
     (x.prototype.Conjugated = function () {
       return f(rf(this.RDa), x);
@@ -18120,46 +18109,46 @@ async function Ir(e = {}) {
     }),
     (x.prototype.GetRotationAngle = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), cf(t, e));
+      return e && typeof e == `object` && (e = e.RDa), cf(t, e);
     }),
     (x.prototype.GetTwist = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(lf(t, e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(lf(t, e), x);
     }),
     (x.prototype.GetSwingTwist = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uf(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uf(n, e, t);
     }),
     (x.prototype.LERP = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(df(n, e, t), x));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(df(n, e, t), x);
     }),
     (x.prototype.SLERP = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ff(n, e, t), x));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ff(n, e, t), x);
     }),
     (x.prototype.__destroy__ = function () {
       pf(this.RDa);
-    }));
+    });
   function $6(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = mf(e, t, n)),
-      (d($6)[this.RDa] = this));
+      (d($6)[this.RDa] = this);
   }
-  (($6.prototype = Object.create(u.prototype)),
+  ($6.prototype = Object.create(u.prototype)),
     ($6.prototype.constructor = $6),
     ($6.prototype.SDa = $6),
     ($6.TDa = {}),
     (t.Float3 = $6),
     ($6.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!hf(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!hf(t, e);
     }),
     ($6.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!gf(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!gf(t, e);
     }),
     ($6.prototype.get_x = $6.prototype.KNa =
       function () {
@@ -18168,7 +18157,7 @@ async function Ir(e = {}) {
     ($6.prototype.set_x = $6.prototype.QRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vf(t, e));
+        e && typeof e == `object` && (e = e.RDa), vf(t, e);
       }),
     Object.defineProperty($6.prototype, "x", { get: $6.prototype.KNa, set: $6.prototype.QRa }),
     ($6.prototype.get_y = $6.prototype.LNa =
@@ -18178,7 +18167,7 @@ async function Ir(e = {}) {
     ($6.prototype.set_y = $6.prototype.RRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bf(t, e));
+        e && typeof e == `object` && (e = e.RDa), bf(t, e);
       }),
     Object.defineProperty($6.prototype, "y", { get: $6.prototype.LNa, set: $6.prototype.RRa }),
     ($6.prototype.get_z = $6.prototype.MNa =
@@ -18188,16 +18177,16 @@ async function Ir(e = {}) {
     ($6.prototype.set_z = $6.prototype.SRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sf(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sf(t, e);
       }),
     Object.defineProperty($6.prototype, "z", { get: $6.prototype.MNa, set: $6.prototype.SRa }),
     ($6.prototype.__destroy__ = function () {
       Cf(this.RDa);
-    }));
+    });
   function S() {
-    ((this.RDa = wf()), (d(S)[this.RDa] = this));
+    (this.RDa = wf()), (d(S)[this.RDa] = this);
   }
-  ((S.prototype = Object.create(u.prototype)),
+  (S.prototype = Object.create(u.prototype)),
     (S.prototype.constructor = S),
     (S.prototype.SDa = S),
     (S.TDa = {}),
@@ -18209,46 +18198,46 @@ async function Ir(e = {}) {
       return f(Ef(), S);
     }),
     (S.prototype.sRotationX = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Df(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Df(e), S);
     }),
     (S.prototype.sRotationY = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Of(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Of(e), S);
     }),
     (S.prototype.sRotationZ = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(kf(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(kf(e), S);
     }),
     (S.prototype.sRotation = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Af(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Af(e), S);
     }),
     (S.prototype.sRotationAxisAngle = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jf(e, t), S));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jf(e, t), S);
     }),
     (S.prototype.sTranslation = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Mf(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Mf(e), S);
     }),
     (S.prototype.sRotationTranslation = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Nf(e, t), S));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Nf(e, t), S);
     }),
     (S.prototype.sInverseRotationTranslation = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Pf(e, t), S));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Pf(e, t), S);
     }),
     (S.prototype.sScale = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Ff(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Ff(e), S);
     }),
     (S.prototype.sScaleVec3 = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(If(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(If(e), S);
     }),
     (S.prototype.sOuterProduct = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Lf(e, t), S));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Lf(e, t), S);
     }),
     (S.prototype.sCrossProduct = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Rf(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Rf(e), S);
     }),
     (S.prototype.sQuatLeftMultiply = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(zf(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(zf(e), S);
     }),
     (S.prototype.sQuatRightMultiply = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Bf(e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Bf(e), S);
     }),
     (S.prototype.sLookAt = function (e, t, n) {
       return (
@@ -18296,59 +18285,59 @@ async function Ir(e = {}) {
     }),
     (S.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Qf(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Qf(t, e);
     }),
     (S.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!$f(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!$f(t, e);
     }),
     (S.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!ep(n, e) : !!tp(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!ep(n, e) : !!tp(n, e, t);
     }),
     (S.prototype.Add = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(np(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(np(t, e), S);
     }),
     (S.prototype.MulFloat = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(rp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(rp(t, e), S);
     }),
     (S.prototype.MulMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ip(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(ip(t, e), S);
     }),
     (S.prototype.MulVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ap(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ap(t, e), v);
     }),
     (S.prototype.MulVec4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(op(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(op(t, e), b);
     }),
     (S.prototype.AddMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(sp(t, e), S);
     }),
     (S.prototype.SubMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(cp(t, e), S);
     }),
     (S.prototype.Multiply3x3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(lp(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(lp(t, e), v);
     }),
     (S.prototype.Multiply3x3Transposed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(up(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(up(t, e), v);
     }),
     (S.prototype.Multiply3x3LeftTransposed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(dp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(dp(t, e), S);
     }),
     (S.prototype.Multiply3x3RightTransposed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(fp(t, e), S);
     }),
     (S.prototype.Transposed = function () {
       return f(pp(this.RDa), S);
@@ -18367,7 +18356,7 @@ async function Ir(e = {}) {
     }),
     (S.prototype.SetInversed3x3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!vp(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!vp(t, e);
     }),
     (S.prototype.GetDeterminant3x3 = function () {
       return yp(this.RDa);
@@ -18380,71 +18369,71 @@ async function Ir(e = {}) {
     }),
     (S.prototype.PreTranslated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Sp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Sp(t, e), S);
     }),
     (S.prototype.PostTranslated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Cp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Cp(t, e), S);
     }),
     (S.prototype.PreScaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(wp(t, e), S);
     }),
     (S.prototype.PostScaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Tp(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Tp(t, e), S);
     }),
     (S.prototype.Decompose = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ep(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(Ep(t, e), S);
     }),
     (S.prototype.SetColumn3 = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Dp(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Dp(n, e, t);
     }),
     (S.prototype.SetColumn4 = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Op(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Op(n, e, t);
     }),
     (S.prototype.SetAxisX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kp(t, e));
+      e && typeof e == `object` && (e = e.RDa), kp(t, e);
     }),
     (S.prototype.SetAxisY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ap(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ap(t, e);
     }),
     (S.prototype.SetAxisZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jp(t, e));
+      e && typeof e == `object` && (e = e.RDa), jp(t, e);
     }),
     (S.prototype.SetDiagonal3 = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mp(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mp(t, e);
     }),
     (S.prototype.SetDiagonal4 = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Np(t, e));
+      e && typeof e == `object` && (e = e.RDa), Np(t, e);
     }),
     (S.prototype.SetTranslation = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pp(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pp(t, e);
     }),
     (S.prototype.GetColumn3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Fp(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Fp(t, e), v);
     }),
     (S.prototype.GetColumn4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ip(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(Ip(t, e), b);
     }),
     (S.prototype.__destroy__ = function () {
       Lp(this.RDa);
-    }));
+    });
   function C() {
-    ((this.RDa = Rp()), (d(C)[this.RDa] = this));
+    (this.RDa = Rp()), (d(C)[this.RDa] = this);
   }
-  ((C.prototype = Object.create(u.prototype)),
+  (C.prototype = Object.create(u.prototype)),
     (C.prototype.constructor = C),
     (C.prototype.SDa = C),
     (C.TDa = {}),
@@ -18456,43 +18445,43 @@ async function Ir(e = {}) {
       return f(Bp(), C);
     }),
     (C.prototype.sRotation = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Vp(e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(Vp(e), C);
     }),
     (C.prototype.sTranslation = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), f(Hp(e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(Hp(e), C);
     }),
     (C.prototype.sRotationTranslation = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Up(e, t), C));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Up(e, t), C);
     }),
     (C.prototype.sInverseRotationTranslation = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Wp(e, t), C));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Wp(e, t), C);
     }),
     (C.prototype.ToMat44 = function () {
       return f(Gp(this.RDa), S);
     }),
     (C.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Kp(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Kp(t, e);
     }),
     (C.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!qp(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!qp(t, e);
     }),
     (C.prototype.MulVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Jp(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(Jp(t, e), y);
     }),
     (C.prototype.MulRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Yp(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(Yp(t, e), y);
     }),
     (C.prototype.MulMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Xp(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(Xp(t, e), C);
     }),
     (C.prototype.MulRMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Zp(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(Zp(t, e), C);
     }),
     (C.prototype.GetAxisX = function () {
       return f(Qp(this.RDa), v);
@@ -18508,7 +18497,7 @@ async function Ir(e = {}) {
     }),
     (C.prototype.SetRotation = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nm(t, e));
+      e && typeof e == `object` && (e = e.RDa), nm(t, e);
     }),
     (C.prototype.GetQuaternion = function () {
       return f(rm(this.RDa), x);
@@ -18518,15 +18507,15 @@ async function Ir(e = {}) {
     }),
     (C.prototype.IsClose = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!am(n, e) : !!om(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!am(n, e) : !!om(n, e, t);
     }),
     (C.prototype.Multiply3x3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sm(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(sm(t, e), v);
     }),
     (C.prototype.Multiply3x3Transposed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cm(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(cm(t, e), v);
     }),
     (C.prototype.Transposed3x3 = function () {
       return f(lm(this.RDa), S);
@@ -18539,69 +18528,69 @@ async function Ir(e = {}) {
     }),
     (C.prototype.PreTranslated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fm(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(fm(t, e), C);
     }),
     (C.prototype.PostTranslated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pm(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(pm(t, e), C);
     }),
     (C.prototype.PreScaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(mm(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(mm(t, e), C);
     }),
     (C.prototype.PostScaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(hm(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(hm(t, e), C);
     }),
     (C.prototype.GetDirectionPreservingMatrix = function () {
       return f(gm(this.RDa), S);
     }),
     (C.prototype.SetColumn3 = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), _m(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), _m(n, e, t);
     }),
     (C.prototype.GetColumn3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(vm(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(vm(t, e), v);
     }),
     (C.prototype.SetAxisX = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ym(t, e));
+      e && typeof e == `object` && (e = e.RDa), ym(t, e);
     }),
     (C.prototype.SetAxisY = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bm(t, e));
+      e && typeof e == `object` && (e = e.RDa), bm(t, e);
     }),
     (C.prototype.SetAxisZ = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xm(t, e));
+      e && typeof e == `object` && (e = e.RDa), xm(t, e);
     }),
     (C.prototype.SetTranslation = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Sm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Sm(t, e);
     }),
     (C.prototype.SetColumn4 = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Cm(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Cm(n, e, t);
     }),
     (C.prototype.GetColumn4 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wm(t, e), b));
+      return e && typeof e == `object` && (e = e.RDa), f(wm(t, e), b);
     }),
     (C.prototype.Decompose = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Tm(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(Tm(t, e), C);
     }),
     (C.prototype.__destroy__ = function () {
       Em(this.RDa);
-    }));
+    });
   function w(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = e === void 0 ? Dm() : t === void 0 ? _emscripten_bind_AABox_AABox_1(e) : Om(e, t)),
-      (d(w)[this.RDa] = this));
+      (d(w)[this.RDa] = this);
   }
-  ((w.prototype = Object.create(u.prototype)),
+  (w.prototype = Object.create(u.prototype)),
     (w.prototype.constructor = w),
     (w.prototype.SDa = w),
     (w.TDa = {}),
@@ -18610,18 +18599,18 @@ async function Ir(e = {}) {
       return f(km(), w);
     }),
     (w.prototype.sFromTwoPoints = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Am(e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Am(e, t), w);
     }),
     (w.prototype.sFromTriangle = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jm(e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jm(e, t), w);
     }),
     (w.prototype.Equals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Mm(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Mm(t, e);
     }),
     (w.prototype.NotEquals = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Nm(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Nm(t, e);
     }),
     (w.prototype.SetEmpty = function () {
       Pm(this.RDa);
@@ -18631,31 +18620,31 @@ async function Ir(e = {}) {
     }),
     (w.prototype.EncapsulateVec3 = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Im(t, e));
+      e && typeof e == `object` && (e = e.RDa), Im(t, e);
     }),
     (w.prototype.EncapsulateAABox = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Lm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Lm(t, e);
     }),
     (w.prototype.EncapsulateTriangle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rm(t, e);
     }),
     (w.prototype.EncapsulateIndexedTriangle = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zm(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zm(n, e, t);
     }),
     (w.prototype.Intersect = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Bm(t, e), w));
+      return e && typeof e == `object` && (e = e.RDa), f(Bm(t, e), w);
     }),
     (w.prototype.EnsureMinimalEdgeLength = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Vm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Vm(t, e);
     }),
     (w.prototype.ExpandBy = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Hm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Hm(t, e);
     }),
     (w.prototype.GetCenter = function () {
       return f(Um(this.RDa), v);
@@ -18674,47 +18663,47 @@ async function Ir(e = {}) {
     }),
     (w.prototype.ContainsVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Jm(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Jm(t, e);
     }),
     (w.prototype.ContainsRVec3 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Ym(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Ym(t, e);
     }),
     (w.prototype.OverlapsAABox = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Xm(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Xm(t, e);
     }),
     (w.prototype.OverlapsPlane = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Zm(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Zm(t, e);
     }),
     (w.prototype.TranslateVec3 = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qm(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qm(t, e);
     }),
     (w.prototype.TranslateRVec3 = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $m(t, e));
+      e && typeof e == `object` && (e = e.RDa), $m(t, e);
     }),
     (w.prototype.TransformedMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(eh(t, e), w));
+      return e && typeof e == `object` && (e = e.RDa), f(eh(t, e), w);
     }),
     (w.prototype.TransformedRMat44 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(th(t, e), w));
+      return e && typeof e == `object` && (e = e.RDa), f(th(t, e), w);
     }),
     (w.prototype.Scaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nh(t, e), w));
+      return e && typeof e == `object` && (e = e.RDa), f(nh(t, e), w);
     }),
     (w.prototype.GetClosestPoint = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(rh(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(rh(t, e), v);
     }),
     (w.prototype.GetSqDistanceTo = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ih(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ih(t, e);
     }),
     (w.prototype.get_mMin = w.prototype.ULa =
       function () {
@@ -18723,7 +18712,7 @@ async function Ir(e = {}) {
     (w.prototype.set_mMin = w.prototype.cQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oh(t, e));
+        e && typeof e == `object` && (e = e.RDa), oh(t, e);
       }),
     Object.defineProperty(w.prototype, "mMin", { get: w.prototype.ULa, set: w.prototype.cQa }),
     (w.prototype.get_mMax = w.prototype.wLa =
@@ -18733,30 +18722,30 @@ async function Ir(e = {}) {
     (w.prototype.set_mMax = w.prototype.FPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ch(t, e));
+        e && typeof e == `object` && (e = e.RDa), ch(t, e);
       }),
     Object.defineProperty(w.prototype, "mMax", { get: w.prototype.wLa, set: w.prototype.FPa }),
     (w.prototype.__destroy__ = function () {
       lh(this.RDa);
-    }));
+    });
   function e8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = e === void 0 ? uh() : t === void 0 ? _emscripten_bind_OrientedBox_OrientedBox_1(e) : dh(e, t)),
-      (d(e8)[this.RDa] = this));
+      (d(e8)[this.RDa] = this);
   }
-  ((e8.prototype = Object.create(u.prototype)),
+  (e8.prototype = Object.create(u.prototype)),
     (e8.prototype.constructor = e8),
     (e8.prototype.SDa = e8),
     (e8.TDa = {}),
     (t.OrientedBox = e8),
     (e8.prototype.OverlapsAABox = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!fh(n, e) : !!ph(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!fh(n, e) : !!ph(n, e, t);
     }),
     (e8.prototype.OverlapsOrientedBox = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!mh(n, e) : !!hh(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!mh(n, e) : !!hh(n, e, t);
     }),
     (e8.prototype.get_mOrientation = e8.prototype.jMa =
       function () {
@@ -18765,7 +18754,7 @@ async function Ir(e = {}) {
     (e8.prototype.set_mOrientation = e8.prototype.sQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _h(t, e));
+        e && typeof e == `object` && (e = e.RDa), _h(t, e);
       }),
     Object.defineProperty(e8.prototype, "mOrientation", { get: e8.prototype.jMa, set: e8.prototype.sQa }),
     (e8.prototype.get_mHalfExtents = e8.prototype.BKa =
@@ -18775,34 +18764,34 @@ async function Ir(e = {}) {
     (e8.prototype.set_mHalfExtents = e8.prototype.KOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yh(t, e));
+        e && typeof e == `object` && (e = e.RDa), yh(t, e);
       }),
     Object.defineProperty(e8.prototype, "mHalfExtents", { get: e8.prototype.BKa, set: e8.prototype.KOa }),
     (e8.prototype.__destroy__ = function () {
       bh(this.RDa);
-    }));
+    });
   function t8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = e === void 0 ? xh() : t === void 0 ? _emscripten_bind_RayCast_RayCast_1(e) : Sh(e, t)),
-      (d(t8)[this.RDa] = this));
+      (d(t8)[this.RDa] = this);
   }
-  ((t8.prototype = Object.create(u.prototype)),
+  (t8.prototype = Object.create(u.prototype)),
     (t8.prototype.constructor = t8),
     (t8.prototype.SDa = t8),
     (t8.TDa = {}),
     (t.RayCast = t8),
     (t8.prototype.Transformed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ch(t, e), t8));
+      return e && typeof e == `object` && (e = e.RDa), f(Ch(t, e), t8);
     }),
     (t8.prototype.Translated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wh(t, e), t8));
+      return e && typeof e == `object` && (e = e.RDa), f(wh(t, e), t8);
     }),
     (t8.prototype.GetPointOnRay = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Th(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Th(t, e), v);
     }),
     (t8.prototype.get_mOrigin = t8.prototype.JHa =
       function () {
@@ -18811,7 +18800,7 @@ async function Ir(e = {}) {
     (t8.prototype.set_mOrigin = t8.prototype.gJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dh(t, e);
       }),
     Object.defineProperty(t8.prototype, "mOrigin", { get: t8.prototype.JHa, set: t8.prototype.gJa }),
     (t8.prototype.get_mDirection = t8.prototype.FEa =
@@ -18821,34 +18810,34 @@ async function Ir(e = {}) {
     (t8.prototype.set_mDirection = t8.prototype.WFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kh(t, e));
+        e && typeof e == `object` && (e = e.RDa), kh(t, e);
       }),
     Object.defineProperty(t8.prototype, "mDirection", { get: t8.prototype.FEa, set: t8.prototype.WFa }),
     (t8.prototype.__destroy__ = function () {
       Ah(this.RDa);
-    }));
+    });
   function n8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = e === void 0 ? jh() : t === void 0 ? _emscripten_bind_RRayCast_RRayCast_1(e) : Mh(e, t)),
-      (d(n8)[this.RDa] = this));
+      (d(n8)[this.RDa] = this);
   }
-  ((n8.prototype = Object.create(u.prototype)),
+  (n8.prototype = Object.create(u.prototype)),
     (n8.prototype.constructor = n8),
     (n8.prototype.SDa = n8),
     (n8.TDa = {}),
     (t.RRayCast = n8),
     (n8.prototype.Transformed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Nh(t, e), n8));
+      return e && typeof e == `object` && (e = e.RDa), f(Nh(t, e), n8);
     }),
     (n8.prototype.Translated = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ph(t, e), n8));
+      return e && typeof e == `object` && (e = e.RDa), f(Ph(t, e), n8);
     }),
     (n8.prototype.GetPointOnRay = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Fh(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(Fh(t, e), y);
     }),
     (n8.prototype.get_mOrigin = n8.prototype.JHa =
       function () {
@@ -18857,7 +18846,7 @@ async function Ir(e = {}) {
     (n8.prototype.set_mOrigin = n8.prototype.gJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lh(t, e);
       }),
     Object.defineProperty(n8.prototype, "mOrigin", { get: n8.prototype.JHa, set: n8.prototype.gJa }),
     (n8.prototype.get_mDirection = n8.prototype.FEa =
@@ -18867,16 +18856,16 @@ async function Ir(e = {}) {
     (n8.prototype.set_mDirection = n8.prototype.WFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zh(t, e));
+        e && typeof e == `object` && (e = e.RDa), zh(t, e);
       }),
     Object.defineProperty(n8.prototype, "mDirection", { get: n8.prototype.FEa, set: n8.prototype.WFa }),
     (n8.prototype.__destroy__ = function () {
       Bh(this.RDa);
-    }));
+    });
   function r8() {
-    ((this.RDa = Vh()), (d(r8)[this.RDa] = this));
+    (this.RDa = Vh()), (d(r8)[this.RDa] = this);
   }
-  ((r8.prototype = Object.create(V3.prototype)),
+  (r8.prototype = Object.create(V3.prototype)),
     (r8.prototype.constructor = r8),
     (r8.prototype.SDa = r8),
     (r8.TDa = {}),
@@ -18891,7 +18880,7 @@ async function Ir(e = {}) {
     (r8.prototype.set_mSubShapeID2 = r8.prototype.HEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wh(t, e);
       }),
     Object.defineProperty(r8.prototype, "mSubShapeID2", { get: r8.prototype.GEa, set: r8.prototype.HEa }),
     (r8.prototype.get_mBodyID = r8.prototype.JEa =
@@ -18901,7 +18890,7 @@ async function Ir(e = {}) {
     (r8.prototype.set_mBodyID = r8.prototype.SEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Kh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Kh(t, e);
       }),
     Object.defineProperty(r8.prototype, "mBodyID", { get: r8.prototype.JEa, set: r8.prototype.SEa }),
     (r8.prototype.get_mFraction = r8.prototype.MEa =
@@ -18911,16 +18900,16 @@ async function Ir(e = {}) {
     (r8.prototype.set_mFraction = r8.prototype.VEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Jh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Jh(t, e);
       }),
     Object.defineProperty(r8.prototype, "mFraction", { get: r8.prototype.MEa, set: r8.prototype.VEa }),
     (r8.prototype.__destroy__ = function () {
       Yh(this.RDa);
-    }));
+    });
   function i8() {
-    ((this.RDa = Xh()), (d(i8)[this.RDa] = this));
+    (this.RDa = Xh()), (d(i8)[this.RDa] = this);
   }
-  ((i8.prototype = Object.create(u.prototype)),
+  (i8.prototype = Object.create(u.prototype)),
     (i8.prototype.constructor = i8),
     (i8.prototype.SDa = i8),
     (i8.TDa = {}),
@@ -18932,7 +18921,7 @@ async function Ir(e = {}) {
     (i8.prototype.set_mBox = i8.prototype.dOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qh(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qh(t, e);
       }),
     Object.defineProperty(i8.prototype, "mBox", { get: i8.prototype.VJa, set: i8.prototype.dOa }),
     (i8.prototype.get_mDirection = i8.prototype.FEa =
@@ -18942,28 +18931,28 @@ async function Ir(e = {}) {
     (i8.prototype.set_mDirection = i8.prototype.WFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eg(t, e));
+        e && typeof e == `object` && (e = e.RDa), eg(t, e);
       }),
     Object.defineProperty(i8.prototype, "mDirection", { get: i8.prototype.FEa, set: i8.prototype.WFa }),
     (i8.prototype.__destroy__ = function () {
       tg(this.RDa);
-    }));
+    });
   function a8(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = ng(e, t, n, r)),
-      (d(a8)[this.RDa] = this));
+      (d(a8)[this.RDa] = this);
   }
-  ((a8.prototype = Object.create(u.prototype)),
+  (a8.prototype = Object.create(u.prototype)),
     (a8.prototype.constructor = a8),
     (a8.prototype.SDa = a8),
     (a8.TDa = {}),
     (t.ShapeCast = a8),
     (a8.prototype.GetPointOnRay = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(rg(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(rg(t, e), v);
     }),
     (a8.prototype.get_mShape = a8.prototype.vEa =
       function () {
@@ -18987,23 +18976,23 @@ async function Ir(e = {}) {
     Object.defineProperty(a8.prototype, "mDirection", { get: a8.prototype.FEa }),
     (a8.prototype.__destroy__ = function () {
       cg(this.RDa);
-    }));
+    });
   function o8(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = lg(e, t, n, r)),
-      (d(o8)[this.RDa] = this));
+      (d(o8)[this.RDa] = this);
   }
-  ((o8.prototype = Object.create(u.prototype)),
+  (o8.prototype = Object.create(u.prototype)),
     (o8.prototype.constructor = o8),
     (o8.prototype.SDa = o8),
     (o8.TDa = {}),
     (t.RShapeCast = o8),
     (o8.prototype.GetPointOnRay = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ug(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(ug(t, e), y);
     }),
     (o8.prototype.get_mShape = o8.prototype.vEa =
       function () {
@@ -19027,11 +19016,11 @@ async function Ir(e = {}) {
     Object.defineProperty(o8.prototype, "mDirection", { get: o8.prototype.FEa }),
     (o8.prototype.__destroy__ = function () {
       hg(this.RDa);
-    }));
+    });
   function s8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = gg(e, t)), (d(s8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = gg(e, t)), (d(s8)[this.RDa] = this);
   }
-  ((s8.prototype = Object.create(u.prototype)),
+  (s8.prototype = Object.create(u.prototype)),
     (s8.prototype.constructor = s8),
     (s8.prototype.SDa = s8),
     (s8.TDa = {}),
@@ -19041,18 +19030,18 @@ async function Ir(e = {}) {
     }),
     (s8.prototype.SetNormal = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vg(t, e));
+      e && typeof e == `object` && (e = e.RDa), vg(t, e);
     }),
     (s8.prototype.GetConstant = function () {
       return yg(this.RDa);
     }),
     (s8.prototype.SetConstant = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bg(t, e));
+      e && typeof e == `object` && (e = e.RDa), bg(t, e);
     }),
     (s8.prototype.sFromPointAndNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(xg(n, e, t), s8));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(xg(n, e, t), s8);
     }),
     (s8.prototype.sFromPointsCCW = function (e, t, n) {
       var r = this.RDa;
@@ -19065,77 +19054,77 @@ async function Ir(e = {}) {
     }),
     (s8.prototype.Offset = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Cg(t, e), s8));
+      return e && typeof e == `object` && (e = e.RDa), f(Cg(t, e), s8);
     }),
     (s8.prototype.Scaled = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wg(t, e), s8));
+      return e && typeof e == `object` && (e = e.RDa), f(wg(t, e), s8);
     }),
     (s8.prototype.GetTransformed = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Tg(t, e), s8));
+      return e && typeof e == `object` && (e = e.RDa), f(Tg(t, e), s8);
     }),
     (s8.prototype.ProjectPointOnPlane = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Eg(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Eg(t, e), v);
     }),
     (s8.prototype.SignedDistance = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Dg(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Dg(t, e);
     }),
     (s8.prototype.__destroy__ = function () {
       Og(this.RDa);
-    }));
+    });
   function T() {
-    ((this.RDa = kg()), (d(T)[this.RDa] = this));
+    (this.RDa = kg()), (d(T)[this.RDa] = this);
   }
-  ((T.prototype = Object.create(u.prototype)),
+  (T.prototype = Object.create(u.prototype)),
     (T.prototype.constructor = T),
     (T.prototype.SDa = T),
     (T.TDa = {}),
     (t.TransformedShape = T),
     (T.prototype.CastRay = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        n === void 0 ? Ag(i, e, t) : r === void 0 ? _emscripten_bind_TransformedShape_CastRay_3(i, e, t, n) : jg(i, e, t, n, r));
+        n === void 0 ? Ag(i, e, t) : r === void 0 ? _emscripten_bind_TransformedShape_CastRay_3(i, e, t, n) : jg(i, e, t, n, r);
     }),
     (T.prototype.CollidePoint = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Mg(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Mg(r, e, t, n);
     }),
     (T.prototype.CollideShape = function (e, t, n, r, i, a, o) {
       var s = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
-        Ng(s, e, t, n, r, i, a, o));
+        Ng(s, e, t, n, r, i, a, o);
     }),
     (T.prototype.CastShape = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        Pg(a, e, t, n, r, i));
+        Pg(a, e, t, n, r, i);
     }),
     (T.prototype.CollectTransformedShapes = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Fg(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Fg(r, e, t, n);
     }),
     (T.prototype.GetShapeScale = function () {
       return f(Ig(this.RDa), v);
     }),
     (T.prototype.SetShapeScale = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Lg(t, e));
+      e && typeof e == `object` && (e = e.RDa), Lg(t, e);
     }),
     (T.prototype.GetCenterOfMassTransform = function () {
       return f(Rg(this.RDa), C);
@@ -19145,10 +19134,10 @@ async function Ir(e = {}) {
     }),
     (T.prototype.SetWorldTransform = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        t === void 0 ? Bg(r, e) : n === void 0 ? _emscripten_bind_TransformedShape_SetWorldTransform_2(r, e, t) : Vg(r, e, t, n));
+        t === void 0 ? Bg(r, e) : n === void 0 ? _emscripten_bind_TransformedShape_SetWorldTransform_2(r, e, t) : Vg(r, e, t, n);
     }),
     (T.prototype.GetWorldTransform = function () {
       return f(Hg(this.RDa), C);
@@ -19158,11 +19147,11 @@ async function Ir(e = {}) {
     }),
     (T.prototype.GetWorldSpaceSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Wg(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Wg(n, e, t), v);
     }),
     (T.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Gg(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Gg(t, e), c8);
     }),
     (T.prototype.get_mShapePositionCOM = T.prototype.RMa =
       function () {
@@ -19171,7 +19160,7 @@ async function Ir(e = {}) {
     (T.prototype.set_mShapePositionCOM = T.prototype.YQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qg(t, e));
+        e && typeof e == `object` && (e = e.RDa), qg(t, e);
       }),
     Object.defineProperty(T.prototype, "mShapePositionCOM", { get: T.prototype.RMa, set: T.prototype.YQa }),
     (T.prototype.get_mShapeRotation = T.prototype.SMa =
@@ -19181,7 +19170,7 @@ async function Ir(e = {}) {
     (T.prototype.set_mShapeRotation = T.prototype.ZQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Yg(t, e));
+        e && typeof e == `object` && (e = e.RDa), Yg(t, e);
       }),
     Object.defineProperty(T.prototype, "mShapeRotation", { get: T.prototype.SMa, set: T.prototype.ZQa }),
     (T.prototype.get_mShape = T.prototype.vEa =
@@ -19191,7 +19180,7 @@ async function Ir(e = {}) {
     (T.prototype.set_mShape = T.prototype.ZEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zg(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zg(t, e);
       }),
     Object.defineProperty(T.prototype, "mShape", { get: T.prototype.vEa, set: T.prototype.ZEa }),
     (T.prototype.get_mShapeScale = T.prototype.TMa =
@@ -19201,7 +19190,7 @@ async function Ir(e = {}) {
     (T.prototype.set_mShapeScale = T.prototype.$Qa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $g(t, e));
+        e && typeof e == `object` && (e = e.RDa), $g(t, e);
       }),
     Object.defineProperty(T.prototype, "mShapeScale", { get: T.prototype.TMa, set: T.prototype.$Qa }),
     (T.prototype.get_mBodyID = T.prototype.JEa =
@@ -19211,16 +19200,16 @@ async function Ir(e = {}) {
     (T.prototype.set_mBodyID = T.prototype.SEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t_(t, e));
+        e && typeof e == `object` && (e = e.RDa), t_(t, e);
       }),
     Object.defineProperty(T.prototype, "mBodyID", { get: T.prototype.JEa, set: T.prototype.SEa }),
     (T.prototype.__destroy__ = function () {
       n_(this.RDa);
-    }));
+    });
   function c8() {
-    ((this.RDa = r_()), (d(c8)[this.RDa] = this));
+    (this.RDa = r_()), (d(c8)[this.RDa] = this);
   }
-  ((c8.prototype = Object.create(u.prototype)),
+  (c8.prototype = Object.create(u.prototype)),
     (c8.prototype.constructor = c8),
     (c8.prototype.SDa = c8),
     (c8.TDa = {}),
@@ -19236,11 +19225,11 @@ async function Ir(e = {}) {
     }),
     (c8.prototype.__destroy__ = function () {
       s_(this.RDa);
-    }));
+    });
   function l8() {
-    ((this.RDa = c_()), (d(l8)[this.RDa] = this));
+    (this.RDa = c_()), (d(l8)[this.RDa] = this);
   }
-  ((l8.prototype = Object.create(u.prototype)),
+  (l8.prototype = Object.create(u.prototype)),
     (l8.prototype.constructor = l8),
     (l8.prototype.SDa = l8),
     (l8.TDa = {}),
@@ -19256,20 +19245,20 @@ async function Ir(e = {}) {
     (l8.prototype.at = l8.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(d_(t, e), c8));
+        return e && typeof e == `object` && (e = e.RDa), f(d_(t, e), c8);
       }),
     (l8.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), f_(t, e));
+      e && typeof e == `object` && (e = e.RDa), f_(t, e);
     }),
     (l8.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), p_(t, e));
+      e && typeof e == `object` && (e = e.RDa), p_(t, e);
     }),
     (l8.prototype.resize = l8.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), m_(t, e));
+        e && typeof e == `object` && (e = e.RDa), m_(t, e);
       }),
     (l8.prototype.clear = l8.prototype.clear =
       function () {
@@ -19277,9 +19266,9 @@ async function Ir(e = {}) {
       }),
     (l8.prototype.__destroy__ = function () {
       g_(this.RDa);
-    }));
+    });
   function u8(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
@@ -19296,9 +19285,9 @@ async function Ir(e = {}) {
                 : i === void 0
                   ? y_(e, t, n, r)
                   : b_(e, t, n, r, i)),
-      (d(u8)[this.RDa] = this));
+      (d(u8)[this.RDa] = this);
   }
-  ((u8.prototype = Object.create(u.prototype)),
+  (u8.prototype = Object.create(u.prototype)),
     (u8.prototype.constructor = u8),
     (u8.prototype.SDa = u8),
     (u8.TDa = {}),
@@ -19306,12 +19295,12 @@ async function Ir(e = {}) {
     (u8.prototype.get_mV = u8.prototype.wNa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(x_(t, e), $6));
+        return e && typeof e == `object` && (e = e.RDa), f(x_(t, e), $6);
       }),
     (u8.prototype.set_mV = u8.prototype.DRa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), S_(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), S_(n, e, t);
       }),
     Object.defineProperty(u8.prototype, "mV", { get: u8.prototype.wNa, set: u8.prototype.DRa }),
     (u8.prototype.get_mMaterialIndex = u8.prototype.oFa =
@@ -19321,7 +19310,7 @@ async function Ir(e = {}) {
     (u8.prototype.set_mMaterialIndex = u8.prototype.dGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), w_(t, e));
+        e && typeof e == `object` && (e = e.RDa), w_(t, e);
       }),
     Object.defineProperty(u8.prototype, "mMaterialIndex", { get: u8.prototype.oFa, set: u8.prototype.dGa }),
     (u8.prototype.get_mUserData = u8.prototype.UDa =
@@ -19331,16 +19320,16 @@ async function Ir(e = {}) {
     (u8.prototype.set_mUserData = u8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), E_(t, e));
+        e && typeof e == `object` && (e = e.RDa), E_(t, e);
       }),
     Object.defineProperty(u8.prototype, "mUserData", { get: u8.prototype.UDa, set: u8.prototype.VDa }),
     (u8.prototype.__destroy__ = function () {
       D_(this.RDa);
-    }));
+    });
   function d8() {
-    ((this.RDa = O_()), (d(d8)[this.RDa] = this));
+    (this.RDa = O_()), (d(d8)[this.RDa] = this);
   }
-  ((d8.prototype = Object.create(u.prototype)),
+  (d8.prototype = Object.create(u.prototype)),
     (d8.prototype.constructor = d8),
     (d8.prototype.SDa = d8),
     (d8.TDa = {}),
@@ -19356,20 +19345,20 @@ async function Ir(e = {}) {
     (d8.prototype.at = d8.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(j_(t, e), u8));
+        return e && typeof e == `object` && (e = e.RDa), f(j_(t, e), u8);
       }),
     (d8.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), M_(t, e));
+      e && typeof e == `object` && (e = e.RDa), M_(t, e);
     }),
     (d8.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), N_(t, e));
+      e && typeof e == `object` && (e = e.RDa), N_(t, e);
     }),
     (d8.prototype.resize = d8.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), P_(t, e));
+        e && typeof e == `object` && (e = e.RDa), P_(t, e);
       }),
     (d8.prototype.clear = d8.prototype.clear =
       function () {
@@ -19377,11 +19366,11 @@ async function Ir(e = {}) {
       }),
     (d8.prototype.__destroy__ = function () {
       I_(this.RDa);
-    }));
+    });
   function f8() {
-    ((this.RDa = L_()), (d(f8)[this.RDa] = this));
+    (this.RDa = L_()), (d(f8)[this.RDa] = this);
   }
-  ((f8.prototype = Object.create(u.prototype)),
+  (f8.prototype = Object.create(u.prototype)),
     (f8.prototype.constructor = f8),
     (f8.prototype.SDa = f8),
     (f8.TDa = {}),
@@ -19397,20 +19386,20 @@ async function Ir(e = {}) {
     (f8.prototype.at = f8.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(B_(t, e), $6));
+        return e && typeof e == `object` && (e = e.RDa), f(B_(t, e), $6);
       }),
     (f8.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), V_(t, e));
+      e && typeof e == `object` && (e = e.RDa), V_(t, e);
     }),
     (f8.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), H_(t, e));
+      e && typeof e == `object` && (e = e.RDa), H_(t, e);
     }),
     (f8.prototype.resize = f8.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), U_(t, e));
+        e && typeof e == `object` && (e = e.RDa), U_(t, e);
       }),
     (f8.prototype.clear = f8.prototype.clear =
       function () {
@@ -19418,9 +19407,9 @@ async function Ir(e = {}) {
       }),
     (f8.prototype.__destroy__ = function () {
       G_(this.RDa);
-    }));
+    });
   function p8(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
@@ -19437,9 +19426,9 @@ async function Ir(e = {}) {
                 : i === void 0
                   ? q_(e, t, n, r)
                   : J_(e, t, n, r, i)),
-      (d(p8)[this.RDa] = this));
+      (d(p8)[this.RDa] = this);
   }
-  ((p8.prototype = Object.create(u.prototype)),
+  (p8.prototype = Object.create(u.prototype)),
     (p8.prototype.constructor = p8),
     (p8.prototype.SDa = p8),
     (p8.TDa = {}),
@@ -19447,12 +19436,12 @@ async function Ir(e = {}) {
     (p8.prototype.get_mIdx = p8.prototype.JKa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Y_(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Y_(t, e);
       }),
     (p8.prototype.set_mIdx = p8.prototype.SOa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), X_(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), X_(n, e, t);
       }),
     Object.defineProperty(p8.prototype, "mIdx", { get: p8.prototype.JKa, set: p8.prototype.SOa }),
     (p8.prototype.get_mMaterialIndex = p8.prototype.oFa =
@@ -19462,7 +19451,7 @@ async function Ir(e = {}) {
     (p8.prototype.set_mMaterialIndex = p8.prototype.dGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Q_(t, e));
+        e && typeof e == `object` && (e = e.RDa), Q_(t, e);
       }),
     Object.defineProperty(p8.prototype, "mMaterialIndex", { get: p8.prototype.oFa, set: p8.prototype.dGa }),
     (p8.prototype.get_mUserData = p8.prototype.UDa =
@@ -19472,16 +19461,16 @@ async function Ir(e = {}) {
     (p8.prototype.set_mUserData = p8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ev(t, e));
+        e && typeof e == `object` && (e = e.RDa), ev(t, e);
       }),
     Object.defineProperty(p8.prototype, "mUserData", { get: p8.prototype.UDa, set: p8.prototype.VDa }),
     (p8.prototype.__destroy__ = function () {
       tv(this.RDa);
-    }));
+    });
   function m8() {
-    ((this.RDa = nv()), (d(m8)[this.RDa] = this));
+    (this.RDa = nv()), (d(m8)[this.RDa] = this);
   }
-  ((m8.prototype = Object.create(u.prototype)),
+  (m8.prototype = Object.create(u.prototype)),
     (m8.prototype.constructor = m8),
     (m8.prototype.SDa = m8),
     (m8.TDa = {}),
@@ -19497,20 +19486,20 @@ async function Ir(e = {}) {
     (m8.prototype.at = m8.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(av(t, e), p8));
+        return e && typeof e == `object` && (e = e.RDa), f(av(t, e), p8);
       }),
     (m8.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ov(t, e));
+      e && typeof e == `object` && (e = e.RDa), ov(t, e);
     }),
     (m8.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sv(t, e));
+      e && typeof e == `object` && (e = e.RDa), sv(t, e);
     }),
     (m8.prototype.resize = m8.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cv(t, e));
+        e && typeof e == `object` && (e = e.RDa), cv(t, e);
       }),
     (m8.prototype.clear = m8.prototype.clear =
       function () {
@@ -19518,11 +19507,11 @@ async function Ir(e = {}) {
       }),
     (m8.prototype.__destroy__ = function () {
       uv(this.RDa);
-    }));
+    });
   function h8() {
     throw `cannot construct a ShapeResult, no constructor in IDL`;
   }
-  ((h8.prototype = Object.create(u.prototype)),
+  (h8.prototype = Object.create(u.prototype)),
     (h8.prototype.constructor = h8),
     (h8.prototype.SDa = h8),
     (h8.TDa = {}),
@@ -19544,17 +19533,17 @@ async function Ir(e = {}) {
     }),
     (h8.prototype.__destroy__ = function () {
       gv(this.RDa);
-    }));
+    });
   function g8(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       i && typeof i == `object` && (i = i.RDa),
       (this.RDa = _v(e, t, n, r, i)),
-      (d(g8)[this.RDa] = this));
+      (d(g8)[this.RDa] = this);
   }
-  ((g8.prototype = Object.create(u.prototype)),
+  (g8.prototype = Object.create(u.prototype)),
     (g8.prototype.constructor = g8),
     (g8.prototype.SDa = g8),
     (g8.TDa = {}),
@@ -19570,18 +19559,18 @@ async function Ir(e = {}) {
     }),
     (g8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(xv(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(xv(t, e), c8);
     }),
     (g8.prototype.__destroy__ = function () {
       Sv(this.RDa);
-    }));
+    });
   function _8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = t === void 0 ? Cv(e) : wv(e, t)),
-      (d(_8)[this.RDa] = this));
+      (d(_8)[this.RDa] = this);
   }
-  ((_8.prototype = Object.create(H3.prototype)),
+  (_8.prototype = Object.create(H3.prototype)),
     (_8.prototype.constructor = _8),
     (_8.prototype.SDa = _8),
     (_8.TDa = {}),
@@ -19608,7 +19597,7 @@ async function Ir(e = {}) {
     (_8.prototype.set_mRadius = _8.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jv(t, e));
+        e && typeof e == `object` && (e = e.RDa), jv(t, e);
       }),
     Object.defineProperty(_8.prototype, "mRadius", { get: _8.prototype.tEa, set: _8.prototype.AEa }),
     (_8.prototype.get_mMaterial = _8.prototype.dEa =
@@ -19618,7 +19607,7 @@ async function Ir(e = {}) {
     (_8.prototype.set_mMaterial = _8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nv(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nv(t, e);
       }),
     Object.defineProperty(_8.prototype, "mMaterial", { get: _8.prototype.dEa, set: _8.prototype.fEa }),
     (_8.prototype.get_mDensity = _8.prototype.hEa =
@@ -19628,7 +19617,7 @@ async function Ir(e = {}) {
     (_8.prototype.set_mDensity = _8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fv(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fv(t, e);
       }),
     Object.defineProperty(_8.prototype, "mDensity", { get: _8.prototype.hEa, set: _8.prototype.jEa }),
     (_8.prototype.get_mUserData = _8.prototype.UDa =
@@ -19638,19 +19627,19 @@ async function Ir(e = {}) {
     (_8.prototype.set_mUserData = _8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lv(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lv(t, e);
       }),
     Object.defineProperty(_8.prototype, "mUserData", { get: _8.prototype.UDa, set: _8.prototype.VDa }),
     (_8.prototype.__destroy__ = function () {
       Rv(this.RDa);
-    }));
+    });
   function v8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = t === void 0 ? zv(e) : Bv(e, t)),
-      (d(v8)[this.RDa] = this));
+      (d(v8)[this.RDa] = this);
   }
-  ((v8.prototype = Object.create(U3.prototype)),
+  (v8.prototype = Object.create(U3.prototype)),
     (v8.prototype.constructor = v8),
     (v8.prototype.SDa = v8),
     (v8.TDa = {}),
@@ -19660,14 +19649,14 @@ async function Ir(e = {}) {
     }),
     (v8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Hv(t, e));
+      e && typeof e == `object` && (e = e.RDa), Hv(t, e);
     }),
     (v8.prototype.GetDensity = function () {
       return Uv(this.RDa);
     }),
     (v8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Wv(t, e));
+      e && typeof e == `object` && (e = e.RDa), Wv(t, e);
     }),
     (v8.prototype.GetRefCount = function () {
       return Gv(this.RDa);
@@ -19692,7 +19681,7 @@ async function Ir(e = {}) {
     }),
     (v8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qv(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Qv(n, e, t), w);
     }),
     (v8.prototype.GetCenterOfMass = function () {
       return f($v(this.RDa), v);
@@ -19702,7 +19691,7 @@ async function Ir(e = {}) {
     }),
     (v8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ty(t, e));
+      e && typeof e == `object` && (e = e.RDa), ty(t, e);
     }),
     (v8.prototype.GetSubShapeIDBitsRecursive = function () {
       return ny(this.RDa);
@@ -19715,19 +19704,19 @@ async function Ir(e = {}) {
     }),
     (v8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ay(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ay(n, e, t), p);
     }),
     (v8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(oy(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(oy(t, e), c8);
     }),
     (v8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(sy(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(sy(n, e, t), v);
     }),
     (v8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), cy(t, e));
+      return e && typeof e == `object` && (e = e.RDa), cy(t, e);
     }),
     (v8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -19745,27 +19734,27 @@ async function Ir(e = {}) {
     }),
     (v8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!dy(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!dy(t, e);
     }),
     (v8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fy(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(fy(t, e), v);
     }),
     (v8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(py(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(py(t, e), h8);
     }),
     (v8.prototype.__destroy__ = function () {
       my(this.RDa);
-    }));
+    });
   function y8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = t === void 0 ? hy(e) : n === void 0 ? gy(e, t) : _y(e, t, n)),
-      (d(y8)[this.RDa] = this));
+      (d(y8)[this.RDa] = this);
   }
-  ((y8.prototype = Object.create(H3.prototype)),
+  (y8.prototype = Object.create(H3.prototype)),
     (y8.prototype.constructor = y8),
     (y8.prototype.SDa = y8),
     (y8.TDa = {}),
@@ -19792,7 +19781,7 @@ async function Ir(e = {}) {
     (y8.prototype.set_mHalfExtent = y8.prototype.EIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wy(t, e));
+        e && typeof e == `object` && (e = e.RDa), wy(t, e);
       }),
     Object.defineProperty(y8.prototype, "mHalfExtent", { get: y8.prototype.gHa, set: y8.prototype.EIa }),
     (y8.prototype.get_mConvexRadius = y8.prototype.fFa =
@@ -19802,7 +19791,7 @@ async function Ir(e = {}) {
     (y8.prototype.set_mConvexRadius = y8.prototype.UFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ey(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ey(t, e);
       }),
     Object.defineProperty(y8.prototype, "mConvexRadius", { get: y8.prototype.fFa, set: y8.prototype.UFa }),
     (y8.prototype.get_mMaterial = y8.prototype.dEa =
@@ -19812,7 +19801,7 @@ async function Ir(e = {}) {
     (y8.prototype.set_mMaterial = y8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Oy(t, e));
+        e && typeof e == `object` && (e = e.RDa), Oy(t, e);
       }),
     Object.defineProperty(y8.prototype, "mMaterial", { get: y8.prototype.dEa, set: y8.prototype.fEa }),
     (y8.prototype.get_mDensity = y8.prototype.hEa =
@@ -19822,7 +19811,7 @@ async function Ir(e = {}) {
     (y8.prototype.set_mDensity = y8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ay(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ay(t, e);
       }),
     Object.defineProperty(y8.prototype, "mDensity", { get: y8.prototype.hEa, set: y8.prototype.jEa }),
     (y8.prototype.get_mUserData = y8.prototype.UDa =
@@ -19832,20 +19821,20 @@ async function Ir(e = {}) {
     (y8.prototype.set_mUserData = y8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), My(t, e));
+        e && typeof e == `object` && (e = e.RDa), My(t, e);
       }),
     Object.defineProperty(y8.prototype, "mUserData", { get: y8.prototype.UDa, set: y8.prototype.VDa }),
     (y8.prototype.__destroy__ = function () {
       Ny(this.RDa);
-    }));
+    });
   function b8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = t === void 0 ? Py(e) : n === void 0 ? Fy(e, t) : Iy(e, t, n)),
-      (d(b8)[this.RDa] = this));
+      (d(b8)[this.RDa] = this);
   }
-  ((b8.prototype = Object.create(U3.prototype)),
+  (b8.prototype = Object.create(U3.prototype)),
     (b8.prototype.constructor = b8),
     (b8.prototype.SDa = b8),
     (b8.TDa = {}),
@@ -19855,14 +19844,14 @@ async function Ir(e = {}) {
     }),
     (b8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ry(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ry(t, e);
     }),
     (b8.prototype.GetDensity = function () {
       return zy(this.RDa);
     }),
     (b8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), By(t, e));
+      e && typeof e == `object` && (e = e.RDa), By(t, e);
     }),
     (b8.prototype.GetRefCount = function () {
       return Vy(this.RDa);
@@ -19887,7 +19876,7 @@ async function Ir(e = {}) {
     }),
     (b8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Jy(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Jy(n, e, t), w);
     }),
     (b8.prototype.GetCenterOfMass = function () {
       return f(Yy(this.RDa), v);
@@ -19897,7 +19886,7 @@ async function Ir(e = {}) {
     }),
     (b8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Zy(t, e));
+      e && typeof e == `object` && (e = e.RDa), Zy(t, e);
     }),
     (b8.prototype.GetSubShapeIDBitsRecursive = function () {
       return Qy(this.RDa);
@@ -19910,19 +19899,19 @@ async function Ir(e = {}) {
     }),
     (b8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tb(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tb(n, e, t), p);
     }),
     (b8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nb(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(nb(t, e), c8);
     }),
     (b8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(rb(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(rb(n, e, t), v);
     }),
     (b8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ib(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ib(t, e);
     }),
     (b8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -19940,28 +19929,28 @@ async function Ir(e = {}) {
     }),
     (b8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!sb(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!sb(t, e);
     }),
     (b8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cb(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(cb(t, e), v);
     }),
     (b8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(lb(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(lb(t, e), h8);
     }),
     (b8.prototype.__destroy__ = function () {
       ub(this.RDa);
-    }));
+    });
   function x8(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = n === void 0 ? db(e, t) : r === void 0 ? fb(e, t, n) : pb(e, t, n, r)),
-      (d(x8)[this.RDa] = this));
+      (d(x8)[this.RDa] = this);
   }
-  ((x8.prototype = Object.create(H3.prototype)),
+  (x8.prototype = Object.create(H3.prototype)),
     (x8.prototype.constructor = x8),
     (x8.prototype.SDa = x8),
     (x8.TDa = {}),
@@ -19988,7 +19977,7 @@ async function Ir(e = {}) {
     (x8.prototype.set_mHalfHeight = x8.prototype.FIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bb(t, e));
+        e && typeof e == `object` && (e = e.RDa), bb(t, e);
       }),
     Object.defineProperty(x8.prototype, "mHalfHeight", { get: x8.prototype.hHa, set: x8.prototype.FIa }),
     (x8.prototype.get_mRadius = x8.prototype.tEa =
@@ -19998,7 +19987,7 @@ async function Ir(e = {}) {
     (x8.prototype.set_mRadius = x8.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sb(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sb(t, e);
       }),
     Object.defineProperty(x8.prototype, "mRadius", { get: x8.prototype.tEa, set: x8.prototype.AEa }),
     (x8.prototype.get_mConvexRadius = x8.prototype.fFa =
@@ -20008,7 +19997,7 @@ async function Ir(e = {}) {
     (x8.prototype.set_mConvexRadius = x8.prototype.UFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wb(t, e));
+        e && typeof e == `object` && (e = e.RDa), wb(t, e);
       }),
     Object.defineProperty(x8.prototype, "mConvexRadius", { get: x8.prototype.fFa, set: x8.prototype.UFa }),
     (x8.prototype.get_mMaterial = x8.prototype.dEa =
@@ -20018,7 +20007,7 @@ async function Ir(e = {}) {
     (x8.prototype.set_mMaterial = x8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Eb(t, e));
+        e && typeof e == `object` && (e = e.RDa), Eb(t, e);
       }),
     Object.defineProperty(x8.prototype, "mMaterial", { get: x8.prototype.dEa, set: x8.prototype.fEa }),
     (x8.prototype.get_mDensity = x8.prototype.hEa =
@@ -20028,7 +20017,7 @@ async function Ir(e = {}) {
     (x8.prototype.set_mDensity = x8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ob(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ob(t, e);
       }),
     Object.defineProperty(x8.prototype, "mDensity", { get: x8.prototype.hEa, set: x8.prototype.jEa }),
     (x8.prototype.get_mUserData = x8.prototype.UDa =
@@ -20038,21 +20027,21 @@ async function Ir(e = {}) {
     (x8.prototype.set_mUserData = x8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ab(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ab(t, e);
       }),
     Object.defineProperty(x8.prototype, "mUserData", { get: x8.prototype.UDa, set: x8.prototype.VDa }),
     (x8.prototype.__destroy__ = function () {
       jb(this.RDa);
-    }));
+    });
   function S8(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = r === void 0 ? Mb(e, t, n) : Nb(e, t, n, r)),
-      (d(S8)[this.RDa] = this));
+      (d(S8)[this.RDa] = this);
   }
-  ((S8.prototype = Object.create(U3.prototype)),
+  (S8.prototype = Object.create(U3.prototype)),
     (S8.prototype.constructor = S8),
     (S8.prototype.SDa = S8),
     (S8.TDa = {}),
@@ -20065,14 +20054,14 @@ async function Ir(e = {}) {
     }),
     (S8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ib(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ib(t, e);
     }),
     (S8.prototype.GetDensity = function () {
       return Lb(this.RDa);
     }),
     (S8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rb(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rb(t, e);
     }),
     (S8.prototype.GetRefCount = function () {
       return zb(this.RDa);
@@ -20097,7 +20086,7 @@ async function Ir(e = {}) {
     }),
     (S8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Kb(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Kb(n, e, t), w);
     }),
     (S8.prototype.GetCenterOfMass = function () {
       return f(qb(this.RDa), v);
@@ -20107,7 +20096,7 @@ async function Ir(e = {}) {
     }),
     (S8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yb(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yb(t, e);
     }),
     (S8.prototype.GetSubShapeIDBitsRecursive = function () {
       return Xb(this.RDa);
@@ -20120,19 +20109,19 @@ async function Ir(e = {}) {
     }),
     (S8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($b(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($b(n, e, t), p);
     }),
     (S8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ex(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(ex(t, e), c8);
     }),
     (S8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tx(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tx(n, e, t), v);
     }),
     (S8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), nx(t, e));
+      return e && typeof e == `object` && (e = e.RDa), nx(t, e);
     }),
     (S8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -20150,29 +20139,29 @@ async function Ir(e = {}) {
     }),
     (S8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!ax(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!ax(t, e);
     }),
     (S8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ox(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ox(t, e), v);
     }),
     (S8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sx(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(sx(t, e), h8);
     }),
     (S8.prototype.__destroy__ = function () {
       cx(this.RDa);
-    }));
+    });
   function C8(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       i && typeof i == `object` && (i = i.RDa),
       (this.RDa = r === void 0 ? lx(e, t, n) : i === void 0 ? ux(e, t, n, r) : dx(e, t, n, r, i)),
-      (d(C8)[this.RDa] = this));
+      (d(C8)[this.RDa] = this);
   }
-  ((C8.prototype = Object.create(H3.prototype)),
+  (C8.prototype = Object.create(H3.prototype)),
     (C8.prototype.constructor = C8),
     (C8.prototype.SDa = C8),
     (C8.TDa = {}),
@@ -20199,7 +20188,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mHalfHeight = C8.prototype.FIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vx(t, e));
+        e && typeof e == `object` && (e = e.RDa), vx(t, e);
       }),
     Object.defineProperty(C8.prototype, "mHalfHeight", { get: C8.prototype.hHa, set: C8.prototype.FIa }),
     (C8.prototype.get_mTopRadius = C8.prototype.ZHa =
@@ -20209,7 +20198,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mTopRadius = C8.prototype.xJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bx(t, e));
+        e && typeof e == `object` && (e = e.RDa), bx(t, e);
       }),
     Object.defineProperty(C8.prototype, "mTopRadius", { get: C8.prototype.ZHa, set: C8.prototype.xJa }),
     (C8.prototype.get_mBottomRadius = C8.prototype.SGa =
@@ -20219,7 +20208,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mBottomRadius = C8.prototype.qIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sx(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sx(t, e);
       }),
     Object.defineProperty(C8.prototype, "mBottomRadius", { get: C8.prototype.SGa, set: C8.prototype.qIa }),
     (C8.prototype.get_mConvexRadius = C8.prototype.fFa =
@@ -20229,7 +20218,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mConvexRadius = C8.prototype.UFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wx(t, e));
+        e && typeof e == `object` && (e = e.RDa), wx(t, e);
       }),
     Object.defineProperty(C8.prototype, "mConvexRadius", { get: C8.prototype.fFa, set: C8.prototype.UFa }),
     (C8.prototype.get_mMaterial = C8.prototype.dEa =
@@ -20239,7 +20228,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mMaterial = C8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ex(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ex(t, e);
       }),
     Object.defineProperty(C8.prototype, "mMaterial", { get: C8.prototype.dEa, set: C8.prototype.fEa }),
     (C8.prototype.get_mDensity = C8.prototype.hEa =
@@ -20249,7 +20238,7 @@ async function Ir(e = {}) {
     (C8.prototype.set_mDensity = C8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ox(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ox(t, e);
       }),
     Object.defineProperty(C8.prototype, "mDensity", { get: C8.prototype.hEa, set: C8.prototype.jEa }),
     (C8.prototype.get_mUserData = C8.prototype.UDa =
@@ -20259,16 +20248,16 @@ async function Ir(e = {}) {
     (C8.prototype.set_mUserData = C8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ax(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ax(t, e);
       }),
     Object.defineProperty(C8.prototype, "mUserData", { get: C8.prototype.UDa, set: C8.prototype.VDa }),
     (C8.prototype.__destroy__ = function () {
       jx(this.RDa);
-    }));
+    });
   function w8() {
     throw `cannot construct a TaperedCylinderShape, no constructor in IDL`;
   }
-  ((w8.prototype = Object.create(U3.prototype)),
+  (w8.prototype = Object.create(U3.prototype)),
     (w8.prototype.constructor = w8),
     (w8.prototype.SDa = w8),
     (w8.TDa = {}),
@@ -20287,14 +20276,14 @@ async function Ir(e = {}) {
     }),
     (w8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ix(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ix(t, e);
     }),
     (w8.prototype.GetDensity = function () {
       return Lx(this.RDa);
     }),
     (w8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Rx(t, e));
+      e && typeof e == `object` && (e = e.RDa), Rx(t, e);
     }),
     (w8.prototype.GetRefCount = function () {
       return zx(this.RDa);
@@ -20319,7 +20308,7 @@ async function Ir(e = {}) {
     }),
     (w8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Kx(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Kx(n, e, t), w);
     }),
     (w8.prototype.GetCenterOfMass = function () {
       return f(qx(this.RDa), v);
@@ -20329,7 +20318,7 @@ async function Ir(e = {}) {
     }),
     (w8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yx(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yx(t, e);
     }),
     (w8.prototype.GetSubShapeIDBitsRecursive = function () {
       return Xx(this.RDa);
@@ -20342,19 +20331,19 @@ async function Ir(e = {}) {
     }),
     (w8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($x(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($x(n, e, t), p);
     }),
     (w8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(eS(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(eS(t, e), c8);
     }),
     (w8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tS(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(tS(n, e, t), v);
     }),
     (w8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), nS(t, e));
+      return e && typeof e == `object` && (e = e.RDa), nS(t, e);
     }),
     (w8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -20372,27 +20361,27 @@ async function Ir(e = {}) {
     }),
     (w8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!aS(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!aS(t, e);
     }),
     (w8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(oS(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(oS(t, e), v);
     }),
     (w8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sS(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(sS(t, e), h8);
     }),
     (w8.prototype.__destroy__ = function () {
       cS(this.RDa);
-    }));
+    });
   function T8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = n === void 0 ? lS(e, t) : uS(e, t, n)),
-      (d(T8)[this.RDa] = this));
+      (d(T8)[this.RDa] = this);
   }
-  ((T8.prototype = Object.create(H3.prototype)),
+  (T8.prototype = Object.create(H3.prototype)),
     (T8.prototype.constructor = T8),
     (T8.prototype.SDa = T8),
     (T8.TDa = {}),
@@ -20419,7 +20408,7 @@ async function Ir(e = {}) {
     (T8.prototype.set_mRadius = T8.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _S(t, e));
+        e && typeof e == `object` && (e = e.RDa), _S(t, e);
       }),
     Object.defineProperty(T8.prototype, "mRadius", { get: T8.prototype.tEa, set: T8.prototype.AEa }),
     (T8.prototype.get_mHalfHeightOfCylinder = T8.prototype.CKa =
@@ -20429,7 +20418,7 @@ async function Ir(e = {}) {
     (T8.prototype.set_mHalfHeightOfCylinder = T8.prototype.LOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yS(t, e));
+        e && typeof e == `object` && (e = e.RDa), yS(t, e);
       }),
     Object.defineProperty(T8.prototype, "mHalfHeightOfCylinder", { get: T8.prototype.CKa, set: T8.prototype.LOa }),
     (T8.prototype.get_mMaterial = T8.prototype.dEa =
@@ -20439,7 +20428,7 @@ async function Ir(e = {}) {
     (T8.prototype.set_mMaterial = T8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xS(t, e));
+        e && typeof e == `object` && (e = e.RDa), xS(t, e);
       }),
     Object.defineProperty(T8.prototype, "mMaterial", { get: T8.prototype.dEa, set: T8.prototype.fEa }),
     (T8.prototype.get_mDensity = T8.prototype.hEa =
@@ -20449,7 +20438,7 @@ async function Ir(e = {}) {
     (T8.prototype.set_mDensity = T8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CS(t, e));
+        e && typeof e == `object` && (e = e.RDa), CS(t, e);
       }),
     Object.defineProperty(T8.prototype, "mDensity", { get: T8.prototype.hEa, set: T8.prototype.jEa }),
     (T8.prototype.get_mUserData = T8.prototype.UDa =
@@ -20459,20 +20448,20 @@ async function Ir(e = {}) {
     (T8.prototype.set_mUserData = T8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), TS(t, e));
+        e && typeof e == `object` && (e = e.RDa), TS(t, e);
       }),
     Object.defineProperty(T8.prototype, "mUserData", { get: T8.prototype.UDa, set: T8.prototype.VDa }),
     (T8.prototype.__destroy__ = function () {
       ES(this.RDa);
-    }));
+    });
   function E8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = n === void 0 ? DS(e, t) : OS(e, t, n)),
-      (d(E8)[this.RDa] = this));
+      (d(E8)[this.RDa] = this);
   }
-  ((E8.prototype = Object.create(U3.prototype)),
+  (E8.prototype = Object.create(U3.prototype)),
     (E8.prototype.constructor = E8),
     (E8.prototype.SDa = E8),
     (E8.TDa = {}),
@@ -20485,14 +20474,14 @@ async function Ir(e = {}) {
     }),
     (E8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jS(t, e));
+      e && typeof e == `object` && (e = e.RDa), jS(t, e);
     }),
     (E8.prototype.GetDensity = function () {
       return MS(this.RDa);
     }),
     (E8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), NS(t, e));
+      e && typeof e == `object` && (e = e.RDa), NS(t, e);
     }),
     (E8.prototype.GetRefCount = function () {
       return PS(this.RDa);
@@ -20517,7 +20506,7 @@ async function Ir(e = {}) {
     }),
     (E8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VS(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VS(n, e, t), w);
     }),
     (E8.prototype.GetCenterOfMass = function () {
       return f(HS(this.RDa), v);
@@ -20527,7 +20516,7 @@ async function Ir(e = {}) {
     }),
     (E8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), WS(t, e));
+      e && typeof e == `object` && (e = e.RDa), WS(t, e);
     }),
     (E8.prototype.GetSubShapeIDBitsRecursive = function () {
       return GS(this.RDa);
@@ -20540,19 +20529,19 @@ async function Ir(e = {}) {
     }),
     (E8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(JS(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(JS(n, e, t), p);
     }),
     (E8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(YS(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(YS(t, e), c8);
     }),
     (E8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(XS(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(XS(n, e, t), v);
     }),
     (E8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ZS(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ZS(t, e);
     }),
     (E8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -20570,28 +20559,28 @@ async function Ir(e = {}) {
     }),
     (E8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!eC(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!eC(t, e);
     }),
     (E8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(tC(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(tC(t, e), v);
     }),
     (E8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nC(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(nC(t, e), h8);
     }),
     (E8.prototype.__destroy__ = function () {
       rC(this.RDa);
-    }));
+    });
   function D8(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = r === void 0 ? iC(e, t, n) : aC(e, t, n, r)),
-      (d(D8)[this.RDa] = this));
+      (d(D8)[this.RDa] = this);
   }
-  ((D8.prototype = Object.create(H3.prototype)),
+  (D8.prototype = Object.create(H3.prototype)),
     (D8.prototype.constructor = D8),
     (D8.prototype.SDa = D8),
     (D8.TDa = {}),
@@ -20618,7 +20607,7 @@ async function Ir(e = {}) {
     (D8.prototype.set_mHalfHeightOfTaperedCylinder = D8.prototype.MOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fC(t, e));
+        e && typeof e == `object` && (e = e.RDa), fC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mHalfHeightOfTaperedCylinder", { get: D8.prototype.DKa, set: D8.prototype.MOa }),
     (D8.prototype.get_mTopRadius = D8.prototype.ZHa =
@@ -20628,7 +20617,7 @@ async function Ir(e = {}) {
     (D8.prototype.set_mTopRadius = D8.prototype.xJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mC(t, e));
+        e && typeof e == `object` && (e = e.RDa), mC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mTopRadius", { get: D8.prototype.ZHa, set: D8.prototype.xJa }),
     (D8.prototype.get_mBottomRadius = D8.prototype.SGa =
@@ -20638,7 +20627,7 @@ async function Ir(e = {}) {
     (D8.prototype.set_mBottomRadius = D8.prototype.qIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gC(t, e));
+        e && typeof e == `object` && (e = e.RDa), gC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mBottomRadius", { get: D8.prototype.SGa, set: D8.prototype.qIa }),
     (D8.prototype.get_mMaterial = D8.prototype.dEa =
@@ -20648,7 +20637,7 @@ async function Ir(e = {}) {
     (D8.prototype.set_mMaterial = D8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vC(t, e));
+        e && typeof e == `object` && (e = e.RDa), vC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mMaterial", { get: D8.prototype.dEa, set: D8.prototype.fEa }),
     (D8.prototype.get_mDensity = D8.prototype.hEa =
@@ -20658,7 +20647,7 @@ async function Ir(e = {}) {
     (D8.prototype.set_mDensity = D8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bC(t, e));
+        e && typeof e == `object` && (e = e.RDa), bC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mDensity", { get: D8.prototype.hEa, set: D8.prototype.jEa }),
     (D8.prototype.get_mUserData = D8.prototype.UDa =
@@ -20668,16 +20657,16 @@ async function Ir(e = {}) {
     (D8.prototype.set_mUserData = D8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SC(t, e));
+        e && typeof e == `object` && (e = e.RDa), SC(t, e);
       }),
     Object.defineProperty(D8.prototype, "mUserData", { get: D8.prototype.UDa, set: D8.prototype.VDa }),
     (D8.prototype.__destroy__ = function () {
       CC(this.RDa);
-    }));
+    });
   function O8() {
     throw `cannot construct a TaperedCapsuleShape, no constructor in IDL`;
   }
-  ((O8.prototype = Object.create(U3.prototype)),
+  (O8.prototype = Object.create(U3.prototype)),
     (O8.prototype.constructor = O8),
     (O8.prototype.SDa = O8),
     (O8.TDa = {}),
@@ -20693,14 +20682,14 @@ async function Ir(e = {}) {
     }),
     (O8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), DC(t, e));
+      e && typeof e == `object` && (e = e.RDa), DC(t, e);
     }),
     (O8.prototype.GetDensity = function () {
       return OC(this.RDa);
     }),
     (O8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kC(t, e));
+      e && typeof e == `object` && (e = e.RDa), kC(t, e);
     }),
     (O8.prototype.GetRefCount = function () {
       return AC(this.RDa);
@@ -20725,7 +20714,7 @@ async function Ir(e = {}) {
     }),
     (O8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(LC(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(LC(n, e, t), w);
     }),
     (O8.prototype.GetCenterOfMass = function () {
       return f(RC(this.RDa), v);
@@ -20735,7 +20724,7 @@ async function Ir(e = {}) {
     }),
     (O8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), BC(t, e));
+      e && typeof e == `object` && (e = e.RDa), BC(t, e);
     }),
     (O8.prototype.GetSubShapeIDBitsRecursive = function () {
       return VC(this.RDa);
@@ -20748,19 +20737,19 @@ async function Ir(e = {}) {
     }),
     (O8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(WC(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(WC(n, e, t), p);
     }),
     (O8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(GC(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(GC(t, e), c8);
     }),
     (O8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(KC(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(KC(n, e, t), v);
     }),
     (O8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), qC(t, e));
+      return e && typeof e == `object` && (e = e.RDa), qC(t, e);
     }),
     (O8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -20778,23 +20767,23 @@ async function Ir(e = {}) {
     }),
     (O8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!XC(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!XC(t, e);
     }),
     (O8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ZC(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(ZC(t, e), v);
     }),
     (O8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(QC(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(QC(t, e), h8);
     }),
     (O8.prototype.__destroy__ = function () {
       $C(this.RDa);
-    }));
+    });
   function k8() {
-    ((this.RDa = ew()), (d(k8)[this.RDa] = this));
+    (this.RDa = ew()), (d(k8)[this.RDa] = this);
   }
-  ((k8.prototype = Object.create(H3.prototype)),
+  (k8.prototype = Object.create(H3.prototype)),
     (k8.prototype.constructor = k8),
     (k8.prototype.SDa = k8),
     (k8.TDa = {}),
@@ -20821,7 +20810,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mPoints = k8.prototype.HQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sw(t, e));
+        e && typeof e == `object` && (e = e.RDa), sw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mPoints", { get: k8.prototype.yMa, set: k8.prototype.HQa }),
     (k8.prototype.get_mMaxConvexRadius = k8.prototype.CLa =
@@ -20831,7 +20820,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mMaxConvexRadius = k8.prototype.LPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lw(t, e));
+        e && typeof e == `object` && (e = e.RDa), lw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mMaxConvexRadius", { get: k8.prototype.CLa, set: k8.prototype.LPa }),
     (k8.prototype.get_mMaxErrorConvexRadius = k8.prototype.DLa =
@@ -20841,7 +20830,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mMaxErrorConvexRadius = k8.prototype.MPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dw(t, e));
+        e && typeof e == `object` && (e = e.RDa), dw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mMaxErrorConvexRadius", { get: k8.prototype.DLa, set: k8.prototype.MPa }),
     (k8.prototype.get_mHullTolerance = k8.prototype.HKa =
@@ -20851,7 +20840,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mHullTolerance = k8.prototype.QOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pw(t, e));
+        e && typeof e == `object` && (e = e.RDa), pw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mHullTolerance", { get: k8.prototype.HKa, set: k8.prototype.QOa }),
     (k8.prototype.get_mMaterial = k8.prototype.dEa =
@@ -20861,7 +20850,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mMaterial = k8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hw(t, e));
+        e && typeof e == `object` && (e = e.RDa), hw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mMaterial", { get: k8.prototype.dEa, set: k8.prototype.fEa }),
     (k8.prototype.get_mDensity = k8.prototype.hEa =
@@ -20871,7 +20860,7 @@ async function Ir(e = {}) {
     (k8.prototype.set_mDensity = k8.prototype.jEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _w(t, e));
+        e && typeof e == `object` && (e = e.RDa), _w(t, e);
       }),
     Object.defineProperty(k8.prototype, "mDensity", { get: k8.prototype.hEa, set: k8.prototype.jEa }),
     (k8.prototype.get_mUserData = k8.prototype.UDa =
@@ -20881,30 +20870,30 @@ async function Ir(e = {}) {
     (k8.prototype.set_mUserData = k8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yw(t, e));
+        e && typeof e == `object` && (e = e.RDa), yw(t, e);
       }),
     Object.defineProperty(k8.prototype, "mUserData", { get: k8.prototype.UDa, set: k8.prototype.VDa }),
     (k8.prototype.__destroy__ = function () {
       bw(this.RDa);
-    }));
+    });
   function A8() {
     throw `cannot construct a ConvexHullShape, no constructor in IDL`;
   }
-  ((A8.prototype = Object.create(U3.prototype)),
+  (A8.prototype = Object.create(U3.prototype)),
     (A8.prototype.constructor = A8),
     (A8.prototype.SDa = A8),
     (A8.TDa = {}),
     (t.ConvexHullShape = A8),
     (A8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xw(t, e));
+      e && typeof e == `object` && (e = e.RDa), xw(t, e);
     }),
     (A8.prototype.GetDensity = function () {
       return Sw(this.RDa);
     }),
     (A8.prototype.SetDensity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Cw(t, e));
+      e && typeof e == `object` && (e = e.RDa), Cw(t, e);
     }),
     (A8.prototype.GetRefCount = function () {
       return ww(this.RDa);
@@ -20929,7 +20918,7 @@ async function Ir(e = {}) {
     }),
     (A8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jw(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jw(n, e, t), w);
     }),
     (A8.prototype.GetCenterOfMass = function () {
       return f(Mw(this.RDa), v);
@@ -20939,7 +20928,7 @@ async function Ir(e = {}) {
     }),
     (A8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pw(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pw(t, e);
     }),
     (A8.prototype.GetSubShapeIDBitsRecursive = function () {
       return Fw(this.RDa);
@@ -20952,19 +20941,19 @@ async function Ir(e = {}) {
     }),
     (A8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Rw(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Rw(n, e, t), p);
     }),
     (A8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(zw(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(zw(t, e), c8);
     }),
     (A8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Bw(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Bw(n, e, t), v);
     }),
     (A8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Vw(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Vw(t, e);
     }),
     (A8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -20982,23 +20971,23 @@ async function Ir(e = {}) {
     }),
     (A8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Ww(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Ww(t, e);
     }),
     (A8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Gw(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Gw(t, e), v);
     }),
     (A8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Kw(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(Kw(t, e), h8);
     }),
     (A8.prototype.__destroy__ = function () {
       qw(this.RDa);
-    }));
+    });
   function j8() {
     throw `cannot construct a CompoundShapeSubShape, no constructor in IDL`;
   }
-  ((j8.prototype = Object.create(u.prototype)),
+  (j8.prototype = Object.create(u.prototype)),
     (j8.prototype.constructor = j8),
     (j8.prototype.SDa = j8),
     (j8.TDa = {}),
@@ -21016,7 +21005,7 @@ async function Ir(e = {}) {
     (j8.prototype.set_mShape = j8.prototype.ZEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zw(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zw(t, e);
       }),
     Object.defineProperty(j8.prototype, "mShape", { get: j8.prototype.vEa, set: j8.prototype.ZEa }),
     (j8.prototype.get_mUserData = j8.prototype.UDa =
@@ -21026,43 +21015,43 @@ async function Ir(e = {}) {
     (j8.prototype.set_mUserData = j8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $w(t, e));
+        e && typeof e == `object` && (e = e.RDa), $w(t, e);
       }),
     Object.defineProperty(j8.prototype, "mUserData", { get: j8.prototype.UDa, set: j8.prototype.VDa }),
     (j8.prototype.__destroy__ = function () {
       eT(this.RDa);
-    }));
+    });
   function M8() {
-    ((this.RDa = tT()), (d(M8)[this.RDa] = this));
+    (this.RDa = tT()), (d(M8)[this.RDa] = this);
   }
-  ((M8.prototype = Object.create(W3.prototype)),
+  (M8.prototype = Object.create(W3.prototype)),
     (M8.prototype.constructor = M8),
     (M8.prototype.SDa = M8),
     (M8.TDa = {}),
     (t.StaticCompoundShapeSettings = M8),
     (M8.prototype.AddShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        nT(i, e, t, n, r));
+        nT(i, e, t, n, r);
     }),
     (M8.prototype.AddShapeShapeSettings = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        rT(i, e, t, n, r));
+        rT(i, e, t, n, r);
     }),
     (M8.prototype.AddShapeShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        iT(i, e, t, n, r));
+        iT(i, e, t, n, r);
     }),
     (M8.prototype.GetRefCount = function () {
       return aT(this.RDa);
@@ -21086,16 +21075,16 @@ async function Ir(e = {}) {
     (M8.prototype.set_mUserData = M8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dT(t, e));
+        e && typeof e == `object` && (e = e.RDa), dT(t, e);
       }),
     Object.defineProperty(M8.prototype, "mUserData", { get: M8.prototype.UDa, set: M8.prototype.VDa }),
     (M8.prototype.__destroy__ = function () {
       fT(this.RDa);
-    }));
+    });
   function N8() {
     throw `cannot construct a StaticCompoundShape, no constructor in IDL`;
   }
-  ((N8.prototype = Object.create(G3.prototype)),
+  (N8.prototype = Object.create(G3.prototype)),
     (N8.prototype.constructor = N8),
     (N8.prototype.SDa = N8),
     (N8.TDa = {}),
@@ -21105,7 +21094,7 @@ async function Ir(e = {}) {
     }),
     (N8.prototype.GetSubShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(mT(t, e), j8));
+      return e && typeof e == `object` && (e = e.RDa), f(mT(t, e), j8);
     }),
     (N8.prototype.GetRefCount = function () {
       return hT(this.RDa);
@@ -21130,7 +21119,7 @@ async function Ir(e = {}) {
     }),
     (N8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ST(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ST(n, e, t), w);
     }),
     (N8.prototype.GetCenterOfMass = function () {
       return f(CT(this.RDa), v);
@@ -21140,7 +21129,7 @@ async function Ir(e = {}) {
     }),
     (N8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), TT(t, e));
+      e && typeof e == `object` && (e = e.RDa), TT(t, e);
     }),
     (N8.prototype.GetSubShapeIDBitsRecursive = function () {
       return ET(this.RDa);
@@ -21153,19 +21142,19 @@ async function Ir(e = {}) {
     }),
     (N8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kT(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kT(n, e, t), p);
     }),
     (N8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(AT(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(AT(t, e), c8);
     }),
     (N8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jT(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jT(n, e, t), v);
     }),
     (N8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), MT(t, e));
+      return e && typeof e == `object` && (e = e.RDa), MT(t, e);
     }),
     (N8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -21183,50 +21172,50 @@ async function Ir(e = {}) {
     }),
     (N8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!FT(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!FT(t, e);
     }),
     (N8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(IT(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(IT(t, e), v);
     }),
     (N8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(LT(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(LT(t, e), h8);
     }),
     (N8.prototype.__destroy__ = function () {
       RT(this.RDa);
-    }));
+    });
   function P8() {
-    ((this.RDa = zT()), (d(P8)[this.RDa] = this));
+    (this.RDa = zT()), (d(P8)[this.RDa] = this);
   }
-  ((P8.prototype = Object.create(W3.prototype)),
+  (P8.prototype = Object.create(W3.prototype)),
     (P8.prototype.constructor = P8),
     (P8.prototype.SDa = P8),
     (P8.TDa = {}),
     (t.MutableCompoundShapeSettings = P8),
     (P8.prototype.AddShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        BT(i, e, t, n, r));
+        BT(i, e, t, n, r);
     }),
     (P8.prototype.AddShapeShapeSettings = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        VT(i, e, t, n, r));
+        VT(i, e, t, n, r);
     }),
     (P8.prototype.AddShapeShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        HT(i, e, t, n, r));
+        HT(i, e, t, n, r);
     }),
     (P8.prototype.GetRefCount = function () {
       return UT(this.RDa);
@@ -21250,16 +21239,16 @@ async function Ir(e = {}) {
     (P8.prototype.set_mUserData = P8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), YT(t, e));
+        e && typeof e == `object` && (e = e.RDa), YT(t, e);
       }),
     Object.defineProperty(P8.prototype, "mUserData", { get: P8.prototype.UDa, set: P8.prototype.VDa }),
     (P8.prototype.__destroy__ = function () {
       XT(this.RDa);
-    }));
+    });
   function F8() {
     throw `cannot construct a MutableCompoundShape, no constructor in IDL`;
   }
-  ((F8.prototype = Object.create(G3.prototype)),
+  (F8.prototype = Object.create(G3.prototype)),
     (F8.prototype.constructor = F8),
     (F8.prototype.SDa = F8),
     (F8.TDa = {}),
@@ -21277,23 +21266,23 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.RemoveShape = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $T(t, e));
+      e && typeof e == `object` && (e = e.RDa), $T(t, e);
     }),
     (F8.prototype.ModifyShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        r === void 0 ? eE(i, e, t, n) : tE(i, e, t, n, r));
+        r === void 0 ? eE(i, e, t, n) : tE(i, e, t, n, r);
     }),
     (F8.prototype.ModifyShapes = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        nE(i, e, t, n, r));
+        nE(i, e, t, n, r);
     }),
     (F8.prototype.AdjustCenterOfMass = function () {
       rE(this.RDa);
@@ -21303,7 +21292,7 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.GetSubShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(aE(t, e), j8));
+      return e && typeof e == `object` && (e = e.RDa), f(aE(t, e), j8);
     }),
     (F8.prototype.GetRefCount = function () {
       return oE(this.RDa);
@@ -21328,7 +21317,7 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(pE(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(pE(n, e, t), w);
     }),
     (F8.prototype.GetCenterOfMass = function () {
       return f(mE(this.RDa), v);
@@ -21338,7 +21327,7 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gE(t, e));
+      e && typeof e == `object` && (e = e.RDa), gE(t, e);
     }),
     (F8.prototype.GetSubShapeIDBitsRecursive = function () {
       return _E(this.RDa);
@@ -21351,19 +21340,19 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bE(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bE(n, e, t), p);
     }),
     (F8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(xE(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(xE(t, e), c8);
     }),
     (F8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(SE(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(SE(n, e, t), v);
     }),
     (F8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), CE(t, e));
+      return e && typeof e == `object` && (e = e.RDa), CE(t, e);
     }),
     (F8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -21381,23 +21370,23 @@ async function Ir(e = {}) {
     }),
     (F8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!EE(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!EE(t, e);
     }),
     (F8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(DE(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(DE(t, e), v);
     }),
     (F8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(OE(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(OE(t, e), h8);
     }),
     (F8.prototype.__destroy__ = function () {
       kE(this.RDa);
-    }));
+    });
   function I8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = AE(e, t)), (d(I8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = AE(e, t)), (d(I8)[this.RDa] = this);
   }
-  ((I8.prototype = Object.create(K3.prototype)),
+  (I8.prototype = Object.create(K3.prototype)),
     (I8.prototype.constructor = I8),
     (I8.prototype.SDa = I8),
     (I8.TDa = {}),
@@ -21424,7 +21413,7 @@ async function Ir(e = {}) {
     (I8.prototype.set_mScale = I8.prototype.nJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), LE(t, e));
+        e && typeof e == `object` && (e = e.RDa), LE(t, e);
       }),
     Object.defineProperty(I8.prototype, "mScale", { get: I8.prototype.QEa, set: I8.prototype.nJa }),
     (I8.prototype.get_mUserData = I8.prototype.UDa =
@@ -21434,16 +21423,16 @@ async function Ir(e = {}) {
     (I8.prototype.set_mUserData = I8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zE(t, e));
+        e && typeof e == `object` && (e = e.RDa), zE(t, e);
       }),
     Object.defineProperty(I8.prototype, "mUserData", { get: I8.prototype.UDa, set: I8.prototype.VDa }),
     (I8.prototype.__destroy__ = function () {
       BE(this.RDa);
-    }));
+    });
   function L8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = VE(e, t)), (d(L8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = VE(e, t)), (d(L8)[this.RDa] = this);
   }
-  ((L8.prototype = Object.create(q3.prototype)),
+  (L8.prototype = Object.create(q3.prototype)),
     (L8.prototype.constructor = L8),
     (L8.prototype.SDa = L8),
     (L8.TDa = {}),
@@ -21477,7 +21466,7 @@ async function Ir(e = {}) {
     }),
     (L8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ZE(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ZE(n, e, t), w);
     }),
     (L8.prototype.GetCenterOfMass = function () {
       return f(QE(this.RDa), v);
@@ -21487,7 +21476,7 @@ async function Ir(e = {}) {
     }),
     (L8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eD(t, e));
+      e && typeof e == `object` && (e = e.RDa), eD(t, e);
     }),
     (L8.prototype.GetSubShapeIDBitsRecursive = function () {
       return tD(this.RDa);
@@ -21500,19 +21489,19 @@ async function Ir(e = {}) {
     }),
     (L8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(iD(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(iD(n, e, t), p);
     }),
     (L8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(aD(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(aD(t, e), c8);
     }),
     (L8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(oD(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(oD(n, e, t), v);
     }),
     (L8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), sD(t, e));
+      return e && typeof e == `object` && (e = e.RDa), sD(t, e);
     }),
     (L8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -21530,23 +21519,23 @@ async function Ir(e = {}) {
     }),
     (L8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!uD(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!uD(t, e);
     }),
     (L8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(dD(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(dD(t, e), v);
     }),
     (L8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fD(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(fD(t, e), h8);
     }),
     (L8.prototype.__destroy__ = function () {
       pD(this.RDa);
-    }));
+    });
   function R8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = mD(e, t)), (d(R8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = mD(e, t)), (d(R8)[this.RDa] = this);
   }
-  ((R8.prototype = Object.create(K3.prototype)),
+  (R8.prototype = Object.create(K3.prototype)),
     (R8.prototype.constructor = R8),
     (R8.prototype.SDa = R8),
     (R8.TDa = {}),
@@ -21573,7 +21562,7 @@ async function Ir(e = {}) {
     (R8.prototype.set_mOffset = R8.prototype.fJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xD(t, e));
+        e && typeof e == `object` && (e = e.RDa), xD(t, e);
       }),
     Object.defineProperty(R8.prototype, "mOffset", { get: R8.prototype.IHa, set: R8.prototype.fJa }),
     (R8.prototype.get_mUserData = R8.prototype.UDa =
@@ -21583,16 +21572,16 @@ async function Ir(e = {}) {
     (R8.prototype.set_mUserData = R8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CD(t, e));
+        e && typeof e == `object` && (e = e.RDa), CD(t, e);
       }),
     Object.defineProperty(R8.prototype, "mUserData", { get: R8.prototype.UDa, set: R8.prototype.VDa }),
     (R8.prototype.__destroy__ = function () {
       wD(this.RDa);
-    }));
+    });
   function z8(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = TD(e, t)), (d(z8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = TD(e, t)), (d(z8)[this.RDa] = this);
   }
-  ((z8.prototype = Object.create(q3.prototype)),
+  (z8.prototype = Object.create(q3.prototype)),
     (z8.prototype.constructor = z8),
     (z8.prototype.SDa = z8),
     (z8.TDa = {}),
@@ -21623,7 +21612,7 @@ async function Ir(e = {}) {
     }),
     (z8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(PD(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(PD(n, e, t), w);
     }),
     (z8.prototype.GetCenterOfMass = function () {
       return f(FD(this.RDa), v);
@@ -21633,7 +21622,7 @@ async function Ir(e = {}) {
     }),
     (z8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), LD(t, e));
+      e && typeof e == `object` && (e = e.RDa), LD(t, e);
     }),
     (z8.prototype.GetSubShapeIDBitsRecursive = function () {
       return RD(this.RDa);
@@ -21646,19 +21635,19 @@ async function Ir(e = {}) {
     }),
     (z8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VD(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VD(n, e, t), p);
     }),
     (z8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(HD(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(HD(t, e), c8);
     }),
     (z8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UD(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UD(n, e, t), v);
     }),
     (z8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), WD(t, e));
+      return e && typeof e == `object` && (e = e.RDa), WD(t, e);
     }),
     (z8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -21676,27 +21665,27 @@ async function Ir(e = {}) {
     }),
     (z8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!qD(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!qD(t, e);
     }),
     (z8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(JD(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(JD(t, e), v);
     }),
     (z8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(YD(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(YD(t, e), h8);
     }),
     (z8.prototype.__destroy__ = function () {
       XD(this.RDa);
-    }));
+    });
   function B8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = ZD(e, t, n)),
-      (d(B8)[this.RDa] = this));
+      (d(B8)[this.RDa] = this);
   }
-  ((B8.prototype = Object.create(K3.prototype)),
+  (B8.prototype = Object.create(K3.prototype)),
     (B8.prototype.constructor = B8),
     (B8.prototype.SDa = B8),
     (B8.TDa = {}),
@@ -21723,7 +21712,7 @@ async function Ir(e = {}) {
     (B8.prototype.set_mPosition = B8.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iO(t, e));
+        e && typeof e == `object` && (e = e.RDa), iO(t, e);
       }),
     Object.defineProperty(B8.prototype, "mPosition", { get: B8.prototype.eEa, set: B8.prototype.gEa }),
     (B8.prototype.get_mRotation = B8.prototype.uEa =
@@ -21733,7 +21722,7 @@ async function Ir(e = {}) {
     (B8.prototype.set_mRotation = B8.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oO(t, e));
+        e && typeof e == `object` && (e = e.RDa), oO(t, e);
       }),
     Object.defineProperty(B8.prototype, "mRotation", { get: B8.prototype.uEa, set: B8.prototype.BEa }),
     (B8.prototype.get_mUserData = B8.prototype.UDa =
@@ -21743,16 +21732,16 @@ async function Ir(e = {}) {
     (B8.prototype.set_mUserData = B8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cO(t, e));
+        e && typeof e == `object` && (e = e.RDa), cO(t, e);
       }),
     Object.defineProperty(B8.prototype, "mUserData", { get: B8.prototype.UDa, set: B8.prototype.VDa }),
     (B8.prototype.__destroy__ = function () {
       lO(this.RDa);
-    }));
+    });
   function V8() {
     throw `cannot construct a RotatedTranslatedShape, no constructor in IDL`;
   }
-  ((V8.prototype = Object.create(q3.prototype)),
+  (V8.prototype = Object.create(q3.prototype)),
     (V8.prototype.constructor = V8),
     (V8.prototype.SDa = V8),
     (V8.TDa = {}),
@@ -21789,7 +21778,7 @@ async function Ir(e = {}) {
     }),
     (V8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bO(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(bO(n, e, t), w);
     }),
     (V8.prototype.GetCenterOfMass = function () {
       return f(xO(this.RDa), v);
@@ -21799,7 +21788,7 @@ async function Ir(e = {}) {
     }),
     (V8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), CO(t, e));
+      e && typeof e == `object` && (e = e.RDa), CO(t, e);
     }),
     (V8.prototype.GetSubShapeIDBitsRecursive = function () {
       return wO(this.RDa);
@@ -21812,19 +21801,19 @@ async function Ir(e = {}) {
     }),
     (V8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(DO(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(DO(n, e, t), p);
     }),
     (V8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(OO(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(OO(t, e), c8);
     }),
     (V8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kO(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kO(n, e, t), v);
     }),
     (V8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), AO(t, e));
+      return e && typeof e == `object` && (e = e.RDa), AO(t, e);
     }),
     (V8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -21842,27 +21831,27 @@ async function Ir(e = {}) {
     }),
     (V8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!NO(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!NO(t, e);
     }),
     (V8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(PO(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(PO(t, e), v);
     }),
     (V8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(FO(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(FO(t, e), h8);
     }),
     (V8.prototype.__destroy__ = function () {
       IO(this.RDa);
-    }));
+    });
   function H8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = e === void 0 ? LO() : t === void 0 ? RO(e) : n === void 0 ? zO(e, t) : BO(e, t, n)),
-      (d(H8)[this.RDa] = this));
+      (d(H8)[this.RDa] = this);
   }
-  ((H8.prototype = Object.create(O3.prototype)),
+  (H8.prototype = Object.create(O3.prototype)),
     (H8.prototype.constructor = H8),
     (H8.prototype.SDa = H8),
     (H8.TDa = {}),
@@ -21892,7 +21881,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mTriangleVertices = H8.prototype.vRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), JO(t, e));
+        e && typeof e == `object` && (e = e.RDa), JO(t, e);
       }),
     Object.defineProperty(H8.prototype, "mTriangleVertices", { get: H8.prototype.oNa, set: H8.prototype.vRa }),
     (H8.prototype.get_mIndexedTriangles = H8.prototype.KKa =
@@ -21902,7 +21891,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mIndexedTriangles = H8.prototype.TOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XO(t, e));
+        e && typeof e == `object` && (e = e.RDa), XO(t, e);
       }),
     Object.defineProperty(H8.prototype, "mIndexedTriangles", { get: H8.prototype.KKa, set: H8.prototype.TOa }),
     (H8.prototype.get_mMaterials = H8.prototype.pFa =
@@ -21912,7 +21901,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mMaterials = H8.prototype.eGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QO(t, e));
+        e && typeof e == `object` && (e = e.RDa), QO(t, e);
       }),
     Object.defineProperty(H8.prototype, "mMaterials", { get: H8.prototype.pFa, set: H8.prototype.eGa }),
     (H8.prototype.get_mMaxTrianglesPerLeaf = H8.prototype.SLa =
@@ -21922,7 +21911,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mMaxTrianglesPerLeaf = H8.prototype.aQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ek(t, e));
+        e && typeof e == `object` && (e = e.RDa), ek(t, e);
       }),
     Object.defineProperty(H8.prototype, "mMaxTrianglesPerLeaf", { get: H8.prototype.SLa, set: H8.prototype.aQa }),
     (H8.prototype.get_mActiveEdgeCosThresholdAngle = H8.prototype.FGa =
@@ -21932,7 +21921,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mActiveEdgeCosThresholdAngle = H8.prototype.dIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nk(t, e));
+        e && typeof e == `object` && (e = e.RDa), nk(t, e);
       }),
     Object.defineProperty(H8.prototype, "mActiveEdgeCosThresholdAngle", { get: H8.prototype.FGa, set: H8.prototype.dIa }),
     (H8.prototype.get_mPerTriangleUserData = H8.prototype.rMa =
@@ -21942,7 +21931,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mPerTriangleUserData = H8.prototype.AQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ik(t, e));
+        e && typeof e == `object` && (e = e.RDa), ik(t, e);
       }),
     Object.defineProperty(H8.prototype, "mPerTriangleUserData", { get: H8.prototype.rMa, set: H8.prototype.AQa }),
     (H8.prototype.get_mBuildQuality = H8.prototype.XJa =
@@ -21952,7 +21941,7 @@ async function Ir(e = {}) {
     (H8.prototype.set_mBuildQuality = H8.prototype.fOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ok(t, e));
+        e && typeof e == `object` && (e = e.RDa), ok(t, e);
       }),
     Object.defineProperty(H8.prototype, "mBuildQuality", { get: H8.prototype.XJa, set: H8.prototype.fOa }),
     (H8.prototype.get_mUserData = H8.prototype.UDa =
@@ -21962,23 +21951,23 @@ async function Ir(e = {}) {
     (H8.prototype.set_mUserData = H8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ck(t, e));
+        e && typeof e == `object` && (e = e.RDa), ck(t, e);
       }),
     Object.defineProperty(H8.prototype, "mUserData", { get: H8.prototype.UDa, set: H8.prototype.VDa }),
     (H8.prototype.__destroy__ = function () {
       lk(this.RDa);
-    }));
+    });
   function U8() {
     throw `cannot construct a MeshShape, no constructor in IDL`;
   }
-  ((U8.prototype = Object.create(p.prototype)),
+  (U8.prototype = Object.create(p.prototype)),
     (U8.prototype.constructor = U8),
     (U8.prototype.SDa = U8),
     (U8.TDa = {}),
     (t.MeshShape = U8),
     (U8.prototype.GetTriangleUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), uk(t, e));
+      return e && typeof e == `object` && (e = e.RDa), uk(t, e);
     }),
     (U8.prototype.GetRefCount = function () {
       return dk(this.RDa);
@@ -22003,7 +21992,7 @@ async function Ir(e = {}) {
     }),
     (U8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vk(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vk(n, e, t), w);
     }),
     (U8.prototype.GetCenterOfMass = function () {
       return f(yk(this.RDa), v);
@@ -22013,7 +22002,7 @@ async function Ir(e = {}) {
     }),
     (U8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xk(t, e));
+      e && typeof e == `object` && (e = e.RDa), xk(t, e);
     }),
     (U8.prototype.GetSubShapeIDBitsRecursive = function () {
       return Sk(this.RDa);
@@ -22026,19 +22015,19 @@ async function Ir(e = {}) {
     }),
     (U8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Tk(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Tk(n, e, t), p);
     }),
     (U8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Ek(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Ek(t, e), c8);
     }),
     (U8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dk(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dk(n, e, t), v);
     }),
     (U8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Ok(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Ok(t, e);
     }),
     (U8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -22056,23 +22045,23 @@ async function Ir(e = {}) {
     }),
     (U8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!jk(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!jk(t, e);
     }),
     (U8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Mk(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Mk(t, e), v);
     }),
     (U8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Nk(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(Nk(t, e), h8);
     }),
     (U8.prototype.__destroy__ = function () {
       Pk(this.RDa);
-    }));
+    });
   function W8() {
     throw `cannot construct a HeightFieldShapeConstantValues, no constructor in IDL`;
   }
-  ((W8.prototype = Object.create(u.prototype)),
+  (W8.prototype = Object.create(u.prototype)),
     (W8.prototype.constructor = W8),
     (W8.prototype.SDa = W8),
     (W8.TDa = {}),
@@ -22084,11 +22073,11 @@ async function Ir(e = {}) {
     Object.defineProperty(W8.prototype, "cNoCollisionValue", { get: W8.prototype.DJa }),
     (W8.prototype.__destroy__ = function () {
       Ik(this.RDa);
-    }));
+    });
   function E() {
-    ((this.RDa = Lk()), (d(E)[this.RDa] = this));
+    (this.RDa = Lk()), (d(E)[this.RDa] = this);
   }
-  ((E.prototype = Object.create(O3.prototype)),
+  (E.prototype = Object.create(O3.prototype)),
     (E.prototype.constructor = E),
     (E.prototype.SDa = E),
     (E.TDa = {}),
@@ -22115,7 +22104,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mOffset = E.prototype.fJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wk(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wk(t, e);
       }),
     Object.defineProperty(E.prototype, "mOffset", { get: E.prototype.IHa, set: E.prototype.fJa }),
     (E.prototype.get_mScale = E.prototype.QEa =
@@ -22125,7 +22114,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mScale = E.prototype.nJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Kk(t, e));
+        e && typeof e == `object` && (e = e.RDa), Kk(t, e);
       }),
     Object.defineProperty(E.prototype, "mScale", { get: E.prototype.QEa, set: E.prototype.nJa }),
     (E.prototype.get_mSampleCount = E.prototype.PMa =
@@ -22135,7 +22124,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mSampleCount = E.prototype.WQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Jk(t, e));
+        e && typeof e == `object` && (e = e.RDa), Jk(t, e);
       }),
     Object.defineProperty(E.prototype, "mSampleCount", { get: E.prototype.PMa, set: E.prototype.WQa }),
     (E.prototype.get_mMinHeightValue = E.prototype.XLa =
@@ -22145,7 +22134,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mMinHeightValue = E.prototype.fQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xk(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xk(t, e);
       }),
     Object.defineProperty(E.prototype, "mMinHeightValue", { get: E.prototype.XLa, set: E.prototype.fQa }),
     (E.prototype.get_mMaxHeightValue = E.prototype.HLa =
@@ -22155,7 +22144,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mMaxHeightValue = E.prototype.QPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qk(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qk(t, e);
       }),
     Object.defineProperty(E.prototype, "mMaxHeightValue", { get: E.prototype.HLa, set: E.prototype.QPa }),
     (E.prototype.get_mMaterialsCapacity = E.prototype.vLa =
@@ -22165,7 +22154,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mMaterialsCapacity = E.prototype.EPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eA(t, e));
+        e && typeof e == `object` && (e = e.RDa), eA(t, e);
       }),
     Object.defineProperty(E.prototype, "mMaterialsCapacity", { get: E.prototype.vLa, set: E.prototype.EPa }),
     (E.prototype.get_mBlockSize = E.prototype.OJa =
@@ -22175,7 +22164,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mBlockSize = E.prototype.XNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nA(t, e));
+        e && typeof e == `object` && (e = e.RDa), nA(t, e);
       }),
     Object.defineProperty(E.prototype, "mBlockSize", { get: E.prototype.OJa, set: E.prototype.XNa }),
     (E.prototype.get_mBitsPerSample = E.prototype.NJa =
@@ -22185,7 +22174,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mBitsPerSample = E.prototype.WNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iA(t, e));
+        e && typeof e == `object` && (e = e.RDa), iA(t, e);
       }),
     Object.defineProperty(E.prototype, "mBitsPerSample", { get: E.prototype.NJa, set: E.prototype.WNa }),
     (E.prototype.get_mHeightSamples = E.prototype.EKa =
@@ -22195,7 +22184,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mHeightSamples = E.prototype.NOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oA(t, e));
+        e && typeof e == `object` && (e = e.RDa), oA(t, e);
       }),
     Object.defineProperty(E.prototype, "mHeightSamples", { get: E.prototype.EKa, set: E.prototype.NOa }),
     (E.prototype.get_mMaterialIndices = E.prototype.uLa =
@@ -22205,7 +22194,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mMaterialIndices = E.prototype.DPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cA(t, e));
+        e && typeof e == `object` && (e = e.RDa), cA(t, e);
       }),
     Object.defineProperty(E.prototype, "mMaterialIndices", { get: E.prototype.uLa, set: E.prototype.DPa }),
     (E.prototype.get_mMaterials = E.prototype.pFa =
@@ -22215,7 +22204,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mMaterials = E.prototype.eGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uA(t, e));
+        e && typeof e == `object` && (e = e.RDa), uA(t, e);
       }),
     Object.defineProperty(E.prototype, "mMaterials", { get: E.prototype.pFa, set: E.prototype.eGa }),
     (E.prototype.get_mActiveEdgeCosThresholdAngle = E.prototype.FGa =
@@ -22225,7 +22214,7 @@ async function Ir(e = {}) {
     (E.prototype.set_mActiveEdgeCosThresholdAngle = E.prototype.dIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fA(t, e));
+        e && typeof e == `object` && (e = e.RDa), fA(t, e);
       }),
     Object.defineProperty(E.prototype, "mActiveEdgeCosThresholdAngle", { get: E.prototype.FGa, set: E.prototype.dIa }),
     (E.prototype.get_mUserData = E.prototype.UDa =
@@ -22235,16 +22224,16 @@ async function Ir(e = {}) {
     (E.prototype.set_mUserData = E.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mA(t, e));
+        e && typeof e == `object` && (e = e.RDa), mA(t, e);
       }),
     Object.defineProperty(E.prototype, "mUserData", { get: E.prototype.UDa, set: E.prototype.VDa }),
     (E.prototype.__destroy__ = function () {
       hA(this.RDa);
-    }));
+    });
   function G8() {
     throw `cannot construct a HeightFieldShape, no constructor in IDL`;
   }
-  ((G8.prototype = Object.create(p.prototype)),
+  (G8.prototype = Object.create(p.prototype)),
     (G8.prototype.constructor = G8),
     (G8.prototype.SDa = G8),
     (G8.TDa = {}),
@@ -22257,11 +22246,11 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.GetPosition = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vA(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vA(n, e, t), v);
     }),
     (G8.prototype.IsNoCollision = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yA(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yA(n, e, t);
     }),
     (G8.prototype.GetMinHeightValue = function () {
       return bA(this.RDa);
@@ -22271,17 +22260,17 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.GetHeights = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        SA(o, e, t, n, r, i, a));
+        SA(o, e, t, n, r, i, a);
     }),
     (G8.prototype.SetHeights = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -22289,17 +22278,17 @@ async function Ir(e = {}) {
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
-        s === void 0 ? CA(c, e, t, n, r, i, a, o) : wA(c, e, t, n, r, i, a, o, s));
+        s === void 0 ? CA(c, e, t, n, r, i, a, o) : wA(c, e, t, n, r, i, a, o, s);
     }),
     (G8.prototype.GetMaterials = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        TA(o, e, t, n, r, i, a));
+        TA(o, e, t, n, r, i, a);
     }),
     (G8.prototype.SetMaterials = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
@@ -22338,7 +22327,7 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(PA(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(PA(n, e, t), w);
     }),
     (G8.prototype.GetCenterOfMass = function () {
       return f(FA(this.RDa), v);
@@ -22348,7 +22337,7 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), LA(t, e));
+      e && typeof e == `object` && (e = e.RDa), LA(t, e);
     }),
     (G8.prototype.GetSubShapeIDBitsRecursive = function () {
       return RA(this.RDa);
@@ -22361,19 +22350,19 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VA(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(VA(n, e, t), p);
     }),
     (G8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(HA(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(HA(t, e), c8);
     }),
     (G8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UA(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UA(n, e, t), v);
     }),
     (G8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), WA(t, e));
+      return e && typeof e == `object` && (e = e.RDa), WA(t, e);
     }),
     (G8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -22391,27 +22380,27 @@ async function Ir(e = {}) {
     }),
     (G8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!qA(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!qA(t, e);
     }),
     (G8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(JA(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(JA(t, e), v);
     }),
     (G8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(YA(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(YA(t, e), h8);
     }),
     (G8.prototype.__destroy__ = function () {
       XA(this.RDa);
-    }));
+    });
   function K8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = t === void 0 ? ZA(e) : n === void 0 ? QA(e, t) : $A(e, t, n)),
-      (d(K8)[this.RDa] = this));
+      (d(K8)[this.RDa] = this);
   }
-  ((K8.prototype = Object.create(O3.prototype)),
+  (K8.prototype = Object.create(O3.prototype)),
     (K8.prototype.constructor = K8),
     (K8.prototype.SDa = K8),
     (K8.TDa = {}),
@@ -22438,7 +22427,7 @@ async function Ir(e = {}) {
     (K8.prototype.set_mPlane = K8.prototype.CQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oj(t, e));
+        e && typeof e == `object` && (e = e.RDa), oj(t, e);
       }),
     Object.defineProperty(K8.prototype, "mPlane", { get: K8.prototype.tMa, set: K8.prototype.CQa }),
     (K8.prototype.get_mMaterial = K8.prototype.dEa =
@@ -22448,7 +22437,7 @@ async function Ir(e = {}) {
     (K8.prototype.set_mMaterial = K8.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cj(t, e));
+        e && typeof e == `object` && (e = e.RDa), cj(t, e);
       }),
     Object.defineProperty(K8.prototype, "mMaterial", { get: K8.prototype.dEa, set: K8.prototype.fEa }),
     (K8.prototype.get_mHalfExtent = K8.prototype.gHa =
@@ -22458,7 +22447,7 @@ async function Ir(e = {}) {
     (K8.prototype.set_mHalfExtent = K8.prototype.EIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uj(t, e));
+        e && typeof e == `object` && (e = e.RDa), uj(t, e);
       }),
     Object.defineProperty(K8.prototype, "mHalfExtent", { get: K8.prototype.gHa, set: K8.prototype.EIa }),
     (K8.prototype.get_mUserData = K8.prototype.UDa =
@@ -22468,27 +22457,27 @@ async function Ir(e = {}) {
     (K8.prototype.set_mUserData = K8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fj(t, e));
+        e && typeof e == `object` && (e = e.RDa), fj(t, e);
       }),
     Object.defineProperty(K8.prototype, "mUserData", { get: K8.prototype.UDa, set: K8.prototype.VDa }),
     (K8.prototype.__destroy__ = function () {
       pj(this.RDa);
-    }));
+    });
   function q8(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = t === void 0 ? mj(e) : n === void 0 ? hj(e, t) : gj(e, t, n)),
-      (d(q8)[this.RDa] = this));
+      (d(q8)[this.RDa] = this);
   }
-  ((q8.prototype = Object.create(p.prototype)),
+  (q8.prototype = Object.create(p.prototype)),
     (q8.prototype.constructor = q8),
     (q8.prototype.SDa = q8),
     (q8.TDa = {}),
     (t.PlaneShape = q8),
     (q8.prototype.SetMaterial = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _j(t, e));
+      e && typeof e == `object` && (e = e.RDa), _j(t, e);
     }),
     (q8.prototype.GetPlane = function () {
       return f(vj(this.RDa), s8);
@@ -22519,7 +22508,7 @@ async function Ir(e = {}) {
     }),
     (q8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dj(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Dj(n, e, t), w);
     }),
     (q8.prototype.GetCenterOfMass = function () {
       return f(Oj(this.RDa), v);
@@ -22529,7 +22518,7 @@ async function Ir(e = {}) {
     }),
     (q8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Aj(t, e));
+      e && typeof e == `object` && (e = e.RDa), Aj(t, e);
     }),
     (q8.prototype.GetSubShapeIDBitsRecursive = function () {
       return jj(this.RDa);
@@ -22542,19 +22531,19 @@ async function Ir(e = {}) {
     }),
     (q8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Pj(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Pj(n, e, t), p);
     }),
     (q8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Fj(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Fj(t, e), c8);
     }),
     (q8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ij(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ij(n, e, t), v);
     }),
     (q8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Lj(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Lj(t, e);
     }),
     (q8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -22572,23 +22561,23 @@ async function Ir(e = {}) {
     }),
     (q8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Bj(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Bj(t, e);
     }),
     (q8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Vj(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Vj(t, e), v);
     }),
     (q8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Hj(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(Hj(t, e), h8);
     }),
     (q8.prototype.__destroy__ = function () {
       Uj(this.RDa);
-    }));
+    });
   function J8() {
-    ((this.RDa = Wj()), (d(J8)[this.RDa] = this));
+    (this.RDa = Wj()), (d(J8)[this.RDa] = this);
   }
-  ((J8.prototype = Object.create(O3.prototype)),
+  (J8.prototype = Object.create(O3.prototype)),
     (J8.prototype.constructor = J8),
     (J8.prototype.SDa = J8),
     (J8.TDa = {}),
@@ -22615,7 +22604,7 @@ async function Ir(e = {}) {
     (J8.prototype.set_mCenterOfMass = J8.prototype.hOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zj(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zj(t, e);
       }),
     Object.defineProperty(J8.prototype, "mCenterOfMass", { get: J8.prototype.ZJa, set: J8.prototype.hOa }),
     (J8.prototype.get_mUserData = J8.prototype.UDa =
@@ -22625,16 +22614,16 @@ async function Ir(e = {}) {
     (J8.prototype.set_mUserData = J8.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $j(t, e));
+        e && typeof e == `object` && (e = e.RDa), $j(t, e);
       }),
     Object.defineProperty(J8.prototype, "mUserData", { get: J8.prototype.UDa, set: J8.prototype.VDa }),
     (J8.prototype.__destroy__ = function () {
       eM(this.RDa);
-    }));
+    });
   function Y8(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = e === void 0 ? tM() : nM(e)), (d(Y8)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = e === void 0 ? tM() : nM(e)), (d(Y8)[this.RDa] = this);
   }
-  ((Y8.prototype = Object.create(p.prototype)),
+  (Y8.prototype = Object.create(p.prototype)),
     (Y8.prototype.constructor = Y8),
     (Y8.prototype.SDa = Y8),
     (Y8.TDa = {}),
@@ -22662,7 +22651,7 @@ async function Ir(e = {}) {
     }),
     (Y8.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(uM(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(uM(n, e, t), w);
     }),
     (Y8.prototype.GetCenterOfMass = function () {
       return f(dM(this.RDa), v);
@@ -22672,7 +22661,7 @@ async function Ir(e = {}) {
     }),
     (Y8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pM(t, e));
+      e && typeof e == `object` && (e = e.RDa), pM(t, e);
     }),
     (Y8.prototype.GetSubShapeIDBitsRecursive = function () {
       return mM(this.RDa);
@@ -22685,19 +22674,19 @@ async function Ir(e = {}) {
     }),
     (Y8.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(_M(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(_M(n, e, t), p);
     }),
     (Y8.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(vM(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(vM(t, e), c8);
     }),
     (Y8.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yM(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yM(n, e, t), v);
     }),
     (Y8.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), bM(t, e));
+      return e && typeof e == `object` && (e = e.RDa), bM(t, e);
     }),
     (Y8.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -22715,23 +22704,23 @@ async function Ir(e = {}) {
     }),
     (Y8.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!CM(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!CM(t, e);
     }),
     (Y8.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wM(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(wM(t, e), v);
     }),
     (Y8.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(TM(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(TM(t, e), h8);
     }),
     (Y8.prototype.__destroy__ = function () {
       EM(this.RDa);
-    }));
+    });
   function D() {
-    ((this.RDa = DM()), (d(D)[this.RDa] = this));
+    (this.RDa = DM()), (d(D)[this.RDa] = this);
   }
-  ((D.prototype = Object.create(J3.prototype)),
+  (D.prototype = Object.create(J3.prototype)),
     (D.prototype.constructor = D),
     (D.prototype.SDa = D),
     (D.TDa = {}),
@@ -22747,7 +22736,7 @@ async function Ir(e = {}) {
     }),
     (D.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jM(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(jM(n, e, t), A3);
     }),
     (D.prototype.get_mSpace = D.prototype.bEa =
       function () {
@@ -22756,7 +22745,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mSpace = D.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), NM(t, e));
+        e && typeof e == `object` && (e = e.RDa), NM(t, e);
       }),
     Object.defineProperty(D.prototype, "mSpace", { get: D.prototype.bEa, set: D.prototype.cEa }),
     (D.prototype.get_mAutoDetectPoint = D.prototype.JGa =
@@ -22766,7 +22755,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mAutoDetectPoint = D.prototype.hIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), FM(t, e));
+        e && typeof e == `object` && (e = e.RDa), FM(t, e);
       }),
     Object.defineProperty(D.prototype, "mAutoDetectPoint", { get: D.prototype.JGa, set: D.prototype.hIa }),
     (D.prototype.get_mPoint1 = D.prototype.rEa =
@@ -22776,7 +22765,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mPoint1 = D.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), LM(t, e));
+        e && typeof e == `object` && (e = e.RDa), LM(t, e);
       }),
     Object.defineProperty(D.prototype, "mPoint1", { get: D.prototype.rEa, set: D.prototype.yEa }),
     (D.prototype.get_mAxisX1 = D.prototype.KGa =
@@ -22786,7 +22775,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mAxisX1 = D.prototype.iIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zM(t, e));
+        e && typeof e == `object` && (e = e.RDa), zM(t, e);
       }),
     Object.defineProperty(D.prototype, "mAxisX1", { get: D.prototype.KGa, set: D.prototype.iIa }),
     (D.prototype.get_mAxisY1 = D.prototype.MGa =
@@ -22796,7 +22785,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mAxisY1 = D.prototype.kIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), VM(t, e));
+        e && typeof e == `object` && (e = e.RDa), VM(t, e);
       }),
     Object.defineProperty(D.prototype, "mAxisY1", { get: D.prototype.MGa, set: D.prototype.kIa }),
     (D.prototype.get_mPoint2 = D.prototype.sEa =
@@ -22806,7 +22795,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mPoint2 = D.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), UM(t, e));
+        e && typeof e == `object` && (e = e.RDa), UM(t, e);
       }),
     Object.defineProperty(D.prototype, "mPoint2", { get: D.prototype.sEa, set: D.prototype.zEa }),
     (D.prototype.get_mAxisX2 = D.prototype.LGa =
@@ -22816,7 +22805,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mAxisX2 = D.prototype.jIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), GM(t, e));
+        e && typeof e == `object` && (e = e.RDa), GM(t, e);
       }),
     Object.defineProperty(D.prototype, "mAxisX2", { get: D.prototype.LGa, set: D.prototype.jIa }),
     (D.prototype.get_mAxisY2 = D.prototype.NGa =
@@ -22826,7 +22815,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mAxisY2 = D.prototype.lIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qM(t, e));
+        e && typeof e == `object` && (e = e.RDa), qM(t, e);
       }),
     Object.defineProperty(D.prototype, "mAxisY2", { get: D.prototype.NGa, set: D.prototype.lIa }),
     (D.prototype.get_mEnabled = D.prototype.$Da =
@@ -22836,7 +22825,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mEnabled = D.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), YM(t, e));
+        e && typeof e == `object` && (e = e.RDa), YM(t, e);
       }),
     Object.defineProperty(D.prototype, "mEnabled", { get: D.prototype.$Da, set: D.prototype.aEa }),
     (D.prototype.get_mNumVelocityStepsOverride = D.prototype.XDa =
@@ -22846,7 +22835,7 @@ async function Ir(e = {}) {
     (D.prototype.set_mNumVelocityStepsOverride = D.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ZM(t, e));
+        e && typeof e == `object` && (e = e.RDa), ZM(t, e);
       }),
     Object.defineProperty(D.prototype, "mNumVelocityStepsOverride", { get: D.prototype.XDa, set: D.prototype.ZDa }),
     (D.prototype.get_mNumPositionStepsOverride = D.prototype.WDa =
@@ -22856,16 +22845,16 @@ async function Ir(e = {}) {
     (D.prototype.set_mNumPositionStepsOverride = D.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $M(t, e));
+        e && typeof e == `object` && (e = e.RDa), $M(t, e);
       }),
     Object.defineProperty(D.prototype, "mNumPositionStepsOverride", { get: D.prototype.WDa, set: D.prototype.YDa }),
     (D.prototype.__destroy__ = function () {
       eN(this.RDa);
-    }));
+    });
   function X8() {
-    ((this.RDa = tN()), (d(X8)[this.RDa] = this));
+    (this.RDa = tN()), (d(X8)[this.RDa] = this);
   }
-  ((X8.prototype = Object.create(u.prototype)),
+  (X8.prototype = Object.create(u.prototype)),
     (X8.prototype.constructor = X8),
     (X8.prototype.SDa = X8),
     (X8.TDa = {}),
@@ -22880,7 +22869,7 @@ async function Ir(e = {}) {
     (X8.prototype.set_mMode = X8.prototype.iGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iN(t, e));
+        e && typeof e == `object` && (e = e.RDa), iN(t, e);
       }),
     Object.defineProperty(X8.prototype, "mMode", { get: X8.prototype.tFa, set: X8.prototype.iGa }),
     (X8.prototype.get_mFrequency = X8.prototype.yKa =
@@ -22890,7 +22879,7 @@ async function Ir(e = {}) {
     (X8.prototype.set_mFrequency = X8.prototype.HOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oN(t, e));
+        e && typeof e == `object` && (e = e.RDa), oN(t, e);
       }),
     Object.defineProperty(X8.prototype, "mFrequency", { get: X8.prototype.yKa, set: X8.prototype.HOa }),
     (X8.prototype.get_mStiffness = X8.prototype.UHa =
@@ -22900,7 +22889,7 @@ async function Ir(e = {}) {
     (X8.prototype.set_mStiffness = X8.prototype.sJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cN(t, e));
+        e && typeof e == `object` && (e = e.RDa), cN(t, e);
       }),
     Object.defineProperty(X8.prototype, "mStiffness", { get: X8.prototype.UHa, set: X8.prototype.sJa }),
     (X8.prototype.get_mDamping = X8.prototype.lKa =
@@ -22910,16 +22899,16 @@ async function Ir(e = {}) {
     (X8.prototype.set_mDamping = X8.prototype.uOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uN(t, e));
+        e && typeof e == `object` && (e = e.RDa), uN(t, e);
       }),
     Object.defineProperty(X8.prototype, "mDamping", { get: X8.prototype.lKa, set: X8.prototype.uOa }),
     (X8.prototype.__destroy__ = function () {
       dN(this.RDa);
-    }));
+    });
   function Z8() {
-    ((this.RDa = fN()), (d(Z8)[this.RDa] = this));
+    (this.RDa = fN()), (d(Z8)[this.RDa] = this);
   }
-  ((Z8.prototype = Object.create(u.prototype)),
+  (Z8.prototype = Object.create(u.prototype)),
     (Z8.prototype.constructor = Z8),
     (Z8.prototype.SDa = Z8),
     (Z8.TDa = {}),
@@ -22931,7 +22920,7 @@ async function Ir(e = {}) {
     (Z8.prototype.set_mSpringSettings = Z8.prototype.iRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mN(t, e));
+        e && typeof e == `object` && (e = e.RDa), mN(t, e);
       }),
     Object.defineProperty(Z8.prototype, "mSpringSettings", { get: Z8.prototype.bNa, set: Z8.prototype.iRa }),
     (Z8.prototype.get_mMinForceLimit = Z8.prototype.WLa =
@@ -22941,7 +22930,7 @@ async function Ir(e = {}) {
     (Z8.prototype.set_mMinForceLimit = Z8.prototype.eQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gN(t, e));
+        e && typeof e == `object` && (e = e.RDa), gN(t, e);
       }),
     Object.defineProperty(Z8.prototype, "mMinForceLimit", { get: Z8.prototype.WLa, set: Z8.prototype.eQa }),
     (Z8.prototype.get_mMaxForceLimit = Z8.prototype.ELa =
@@ -22951,7 +22940,7 @@ async function Ir(e = {}) {
     (Z8.prototype.set_mMaxForceLimit = Z8.prototype.NPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vN(t, e));
+        e && typeof e == `object` && (e = e.RDa), vN(t, e);
       }),
     Object.defineProperty(Z8.prototype, "mMaxForceLimit", { get: Z8.prototype.ELa, set: Z8.prototype.NPa }),
     (Z8.prototype.get_mMinTorqueLimit = Z8.prototype.$La =
@@ -22961,7 +22950,7 @@ async function Ir(e = {}) {
     (Z8.prototype.set_mMinTorqueLimit = Z8.prototype.iQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bN(t, e));
+        e && typeof e == `object` && (e = e.RDa), bN(t, e);
       }),
     Object.defineProperty(Z8.prototype, "mMinTorqueLimit", { get: Z8.prototype.$La, set: Z8.prototype.iQa }),
     (Z8.prototype.get_mMaxTorqueLimit = Z8.prototype.RLa =
@@ -22971,16 +22960,16 @@ async function Ir(e = {}) {
     (Z8.prototype.set_mMaxTorqueLimit = Z8.prototype.$Pa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SN(t, e));
+        e && typeof e == `object` && (e = e.RDa), SN(t, e);
       }),
     Object.defineProperty(Z8.prototype, "mMaxTorqueLimit", { get: Z8.prototype.RLa, set: Z8.prototype.$Pa }),
     (Z8.prototype.__destroy__ = function () {
       CN(this.RDa);
-    }));
+    });
   function O() {
-    ((this.RDa = wN()), (d(O)[this.RDa] = this));
+    (this.RDa = wN()), (d(O)[this.RDa] = this);
   }
-  ((O.prototype = Object.create(J3.prototype)),
+  (O.prototype = Object.create(J3.prototype)),
     (O.prototype.constructor = O),
     (O.prototype.SDa = O),
     (O.TDa = {}),
@@ -22996,7 +22985,7 @@ async function Ir(e = {}) {
     }),
     (O.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ON(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(ON(n, e, t), A3);
     }),
     (O.prototype.get_mSpace = O.prototype.bEa =
       function () {
@@ -23005,7 +22994,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mSpace = O.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), AN(t, e));
+        e && typeof e == `object` && (e = e.RDa), AN(t, e);
       }),
     Object.defineProperty(O.prototype, "mSpace", { get: O.prototype.bEa, set: O.prototype.cEa }),
     (O.prototype.get_mPoint1 = O.prototype.rEa =
@@ -23015,7 +23004,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mPoint1 = O.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MN(t, e));
+        e && typeof e == `object` && (e = e.RDa), MN(t, e);
       }),
     Object.defineProperty(O.prototype, "mPoint1", { get: O.prototype.rEa, set: O.prototype.yEa }),
     (O.prototype.get_mPoint2 = O.prototype.sEa =
@@ -23025,7 +23014,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mPoint2 = O.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), PN(t, e));
+        e && typeof e == `object` && (e = e.RDa), PN(t, e);
       }),
     Object.defineProperty(O.prototype, "mPoint2", { get: O.prototype.sEa, set: O.prototype.zEa }),
     (O.prototype.get_mMinDistance = O.prototype.VLa =
@@ -23035,7 +23024,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mMinDistance = O.prototype.dQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IN(t, e));
+        e && typeof e == `object` && (e = e.RDa), IN(t, e);
       }),
     Object.defineProperty(O.prototype, "mMinDistance", { get: O.prototype.VLa, set: O.prototype.dQa }),
     (O.prototype.get_mMaxDistance = O.prototype.rFa =
@@ -23045,7 +23034,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mMaxDistance = O.prototype.gGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RN(t, e));
+        e && typeof e == `object` && (e = e.RDa), RN(t, e);
       }),
     Object.defineProperty(O.prototype, "mMaxDistance", { get: O.prototype.rFa, set: O.prototype.gGa }),
     (O.prototype.get_mLimitsSpringSettings = O.prototype.PEa =
@@ -23055,7 +23044,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mLimitsSpringSettings = O.prototype.YEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BN(t, e));
+        e && typeof e == `object` && (e = e.RDa), BN(t, e);
       }),
     Object.defineProperty(O.prototype, "mLimitsSpringSettings", { get: O.prototype.PEa, set: O.prototype.YEa }),
     (O.prototype.get_mEnabled = O.prototype.$Da =
@@ -23065,7 +23054,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mEnabled = O.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), HN(t, e));
+        e && typeof e == `object` && (e = e.RDa), HN(t, e);
       }),
     Object.defineProperty(O.prototype, "mEnabled", { get: O.prototype.$Da, set: O.prototype.aEa }),
     (O.prototype.get_mNumVelocityStepsOverride = O.prototype.XDa =
@@ -23075,7 +23064,7 @@ async function Ir(e = {}) {
     (O.prototype.set_mNumVelocityStepsOverride = O.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), WN(t, e));
+        e && typeof e == `object` && (e = e.RDa), WN(t, e);
       }),
     Object.defineProperty(O.prototype, "mNumVelocityStepsOverride", { get: O.prototype.XDa, set: O.prototype.ZDa }),
     (O.prototype.get_mNumPositionStepsOverride = O.prototype.WDa =
@@ -23085,23 +23074,23 @@ async function Ir(e = {}) {
     (O.prototype.set_mNumPositionStepsOverride = O.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), KN(t, e));
+        e && typeof e == `object` && (e = e.RDa), KN(t, e);
       }),
     Object.defineProperty(O.prototype, "mNumPositionStepsOverride", { get: O.prototype.WDa, set: O.prototype.YDa }),
     (O.prototype.__destroy__ = function () {
       qN(this.RDa);
-    }));
+    });
   function Q8() {
     throw `cannot construct a DistanceConstraint, no constructor in IDL`;
   }
-  ((Q8.prototype = Object.create(Y3.prototype)),
+  (Q8.prototype = Object.create(Y3.prototype)),
     (Q8.prototype.constructor = Q8),
     (Q8.prototype.SDa = Q8),
     (Q8.TDa = {}),
     (t.DistanceConstraint = Q8),
     (Q8.prototype.SetDistance = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), JN(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), JN(n, e, t);
     }),
     (Q8.prototype.GetMinDistance = function () {
       return YN(this.RDa);
@@ -23114,7 +23103,7 @@ async function Ir(e = {}) {
     }),
     (Q8.prototype.SetLimitsSpringSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), QN(t, e));
+      e && typeof e == `object` && (e = e.RDa), QN(t, e);
     }),
     (Q8.prototype.GetTotalLambdaPosition = function () {
       return $N(this.RDa);
@@ -23139,25 +23128,25 @@ async function Ir(e = {}) {
     }),
     (Q8.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oP(t, e));
+      e && typeof e == `object` && (e = e.RDa), oP(t, e);
     }),
     (Q8.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sP(t, e));
+      e && typeof e == `object` && (e = e.RDa), sP(t, e);
     }),
     (Q8.prototype.GetNumVelocityStepsOverride = function () {
       return cP(this.RDa);
     }),
     (Q8.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), lP(t, e));
+      e && typeof e == `object` && (e = e.RDa), lP(t, e);
     }),
     (Q8.prototype.GetNumPositionStepsOverride = function () {
       return uP(this.RDa);
     }),
     (Q8.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dP(t, e));
+      e && typeof e == `object` && (e = e.RDa), dP(t, e);
     }),
     (Q8.prototype.GetEnabled = function () {
       return !!fP(this.RDa);
@@ -23170,18 +23159,18 @@ async function Ir(e = {}) {
     }),
     (Q8.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hP(t, e));
+      e && typeof e == `object` && (e = e.RDa), hP(t, e);
     }),
     (Q8.prototype.ResetWarmStart = function () {
       gP(this.RDa);
     }),
     (Q8.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _P(t, e));
+      e && typeof e == `object` && (e = e.RDa), _P(t, e);
     }),
     (Q8.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vP(t, e));
+      e && typeof e == `object` && (e = e.RDa), vP(t, e);
     }),
     (Q8.prototype.GetBody1 = function () {
       return f(yP(this.RDa), I);
@@ -23197,11 +23186,11 @@ async function Ir(e = {}) {
     }),
     (Q8.prototype.__destroy__ = function () {
       CP(this.RDa);
-    }));
+    });
   function $8() {
-    ((this.RDa = wP()), (d($8)[this.RDa] = this));
+    (this.RDa = wP()), (d($8)[this.RDa] = this);
   }
-  (($8.prototype = Object.create(J3.prototype)),
+  ($8.prototype = Object.create(J3.prototype)),
     ($8.prototype.constructor = $8),
     ($8.prototype.SDa = $8),
     ($8.TDa = {}),
@@ -23217,7 +23206,7 @@ async function Ir(e = {}) {
     }),
     ($8.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(OP(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(OP(n, e, t), A3);
     }),
     ($8.prototype.get_mSpace = $8.prototype.bEa =
       function () {
@@ -23226,7 +23215,7 @@ async function Ir(e = {}) {
     ($8.prototype.set_mSpace = $8.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), AP(t, e));
+        e && typeof e == `object` && (e = e.RDa), AP(t, e);
       }),
     Object.defineProperty($8.prototype, "mSpace", { get: $8.prototype.bEa, set: $8.prototype.cEa }),
     ($8.prototype.get_mPoint1 = $8.prototype.rEa =
@@ -23236,7 +23225,7 @@ async function Ir(e = {}) {
     ($8.prototype.set_mPoint1 = $8.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MP(t, e));
+        e && typeof e == `object` && (e = e.RDa), MP(t, e);
       }),
     Object.defineProperty($8.prototype, "mPoint1", { get: $8.prototype.rEa, set: $8.prototype.yEa }),
     ($8.prototype.get_mPoint2 = $8.prototype.sEa =
@@ -23246,7 +23235,7 @@ async function Ir(e = {}) {
     ($8.prototype.set_mPoint2 = $8.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), PP(t, e));
+        e && typeof e == `object` && (e = e.RDa), PP(t, e);
       }),
     Object.defineProperty($8.prototype, "mPoint2", { get: $8.prototype.sEa, set: $8.prototype.zEa }),
     ($8.prototype.get_mEnabled = $8.prototype.$Da =
@@ -23256,7 +23245,7 @@ async function Ir(e = {}) {
     ($8.prototype.set_mEnabled = $8.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IP(t, e));
+        e && typeof e == `object` && (e = e.RDa), IP(t, e);
       }),
     Object.defineProperty($8.prototype, "mEnabled", { get: $8.prototype.$Da, set: $8.prototype.aEa }),
     ($8.prototype.get_mNumVelocityStepsOverride = $8.prototype.XDa =
@@ -23266,7 +23255,7 @@ async function Ir(e = {}) {
     ($8.prototype.set_mNumVelocityStepsOverride = $8.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RP(t, e));
+        e && typeof e == `object` && (e = e.RDa), RP(t, e);
       }),
     Object.defineProperty($8.prototype, "mNumVelocityStepsOverride", { get: $8.prototype.XDa, set: $8.prototype.ZDa }),
     ($8.prototype.get_mNumPositionStepsOverride = $8.prototype.WDa =
@@ -23276,16 +23265,16 @@ async function Ir(e = {}) {
     ($8.prototype.set_mNumPositionStepsOverride = $8.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BP(t, e));
+        e && typeof e == `object` && (e = e.RDa), BP(t, e);
       }),
     Object.defineProperty($8.prototype, "mNumPositionStepsOverride", { get: $8.prototype.WDa, set: $8.prototype.YDa }),
     ($8.prototype.__destroy__ = function () {
       VP(this.RDa);
-    }));
+    });
   function e5() {
     throw `cannot construct a PointConstraint, no constructor in IDL`;
   }
-  ((e5.prototype = Object.create(Y3.prototype)),
+  (e5.prototype = Object.create(Y3.prototype)),
     (e5.prototype.constructor = e5),
     (e5.prototype.SDa = e5),
     (e5.TDa = {}),
@@ -23319,25 +23308,25 @@ async function Ir(e = {}) {
     }),
     (e5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ZP(t, e));
+      e && typeof e == `object` && (e = e.RDa), ZP(t, e);
     }),
     (e5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), QP(t, e));
+      e && typeof e == `object` && (e = e.RDa), QP(t, e);
     }),
     (e5.prototype.GetNumVelocityStepsOverride = function () {
       return $P(this.RDa);
     }),
     (e5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eF(t, e));
+      e && typeof e == `object` && (e = e.RDa), eF(t, e);
     }),
     (e5.prototype.GetNumPositionStepsOverride = function () {
       return tF(this.RDa);
     }),
     (e5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nF(t, e));
+      e && typeof e == `object` && (e = e.RDa), nF(t, e);
     }),
     (e5.prototype.GetEnabled = function () {
       return !!rF(this.RDa);
@@ -23350,18 +23339,18 @@ async function Ir(e = {}) {
     }),
     (e5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oF(t, e));
+      e && typeof e == `object` && (e = e.RDa), oF(t, e);
     }),
     (e5.prototype.ResetWarmStart = function () {
       sF(this.RDa);
     }),
     (e5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cF(t, e));
+      e && typeof e == `object` && (e = e.RDa), cF(t, e);
     }),
     (e5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), lF(t, e));
+      e && typeof e == `object` && (e = e.RDa), lF(t, e);
     }),
     (e5.prototype.GetBody1 = function () {
       return f(uF(this.RDa), I);
@@ -23377,11 +23366,11 @@ async function Ir(e = {}) {
     }),
     (e5.prototype.__destroy__ = function () {
       mF(this.RDa);
-    }));
+    });
   function k() {
-    ((this.RDa = hF()), (d(k)[this.RDa] = this));
+    (this.RDa = hF()), (d(k)[this.RDa] = this);
   }
-  ((k.prototype = Object.create(J3.prototype)),
+  (k.prototype = Object.create(J3.prototype)),
     (k.prototype.constructor = k),
     (k.prototype.SDa = k),
     (k.TDa = {}),
@@ -23397,7 +23386,7 @@ async function Ir(e = {}) {
     }),
     (k.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yF(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yF(n, e, t), A3);
     }),
     (k.prototype.get_mSpace = k.prototype.bEa =
       function () {
@@ -23406,7 +23395,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mSpace = k.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xF(t, e));
+        e && typeof e == `object` && (e = e.RDa), xF(t, e);
       }),
     Object.defineProperty(k.prototype, "mSpace", { get: k.prototype.bEa, set: k.prototype.cEa }),
     (k.prototype.get_mPoint1 = k.prototype.rEa =
@@ -23416,7 +23405,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mPoint1 = k.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CF(t, e));
+        e && typeof e == `object` && (e = e.RDa), CF(t, e);
       }),
     Object.defineProperty(k.prototype, "mPoint1", { get: k.prototype.rEa, set: k.prototype.yEa }),
     (k.prototype.get_mHingeAxis1 = k.prototype.iHa =
@@ -23426,7 +23415,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mHingeAxis1 = k.prototype.GIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), TF(t, e));
+        e && typeof e == `object` && (e = e.RDa), TF(t, e);
       }),
     Object.defineProperty(k.prototype, "mHingeAxis1", { get: k.prototype.iHa, set: k.prototype.GIa }),
     (k.prototype.get_mNormalAxis1 = k.prototype.FHa =
@@ -23436,7 +23425,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mNormalAxis1 = k.prototype.cJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), DF(t, e));
+        e && typeof e == `object` && (e = e.RDa), DF(t, e);
       }),
     Object.defineProperty(k.prototype, "mNormalAxis1", { get: k.prototype.FHa, set: k.prototype.cJa }),
     (k.prototype.get_mPoint2 = k.prototype.sEa =
@@ -23446,7 +23435,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mPoint2 = k.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kF(t, e));
+        e && typeof e == `object` && (e = e.RDa), kF(t, e);
       }),
     Object.defineProperty(k.prototype, "mPoint2", { get: k.prototype.sEa, set: k.prototype.zEa }),
     (k.prototype.get_mHingeAxis2 = k.prototype.jHa =
@@ -23456,7 +23445,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mHingeAxis2 = k.prototype.HIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jF(t, e));
+        e && typeof e == `object` && (e = e.RDa), jF(t, e);
       }),
     Object.defineProperty(k.prototype, "mHingeAxis2", { get: k.prototype.jHa, set: k.prototype.HIa }),
     (k.prototype.get_mNormalAxis2 = k.prototype.GHa =
@@ -23466,7 +23455,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mNormalAxis2 = k.prototype.dJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), NF(t, e));
+        e && typeof e == `object` && (e = e.RDa), NF(t, e);
       }),
     Object.defineProperty(k.prototype, "mNormalAxis2", { get: k.prototype.GHa, set: k.prototype.dJa }),
     (k.prototype.get_mLimitsMin = k.prototype.sHa =
@@ -23476,7 +23465,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mLimitsMin = k.prototype.QIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), FF(t, e));
+        e && typeof e == `object` && (e = e.RDa), FF(t, e);
       }),
     Object.defineProperty(k.prototype, "mLimitsMin", { get: k.prototype.sHa, set: k.prototype.QIa }),
     (k.prototype.get_mLimitsMax = k.prototype.rHa =
@@ -23486,7 +23475,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mLimitsMax = k.prototype.PIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), LF(t, e));
+        e && typeof e == `object` && (e = e.RDa), LF(t, e);
       }),
     Object.defineProperty(k.prototype, "mLimitsMax", { get: k.prototype.rHa, set: k.prototype.PIa }),
     (k.prototype.get_mLimitsSpringSettings = k.prototype.PEa =
@@ -23496,7 +23485,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mLimitsSpringSettings = k.prototype.YEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zF(t, e));
+        e && typeof e == `object` && (e = e.RDa), zF(t, e);
       }),
     Object.defineProperty(k.prototype, "mLimitsSpringSettings", { get: k.prototype.PEa, set: k.prototype.YEa }),
     (k.prototype.get_mMaxFrictionTorque = k.prototype.yHa =
@@ -23506,7 +23495,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mMaxFrictionTorque = k.prototype.WIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), VF(t, e));
+        e && typeof e == `object` && (e = e.RDa), VF(t, e);
       }),
     Object.defineProperty(k.prototype, "mMaxFrictionTorque", { get: k.prototype.yHa, set: k.prototype.WIa }),
     (k.prototype.get_mMotorSettings = k.prototype.uFa =
@@ -23516,7 +23505,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mMotorSettings = k.prototype.jGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), UF(t, e));
+        e && typeof e == `object` && (e = e.RDa), UF(t, e);
       }),
     Object.defineProperty(k.prototype, "mMotorSettings", { get: k.prototype.uFa, set: k.prototype.jGa }),
     (k.prototype.get_mEnabled = k.prototype.$Da =
@@ -23526,7 +23515,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mEnabled = k.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), GF(t, e));
+        e && typeof e == `object` && (e = e.RDa), GF(t, e);
       }),
     Object.defineProperty(k.prototype, "mEnabled", { get: k.prototype.$Da, set: k.prototype.aEa }),
     (k.prototype.get_mNumVelocityStepsOverride = k.prototype.XDa =
@@ -23536,7 +23525,7 @@ async function Ir(e = {}) {
     (k.prototype.set_mNumVelocityStepsOverride = k.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qF(t, e));
+        e && typeof e == `object` && (e = e.RDa), qF(t, e);
       }),
     Object.defineProperty(k.prototype, "mNumVelocityStepsOverride", { get: k.prototype.XDa, set: k.prototype.ZDa }),
     (k.prototype.get_mNumPositionStepsOverride = k.prototype.WDa =
@@ -23546,16 +23535,16 @@ async function Ir(e = {}) {
     (k.prototype.set_mNumPositionStepsOverride = k.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), YF(t, e));
+        e && typeof e == `object` && (e = e.RDa), YF(t, e);
       }),
     Object.defineProperty(k.prototype, "mNumPositionStepsOverride", { get: k.prototype.WDa, set: k.prototype.YDa }),
     (k.prototype.__destroy__ = function () {
       XF(this.RDa);
-    }));
+    });
   function t5() {
     throw `cannot construct a HingeConstraint, no constructor in IDL`;
   }
-  ((t5.prototype = Object.create(Y3.prototype)),
+  (t5.prototype = Object.create(Y3.prototype)),
     (t5.prototype.constructor = t5),
     (t5.prototype.SDa = t5),
     (t5.TDa = {}),
@@ -23583,7 +23572,7 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.SetMaxFrictionTorque = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), iI(t, e));
+      e && typeof e == `object` && (e = e.RDa), iI(t, e);
     }),
     (t5.prototype.GetMaxFrictionTorque = function () {
       return aI(this.RDa);
@@ -23593,32 +23582,32 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.SetMotorState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sI(t, e));
+      e && typeof e == `object` && (e = e.RDa), sI(t, e);
     }),
     (t5.prototype.GetMotorState = function () {
       return cI(this.RDa);
     }),
     (t5.prototype.SetTargetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), lI(t, e));
+      e && typeof e == `object` && (e = e.RDa), lI(t, e);
     }),
     (t5.prototype.GetTargetAngularVelocity = function () {
       return uI(this.RDa);
     }),
     (t5.prototype.SetTargetAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dI(t, e));
+      e && typeof e == `object` && (e = e.RDa), dI(t, e);
     }),
     (t5.prototype.GetTargetAngle = function () {
       return fI(this.RDa);
     }),
     (t5.prototype.SetTargetOrientationBS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pI(t, e));
+      e && typeof e == `object` && (e = e.RDa), pI(t, e);
     }),
     (t5.prototype.SetLimits = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), mI(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), mI(n, e, t);
     }),
     (t5.prototype.GetLimitsMin = function () {
       return hI(this.RDa);
@@ -23634,7 +23623,7 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.SetLimitsSpringSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), yI(t, e));
+      e && typeof e == `object` && (e = e.RDa), yI(t, e);
     }),
     (t5.prototype.GetTotalLambdaPosition = function () {
       return f(bI(this.RDa), v);
@@ -23668,25 +23657,25 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), AI(t, e));
+      e && typeof e == `object` && (e = e.RDa), AI(t, e);
     }),
     (t5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jI(t, e));
+      e && typeof e == `object` && (e = e.RDa), jI(t, e);
     }),
     (t5.prototype.GetNumVelocityStepsOverride = function () {
       return MI(this.RDa);
     }),
     (t5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), NI(t, e));
+      e && typeof e == `object` && (e = e.RDa), NI(t, e);
     }),
     (t5.prototype.GetNumPositionStepsOverride = function () {
       return PI(this.RDa);
     }),
     (t5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), FI(t, e));
+      e && typeof e == `object` && (e = e.RDa), FI(t, e);
     }),
     (t5.prototype.GetEnabled = function () {
       return !!II(this.RDa);
@@ -23699,18 +23688,18 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), zI(t, e));
+      e && typeof e == `object` && (e = e.RDa), zI(t, e);
     }),
     (t5.prototype.ResetWarmStart = function () {
       BI(this.RDa);
     }),
     (t5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), VI(t, e));
+      e && typeof e == `object` && (e = e.RDa), VI(t, e);
     }),
     (t5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), HI(t, e));
+      e && typeof e == `object` && (e = e.RDa), HI(t, e);
     }),
     (t5.prototype.GetBody1 = function () {
       return f(UI(this.RDa), I);
@@ -23726,11 +23715,11 @@ async function Ir(e = {}) {
     }),
     (t5.prototype.__destroy__ = function () {
       qI(this.RDa);
-    }));
+    });
   function A() {
-    ((this.RDa = JI()), (d(A)[this.RDa] = this));
+    (this.RDa = JI()), (d(A)[this.RDa] = this);
   }
-  ((A.prototype = Object.create(J3.prototype)),
+  (A.prototype = Object.create(J3.prototype)),
     (A.prototype.constructor = A),
     (A.prototype.SDa = A),
     (A.TDa = {}),
@@ -23746,7 +23735,7 @@ async function Ir(e = {}) {
     }),
     (A.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(QI(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(QI(n, e, t), A3);
     }),
     (A.prototype.get_mSpace = A.prototype.bEa =
       function () {
@@ -23755,7 +23744,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mSpace = A.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eL(t, e));
+        e && typeof e == `object` && (e = e.RDa), eL(t, e);
       }),
     Object.defineProperty(A.prototype, "mSpace", { get: A.prototype.bEa, set: A.prototype.cEa }),
     (A.prototype.get_mPoint1 = A.prototype.rEa =
@@ -23765,7 +23754,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mPoint1 = A.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nL(t, e));
+        e && typeof e == `object` && (e = e.RDa), nL(t, e);
       }),
     Object.defineProperty(A.prototype, "mPoint1", { get: A.prototype.rEa, set: A.prototype.yEa }),
     (A.prototype.get_mTwistAxis1 = A.prototype.aIa =
@@ -23775,7 +23764,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mTwistAxis1 = A.prototype.zJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iL(t, e));
+        e && typeof e == `object` && (e = e.RDa), iL(t, e);
       }),
     Object.defineProperty(A.prototype, "mTwistAxis1", { get: A.prototype.aIa, set: A.prototype.zJa }),
     (A.prototype.get_mPoint2 = A.prototype.sEa =
@@ -23785,7 +23774,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mPoint2 = A.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oL(t, e));
+        e && typeof e == `object` && (e = e.RDa), oL(t, e);
       }),
     Object.defineProperty(A.prototype, "mPoint2", { get: A.prototype.sEa, set: A.prototype.zEa }),
     (A.prototype.get_mTwistAxis2 = A.prototype.bIa =
@@ -23795,7 +23784,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mTwistAxis2 = A.prototype.AJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cL(t, e));
+        e && typeof e == `object` && (e = e.RDa), cL(t, e);
       }),
     Object.defineProperty(A.prototype, "mTwistAxis2", { get: A.prototype.bIa, set: A.prototype.AJa }),
     (A.prototype.get_mHalfConeAngle = A.prototype.AKa =
@@ -23805,7 +23794,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mHalfConeAngle = A.prototype.JOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uL(t, e));
+        e && typeof e == `object` && (e = e.RDa), uL(t, e);
       }),
     Object.defineProperty(A.prototype, "mHalfConeAngle", { get: A.prototype.AKa, set: A.prototype.JOa }),
     (A.prototype.get_mEnabled = A.prototype.$Da =
@@ -23815,7 +23804,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mEnabled = A.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fL(t, e));
+        e && typeof e == `object` && (e = e.RDa), fL(t, e);
       }),
     Object.defineProperty(A.prototype, "mEnabled", { get: A.prototype.$Da, set: A.prototype.aEa }),
     (A.prototype.get_mNumVelocityStepsOverride = A.prototype.XDa =
@@ -23825,7 +23814,7 @@ async function Ir(e = {}) {
     (A.prototype.set_mNumVelocityStepsOverride = A.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mL(t, e));
+        e && typeof e == `object` && (e = e.RDa), mL(t, e);
       }),
     Object.defineProperty(A.prototype, "mNumVelocityStepsOverride", { get: A.prototype.XDa, set: A.prototype.ZDa }),
     (A.prototype.get_mNumPositionStepsOverride = A.prototype.WDa =
@@ -23835,23 +23824,23 @@ async function Ir(e = {}) {
     (A.prototype.set_mNumPositionStepsOverride = A.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gL(t, e));
+        e && typeof e == `object` && (e = e.RDa), gL(t, e);
       }),
     Object.defineProperty(A.prototype, "mNumPositionStepsOverride", { get: A.prototype.WDa, set: A.prototype.YDa }),
     (A.prototype.__destroy__ = function () {
       _L(this.RDa);
-    }));
+    });
   function n5() {
     throw `cannot construct a ConeConstraint, no constructor in IDL`;
   }
-  ((n5.prototype = Object.create(Y3.prototype)),
+  (n5.prototype = Object.create(Y3.prototype)),
     (n5.prototype.constructor = n5),
     (n5.prototype.SDa = n5),
     (n5.TDa = {}),
     (t.ConeConstraint = n5),
     (n5.prototype.SetHalfConeAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vL(t, e));
+      e && typeof e == `object` && (e = e.RDa), vL(t, e);
     }),
     (n5.prototype.GetCosHalfConeAngle = function () {
       return yL(this.RDa);
@@ -23882,25 +23871,25 @@ async function Ir(e = {}) {
     }),
     (n5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), OL(t, e));
+      e && typeof e == `object` && (e = e.RDa), OL(t, e);
     }),
     (n5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kL(t, e));
+      e && typeof e == `object` && (e = e.RDa), kL(t, e);
     }),
     (n5.prototype.GetNumVelocityStepsOverride = function () {
       return AL(this.RDa);
     }),
     (n5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jL(t, e));
+      e && typeof e == `object` && (e = e.RDa), jL(t, e);
     }),
     (n5.prototype.GetNumPositionStepsOverride = function () {
       return ML(this.RDa);
     }),
     (n5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), NL(t, e));
+      e && typeof e == `object` && (e = e.RDa), NL(t, e);
     }),
     (n5.prototype.GetEnabled = function () {
       return !!PL(this.RDa);
@@ -23913,18 +23902,18 @@ async function Ir(e = {}) {
     }),
     (n5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), LL(t, e));
+      e && typeof e == `object` && (e = e.RDa), LL(t, e);
     }),
     (n5.prototype.ResetWarmStart = function () {
       RL(this.RDa);
     }),
     (n5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), zL(t, e));
+      e && typeof e == `object` && (e = e.RDa), zL(t, e);
     }),
     (n5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), BL(t, e));
+      e && typeof e == `object` && (e = e.RDa), BL(t, e);
     }),
     (n5.prototype.GetBody1 = function () {
       return f(VL(this.RDa), I);
@@ -23940,11 +23929,11 @@ async function Ir(e = {}) {
     }),
     (n5.prototype.__destroy__ = function () {
       GL(this.RDa);
-    }));
+    });
   function j() {
-    ((this.RDa = KL()), (d(j)[this.RDa] = this));
+    (this.RDa = KL()), (d(j)[this.RDa] = this);
   }
-  ((j.prototype = Object.create(J3.prototype)),
+  (j.prototype = Object.create(J3.prototype)),
     (j.prototype.constructor = j),
     (j.prototype.SDa = j),
     (j.TDa = {}),
@@ -23960,7 +23949,7 @@ async function Ir(e = {}) {
     }),
     (j.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(XL(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(XL(n, e, t), A3);
     }),
     (j.prototype.get_mSpace = j.prototype.bEa =
       function () {
@@ -23969,7 +23958,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mSpace = j.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QL(t, e));
+        e && typeof e == `object` && (e = e.RDa), QL(t, e);
       }),
     Object.defineProperty(j.prototype, "mSpace", { get: j.prototype.bEa, set: j.prototype.cEa }),
     (j.prototype.get_mAutoDetectPoint = j.prototype.JGa =
@@ -23979,7 +23968,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mAutoDetectPoint = j.prototype.hIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eR(t, e));
+        e && typeof e == `object` && (e = e.RDa), eR(t, e);
       }),
     Object.defineProperty(j.prototype, "mAutoDetectPoint", { get: j.prototype.JGa, set: j.prototype.hIa }),
     (j.prototype.get_mPoint1 = j.prototype.rEa =
@@ -23989,7 +23978,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mPoint1 = j.prototype.yEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nR(t, e));
+        e && typeof e == `object` && (e = e.RDa), nR(t, e);
       }),
     Object.defineProperty(j.prototype, "mPoint1", { get: j.prototype.rEa, set: j.prototype.yEa }),
     (j.prototype.get_mSliderAxis1 = j.prototype.ZMa =
@@ -23999,7 +23988,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mSliderAxis1 = j.prototype.fRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iR(t, e));
+        e && typeof e == `object` && (e = e.RDa), iR(t, e);
       }),
     Object.defineProperty(j.prototype, "mSliderAxis1", { get: j.prototype.ZMa, set: j.prototype.fRa }),
     (j.prototype.get_mNormalAxis1 = j.prototype.FHa =
@@ -24009,7 +23998,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mNormalAxis1 = j.prototype.cJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oR(t, e));
+        e && typeof e == `object` && (e = e.RDa), oR(t, e);
       }),
     Object.defineProperty(j.prototype, "mNormalAxis1", { get: j.prototype.FHa, set: j.prototype.cJa }),
     (j.prototype.get_mPoint2 = j.prototype.sEa =
@@ -24019,7 +24008,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mPoint2 = j.prototype.zEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cR(t, e));
+        e && typeof e == `object` && (e = e.RDa), cR(t, e);
       }),
     Object.defineProperty(j.prototype, "mPoint2", { get: j.prototype.sEa, set: j.prototype.zEa }),
     (j.prototype.get_mSliderAxis2 = j.prototype.$Ma =
@@ -24029,7 +24018,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mSliderAxis2 = j.prototype.gRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uR(t, e));
+        e && typeof e == `object` && (e = e.RDa), uR(t, e);
       }),
     Object.defineProperty(j.prototype, "mSliderAxis2", { get: j.prototype.$Ma, set: j.prototype.gRa }),
     (j.prototype.get_mNormalAxis2 = j.prototype.GHa =
@@ -24039,7 +24028,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mNormalAxis2 = j.prototype.dJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fR(t, e));
+        e && typeof e == `object` && (e = e.RDa), fR(t, e);
       }),
     Object.defineProperty(j.prototype, "mNormalAxis2", { get: j.prototype.GHa, set: j.prototype.dJa }),
     (j.prototype.get_mLimitsMin = j.prototype.sHa =
@@ -24049,7 +24038,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mLimitsMin = j.prototype.QIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mR(t, e));
+        e && typeof e == `object` && (e = e.RDa), mR(t, e);
       }),
     Object.defineProperty(j.prototype, "mLimitsMin", { get: j.prototype.sHa, set: j.prototype.QIa }),
     (j.prototype.get_mLimitsMax = j.prototype.rHa =
@@ -24059,7 +24048,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mLimitsMax = j.prototype.PIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gR(t, e));
+        e && typeof e == `object` && (e = e.RDa), gR(t, e);
       }),
     Object.defineProperty(j.prototype, "mLimitsMax", { get: j.prototype.rHa, set: j.prototype.PIa }),
     (j.prototype.get_mLimitsSpringSettings = j.prototype.PEa =
@@ -24069,7 +24058,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mLimitsSpringSettings = j.prototype.YEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vR(t, e));
+        e && typeof e == `object` && (e = e.RDa), vR(t, e);
       }),
     Object.defineProperty(j.prototype, "mLimitsSpringSettings", { get: j.prototype.PEa, set: j.prototype.YEa }),
     (j.prototype.get_mMaxFrictionForce = j.prototype.xHa =
@@ -24079,7 +24068,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mMaxFrictionForce = j.prototype.VIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bR(t, e));
+        e && typeof e == `object` && (e = e.RDa), bR(t, e);
       }),
     Object.defineProperty(j.prototype, "mMaxFrictionForce", { get: j.prototype.xHa, set: j.prototype.VIa }),
     (j.prototype.get_mMotorSettings = j.prototype.uFa =
@@ -24089,7 +24078,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mMotorSettings = j.prototype.jGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SR(t, e));
+        e && typeof e == `object` && (e = e.RDa), SR(t, e);
       }),
     Object.defineProperty(j.prototype, "mMotorSettings", { get: j.prototype.uFa, set: j.prototype.jGa }),
     (j.prototype.get_mEnabled = j.prototype.$Da =
@@ -24099,7 +24088,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mEnabled = j.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wR(t, e));
+        e && typeof e == `object` && (e = e.RDa), wR(t, e);
       }),
     Object.defineProperty(j.prototype, "mEnabled", { get: j.prototype.$Da, set: j.prototype.aEa }),
     (j.prototype.get_mNumVelocityStepsOverride = j.prototype.XDa =
@@ -24109,7 +24098,7 @@ async function Ir(e = {}) {
     (j.prototype.set_mNumVelocityStepsOverride = j.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ER(t, e));
+        e && typeof e == `object` && (e = e.RDa), ER(t, e);
       }),
     Object.defineProperty(j.prototype, "mNumVelocityStepsOverride", { get: j.prototype.XDa, set: j.prototype.ZDa }),
     (j.prototype.get_mNumPositionStepsOverride = j.prototype.WDa =
@@ -24119,16 +24108,16 @@ async function Ir(e = {}) {
     (j.prototype.set_mNumPositionStepsOverride = j.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), OR(t, e));
+        e && typeof e == `object` && (e = e.RDa), OR(t, e);
       }),
     Object.defineProperty(j.prototype, "mNumPositionStepsOverride", { get: j.prototype.WDa, set: j.prototype.YDa }),
     (j.prototype.__destroy__ = function () {
       kR(this.RDa);
-    }));
+    });
   function r5() {
     throw `cannot construct a SliderConstraint, no constructor in IDL`;
   }
-  ((r5.prototype = Object.create(Y3.prototype)),
+  (r5.prototype = Object.create(Y3.prototype)),
     (r5.prototype.constructor = r5),
     (r5.prototype.SDa = r5),
     (r5.TDa = {}),
@@ -24138,7 +24127,7 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.SetMaxFrictionForce = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jR(t, e));
+      e && typeof e == `object` && (e = e.RDa), jR(t, e);
     }),
     (r5.prototype.GetMaxFrictionForce = function () {
       return MR(this.RDa);
@@ -24148,28 +24137,28 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.SetMotorState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), PR(t, e));
+      e && typeof e == `object` && (e = e.RDa), PR(t, e);
     }),
     (r5.prototype.GetMotorState = function () {
       return FR(this.RDa);
     }),
     (r5.prototype.SetTargetVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), IR(t, e));
+      e && typeof e == `object` && (e = e.RDa), IR(t, e);
     }),
     (r5.prototype.GetTargetVelocity = function () {
       return LR(this.RDa);
     }),
     (r5.prototype.SetTargetPosition = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), RR(t, e));
+      e && typeof e == `object` && (e = e.RDa), RR(t, e);
     }),
     (r5.prototype.GetTargetPosition = function () {
       return zR(this.RDa);
     }),
     (r5.prototype.SetLimits = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BR(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BR(n, e, t);
     }),
     (r5.prototype.GetLimitsMin = function () {
       return VR(this.RDa);
@@ -24185,7 +24174,7 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.SetLimitsSpringSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), GR(t, e));
+      e && typeof e == `object` && (e = e.RDa), GR(t, e);
     }),
     (r5.prototype.GetTotalLambdaPosition = function () {
       return f(KR(this.RDa), Q6);
@@ -24219,25 +24208,25 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nz(t, e));
+      e && typeof e == `object` && (e = e.RDa), nz(t, e);
     }),
     (r5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rz(t, e));
+      e && typeof e == `object` && (e = e.RDa), rz(t, e);
     }),
     (r5.prototype.GetNumVelocityStepsOverride = function () {
       return iz(this.RDa);
     }),
     (r5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), az(t, e));
+      e && typeof e == `object` && (e = e.RDa), az(t, e);
     }),
     (r5.prototype.GetNumPositionStepsOverride = function () {
       return oz(this.RDa);
     }),
     (r5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sz(t, e));
+      e && typeof e == `object` && (e = e.RDa), sz(t, e);
     }),
     (r5.prototype.GetEnabled = function () {
       return !!cz(this.RDa);
@@ -24250,18 +24239,18 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dz(t, e));
+      e && typeof e == `object` && (e = e.RDa), dz(t, e);
     }),
     (r5.prototype.ResetWarmStart = function () {
       fz(this.RDa);
     }),
     (r5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pz(t, e));
+      e && typeof e == `object` && (e = e.RDa), pz(t, e);
     }),
     (r5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mz(t, e));
+      e && typeof e == `object` && (e = e.RDa), mz(t, e);
     }),
     (r5.prototype.GetBody1 = function () {
       return f(hz(this.RDa), I);
@@ -24277,11 +24266,11 @@ async function Ir(e = {}) {
     }),
     (r5.prototype.__destroy__ = function () {
       yz(this.RDa);
-    }));
+    });
   function M() {
-    ((this.RDa = bz()), (d(M)[this.RDa] = this));
+    (this.RDa = bz()), (d(M)[this.RDa] = this);
   }
-  ((M.prototype = Object.create(J3.prototype)),
+  (M.prototype = Object.create(J3.prototype)),
     (M.prototype.constructor = M),
     (M.prototype.SDa = M),
     (M.TDa = {}),
@@ -24297,7 +24286,7 @@ async function Ir(e = {}) {
     }),
     (M.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wz(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(wz(n, e, t), A3);
     }),
     (M.prototype.get_mSpace = M.prototype.bEa =
       function () {
@@ -24306,7 +24295,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mSpace = M.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ez(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ez(t, e);
       }),
     Object.defineProperty(M.prototype, "mSpace", { get: M.prototype.bEa, set: M.prototype.cEa }),
     (M.prototype.get_mPosition1 = M.prototype.MHa =
@@ -24316,7 +24305,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mPosition1 = M.prototype.jJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Oz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Oz(t, e);
       }),
     Object.defineProperty(M.prototype, "mPosition1", { get: M.prototype.MHa, set: M.prototype.jJa }),
     (M.prototype.get_mTwistAxis1 = M.prototype.aIa =
@@ -24326,7 +24315,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mTwistAxis1 = M.prototype.zJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Az(t, e));
+        e && typeof e == `object` && (e = e.RDa), Az(t, e);
       }),
     Object.defineProperty(M.prototype, "mTwistAxis1", { get: M.prototype.aIa, set: M.prototype.zJa }),
     (M.prototype.get_mPlaneAxis1 = M.prototype.uMa =
@@ -24336,7 +24325,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mPlaneAxis1 = M.prototype.DQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Mz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Mz(t, e);
       }),
     Object.defineProperty(M.prototype, "mPlaneAxis1", { get: M.prototype.uMa, set: M.prototype.DQa }),
     (M.prototype.get_mPosition2 = M.prototype.NHa =
@@ -24346,7 +24335,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mPosition2 = M.prototype.kJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Pz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Pz(t, e);
       }),
     Object.defineProperty(M.prototype, "mPosition2", { get: M.prototype.NHa, set: M.prototype.kJa }),
     (M.prototype.get_mTwistAxis2 = M.prototype.bIa =
@@ -24356,7 +24345,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mTwistAxis2 = M.prototype.AJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Iz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Iz(t, e);
       }),
     Object.defineProperty(M.prototype, "mTwistAxis2", { get: M.prototype.bIa, set: M.prototype.AJa }),
     (M.prototype.get_mPlaneAxis2 = M.prototype.vMa =
@@ -24366,7 +24355,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mPlaneAxis2 = M.prototype.EQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Rz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Rz(t, e);
       }),
     Object.defineProperty(M.prototype, "mPlaneAxis2", { get: M.prototype.vMa, set: M.prototype.EQa }),
     (M.prototype.get_mSwingType = M.prototype.WHa =
@@ -24376,7 +24365,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mSwingType = M.prototype.uJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Bz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Bz(t, e);
       }),
     Object.defineProperty(M.prototype, "mSwingType", { get: M.prototype.WHa, set: M.prototype.uJa }),
     (M.prototype.get_mNormalHalfConeAngle = M.prototype.cMa =
@@ -24386,7 +24375,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mNormalHalfConeAngle = M.prototype.lQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Hz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Hz(t, e);
       }),
     Object.defineProperty(M.prototype, "mNormalHalfConeAngle", { get: M.prototype.cMa, set: M.prototype.lQa }),
     (M.prototype.get_mPlaneHalfConeAngle = M.prototype.wMa =
@@ -24396,7 +24385,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mPlaneHalfConeAngle = M.prototype.FQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wz(t, e);
       }),
     Object.defineProperty(M.prototype, "mPlaneHalfConeAngle", { get: M.prototype.wMa, set: M.prototype.FQa }),
     (M.prototype.get_mTwistMinAngle = M.prototype.qNa =
@@ -24406,7 +24395,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mTwistMinAngle = M.prototype.xRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Kz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Kz(t, e);
       }),
     Object.defineProperty(M.prototype, "mTwistMinAngle", { get: M.prototype.qNa, set: M.prototype.xRa }),
     (M.prototype.get_mTwistMaxAngle = M.prototype.pNa =
@@ -24416,7 +24405,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mTwistMaxAngle = M.prototype.wRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Jz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Jz(t, e);
       }),
     Object.defineProperty(M.prototype, "mTwistMaxAngle", { get: M.prototype.pNa, set: M.prototype.wRa }),
     (M.prototype.get_mMaxFrictionTorque = M.prototype.yHa =
@@ -24426,7 +24415,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mMaxFrictionTorque = M.prototype.WIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xz(t, e);
       }),
     Object.defineProperty(M.prototype, "mMaxFrictionTorque", { get: M.prototype.yHa, set: M.prototype.WIa }),
     (M.prototype.get_mSwingMotorSettings = M.prototype.hNa =
@@ -24436,7 +24425,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mSwingMotorSettings = M.prototype.oRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qz(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qz(t, e);
       }),
     Object.defineProperty(M.prototype, "mSwingMotorSettings", { get: M.prototype.hNa, set: M.prototype.oRa }),
     (M.prototype.get_mTwistMotorSettings = M.prototype.rNa =
@@ -24446,7 +24435,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mTwistMotorSettings = M.prototype.yRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eB(t, e));
+        e && typeof e == `object` && (e = e.RDa), eB(t, e);
       }),
     Object.defineProperty(M.prototype, "mTwistMotorSettings", { get: M.prototype.rNa, set: M.prototype.yRa }),
     (M.prototype.get_mEnabled = M.prototype.$Da =
@@ -24456,7 +24445,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mEnabled = M.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nB(t, e));
+        e && typeof e == `object` && (e = e.RDa), nB(t, e);
       }),
     Object.defineProperty(M.prototype, "mEnabled", { get: M.prototype.$Da, set: M.prototype.aEa }),
     (M.prototype.get_mNumVelocityStepsOverride = M.prototype.XDa =
@@ -24466,7 +24455,7 @@ async function Ir(e = {}) {
     (M.prototype.set_mNumVelocityStepsOverride = M.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iB(t, e));
+        e && typeof e == `object` && (e = e.RDa), iB(t, e);
       }),
     Object.defineProperty(M.prototype, "mNumVelocityStepsOverride", { get: M.prototype.XDa, set: M.prototype.ZDa }),
     (M.prototype.get_mNumPositionStepsOverride = M.prototype.WDa =
@@ -24476,16 +24465,16 @@ async function Ir(e = {}) {
     (M.prototype.set_mNumPositionStepsOverride = M.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oB(t, e));
+        e && typeof e == `object` && (e = e.RDa), oB(t, e);
       }),
     Object.defineProperty(M.prototype, "mNumPositionStepsOverride", { get: M.prototype.WDa, set: M.prototype.YDa }),
     (M.prototype.__destroy__ = function () {
       sB(this.RDa);
-    }));
+    });
   function i5() {
     throw `cannot construct a SwingTwistConstraint, no constructor in IDL`;
   }
-  ((i5.prototype = Object.create(Y3.prototype)),
+  (i5.prototype = Object.create(Y3.prototype)),
     (i5.prototype.constructor = i5),
     (i5.prototype.SDa = i5),
     (i5.TDa = {}),
@@ -24507,28 +24496,28 @@ async function Ir(e = {}) {
     }),
     (i5.prototype.SetNormalHalfConeAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pB(t, e));
+      e && typeof e == `object` && (e = e.RDa), pB(t, e);
     }),
     (i5.prototype.GetPlaneHalfConeAngle = function () {
       return mB(this.RDa);
     }),
     (i5.prototype.SetPlaneHalfConeAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hB(t, e));
+      e && typeof e == `object` && (e = e.RDa), hB(t, e);
     }),
     (i5.prototype.GetTwistMinAngle = function () {
       return gB(this.RDa);
     }),
     (i5.prototype.SetTwistMinAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _B(t, e));
+      e && typeof e == `object` && (e = e.RDa), _B(t, e);
     }),
     (i5.prototype.GetTwistMaxAngle = function () {
       return vB(this.RDa);
     }),
     (i5.prototype.SetTwistMaxAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), yB(t, e));
+      e && typeof e == `object` && (e = e.RDa), yB(t, e);
     }),
     (i5.prototype.GetSwingMotorSettings = function () {
       return f(bB(this.RDa), Z8);
@@ -24538,42 +24527,42 @@ async function Ir(e = {}) {
     }),
     (i5.prototype.SetMaxFrictionTorque = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), SB(t, e));
+      e && typeof e == `object` && (e = e.RDa), SB(t, e);
     }),
     (i5.prototype.GetMaxFrictionTorque = function () {
       return CB(this.RDa);
     }),
     (i5.prototype.SetSwingMotorState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), wB(t, e));
+      e && typeof e == `object` && (e = e.RDa), wB(t, e);
     }),
     (i5.prototype.GetSwingMotorState = function () {
       return TB(this.RDa);
     }),
     (i5.prototype.SetTwistMotorState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), EB(t, e));
+      e && typeof e == `object` && (e = e.RDa), EB(t, e);
     }),
     (i5.prototype.GetTwistMotorState = function () {
       return DB(this.RDa);
     }),
     (i5.prototype.SetTargetAngularVelocityCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), OB(t, e));
+      e && typeof e == `object` && (e = e.RDa), OB(t, e);
     }),
     (i5.prototype.GetTargetAngularVelocityCS = function () {
       return f(kB(this.RDa), v);
     }),
     (i5.prototype.SetTargetOrientationCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), AB(t, e));
+      e && typeof e == `object` && (e = e.RDa), AB(t, e);
     }),
     (i5.prototype.GetTargetOrientationCS = function () {
       return f(jB(this.RDa), x);
     }),
     (i5.prototype.SetTargetOrientationBS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), MB(t, e));
+      e && typeof e == `object` && (e = e.RDa), MB(t, e);
     }),
     (i5.prototype.GetRotationInConstraintSpace = function () {
       return f(NB(this.RDa), x);
@@ -24613,25 +24602,25 @@ async function Ir(e = {}) {
     }),
     (i5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), GB(t, e));
+      e && typeof e == `object` && (e = e.RDa), GB(t, e);
     }),
     (i5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), KB(t, e));
+      e && typeof e == `object` && (e = e.RDa), KB(t, e);
     }),
     (i5.prototype.GetNumVelocityStepsOverride = function () {
       return qB(this.RDa);
     }),
     (i5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), JB(t, e));
+      e && typeof e == `object` && (e = e.RDa), JB(t, e);
     }),
     (i5.prototype.GetNumPositionStepsOverride = function () {
       return YB(this.RDa);
     }),
     (i5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), XB(t, e));
+      e && typeof e == `object` && (e = e.RDa), XB(t, e);
     }),
     (i5.prototype.GetEnabled = function () {
       return !!ZB(this.RDa);
@@ -24644,18 +24633,18 @@ async function Ir(e = {}) {
     }),
     (i5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eV(t, e));
+      e && typeof e == `object` && (e = e.RDa), eV(t, e);
     }),
     (i5.prototype.ResetWarmStart = function () {
       tV(this.RDa);
     }),
     (i5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nV(t, e));
+      e && typeof e == `object` && (e = e.RDa), nV(t, e);
     }),
     (i5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rV(t, e));
+      e && typeof e == `object` && (e = e.RDa), rV(t, e);
     }),
     (i5.prototype.GetBody1 = function () {
       return f(iV(this.RDa), I);
@@ -24671,34 +24660,34 @@ async function Ir(e = {}) {
     }),
     (i5.prototype.__destroy__ = function () {
       cV(this.RDa);
-    }));
+    });
   function N() {
-    ((this.RDa = lV()), (d(N)[this.RDa] = this));
+    (this.RDa = lV()), (d(N)[this.RDa] = this);
   }
-  ((N.prototype = Object.create(J3.prototype)),
+  (N.prototype = Object.create(J3.prototype)),
     (N.prototype.constructor = N),
     (N.prototype.SDa = N),
     (N.TDa = {}),
     (t.SixDOFConstraintSettings = N),
     (N.prototype.MakeFreeAxis = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), uV(t, e));
+      e && typeof e == `object` && (e = e.RDa), uV(t, e);
     }),
     (N.prototype.IsFreeAxis = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!dV(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!dV(t, e);
     }),
     (N.prototype.MakeFixedAxis = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), fV(t, e));
+      e && typeof e == `object` && (e = e.RDa), fV(t, e);
     }),
     (N.prototype.IsFixedAxis = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!pV(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!pV(t, e);
     }),
     (N.prototype.SetLimitedAxis = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), mV(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), mV(r, e, t, n);
     }),
     (N.prototype.GetRefCount = function () {
       return hV(this.RDa);
@@ -24711,7 +24700,7 @@ async function Ir(e = {}) {
     }),
     (N.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vV(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(vV(n, e, t), A3);
     }),
     (N.prototype.get_mSpace = N.prototype.bEa =
       function () {
@@ -24720,7 +24709,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mSpace = N.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bV(t, e));
+        e && typeof e == `object` && (e = e.RDa), bV(t, e);
       }),
     Object.defineProperty(N.prototype, "mSpace", { get: N.prototype.bEa, set: N.prototype.cEa }),
     (N.prototype.get_mPosition1 = N.prototype.MHa =
@@ -24730,7 +24719,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mPosition1 = N.prototype.jJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SV(t, e));
+        e && typeof e == `object` && (e = e.RDa), SV(t, e);
       }),
     Object.defineProperty(N.prototype, "mPosition1", { get: N.prototype.MHa, set: N.prototype.jJa }),
     (N.prototype.get_mAxisX1 = N.prototype.KGa =
@@ -24740,7 +24729,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mAxisX1 = N.prototype.iIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wV(t, e));
+        e && typeof e == `object` && (e = e.RDa), wV(t, e);
       }),
     Object.defineProperty(N.prototype, "mAxisX1", { get: N.prototype.KGa, set: N.prototype.iIa }),
     (N.prototype.get_mAxisY1 = N.prototype.MGa =
@@ -24750,7 +24739,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mAxisY1 = N.prototype.kIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), EV(t, e));
+        e && typeof e == `object` && (e = e.RDa), EV(t, e);
       }),
     Object.defineProperty(N.prototype, "mAxisY1", { get: N.prototype.MGa, set: N.prototype.kIa }),
     (N.prototype.get_mPosition2 = N.prototype.NHa =
@@ -24760,7 +24749,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mPosition2 = N.prototype.kJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), OV(t, e));
+        e && typeof e == `object` && (e = e.RDa), OV(t, e);
       }),
     Object.defineProperty(N.prototype, "mPosition2", { get: N.prototype.NHa, set: N.prototype.kJa }),
     (N.prototype.get_mAxisX2 = N.prototype.LGa =
@@ -24770,7 +24759,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mAxisX2 = N.prototype.jIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), AV(t, e));
+        e && typeof e == `object` && (e = e.RDa), AV(t, e);
       }),
     Object.defineProperty(N.prototype, "mAxisX2", { get: N.prototype.LGa, set: N.prototype.jIa }),
     (N.prototype.get_mAxisY2 = N.prototype.NGa =
@@ -24780,18 +24769,18 @@ async function Ir(e = {}) {
     (N.prototype.set_mAxisY2 = N.prototype.lIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MV(t, e));
+        e && typeof e == `object` && (e = e.RDa), MV(t, e);
       }),
     Object.defineProperty(N.prototype, "mAxisY2", { get: N.prototype.NGa, set: N.prototype.lIa }),
     (N.prototype.get_mMaxFriction = N.prototype.FLa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), NV(t, e));
+        return e && typeof e == `object` && (e = e.RDa), NV(t, e);
       }),
     (N.prototype.set_mMaxFriction = N.prototype.OPa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), PV(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), PV(n, e, t);
       }),
     Object.defineProperty(N.prototype, "mMaxFriction", { get: N.prototype.FLa, set: N.prototype.OPa }),
     (N.prototype.get_mSwingType = N.prototype.WHa =
@@ -24801,51 +24790,51 @@ async function Ir(e = {}) {
     (N.prototype.set_mSwingType = N.prototype.uJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IV(t, e));
+        e && typeof e == `object` && (e = e.RDa), IV(t, e);
       }),
     Object.defineProperty(N.prototype, "mSwingType", { get: N.prototype.WHa, set: N.prototype.uJa }),
     (N.prototype.get_mLimitMin = N.prototype.mLa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), LV(t, e));
+        return e && typeof e == `object` && (e = e.RDa), LV(t, e);
       }),
     (N.prototype.set_mLimitMin = N.prototype.vPa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), RV(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), RV(n, e, t);
       }),
     Object.defineProperty(N.prototype, "mLimitMin", { get: N.prototype.mLa, set: N.prototype.vPa }),
     (N.prototype.get_mLimitMax = N.prototype.lLa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), zV(t, e));
+        return e && typeof e == `object` && (e = e.RDa), zV(t, e);
       }),
     (N.prototype.set_mLimitMax = N.prototype.uPa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BV(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BV(n, e, t);
       }),
     Object.defineProperty(N.prototype, "mLimitMax", { get: N.prototype.lLa, set: N.prototype.uPa }),
     (N.prototype.get_mLimitsSpringSettings = N.prototype.PEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(VV(t, e), X8));
+        return e && typeof e == `object` && (e = e.RDa), f(VV(t, e), X8);
       }),
     (N.prototype.set_mLimitsSpringSettings = N.prototype.YEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HV(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HV(n, e, t);
       }),
     Object.defineProperty(N.prototype, "mLimitsSpringSettings", { get: N.prototype.PEa, set: N.prototype.YEa }),
     (N.prototype.get_mMotorSettings = N.prototype.uFa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(UV(t, e), Z8));
+        return e && typeof e == `object` && (e = e.RDa), f(UV(t, e), Z8);
       }),
     (N.prototype.set_mMotorSettings = N.prototype.jGa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), WV(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), WV(n, e, t);
       }),
     Object.defineProperty(N.prototype, "mMotorSettings", { get: N.prototype.uFa, set: N.prototype.jGa }),
     (N.prototype.get_mEnabled = N.prototype.$Da =
@@ -24855,7 +24844,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mEnabled = N.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), KV(t, e));
+        e && typeof e == `object` && (e = e.RDa), KV(t, e);
       }),
     Object.defineProperty(N.prototype, "mEnabled", { get: N.prototype.$Da, set: N.prototype.aEa }),
     (N.prototype.get_mNumVelocityStepsOverride = N.prototype.XDa =
@@ -24865,7 +24854,7 @@ async function Ir(e = {}) {
     (N.prototype.set_mNumVelocityStepsOverride = N.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), JV(t, e));
+        e && typeof e == `object` && (e = e.RDa), JV(t, e);
       }),
     Object.defineProperty(N.prototype, "mNumVelocityStepsOverride", { get: N.prototype.XDa, set: N.prototype.ZDa }),
     (N.prototype.get_mNumPositionStepsOverride = N.prototype.WDa =
@@ -24875,35 +24864,35 @@ async function Ir(e = {}) {
     (N.prototype.set_mNumPositionStepsOverride = N.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XV(t, e));
+        e && typeof e == `object` && (e = e.RDa), XV(t, e);
       }),
     Object.defineProperty(N.prototype, "mNumPositionStepsOverride", { get: N.prototype.WDa, set: N.prototype.YDa }),
     (N.prototype.__destroy__ = function () {
       ZV(this.RDa);
-    }));
+    });
   function a5() {
     throw `cannot construct a SixDOFConstraint, no constructor in IDL`;
   }
-  ((a5.prototype = Object.create(Y3.prototype)),
+  (a5.prototype = Object.create(Y3.prototype)),
     (a5.prototype.constructor = a5),
     (a5.prototype.SDa = a5),
     (a5.TDa = {}),
     (t.SixDOFConstraint = a5),
     (a5.prototype.SetTranslationLimits = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), QV(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), QV(n, e, t);
     }),
     (a5.prototype.SetRotationLimits = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), $V(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), $V(n, e, t);
     }),
     (a5.prototype.GetLimitsMin = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), eH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), eH(t, e);
     }),
     (a5.prototype.GetLimitsMax = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), tH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), tH(t, e);
     }),
     (a5.prototype.GetTranslationLimitsMin = function () {
       return f(nH(this.RDa), v);
@@ -24919,53 +24908,53 @@ async function Ir(e = {}) {
     }),
     (a5.prototype.IsFixedAxis = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!oH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!oH(t, e);
     }),
     (a5.prototype.IsFreeAxis = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!sH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!sH(t, e);
     }),
     (a5.prototype.GetLimitsSpringSettings = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(cH(t, e), X8));
+      return e && typeof e == `object` && (e = e.RDa), f(cH(t, e), X8);
     }),
     (a5.prototype.SetLimitsSpringSettings = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lH(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lH(n, e, t);
     }),
     (a5.prototype.SetMaxFriction = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uH(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uH(n, e, t);
     }),
     (a5.prototype.GetMaxFriction = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), dH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), dH(t, e);
     }),
     (a5.prototype.GetRotationInConstraintSpace = function () {
       return f(fH(this.RDa), x);
     }),
     (a5.prototype.GetMotorSettings = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pH(t, e), Z8));
+      return e && typeof e == `object` && (e = e.RDa), f(pH(t, e), Z8);
     }),
     (a5.prototype.SetMotorState = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), mH(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), mH(n, e, t);
     }),
     (a5.prototype.GetMotorState = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), hH(t, e));
+      return e && typeof e == `object` && (e = e.RDa), hH(t, e);
     }),
     (a5.prototype.GetTargetVelocityCS = function () {
       return f(gH(this.RDa), v);
     }),
     (a5.prototype.SetTargetVelocityCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _H(t, e));
+      e && typeof e == `object` && (e = e.RDa), _H(t, e);
     }),
     (a5.prototype.SetTargetAngularVelocityCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vH(t, e));
+      e && typeof e == `object` && (e = e.RDa), vH(t, e);
     }),
     (a5.prototype.GetTargetAngularVelocityCS = function () {
       return f(yH(this.RDa), v);
@@ -24975,18 +24964,18 @@ async function Ir(e = {}) {
     }),
     (a5.prototype.SetTargetPositionCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xH(t, e));
+      e && typeof e == `object` && (e = e.RDa), xH(t, e);
     }),
     (a5.prototype.SetTargetOrientationCS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), SH(t, e));
+      e && typeof e == `object` && (e = e.RDa), SH(t, e);
     }),
     (a5.prototype.GetTargetOrientationCS = function () {
       return f(CH(this.RDa), x);
     }),
     (a5.prototype.SetTargetOrientationBS = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), wH(t, e));
+      e && typeof e == `object` && (e = e.RDa), wH(t, e);
     }),
     (a5.prototype.GetTotalLambdaPosition = function () {
       return f(TH(this.RDa), v);
@@ -25020,25 +25009,25 @@ async function Ir(e = {}) {
     }),
     (a5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), FH(t, e));
+      e && typeof e == `object` && (e = e.RDa), FH(t, e);
     }),
     (a5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), IH(t, e));
+      e && typeof e == `object` && (e = e.RDa), IH(t, e);
     }),
     (a5.prototype.GetNumVelocityStepsOverride = function () {
       return LH(this.RDa);
     }),
     (a5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), RH(t, e));
+      e && typeof e == `object` && (e = e.RDa), RH(t, e);
     }),
     (a5.prototype.GetNumPositionStepsOverride = function () {
       return zH(this.RDa);
     }),
     (a5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), BH(t, e));
+      e && typeof e == `object` && (e = e.RDa), BH(t, e);
     }),
     (a5.prototype.GetEnabled = function () {
       return !!VH(this.RDa);
@@ -25051,18 +25040,18 @@ async function Ir(e = {}) {
     }),
     (a5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), WH(t, e));
+      e && typeof e == `object` && (e = e.RDa), WH(t, e);
     }),
     (a5.prototype.ResetWarmStart = function () {
       GH(this.RDa);
     }),
     (a5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), KH(t, e));
+      e && typeof e == `object` && (e = e.RDa), KH(t, e);
     }),
     (a5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qH(t, e));
+      e && typeof e == `object` && (e = e.RDa), qH(t, e);
     }),
     (a5.prototype.GetBody1 = function () {
       return f(JH(this.RDa), I);
@@ -25078,11 +25067,11 @@ async function Ir(e = {}) {
     }),
     (a5.prototype.__destroy__ = function () {
       QH(this.RDa);
-    }));
+    });
   function P() {
-    ((this.RDa = $H()), (d(P)[this.RDa] = this));
+    (this.RDa = $H()), (d(P)[this.RDa] = this);
   }
-  ((P.prototype = Object.create(J3.prototype)),
+  (P.prototype = Object.create(J3.prototype)),
     (P.prototype.constructor = P),
     (P.prototype.SDa = P),
     (P.TDa = {}),
@@ -25098,7 +25087,7 @@ async function Ir(e = {}) {
     }),
     (P.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(rU(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(rU(n, e, t), A3);
     }),
     (P.prototype.get_mPath = P.prototype.lMa =
       function () {
@@ -25107,7 +25096,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mPath = P.prototype.uQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aU(t, e));
+        e && typeof e == `object` && (e = e.RDa), aU(t, e);
       }),
     Object.defineProperty(P.prototype, "mPath", { get: P.prototype.lMa, set: P.prototype.uQa }),
     (P.prototype.get_mPathPosition = P.prototype.nMa =
@@ -25117,7 +25106,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mPathPosition = P.prototype.wQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sU(t, e));
+        e && typeof e == `object` && (e = e.RDa), sU(t, e);
       }),
     Object.defineProperty(P.prototype, "mPathPosition", { get: P.prototype.nMa, set: P.prototype.wQa }),
     (P.prototype.get_mPathRotation = P.prototype.oMa =
@@ -25127,7 +25116,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mPathRotation = P.prototype.xQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lU(t, e));
+        e && typeof e == `object` && (e = e.RDa), lU(t, e);
       }),
     Object.defineProperty(P.prototype, "mPathRotation", { get: P.prototype.oMa, set: P.prototype.xQa }),
     (P.prototype.get_mPathFraction = P.prototype.mMa =
@@ -25137,7 +25126,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mPathFraction = P.prototype.vQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dU(t, e));
+        e && typeof e == `object` && (e = e.RDa), dU(t, e);
       }),
     Object.defineProperty(P.prototype, "mPathFraction", { get: P.prototype.mMa, set: P.prototype.vQa }),
     (P.prototype.get_mMaxFrictionForce = P.prototype.xHa =
@@ -25147,7 +25136,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mMaxFrictionForce = P.prototype.VIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pU(t, e));
+        e && typeof e == `object` && (e = e.RDa), pU(t, e);
       }),
     Object.defineProperty(P.prototype, "mMaxFrictionForce", { get: P.prototype.xHa, set: P.prototype.VIa }),
     (P.prototype.get_mRotationConstraintType = P.prototype.OMa =
@@ -25157,7 +25146,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mRotationConstraintType = P.prototype.VQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hU(t, e));
+        e && typeof e == `object` && (e = e.RDa), hU(t, e);
       }),
     Object.defineProperty(P.prototype, "mRotationConstraintType", { get: P.prototype.OMa, set: P.prototype.VQa }),
     (P.prototype.get_mPositionMotorSettings = P.prototype.zMa =
@@ -25167,7 +25156,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mPositionMotorSettings = P.prototype.IQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _U(t, e));
+        e && typeof e == `object` && (e = e.RDa), _U(t, e);
       }),
     Object.defineProperty(P.prototype, "mPositionMotorSettings", { get: P.prototype.zMa, set: P.prototype.IQa }),
     (P.prototype.get_mEnabled = P.prototype.$Da =
@@ -25177,7 +25166,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mEnabled = P.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yU(t, e));
+        e && typeof e == `object` && (e = e.RDa), yU(t, e);
       }),
     Object.defineProperty(P.prototype, "mEnabled", { get: P.prototype.$Da, set: P.prototype.aEa }),
     (P.prototype.get_mNumVelocityStepsOverride = P.prototype.XDa =
@@ -25187,7 +25176,7 @@ async function Ir(e = {}) {
     (P.prototype.set_mNumVelocityStepsOverride = P.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xU(t, e));
+        e && typeof e == `object` && (e = e.RDa), xU(t, e);
       }),
     Object.defineProperty(P.prototype, "mNumVelocityStepsOverride", { get: P.prototype.XDa, set: P.prototype.ZDa }),
     (P.prototype.get_mNumPositionStepsOverride = P.prototype.WDa =
@@ -25197,30 +25186,30 @@ async function Ir(e = {}) {
     (P.prototype.set_mNumPositionStepsOverride = P.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CU(t, e));
+        e && typeof e == `object` && (e = e.RDa), CU(t, e);
       }),
     Object.defineProperty(P.prototype, "mNumPositionStepsOverride", { get: P.prototype.WDa, set: P.prototype.YDa }),
     (P.prototype.__destroy__ = function () {
       wU(this.RDa);
-    }));
+    });
   function o5() {
     throw `cannot construct a PathConstraintPathHermite, no constructor in IDL`;
   }
-  ((o5.prototype = Object.create(j3.prototype)),
+  (o5.prototype = Object.create(j3.prototype)),
     (o5.prototype.constructor = o5),
     (o5.prototype.SDa = o5),
     (o5.TDa = {}),
     (t.PathConstraintPathHermite = o5),
     (o5.prototype.AddPoint = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), TU(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), TU(r, e, t, n);
     }),
     (o5.prototype.IsLooping = function () {
       return !!EU(this.RDa);
     }),
     (o5.prototype.SetIsLooping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), DU(t, e));
+      e && typeof e == `object` && (e = e.RDa), DU(t, e);
     }),
     (o5.prototype.GetRefCount = function () {
       return OU(this.RDa);
@@ -25233,11 +25222,11 @@ async function Ir(e = {}) {
     }),
     (o5.prototype.__destroy__ = function () {
       jU(this.RDa);
-    }));
+    });
   function s5() {
-    ((this.RDa = MU()), (d(s5)[this.RDa] = this));
+    (this.RDa = MU()), (d(s5)[this.RDa] = this);
   }
-  ((s5.prototype = Object.create(X3.prototype)),
+  (s5.prototype = Object.create(X3.prototype)),
     (s5.prototype.constructor = s5),
     (s5.prototype.SDa = s5),
     (s5.TDa = {}),
@@ -25247,31 +25236,31 @@ async function Ir(e = {}) {
     }),
     (s5.prototype.GetClosestPoint = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), PU(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), PU(n, e, t);
     }),
     (s5.prototype.GetPointOnPath = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        FU(a, e, t, n, r, i));
+        FU(a, e, t, n, r, i);
     }),
     (s5.prototype.__destroy__ = function () {
       IU(this.RDa);
-    }));
+    });
   function c5() {
     throw `cannot construct a PathConstraint, no constructor in IDL`;
   }
-  ((c5.prototype = Object.create(Y3.prototype)),
+  (c5.prototype = Object.create(Y3.prototype)),
     (c5.prototype.constructor = c5),
     (c5.prototype.SDa = c5),
     (c5.TDa = {}),
     (t.PathConstraint = c5),
     (c5.prototype.SetPath = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), LU(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), LU(n, e, t);
     }),
     (c5.prototype.GetPath = function () {
       return f(RU(this.RDa), j3);
@@ -25281,7 +25270,7 @@ async function Ir(e = {}) {
     }),
     (c5.prototype.SetMaxFrictionForce = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), BU(t, e));
+      e && typeof e == `object` && (e = e.RDa), BU(t, e);
     }),
     (c5.prototype.GetMaxFrictionForce = function () {
       return VU(this.RDa);
@@ -25291,21 +25280,21 @@ async function Ir(e = {}) {
     }),
     (c5.prototype.SetPositionMotorState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), UU(t, e));
+      e && typeof e == `object` && (e = e.RDa), UU(t, e);
     }),
     (c5.prototype.GetPositionMotorState = function () {
       return WU(this.RDa);
     }),
     (c5.prototype.SetTargetVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), GU(t, e));
+      e && typeof e == `object` && (e = e.RDa), GU(t, e);
     }),
     (c5.prototype.GetTargetVelocity = function () {
       return KU(this.RDa);
     }),
     (c5.prototype.SetTargetPathFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qU(t, e));
+      e && typeof e == `object` && (e = e.RDa), qU(t, e);
     }),
     (c5.prototype.GetTargetPathFraction = function () {
       return JU(this.RDa);
@@ -25330,25 +25319,25 @@ async function Ir(e = {}) {
     }),
     (c5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), tW(t, e));
+      e && typeof e == `object` && (e = e.RDa), tW(t, e);
     }),
     (c5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nW(t, e));
+      e && typeof e == `object` && (e = e.RDa), nW(t, e);
     }),
     (c5.prototype.GetNumVelocityStepsOverride = function () {
       return rW(this.RDa);
     }),
     (c5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), iW(t, e));
+      e && typeof e == `object` && (e = e.RDa), iW(t, e);
     }),
     (c5.prototype.GetNumPositionStepsOverride = function () {
       return aW(this.RDa);
     }),
     (c5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oW(t, e));
+      e && typeof e == `object` && (e = e.RDa), oW(t, e);
     }),
     (c5.prototype.GetEnabled = function () {
       return !!sW(this.RDa);
@@ -25361,18 +25350,18 @@ async function Ir(e = {}) {
     }),
     (c5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), uW(t, e));
+      e && typeof e == `object` && (e = e.RDa), uW(t, e);
     }),
     (c5.prototype.ResetWarmStart = function () {
       dW(this.RDa);
     }),
     (c5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), fW(t, e));
+      e && typeof e == `object` && (e = e.RDa), fW(t, e);
     }),
     (c5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pW(t, e));
+      e && typeof e == `object` && (e = e.RDa), pW(t, e);
     }),
     (c5.prototype.GetBody1 = function () {
       return f(mW(this.RDa), I);
@@ -25388,11 +25377,11 @@ async function Ir(e = {}) {
     }),
     (c5.prototype.__destroy__ = function () {
       vW(this.RDa);
-    }));
+    });
   function F() {
-    ((this.RDa = yW()), (d(F)[this.RDa] = this));
+    (this.RDa = yW()), (d(F)[this.RDa] = this);
   }
-  ((F.prototype = Object.create(J3.prototype)),
+  (F.prototype = Object.create(J3.prototype)),
     (F.prototype.constructor = F),
     (F.prototype.SDa = F),
     (F.TDa = {}),
@@ -25408,7 +25397,7 @@ async function Ir(e = {}) {
     }),
     (F.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(CW(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(CW(n, e, t), A3);
     }),
     (F.prototype.get_mSpace = F.prototype.bEa =
       function () {
@@ -25417,7 +25406,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mSpace = F.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), TW(t, e));
+        e && typeof e == `object` && (e = e.RDa), TW(t, e);
       }),
     Object.defineProperty(F.prototype, "mSpace", { get: F.prototype.bEa, set: F.prototype.cEa }),
     (F.prototype.get_mBodyPoint1 = F.prototype.TJa =
@@ -25427,7 +25416,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mBodyPoint1 = F.prototype.bOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), DW(t, e));
+        e && typeof e == `object` && (e = e.RDa), DW(t, e);
       }),
     Object.defineProperty(F.prototype, "mBodyPoint1", { get: F.prototype.TJa, set: F.prototype.bOa }),
     (F.prototype.get_mFixedPoint1 = F.prototype.vKa =
@@ -25437,7 +25426,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mFixedPoint1 = F.prototype.EOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kW(t, e));
+        e && typeof e == `object` && (e = e.RDa), kW(t, e);
       }),
     Object.defineProperty(F.prototype, "mFixedPoint1", { get: F.prototype.vKa, set: F.prototype.EOa }),
     (F.prototype.get_mBodyPoint2 = F.prototype.UJa =
@@ -25447,7 +25436,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mBodyPoint2 = F.prototype.cOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jW(t, e));
+        e && typeof e == `object` && (e = e.RDa), jW(t, e);
       }),
     Object.defineProperty(F.prototype, "mBodyPoint2", { get: F.prototype.UJa, set: F.prototype.cOa }),
     (F.prototype.get_mFixedPoint2 = F.prototype.wKa =
@@ -25457,7 +25446,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mFixedPoint2 = F.prototype.FOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), NW(t, e));
+        e && typeof e == `object` && (e = e.RDa), NW(t, e);
       }),
     Object.defineProperty(F.prototype, "mFixedPoint2", { get: F.prototype.wKa, set: F.prototype.FOa }),
     (F.prototype.get_mRatio = F.prototype.yFa =
@@ -25467,7 +25456,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mRatio = F.prototype.nGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), FW(t, e));
+        e && typeof e == `object` && (e = e.RDa), FW(t, e);
       }),
     Object.defineProperty(F.prototype, "mRatio", { get: F.prototype.yFa, set: F.prototype.nGa }),
     (F.prototype.get_mMinLength = F.prototype.YLa =
@@ -25477,7 +25466,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mMinLength = F.prototype.gQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), LW(t, e));
+        e && typeof e == `object` && (e = e.RDa), LW(t, e);
       }),
     Object.defineProperty(F.prototype, "mMinLength", { get: F.prototype.YLa, set: F.prototype.gQa }),
     (F.prototype.get_mMaxLength = F.prototype.KLa =
@@ -25487,7 +25476,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mMaxLength = F.prototype.TPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zW(t, e));
+        e && typeof e == `object` && (e = e.RDa), zW(t, e);
       }),
     Object.defineProperty(F.prototype, "mMaxLength", { get: F.prototype.KLa, set: F.prototype.TPa }),
     (F.prototype.get_mEnabled = F.prototype.$Da =
@@ -25497,7 +25486,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mEnabled = F.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), VW(t, e));
+        e && typeof e == `object` && (e = e.RDa), VW(t, e);
       }),
     Object.defineProperty(F.prototype, "mEnabled", { get: F.prototype.$Da, set: F.prototype.aEa }),
     (F.prototype.get_mNumVelocityStepsOverride = F.prototype.XDa =
@@ -25507,7 +25496,7 @@ async function Ir(e = {}) {
     (F.prototype.set_mNumVelocityStepsOverride = F.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), UW(t, e));
+        e && typeof e == `object` && (e = e.RDa), UW(t, e);
       }),
     Object.defineProperty(F.prototype, "mNumVelocityStepsOverride", { get: F.prototype.XDa, set: F.prototype.ZDa }),
     (F.prototype.get_mNumPositionStepsOverride = F.prototype.WDa =
@@ -25517,23 +25506,23 @@ async function Ir(e = {}) {
     (F.prototype.set_mNumPositionStepsOverride = F.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), GW(t, e));
+        e && typeof e == `object` && (e = e.RDa), GW(t, e);
       }),
     Object.defineProperty(F.prototype, "mNumPositionStepsOverride", { get: F.prototype.WDa, set: F.prototype.YDa }),
     (F.prototype.__destroy__ = function () {
       KW(this.RDa);
-    }));
+    });
   function l5() {
     throw `cannot construct a PulleyConstraint, no constructor in IDL`;
   }
-  ((l5.prototype = Object.create(Y3.prototype)),
+  (l5.prototype = Object.create(Y3.prototype)),
     (l5.prototype.constructor = l5),
     (l5.prototype.SDa = l5),
     (l5.TDa = {}),
     (t.PulleyConstraint = l5),
     (l5.prototype.SetLength = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), qW(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), qW(n, e, t);
     }),
     (l5.prototype.GetMinLength = function () {
       return JW(this.RDa);
@@ -25564,25 +25553,25 @@ async function Ir(e = {}) {
     }),
     (l5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rG(t, e));
+      e && typeof e == `object` && (e = e.RDa), rG(t, e);
     }),
     (l5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), iG(t, e));
+      e && typeof e == `object` && (e = e.RDa), iG(t, e);
     }),
     (l5.prototype.GetNumVelocityStepsOverride = function () {
       return aG(this.RDa);
     }),
     (l5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oG(t, e));
+      e && typeof e == `object` && (e = e.RDa), oG(t, e);
     }),
     (l5.prototype.GetNumPositionStepsOverride = function () {
       return sG(this.RDa);
     }),
     (l5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cG(t, e));
+      e && typeof e == `object` && (e = e.RDa), cG(t, e);
     }),
     (l5.prototype.GetEnabled = function () {
       return !!lG(this.RDa);
@@ -25595,18 +25584,18 @@ async function Ir(e = {}) {
     }),
     (l5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), fG(t, e));
+      e && typeof e == `object` && (e = e.RDa), fG(t, e);
     }),
     (l5.prototype.ResetWarmStart = function () {
       pG(this.RDa);
     }),
     (l5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mG(t, e));
+      e && typeof e == `object` && (e = e.RDa), mG(t, e);
     }),
     (l5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hG(t, e));
+      e && typeof e == `object` && (e = e.RDa), hG(t, e);
     }),
     (l5.prototype.GetBody1 = function () {
       return f(gG(this.RDa), I);
@@ -25622,18 +25611,18 @@ async function Ir(e = {}) {
     }),
     (l5.prototype.__destroy__ = function () {
       bG(this.RDa);
-    }));
+    });
   function u5() {
-    ((this.RDa = xG()), (d(u5)[this.RDa] = this));
+    (this.RDa = xG()), (d(u5)[this.RDa] = this);
   }
-  ((u5.prototype = Object.create(J3.prototype)),
+  (u5.prototype = Object.create(J3.prototype)),
     (u5.prototype.constructor = u5),
     (u5.prototype.SDa = u5),
     (u5.TDa = {}),
     (t.GearConstraintSettings = u5),
     (u5.prototype.SetRatio = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), SG(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), SG(n, e, t);
     }),
     (u5.prototype.GetRefCount = function () {
       return CG(this.RDa);
@@ -25646,7 +25635,7 @@ async function Ir(e = {}) {
     }),
     (u5.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(EG(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(EG(n, e, t), A3);
     }),
     (u5.prototype.get_mSpace = u5.prototype.bEa =
       function () {
@@ -25655,7 +25644,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mSpace = u5.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), OG(t, e));
+        e && typeof e == `object` && (e = e.RDa), OG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mSpace", { get: u5.prototype.bEa, set: u5.prototype.cEa }),
     (u5.prototype.get_mHingeAxis1 = u5.prototype.iHa =
@@ -25665,7 +25654,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mHingeAxis1 = u5.prototype.GIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), AG(t, e));
+        e && typeof e == `object` && (e = e.RDa), AG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mHingeAxis1", { get: u5.prototype.iHa, set: u5.prototype.GIa }),
     (u5.prototype.get_mHingeAxis2 = u5.prototype.jHa =
@@ -25675,7 +25664,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mHingeAxis2 = u5.prototype.HIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MG(t, e));
+        e && typeof e == `object` && (e = e.RDa), MG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mHingeAxis2", { get: u5.prototype.jHa, set: u5.prototype.HIa }),
     (u5.prototype.get_mRatio = u5.prototype.yFa =
@@ -25685,7 +25674,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mRatio = u5.prototype.nGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), PG(t, e));
+        e && typeof e == `object` && (e = e.RDa), PG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mRatio", { get: u5.prototype.yFa, set: u5.prototype.nGa }),
     (u5.prototype.get_mEnabled = u5.prototype.$Da =
@@ -25695,7 +25684,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mEnabled = u5.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IG(t, e));
+        e && typeof e == `object` && (e = e.RDa), IG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mEnabled", { get: u5.prototype.$Da, set: u5.prototype.aEa }),
     (u5.prototype.get_mNumVelocityStepsOverride = u5.prototype.XDa =
@@ -25705,7 +25694,7 @@ async function Ir(e = {}) {
     (u5.prototype.set_mNumVelocityStepsOverride = u5.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RG(t, e));
+        e && typeof e == `object` && (e = e.RDa), RG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mNumVelocityStepsOverride", { get: u5.prototype.XDa, set: u5.prototype.ZDa }),
     (u5.prototype.get_mNumPositionStepsOverride = u5.prototype.WDa =
@@ -25715,23 +25704,23 @@ async function Ir(e = {}) {
     (u5.prototype.set_mNumPositionStepsOverride = u5.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BG(t, e));
+        e && typeof e == `object` && (e = e.RDa), BG(t, e);
       }),
     Object.defineProperty(u5.prototype, "mNumPositionStepsOverride", { get: u5.prototype.WDa, set: u5.prototype.YDa }),
     (u5.prototype.__destroy__ = function () {
       VG(this.RDa);
-    }));
+    });
   function d5() {
     throw `cannot construct a GearConstraint, no constructor in IDL`;
   }
-  ((d5.prototype = Object.create(Y3.prototype)),
+  (d5.prototype = Object.create(Y3.prototype)),
     (d5.prototype.constructor = d5),
     (d5.prototype.SDa = d5),
     (d5.TDa = {}),
     (t.GearConstraint = d5),
     (d5.prototype.SetConstraints = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HG(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HG(n, e, t);
     }),
     (d5.prototype.GetTotalLambda = function () {
       return UG(this.RDa);
@@ -25756,25 +25745,25 @@ async function Ir(e = {}) {
     }),
     (d5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), XG(t, e));
+      e && typeof e == `object` && (e = e.RDa), XG(t, e);
     }),
     (d5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ZG(t, e));
+      e && typeof e == `object` && (e = e.RDa), ZG(t, e);
     }),
     (d5.prototype.GetNumVelocityStepsOverride = function () {
       return QG(this.RDa);
     }),
     (d5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $G(t, e));
+      e && typeof e == `object` && (e = e.RDa), $G(t, e);
     }),
     (d5.prototype.GetNumPositionStepsOverride = function () {
       return eK(this.RDa);
     }),
     (d5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), tK(t, e));
+      e && typeof e == `object` && (e = e.RDa), tK(t, e);
     }),
     (d5.prototype.GetEnabled = function () {
       return !!nK(this.RDa);
@@ -25787,18 +25776,18 @@ async function Ir(e = {}) {
     }),
     (d5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), aK(t, e));
+      e && typeof e == `object` && (e = e.RDa), aK(t, e);
     }),
     (d5.prototype.ResetWarmStart = function () {
       oK(this.RDa);
     }),
     (d5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sK(t, e));
+      e && typeof e == `object` && (e = e.RDa), sK(t, e);
     }),
     (d5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cK(t, e));
+      e && typeof e == `object` && (e = e.RDa), cK(t, e);
     }),
     (d5.prototype.GetBody1 = function () {
       return f(lK(this.RDa), I);
@@ -25814,18 +25803,18 @@ async function Ir(e = {}) {
     }),
     (d5.prototype.__destroy__ = function () {
       pK(this.RDa);
-    }));
+    });
   function f5() {
-    ((this.RDa = mK()), (d(f5)[this.RDa] = this));
+    (this.RDa = mK()), (d(f5)[this.RDa] = this);
   }
-  ((f5.prototype = Object.create(J3.prototype)),
+  (f5.prototype = Object.create(J3.prototype)),
     (f5.prototype.constructor = f5),
     (f5.prototype.SDa = f5),
     (f5.TDa = {}),
     (t.RackAndPinionConstraintSettings = f5),
     (f5.prototype.SetRatio = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), hK(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), hK(r, e, t, n);
     }),
     (f5.prototype.GetRefCount = function () {
       return gK(this.RDa);
@@ -25838,7 +25827,7 @@ async function Ir(e = {}) {
     }),
     (f5.prototype.Create = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yK(n, e, t), A3));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(yK(n, e, t), A3);
     }),
     (f5.prototype.get_mSpace = f5.prototype.bEa =
       function () {
@@ -25847,7 +25836,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mSpace = f5.prototype.cEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xK(t, e));
+        e && typeof e == `object` && (e = e.RDa), xK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mSpace", { get: f5.prototype.bEa, set: f5.prototype.cEa }),
     (f5.prototype.get_mHingeAxis = f5.prototype.FKa =
@@ -25857,7 +25846,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mHingeAxis = f5.prototype.OOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CK(t, e));
+        e && typeof e == `object` && (e = e.RDa), CK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mHingeAxis", { get: f5.prototype.FKa, set: f5.prototype.OOa }),
     (f5.prototype.get_mSliderAxis = f5.prototype.YMa =
@@ -25867,7 +25856,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mSliderAxis = f5.prototype.eRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), TK(t, e));
+        e && typeof e == `object` && (e = e.RDa), TK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mSliderAxis", { get: f5.prototype.YMa, set: f5.prototype.eRa }),
     (f5.prototype.get_mRatio = f5.prototype.yFa =
@@ -25877,7 +25866,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mRatio = f5.prototype.nGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), DK(t, e));
+        e && typeof e == `object` && (e = e.RDa), DK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mRatio", { get: f5.prototype.yFa, set: f5.prototype.nGa }),
     (f5.prototype.get_mEnabled = f5.prototype.$Da =
@@ -25887,7 +25876,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mEnabled = f5.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kK(t, e));
+        e && typeof e == `object` && (e = e.RDa), kK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mEnabled", { get: f5.prototype.$Da, set: f5.prototype.aEa }),
     (f5.prototype.get_mNumVelocityStepsOverride = f5.prototype.XDa =
@@ -25897,7 +25886,7 @@ async function Ir(e = {}) {
     (f5.prototype.set_mNumVelocityStepsOverride = f5.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jK(t, e));
+        e && typeof e == `object` && (e = e.RDa), jK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mNumVelocityStepsOverride", { get: f5.prototype.XDa, set: f5.prototype.ZDa }),
     (f5.prototype.get_mNumPositionStepsOverride = f5.prototype.WDa =
@@ -25907,23 +25896,23 @@ async function Ir(e = {}) {
     (f5.prototype.set_mNumPositionStepsOverride = f5.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), NK(t, e));
+        e && typeof e == `object` && (e = e.RDa), NK(t, e);
       }),
     Object.defineProperty(f5.prototype, "mNumPositionStepsOverride", { get: f5.prototype.WDa, set: f5.prototype.YDa }),
     (f5.prototype.__destroy__ = function () {
       PK(this.RDa);
-    }));
+    });
   function p5() {
     throw `cannot construct a RackAndPinionConstraint, no constructor in IDL`;
   }
-  ((p5.prototype = Object.create(Y3.prototype)),
+  (p5.prototype = Object.create(Y3.prototype)),
     (p5.prototype.constructor = p5),
     (p5.prototype.SDa = p5),
     (p5.TDa = {}),
     (t.RackAndPinionConstraint = p5),
     (p5.prototype.SetConstraints = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), FK(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), FK(n, e, t);
     }),
     (p5.prototype.GetTotalLambda = function () {
       return IK(this.RDa);
@@ -25948,25 +25937,25 @@ async function Ir(e = {}) {
     }),
     (p5.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), UK(t, e));
+      e && typeof e == `object` && (e = e.RDa), UK(t, e);
     }),
     (p5.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), WK(t, e));
+      e && typeof e == `object` && (e = e.RDa), WK(t, e);
     }),
     (p5.prototype.GetNumVelocityStepsOverride = function () {
       return GK(this.RDa);
     }),
     (p5.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), KK(t, e));
+      e && typeof e == `object` && (e = e.RDa), KK(t, e);
     }),
     (p5.prototype.GetNumPositionStepsOverride = function () {
       return qK(this.RDa);
     }),
     (p5.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), JK(t, e));
+      e && typeof e == `object` && (e = e.RDa), JK(t, e);
     }),
     (p5.prototype.GetEnabled = function () {
       return !!YK(this.RDa);
@@ -25979,18 +25968,18 @@ async function Ir(e = {}) {
     }),
     (p5.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), QK(t, e));
+      e && typeof e == `object` && (e = e.RDa), QK(t, e);
     }),
     (p5.prototype.ResetWarmStart = function () {
       $K(this.RDa);
     }),
     (p5.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eq(t, e));
+      e && typeof e == `object` && (e = e.RDa), eq(t, e);
     }),
     (p5.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), tq(t, e));
+      e && typeof e == `object` && (e = e.RDa), tq(t, e);
     }),
     (p5.prototype.GetBody1 = function () {
       return f(nq(this.RDa), I);
@@ -26006,11 +25995,11 @@ async function Ir(e = {}) {
     }),
     (p5.prototype.__destroy__ = function () {
       oq(this.RDa);
-    }));
+    });
   function m5(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = e === void 0 ? sq() : cq(e)), (d(m5)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = e === void 0 ? sq() : cq(e)), (d(m5)[this.RDa] = this);
   }
-  ((m5.prototype = Object.create(u.prototype)),
+  (m5.prototype = Object.create(u.prototype)),
     (m5.prototype.constructor = m5),
     (m5.prototype.SDa = m5),
     (m5.TDa = {}),
@@ -26024,11 +26013,11 @@ async function Ir(e = {}) {
       }),
     (m5.prototype.__destroy__ = function () {
       dq(this.RDa);
-    }));
+    });
   function h5() {
-    ((this.RDa = fq()), (d(h5)[this.RDa] = this));
+    (this.RDa = fq()), (d(h5)[this.RDa] = this);
   }
-  ((h5.prototype = Object.create(u.prototype)),
+  (h5.prototype = Object.create(u.prototype)),
     (h5.prototype.constructor = h5),
     (h5.prototype.SDa = h5),
     (h5.TDa = {}),
@@ -26038,45 +26027,45 @@ async function Ir(e = {}) {
     }),
     (h5.prototype.SetValue = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mq(t, e));
+      e && typeof e == `object` && (e = e.RDa), mq(t, e);
     }),
     (h5.prototype.__destroy__ = function () {
       hq(this.RDa);
-    }));
+    });
   function g5() {
-    ((this.RDa = gq()), (d(g5)[this.RDa] = this));
+    (this.RDa = gq()), (d(g5)[this.RDa] = this);
   }
-  ((g5.prototype = Object.create(Q3.prototype)),
+  (g5.prototype = Object.create(Q3.prototype)),
     (g5.prototype.constructor = g5),
     (g5.prototype.SDa = g5),
     (g5.TDa = {}),
     (t.GroupFilterJS = g5),
     (g5.prototype.CanCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!_q(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!_q(n, e, t);
     }),
     (g5.prototype.__destroy__ = function () {
       vq(this.RDa);
-    }));
+    });
   function _5(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = yq(e)), (d(_5)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = yq(e)), (d(_5)[this.RDa] = this);
   }
-  ((_5.prototype = Object.create(Q3.prototype)),
+  (_5.prototype = Object.create(Q3.prototype)),
     (_5.prototype.constructor = _5),
     (_5.prototype.SDa = _5),
     (_5.TDa = {}),
     (t.GroupFilterTable = _5),
     (_5.prototype.DisableCollision = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), bq(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), bq(n, e, t);
     }),
     (_5.prototype.EnableCollision = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), xq(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), xq(n, e, t);
     }),
     (_5.prototype.IsCollisionEnabled = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!Sq(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!Sq(n, e, t);
     }),
     (_5.prototype.GetRefCount = function () {
       return Cq(this.RDa);
@@ -26089,9 +26078,9 @@ async function Ir(e = {}) {
     }),
     (_5.prototype.__destroy__ = function () {
       Eq(this.RDa);
-    }));
+    });
   function v5(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa =
@@ -26102,41 +26091,41 @@ async function Ir(e = {}) {
             : n === void 0
               ? _emscripten_bind_CollisionGroup_CollisionGroup_2(e, t)
               : Oq(e, t, n)),
-      (d(v5)[this.RDa] = this));
+      (d(v5)[this.RDa] = this);
   }
-  ((v5.prototype = Object.create(u.prototype)),
+  (v5.prototype = Object.create(u.prototype)),
     (v5.prototype.constructor = v5),
     (v5.prototype.SDa = v5),
     (v5.TDa = {}),
     (t.CollisionGroup = v5),
     (v5.prototype.SetGroupFilter = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kq(t, e));
+      e && typeof e == `object` && (e = e.RDa), kq(t, e);
     }),
     (v5.prototype.GetGroupFilter = function () {
       return f(Aq(this.RDa), Q3);
     }),
     (v5.prototype.SetGroupID = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jq(t, e));
+      e && typeof e == `object` && (e = e.RDa), jq(t, e);
     }),
     (v5.prototype.GetGroupID = function () {
       return Mq(this.RDa);
     }),
     (v5.prototype.SetSubGroupID = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Nq(t, e));
+      e && typeof e == `object` && (e = e.RDa), Nq(t, e);
     }),
     (v5.prototype.GetSubGroupID = function () {
       return Pq(this.RDa);
     }),
     (v5.prototype.__destroy__ = function () {
       Fq(this.RDa);
-    }));
+    });
   function I() {
     throw `cannot construct a Body, no constructor in IDL`;
   }
-  ((I.prototype = Object.create(u.prototype)),
+  (I.prototype = Object.create(u.prototype)),
     (I.prototype.constructor = I),
     (I.prototype.SDa = I),
     (I.TDa = {}),
@@ -26173,35 +26162,35 @@ async function Ir(e = {}) {
     }),
     (I.prototype.SetIsSensor = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Kq(t, e));
+      e && typeof e == `object` && (e = e.RDa), Kq(t, e);
     }),
     (I.prototype.IsSensor = function () {
       return !!qq(this.RDa);
     }),
     (I.prototype.SetCollideKinematicVsNonDynamic = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Jq(t, e));
+      e && typeof e == `object` && (e = e.RDa), Jq(t, e);
     }),
     (I.prototype.GetCollideKinematicVsNonDynamic = function () {
       return !!Yq(this.RDa);
     }),
     (I.prototype.SetUseManifoldReduction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Xq(t, e));
+      e && typeof e == `object` && (e = e.RDa), Xq(t, e);
     }),
     (I.prototype.GetUseManifoldReduction = function () {
       return !!Zq(this.RDa);
     }),
     (I.prototype.SetApplyGyroscopicForce = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qq(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qq(t, e);
     }),
     (I.prototype.GetApplyGyroscopicForce = function () {
       return !!$q(this.RDa);
     }),
     (I.prototype.SetEnhancedInternalEdgeRemoval = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), eJ(t, e);
     }),
     (I.prototype.GetEnhancedInternalEdgeRemoval = function () {
       return !!tJ(this.RDa);
@@ -26217,7 +26206,7 @@ async function Ir(e = {}) {
     }),
     (I.prototype.SetAllowSleeping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), aJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), aJ(t, e);
     }),
     (I.prototype.ResetSleepTimer = function () {
       oJ(this.RDa);
@@ -26227,44 +26216,44 @@ async function Ir(e = {}) {
     }),
     (I.prototype.SetFriction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), cJ(t, e);
     }),
     (I.prototype.GetRestitution = function () {
       return lJ(this.RDa);
     }),
     (I.prototype.SetRestitution = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), uJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), uJ(t, e);
     }),
     (I.prototype.GetLinearVelocity = function () {
       return f(dJ(this.RDa), v);
     }),
     (I.prototype.SetLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), fJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), fJ(t, e);
     }),
     (I.prototype.SetLinearVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), pJ(t, e);
     }),
     (I.prototype.GetAngularVelocity = function () {
       return f(mJ(this.RDa), v);
     }),
     (I.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), hJ(t, e);
     }),
     (I.prototype.SetAngularVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), gJ(t, e);
     }),
     (I.prototype.AddForce = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? _J(n, e) : vJ(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? _J(n, e) : vJ(n, e, t);
     }),
     (I.prototype.AddTorque = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), yJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), yJ(t, e);
     }),
     (I.prototype.GetAccumulatedForce = function () {
       return f(bJ(this.RDa), v);
@@ -26283,15 +26272,15 @@ async function Ir(e = {}) {
     }),
     (I.prototype.AddImpulse = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? TJ(n, e) : EJ(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? TJ(n, e) : EJ(n, e, t);
     }),
     (I.prototype.AddAngularImpulse = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), DJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), DJ(t, e);
     }),
     (I.prototype.MoveKinematic = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), OJ(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), OJ(r, e, t, n);
     }),
     (I.prototype.ApplyBuoyancyImpulse = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
@@ -26345,140 +26334,140 @@ async function Ir(e = {}) {
     }),
     (I.prototype.ApplyBodyCreationSettings = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HJ(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HJ(n, e, t);
     }),
     (I.prototype.GetSoftBodyCreationSettings = function () {
       return f(UJ(this.RDa), U);
     }),
     (I.prototype.ApplySoftBodyCreationSettings = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), WJ(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), WJ(n, e, t);
     }),
     (I.prototype.GetMotionProperties = function () {
       return f(GJ(this.RDa), Z3);
     }),
     (I.prototype.GetWorldSpaceSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(KJ(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(KJ(n, e, t), v);
     }),
     (I.prototype.GetUserData = function () {
       return qJ(this.RDa);
     }),
     (I.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), JJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), JJ(t, e);
     }),
     (I.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), YJ(t, e));
+      e && typeof e == `object` && (e = e.RDa), YJ(t, e);
     }),
     (I.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), XJ(t, e));
-    }));
+      e && typeof e == `object` && (e = e.RDa), XJ(t, e);
+    });
   function y5() {
     throw `cannot construct a BodyInterface_AddState, no constructor in IDL`;
   }
-  ((y5.prototype = Object.create(u.prototype)),
+  (y5.prototype = Object.create(u.prototype)),
     (y5.prototype.constructor = y5),
     (y5.prototype.SDa = y5),
     (y5.TDa = {}),
-    (t.BodyInterface_AddState = y5));
+    (t.BodyInterface_AddState = y5);
   function L() {
     throw `cannot construct a BodyInterface, no constructor in IDL`;
   }
-  ((L.prototype = Object.create(u.prototype)),
+  (L.prototype = Object.create(u.prototype)),
     (L.prototype.constructor = L),
     (L.prototype.SDa = L),
     (L.TDa = {}),
     (t.BodyInterface = L),
     (L.prototype.CreateBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(ZJ(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(ZJ(t, e), I);
     }),
     (L.prototype.CreateSoftBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(QJ(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(QJ(t, e), I);
     }),
     (L.prototype.CreateBodyWithID = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($J(n, e, t), I));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f($J(n, e, t), I);
     }),
     (L.prototype.CreateSoftBodyWithID = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(eY(n, e, t), I));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(eY(n, e, t), I);
     }),
     (L.prototype.CreateBodyWithoutID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(tY(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(tY(t, e), I);
     }),
     (L.prototype.CreateSoftBodyWithoutID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nY(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(nY(t, e), I);
     }),
     (L.prototype.DestroyBodyWithoutID = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rY(t, e));
+      e && typeof e == `object` && (e = e.RDa), rY(t, e);
     }),
     (L.prototype.AssignBodyID = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!iY(n, e) : !!aY(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!iY(n, e) : !!aY(n, e, t);
     }),
     (L.prototype.UnassignBodyID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(oY(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(oY(t, e), I);
     }),
     (L.prototype.UnassignBodyIDs = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), sY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), sY(r, e, t, n);
     }),
     (L.prototype.DestroyBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cY(t, e));
+      e && typeof e == `object` && (e = e.RDa), cY(t, e);
     }),
     (L.prototype.DestroyBodies = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lY(n, e, t);
     }),
     (L.prototype.AddBody = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), uY(n, e, t);
     }),
     (L.prototype.RemoveBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dY(t, e));
+      e && typeof e == `object` && (e = e.RDa), dY(t, e);
     }),
     (L.prototype.IsAdded = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!fY(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!fY(t, e);
     }),
     (L.prototype.CreateAndAddBody = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(pY(n, e, t), m5));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(pY(n, e, t), m5);
     }),
     (L.prototype.CreateAndAddSoftBody = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(mY(n, e, t), m5));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(mY(n, e, t), m5);
     }),
     (L.prototype.AddBodiesPrepare = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(hY(n, e, t), y5));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(hY(n, e, t), y5);
     }),
     (L.prototype.AddBodiesFinalize = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        gY(i, e, t, n, r));
+        gY(i, e, t, n, r);
     }),
     (L.prototype.AddBodiesAbort = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), _Y(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), _Y(r, e, t, n);
     }),
     (L.prototype.RemoveBodies = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), vY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), vY(n, e, t);
     }),
     (L.prototype.CreateConstraint = function (e, t, n) {
       var r = this.RDa;
@@ -26491,268 +26480,268 @@ async function Ir(e = {}) {
     }),
     (L.prototype.ActivateConstraint = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bY(t, e));
+      e && typeof e == `object` && (e = e.RDa), bY(t, e);
     }),
     (L.prototype.GetShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(xY(t, e), p));
+      return e && typeof e == `object` && (e = e.RDa), f(xY(t, e), p);
     }),
     (L.prototype.SetShape = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        SY(i, e, t, n, r));
+        SY(i, e, t, n, r);
     }),
     (L.prototype.NotifyShapeChanged = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        CY(i, e, t, n, r));
+        CY(i, e, t, n, r);
     }),
     (L.prototype.SetObjectLayer = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wY(n, e, t);
     }),
     (L.prototype.GetObjectLayer = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), TY(t, e));
+      return e && typeof e == `object` && (e = e.RDa), TY(t, e);
     }),
     (L.prototype.SetPositionAndRotation = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        EY(i, e, t, n, r));
+        EY(i, e, t, n, r);
     }),
     (L.prototype.SetPositionAndRotationWhenChanged = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        DY(i, e, t, n, r));
+        DY(i, e, t, n, r);
     }),
     (L.prototype.GetPositionAndRotation = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), OY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), OY(r, e, t, n);
     }),
     (L.prototype.SetPosition = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), kY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), kY(r, e, t, n);
     }),
     (L.prototype.GetPosition = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(AY(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(AY(t, e), y);
     }),
     (L.prototype.SetRotation = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), jY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), jY(r, e, t, n);
     }),
     (L.prototype.GetRotation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(MY(t, e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(MY(t, e), x);
     }),
     (L.prototype.GetWorldTransform = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(NY(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(NY(t, e), C);
     }),
     (L.prototype.GetCenterOfMassTransform = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(PY(t, e), C));
+      return e && typeof e == `object` && (e = e.RDa), f(PY(t, e), C);
     }),
     (L.prototype.SetLinearAndAngularVelocity = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), FY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), FY(r, e, t, n);
     }),
     (L.prototype.GetLinearAndAngularVelocity = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), IY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), IY(r, e, t, n);
     }),
     (L.prototype.SetLinearVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), LY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), LY(n, e, t);
     }),
     (L.prototype.GetLinearVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(RY(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(RY(t, e), v);
     }),
     (L.prototype.AddLinearVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), zY(n, e, t);
     }),
     (L.prototype.AddLinearAndAngularVelocity = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), BY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), BY(r, e, t, n);
     }),
     (L.prototype.SetAngularVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), VY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), VY(n, e, t);
     }),
     (L.prototype.GetAngularVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(HY(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(HY(t, e), v);
     }),
     (L.prototype.GetPointVelocity = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UY(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(UY(n, e, t), v);
     }),
     (L.prototype.SetPositionRotationAndVelocity = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        WY(a, e, t, n, r, i));
+        WY(a, e, t, n, r, i);
     }),
     (L.prototype.MoveKinematic = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        GY(i, e, t, n, r));
+        GY(i, e, t, n, r);
     }),
     (L.prototype.ActivateBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), KY(t, e));
+      e && typeof e == `object` && (e = e.RDa), KY(t, e);
     }),
     (L.prototype.ActivateBodies = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), qY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), qY(n, e, t);
     }),
     (L.prototype.ActivateBodiesInAABox = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), JY(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), JY(r, e, t, n);
     }),
     (L.prototype.DeactivateBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), YY(t, e));
+      e && typeof e == `object` && (e = e.RDa), YY(t, e);
     }),
     (L.prototype.DeactivateBodies = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), XY(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), XY(n, e, t);
     }),
     (L.prototype.IsActive = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!ZY(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!ZY(t, e);
     }),
     (L.prototype.ResetSleepTimer = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), QY(t, e));
+      e && typeof e == `object` && (e = e.RDa), QY(t, e);
     }),
     (L.prototype.GetBodyType = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), $Y(t, e));
+      return e && typeof e == `object` && (e = e.RDa), $Y(t, e);
     }),
     (L.prototype.SetMotionType = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), eX(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), eX(r, e, t, n);
     }),
     (L.prototype.GetMotionType = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), tX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), tX(t, e);
     }),
     (L.prototype.SetMotionQuality = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), nX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), nX(n, e, t);
     }),
     (L.prototype.GetMotionQuality = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), rX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), rX(t, e);
     }),
     (L.prototype.GetInverseInertia = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(iX(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(iX(t, e), S);
     }),
     (L.prototype.SetRestitution = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), aX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), aX(n, e, t);
     }),
     (L.prototype.GetRestitution = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), oX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), oX(t, e);
     }),
     (L.prototype.SetFriction = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), sX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), sX(n, e, t);
     }),
     (L.prototype.GetFriction = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), cX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), cX(t, e);
     }),
     (L.prototype.SetGravityFactor = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lX(n, e, t);
     }),
     (L.prototype.GetGravityFactor = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), uX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), uX(t, e);
     }),
     (L.prototype.SetMaxLinearVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), dX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), dX(n, e, t);
     }),
     (L.prototype.GetMaxLinearVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), fX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), fX(t, e);
     }),
     (L.prototype.SetMaxAngularVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), pX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), pX(n, e, t);
     }),
     (L.prototype.GetMaxAngularVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), mX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), mX(t, e);
     }),
     (L.prototype.SetUseManifoldReduction = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), hX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), hX(n, e, t);
     }),
     (L.prototype.GetUseManifoldReduction = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!gX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!gX(t, e);
     }),
     (L.prototype.SetIsSensor = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), _X(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), _X(n, e, t);
     }),
     (L.prototype.IsSensor = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!vX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!vX(t, e);
     }),
     (L.prototype.SetCollisionGroup = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), yX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), yX(n, e, t);
     }),
     (L.prototype.GetCollisionGroup = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(bX(t, e), v5));
+      return e && typeof e == `object` && (e = e.RDa), f(bX(t, e), v5);
     }),
     (L.prototype.AddForce = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        r === void 0 ? xX(i, e, t, n) : SX(i, e, t, n, r));
+        r === void 0 ? xX(i, e, t, n) : SX(i, e, t, n, r);
     }),
     (L.prototype.AddTorque = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), CX(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), CX(r, e, t, n);
     }),
     (L.prototype.AddForceAndTorque = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        wX(i, e, t, n, r));
+        wX(i, e, t, n, r);
     }),
     (L.prototype.ApplyBuoyancyImpulse = function (e, t, n, r, i, a, o, s, c) {
       var l = this.RDa;
@@ -26771,80 +26760,80 @@ async function Ir(e = {}) {
     }),
     (L.prototype.AddImpulse = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        n === void 0 ? EX(r, e, t) : DX(r, e, t, n));
+        n === void 0 ? EX(r, e, t) : DX(r, e, t, n);
     }),
     (L.prototype.AddAngularImpulse = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), OX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), OX(n, e, t);
     }),
     (L.prototype.GetTransformedShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(kX(t, e), T));
+      return e && typeof e == `object` && (e = e.RDa), f(kX(t, e), T);
     }),
     (L.prototype.GetUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), AX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), AX(t, e);
     }),
     (L.prototype.SetUserData = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), jX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), jX(n, e, t);
     }),
     (L.prototype.GetMaterial = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(MX(n, e, t), c8));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(MX(n, e, t), c8);
     }),
     (L.prototype.InvalidateContactCache = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), NX(t, e));
+      e && typeof e == `object` && (e = e.RDa), NX(t, e);
     }),
     (L.prototype.__destroy__ = function () {
       PX(this.RDa);
-    }));
+    });
   function b5() {
-    ((this.RDa = FX()), (d(b5)[this.RDa] = this));
+    (this.RDa = FX()), (d(b5)[this.RDa] = this);
   }
-  ((b5.prototype = Object.create($3.prototype)),
+  (b5.prototype = Object.create($3.prototype)),
     (b5.prototype.constructor = b5),
     (b5.prototype.SDa = b5),
     (b5.TDa = {}),
     (t.StateRecorderFilterJS = b5),
     (b5.prototype.ShouldSaveBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!IX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!IX(t, e);
     }),
     (b5.prototype.ShouldSaveConstraint = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!LX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!LX(t, e);
     }),
     (b5.prototype.ShouldSaveContact = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!RX(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!RX(n, e, t);
     }),
     (b5.prototype.ShouldRestoreContact = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!zX(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!zX(n, e, t);
     }),
     (b5.prototype.__destroy__ = function () {
       BX(this.RDa);
-    }));
+    });
   function x5() {
-    ((this.RDa = VX()), (d(x5)[this.RDa] = this));
+    (this.RDa = VX()), (d(x5)[this.RDa] = this);
   }
-  ((x5.prototype = Object.create(e6.prototype)),
+  (x5.prototype = Object.create(e6.prototype)),
     (x5.prototype.constructor = x5),
     (x5.prototype.SDa = x5),
     (x5.TDa = {}),
     (t.StateRecorderJS = x5),
     (x5.prototype.ReadBytes = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), HX(n, e, t);
     }),
     (x5.prototype.WriteBytes = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), UX(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), UX(n, e, t);
     }),
     (x5.prototype.IsEOF = function () {
       return !!WX(this.RDa);
@@ -26854,11 +26843,11 @@ async function Ir(e = {}) {
     }),
     (x5.prototype.__destroy__ = function () {
       KX(this.RDa);
-    }));
+    });
   function S5() {
-    ((this.RDa = qX()), (d(S5)[this.RDa] = this));
+    (this.RDa = qX()), (d(S5)[this.RDa] = this);
   }
-  ((S5.prototype = Object.create(M3.prototype)),
+  (S5.prototype = Object.create(M3.prototype)),
     (S5.prototype.constructor = S5),
     (S5.prototype.SDa = S5),
     (S5.TDa = {}),
@@ -26872,59 +26861,59 @@ async function Ir(e = {}) {
       }),
     (S5.prototype.IsEqual = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!XX(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!XX(t, e);
     }),
     (S5.prototype.SetValidating = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ZX(t, e));
+      e && typeof e == `object` && (e = e.RDa), ZX(t, e);
     }),
     (S5.prototype.IsValidating = function () {
       return !!QX(this.RDa);
     }),
     (S5.prototype.SetIsLastPart = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $X(t, e));
+      e && typeof e == `object` && (e = e.RDa), $X(t, e);
     }),
     (S5.prototype.IsLastPart = function () {
       return !!eZ(this.RDa);
     }),
     (S5.prototype.__destroy__ = function () {
       tZ(this.RDa);
-    }));
+    });
   function C5() {
     throw `cannot construct a BodyLockInterfaceNoLock, no constructor in IDL`;
   }
-  ((C5.prototype = Object.create(t6.prototype)),
+  (C5.prototype = Object.create(t6.prototype)),
     (C5.prototype.constructor = C5),
     (C5.prototype.SDa = C5),
     (C5.TDa = {}),
     (t.BodyLockInterfaceNoLock = C5),
     (C5.prototype.TryGetBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(nZ(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(nZ(t, e), I);
     }),
     (C5.prototype.__destroy__ = function () {
       rZ(this.RDa);
-    }));
+    });
   function w5() {
     throw `cannot construct a BodyLockInterfaceLocking, no constructor in IDL`;
   }
-  ((w5.prototype = Object.create(t6.prototype)),
+  (w5.prototype = Object.create(t6.prototype)),
     (w5.prototype.constructor = w5),
     (w5.prototype.SDa = w5),
     (w5.TDa = {}),
     (t.BodyLockInterfaceLocking = w5),
     (w5.prototype.TryGetBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(iZ(t, e), I));
+      return e && typeof e == `object` && (e = e.RDa), f(iZ(t, e), I);
     }),
     (w5.prototype.__destroy__ = function () {
       aZ(this.RDa);
-    }));
+    });
   function R() {
-    ((this.RDa = oZ()), (d(R)[this.RDa] = this));
+    (this.RDa = oZ()), (d(R)[this.RDa] = this);
   }
-  ((R.prototype = Object.create(u.prototype)),
+  (R.prototype = Object.create(u.prototype)),
     (R.prototype.constructor = R),
     (R.prototype.SDa = R),
     (R.TDa = {}),
@@ -26936,7 +26925,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mMaxInFlightBodyPairs = R.prototype.RPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), cZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mMaxInFlightBodyPairs", { get: R.prototype.ILa, set: R.prototype.RPa }),
     (R.prototype.get_mStepListenersBatchSize = R.prototype.dNa =
@@ -26946,7 +26935,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mStepListenersBatchSize = R.prototype.kRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), uZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mStepListenersBatchSize", { get: R.prototype.dNa, set: R.prototype.kRa }),
     (R.prototype.get_mStepListenerBatchesPerJob = R.prototype.cNa =
@@ -26956,7 +26945,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mStepListenerBatchesPerJob = R.prototype.jRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), fZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mStepListenerBatchesPerJob", { get: R.prototype.cNa, set: R.prototype.jRa }),
     (R.prototype.get_mBaumgarte = R.prototype.KJa =
@@ -26966,7 +26955,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mBaumgarte = R.prototype.TNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), mZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mBaumgarte", { get: R.prototype.KJa, set: R.prototype.TNa }),
     (R.prototype.get_mSpeculativeContactDistance = R.prototype.aNa =
@@ -26976,7 +26965,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mSpeculativeContactDistance = R.prototype.hRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), gZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mSpeculativeContactDistance", { get: R.prototype.aNa, set: R.prototype.hRa }),
     (R.prototype.get_mPenetrationSlop = R.prototype.qMa =
@@ -26986,7 +26975,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mPenetrationSlop = R.prototype.zQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), vZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mPenetrationSlop", { get: R.prototype.qMa, set: R.prototype.zQa }),
     (R.prototype.get_mLinearCastThreshold = R.prototype.pLa =
@@ -26996,7 +26985,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mLinearCastThreshold = R.prototype.yPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), bZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mLinearCastThreshold", { get: R.prototype.pLa, set: R.prototype.yPa }),
     (R.prototype.get_mLinearCastMaxPenetration = R.prototype.oLa =
@@ -27006,7 +26995,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mLinearCastMaxPenetration = R.prototype.xPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), SZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mLinearCastMaxPenetration", { get: R.prototype.oLa, set: R.prototype.xPa }),
     (R.prototype.get_mManifoldTolerance = R.prototype.tLa =
@@ -27016,7 +27005,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mManifoldTolerance = R.prototype.CPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), wZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mManifoldTolerance", { get: R.prototype.tLa, set: R.prototype.CPa }),
     (R.prototype.get_mMaxPenetrationDistance = R.prototype.MLa =
@@ -27026,7 +27015,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mMaxPenetrationDistance = R.prototype.VPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), EZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), EZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mMaxPenetrationDistance", { get: R.prototype.MLa, set: R.prototype.VPa }),
     (R.prototype.get_mBodyPairCacheMaxDeltaPositionSq = R.prototype.SJa =
@@ -27036,7 +27025,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mBodyPairCacheMaxDeltaPositionSq = R.prototype.aOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), OZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), OZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mBodyPairCacheMaxDeltaPositionSq", { get: R.prototype.SJa, set: R.prototype.aOa }),
     (R.prototype.get_mBodyPairCacheCosMaxDeltaRotationDiv2 = R.prototype.RJa =
@@ -27046,7 +27035,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mBodyPairCacheCosMaxDeltaRotationDiv2 = R.prototype.$Na =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), AZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), AZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mBodyPairCacheCosMaxDeltaRotationDiv2", { get: R.prototype.RJa, set: R.prototype.$Na }),
     (R.prototype.get_mContactNormalCosMaxDeltaRotation = R.prototype.iKa =
@@ -27056,7 +27045,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mContactNormalCosMaxDeltaRotation = R.prototype.rOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), MZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mContactNormalCosMaxDeltaRotation", { get: R.prototype.iKa, set: R.prototype.rOa }),
     (R.prototype.get_mContactPointPreserveLambdaMaxDistSq = R.prototype.jKa =
@@ -27066,7 +27055,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mContactPointPreserveLambdaMaxDistSq = R.prototype.sOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), PZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), PZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mContactPointPreserveLambdaMaxDistSq", { get: R.prototype.jKa, set: R.prototype.sOa }),
     (R.prototype.get_mInternalEdgeRemovalVertexToleranceSq = R.prototype.lHa =
@@ -27076,7 +27065,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mInternalEdgeRemovalVertexToleranceSq = R.prototype.JIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), IZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mInternalEdgeRemovalVertexToleranceSq", { get: R.prototype.lHa, set: R.prototype.JIa }),
     (R.prototype.get_mNumVelocitySteps = R.prototype.fMa =
@@ -27086,7 +27075,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mNumVelocitySteps = R.prototype.oQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), RZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mNumVelocitySteps", { get: R.prototype.fMa, set: R.prototype.oQa }),
     (R.prototype.get_mNumPositionSteps = R.prototype.eMa =
@@ -27096,7 +27085,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mNumPositionSteps = R.prototype.nQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), BZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mNumPositionSteps", { get: R.prototype.eMa, set: R.prototype.nQa }),
     (R.prototype.get_mMinVelocityForRestitution = R.prototype.aMa =
@@ -27106,7 +27095,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mMinVelocityForRestitution = R.prototype.jQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), HZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), HZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mMinVelocityForRestitution", { get: R.prototype.aMa, set: R.prototype.jQa }),
     (R.prototype.get_mTimeBeforeSleep = R.prototype.jNa =
@@ -27116,7 +27105,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mTimeBeforeSleep = R.prototype.qRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), WZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), WZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mTimeBeforeSleep", { get: R.prototype.jNa, set: R.prototype.qRa }),
     (R.prototype.get_mPointVelocitySleepThreshold = R.prototype.xMa =
@@ -27126,7 +27115,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mPointVelocitySleepThreshold = R.prototype.GQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), KZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), KZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mPointVelocitySleepThreshold", { get: R.prototype.xMa, set: R.prototype.GQa }),
     (R.prototype.get_mDeterministicSimulation = R.prototype.nKa =
@@ -27136,7 +27125,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mDeterministicSimulation = R.prototype.wOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), JZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), JZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mDeterministicSimulation", { get: R.prototype.nKa, set: R.prototype.wOa }),
     (R.prototype.get_mConstraintWarmStart = R.prototype.gKa =
@@ -27146,7 +27135,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mConstraintWarmStart = R.prototype.pOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), XZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mConstraintWarmStart", { get: R.prototype.gKa, set: R.prototype.pOa }),
     (R.prototype.get_mUseBodyPairContactCache = R.prototype.tNa =
@@ -27156,7 +27145,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mUseBodyPairContactCache = R.prototype.ARa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QZ(t, e));
+        e && typeof e == `object` && (e = e.RDa), QZ(t, e);
       }),
     Object.defineProperty(R.prototype, "mUseBodyPairContactCache", { get: R.prototype.tNa, set: R.prototype.ARa }),
     (R.prototype.get_mUseManifoldReduction = R.prototype.KFa =
@@ -27166,7 +27155,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mUseManifoldReduction = R.prototype.zGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), eQ(t, e);
       }),
     Object.defineProperty(R.prototype, "mUseManifoldReduction", { get: R.prototype.KFa, set: R.prototype.zGa }),
     (R.prototype.get_mUseLargeIslandSplitter = R.prototype.uNa =
@@ -27176,7 +27165,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mUseLargeIslandSplitter = R.prototype.BRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), nQ(t, e);
       }),
     Object.defineProperty(R.prototype, "mUseLargeIslandSplitter", { get: R.prototype.uNa, set: R.prototype.BRa }),
     (R.prototype.get_mAllowSleeping = R.prototype.IEa =
@@ -27186,7 +27175,7 @@ async function Ir(e = {}) {
     (R.prototype.set_mAllowSleeping = R.prototype.REa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), iQ(t, e);
       }),
     Object.defineProperty(R.prototype, "mAllowSleeping", { get: R.prototype.IEa, set: R.prototype.REa }),
     (R.prototype.get_mCheckActiveEdges = R.prototype.cKa =
@@ -27196,16 +27185,16 @@ async function Ir(e = {}) {
     (R.prototype.set_mCheckActiveEdges = R.prototype.lOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), oQ(t, e);
       }),
     Object.defineProperty(R.prototype, "mCheckActiveEdges", { get: R.prototype.cKa, set: R.prototype.lOa }),
     (R.prototype.__destroy__ = function () {
       sQ(this.RDa);
-    }));
+    });
   function T5() {
     throw `cannot construct a CollideShapeResultFace, no constructor in IDL`;
   }
-  ((T5.prototype = Object.create(u.prototype)),
+  (T5.prototype = Object.create(u.prototype)),
     (T5.prototype.constructor = T5),
     (T5.prototype.SDa = T5),
     (T5.TDa = {}),
@@ -27221,16 +27210,16 @@ async function Ir(e = {}) {
     (T5.prototype.at = T5.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(uQ(t, e), v));
+        return e && typeof e == `object` && (e = e.RDa), f(uQ(t, e), v);
       }),
     (T5.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dQ(t, e));
+      e && typeof e == `object` && (e = e.RDa), dQ(t, e);
     }),
     (T5.prototype.resize = T5.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), fQ(t, e);
       }),
     (T5.prototype.clear = T5.prototype.clear =
       function () {
@@ -27238,11 +27227,11 @@ async function Ir(e = {}) {
       }),
     (T5.prototype.__destroy__ = function () {
       mQ(this.RDa);
-    }));
+    });
   function E5() {
     throw `cannot construct a ContactPoints, no constructor in IDL`;
   }
-  ((E5.prototype = Object.create(u.prototype)),
+  (E5.prototype = Object.create(u.prototype)),
     (E5.prototype.constructor = E5),
     (E5.prototype.SDa = E5),
     (E5.TDa = {}),
@@ -27258,16 +27247,16 @@ async function Ir(e = {}) {
     (E5.prototype.at = E5.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(_Q(t, e), v));
+        return e && typeof e == `object` && (e = e.RDa), f(_Q(t, e), v);
       }),
     (E5.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vQ(t, e));
+      e && typeof e == `object` && (e = e.RDa), vQ(t, e);
     }),
     (E5.prototype.resize = E5.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), yQ(t, e);
       }),
     (E5.prototype.clear = E5.prototype.clear =
       function () {
@@ -27275,11 +27264,11 @@ async function Ir(e = {}) {
       }),
     (E5.prototype.__destroy__ = function () {
       xQ(this.RDa);
-    }));
+    });
   function D5() {
-    ((this.RDa = SQ()), (d(D5)[this.RDa] = this));
+    (this.RDa = SQ()), (d(D5)[this.RDa] = this);
   }
-  ((D5.prototype = Object.create(u.prototype)),
+  (D5.prototype = Object.create(u.prototype)),
     (D5.prototype.constructor = D5),
     (D5.prototype.SDa = D5),
     (D5.TDa = {}),
@@ -27289,11 +27278,11 @@ async function Ir(e = {}) {
     }),
     (D5.prototype.GetWorldSpaceContactPointOn1 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(wQ(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(wQ(t, e), y);
     }),
     (D5.prototype.GetWorldSpaceContactPointOn2 = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(TQ(t, e), y));
+      return e && typeof e == `object` && (e = e.RDa), f(TQ(t, e), y);
     }),
     (D5.prototype.get_mBaseOffset = D5.prototype.JJa =
       function () {
@@ -27302,7 +27291,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mBaseOffset = D5.prototype.SNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), DQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), DQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mBaseOffset", { get: D5.prototype.JJa, set: D5.prototype.SNa }),
     (D5.prototype.get_mWorldSpaceNormal = D5.prototype.JNa =
@@ -27312,7 +27301,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mWorldSpaceNormal = D5.prototype.PRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), kQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mWorldSpaceNormal", { get: D5.prototype.JNa, set: D5.prototype.PRa }),
     (D5.prototype.get_mPenetrationDepth = D5.prototype.wFa =
@@ -27322,7 +27311,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mPenetrationDepth = D5.prototype.lGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), jQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mPenetrationDepth", { get: D5.prototype.wFa, set: D5.prototype.lGa }),
     (D5.prototype.get_mSubShapeID1 = D5.prototype.BFa =
@@ -27332,7 +27321,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mSubShapeID1 = D5.prototype.qGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), NQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), NQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mSubShapeID1", { get: D5.prototype.BFa, set: D5.prototype.qGa }),
     (D5.prototype.get_mSubShapeID2 = D5.prototype.GEa =
@@ -27342,7 +27331,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mSubShapeID2 = D5.prototype.HEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), FQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), FQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mSubShapeID2", { get: D5.prototype.GEa, set: D5.prototype.HEa }),
     (D5.prototype.get_mRelativeContactPointsOn1 = D5.prototype.GMa =
@@ -27352,7 +27341,7 @@ async function Ir(e = {}) {
     (D5.prototype.set_mRelativeContactPointsOn1 = D5.prototype.NQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), LQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), LQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mRelativeContactPointsOn1", { get: D5.prototype.GMa, set: D5.prototype.NQa }),
     (D5.prototype.get_mRelativeContactPointsOn2 = D5.prototype.HMa =
@@ -27362,16 +27351,16 @@ async function Ir(e = {}) {
     (D5.prototype.set_mRelativeContactPointsOn2 = D5.prototype.OQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), zQ(t, e);
       }),
     Object.defineProperty(D5.prototype, "mRelativeContactPointsOn2", { get: D5.prototype.HMa, set: D5.prototype.OQa }),
     (D5.prototype.__destroy__ = function () {
       BQ(this.RDa);
-    }));
+    });
   function z() {
-    ((this.RDa = VQ()), (d(z)[this.RDa] = this));
+    (this.RDa = VQ()), (d(z)[this.RDa] = this);
   }
-  ((z.prototype = Object.create(u.prototype)),
+  (z.prototype = Object.create(u.prototype)),
     (z.prototype.constructor = z),
     (z.prototype.SDa = z),
     (z.TDa = {}),
@@ -27383,7 +27372,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mCombinedFriction = z.prototype.mOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), UQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), UQ(t, e);
       }),
     Object.defineProperty(z.prototype, "mCombinedFriction", { get: z.prototype.dKa, set: z.prototype.mOa }),
     (z.prototype.get_mCombinedRestitution = z.prototype.eKa =
@@ -27393,7 +27382,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mCombinedRestitution = z.prototype.nOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), GQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), GQ(t, e);
       }),
     Object.defineProperty(z.prototype, "mCombinedRestitution", { get: z.prototype.eKa, set: z.prototype.nOa }),
     (z.prototype.get_mInvMassScale1 = z.prototype.nHa =
@@ -27403,7 +27392,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mInvMassScale1 = z.prototype.LIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), qQ(t, e);
       }),
     Object.defineProperty(z.prototype, "mInvMassScale1", { get: z.prototype.nHa, set: z.prototype.LIa }),
     (z.prototype.get_mInvInertiaScale1 = z.prototype.SKa =
@@ -27413,7 +27402,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mInvInertiaScale1 = z.prototype.aPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), YQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), YQ(t, e);
       }),
     Object.defineProperty(z.prototype, "mInvInertiaScale1", { get: z.prototype.SKa, set: z.prototype.aPa }),
     (z.prototype.get_mInvMassScale2 = z.prototype.oHa =
@@ -27423,7 +27412,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mInvMassScale2 = z.prototype.MIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ZQ(t, e));
+        e && typeof e == `object` && (e = e.RDa), ZQ(t, e);
       }),
     Object.defineProperty(z.prototype, "mInvMassScale2", { get: z.prototype.oHa, set: z.prototype.MIa }),
     (z.prototype.get_mInvInertiaScale2 = z.prototype.mHa =
@@ -27433,7 +27422,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mInvInertiaScale2 = z.prototype.KIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $Q(t, e));
+        e && typeof e == `object` && (e = e.RDa), $Q(t, e);
       }),
     Object.defineProperty(z.prototype, "mInvInertiaScale2", { get: z.prototype.mHa, set: z.prototype.KIa }),
     (z.prototype.get_mIsSensor = z.prototype.OEa =
@@ -27443,7 +27432,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mIsSensor = z.prototype.XEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t$(t, e));
+        e && typeof e == `object` && (e = e.RDa), t$(t, e);
       }),
     Object.defineProperty(z.prototype, "mIsSensor", { get: z.prototype.OEa, set: z.prototype.XEa }),
     (z.prototype.get_mRelativeLinearSurfaceVelocity = z.prototype.IMa =
@@ -27453,7 +27442,7 @@ async function Ir(e = {}) {
     (z.prototype.set_mRelativeLinearSurfaceVelocity = z.prototype.PQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), r$(t, e));
+        e && typeof e == `object` && (e = e.RDa), r$(t, e);
       }),
     Object.defineProperty(z.prototype, "mRelativeLinearSurfaceVelocity", { get: z.prototype.IMa, set: z.prototype.PQa }),
     (z.prototype.get_mRelativeAngularSurfaceVelocity = z.prototype.FMa =
@@ -27463,16 +27452,16 @@ async function Ir(e = {}) {
     (z.prototype.set_mRelativeAngularSurfaceVelocity = z.prototype.MQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), a$(t, e));
+        e && typeof e == `object` && (e = e.RDa), a$(t, e);
       }),
     Object.defineProperty(z.prototype, "mRelativeAngularSurfaceVelocity", { get: z.prototype.FMa, set: z.prototype.MQa }),
     (z.prototype.__destroy__ = function () {
       o$(this.RDa);
-    }));
+    });
   function O5() {
-    ((this.RDa = s$()), (d(O5)[this.RDa] = this));
+    (this.RDa = s$()), (d(O5)[this.RDa] = this);
   }
-  ((O5.prototype = Object.create(u.prototype)),
+  (O5.prototype = Object.create(u.prototype)),
     (O5.prototype.constructor = O5),
     (O5.prototype.SDa = O5),
     (O5.TDa = {}),
@@ -27491,11 +27480,11 @@ async function Ir(e = {}) {
     }),
     (O5.prototype.__destroy__ = function () {
       f$(this.RDa);
-    }));
+    });
   function k5() {
-    ((this.RDa = p$()), (d(k5)[this.RDa] = this));
+    (this.RDa = p$()), (d(k5)[this.RDa] = this);
   }
-  ((k5.prototype = Object.create(n6.prototype)),
+  (k5.prototype = Object.create(n6.prototype)),
     (k5.prototype.constructor = k5),
     (k5.prototype.SDa = k5),
     (k5.TDa = {}),
@@ -27512,31 +27501,31 @@ async function Ir(e = {}) {
     }),
     (k5.prototype.OnContactAdded = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        h$(i, e, t, n, r));
+        h$(i, e, t, n, r);
     }),
     (k5.prototype.OnContactPersisted = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        g$(i, e, t, n, r));
+        g$(i, e, t, n, r);
     }),
     (k5.prototype.OnContactRemoved = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _$(t, e));
+      e && typeof e == `object` && (e = e.RDa), _$(t, e);
     }),
     (k5.prototype.__destroy__ = function () {
       v$(this.RDa);
-    }));
+    });
   function A5() {
     throw `cannot construct a SoftBodyManifold, no constructor in IDL`;
   }
-  ((A5.prototype = Object.create(u.prototype)),
+  (A5.prototype = Object.create(u.prototype)),
     (A5.prototype.constructor = A5),
     (A5.prototype.SDa = A5),
     (A5.TDa = {}),
@@ -27546,34 +27535,34 @@ async function Ir(e = {}) {
     }),
     (A5.prototype.HasContact = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!b$(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!b$(t, e);
     }),
     (A5.prototype.GetLocalContactPoint = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(x$(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(x$(t, e), v);
     }),
     (A5.prototype.GetContactNormal = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(S$(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(S$(t, e), v);
     }),
     (A5.prototype.GetContactBodyID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(C$(t, e), m5));
+      return e && typeof e == `object` && (e = e.RDa), f(C$(t, e), m5);
     }),
     (A5.prototype.GetNumSensorContacts = function () {
       return w$(this.RDa);
     }),
     (A5.prototype.GetSensorContactBodyID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(T$(t, e), m5));
+      return e && typeof e == `object` && (e = e.RDa), f(T$(t, e), m5);
     }),
     (A5.prototype.__destroy__ = function () {
       E$(this.RDa);
-    }));
+    });
   function j5() {
     throw `cannot construct a SoftBodyContactSettings, no constructor in IDL`;
   }
-  ((j5.prototype = Object.create(u.prototype)),
+  (j5.prototype = Object.create(u.prototype)),
     (j5.prototype.constructor = j5),
     (j5.prototype.SDa = j5),
     (j5.TDa = {}),
@@ -27585,7 +27574,7 @@ async function Ir(e = {}) {
     (j5.prototype.set_mInvMassScale1 = j5.prototype.LIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), O$(t, e));
+        e && typeof e == `object` && (e = e.RDa), O$(t, e);
       }),
     Object.defineProperty(j5.prototype, "mInvMassScale1", { get: j5.prototype.nHa, set: j5.prototype.LIa }),
     (j5.prototype.get_mInvMassScale2 = j5.prototype.oHa =
@@ -27595,7 +27584,7 @@ async function Ir(e = {}) {
     (j5.prototype.set_mInvMassScale2 = j5.prototype.MIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), A$(t, e));
+        e && typeof e == `object` && (e = e.RDa), A$(t, e);
       }),
     Object.defineProperty(j5.prototype, "mInvMassScale2", { get: j5.prototype.oHa, set: j5.prototype.MIa }),
     (j5.prototype.get_mInvInertiaScale2 = j5.prototype.mHa =
@@ -27605,7 +27594,7 @@ async function Ir(e = {}) {
     (j5.prototype.set_mInvInertiaScale2 = j5.prototype.KIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), M$(t, e));
+        e && typeof e == `object` && (e = e.RDa), M$(t, e);
       }),
     Object.defineProperty(j5.prototype, "mInvInertiaScale2", { get: j5.prototype.mHa, set: j5.prototype.KIa }),
     (j5.prototype.get_mIsSensor = j5.prototype.OEa =
@@ -27615,16 +27604,16 @@ async function Ir(e = {}) {
     (j5.prototype.set_mIsSensor = j5.prototype.XEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), P$(t, e));
+        e && typeof e == `object` && (e = e.RDa), P$(t, e);
       }),
     Object.defineProperty(j5.prototype, "mIsSensor", { get: j5.prototype.OEa, set: j5.prototype.XEa }),
     (j5.prototype.__destroy__ = function () {
       F$(this.RDa);
-    }));
+    });
   function M5() {
-    ((this.RDa = I$()), (d(M5)[this.RDa] = this));
+    (this.RDa = I$()), (d(M5)[this.RDa] = this);
   }
-  ((M5.prototype = Object.create(r6.prototype)),
+  (M5.prototype = Object.create(r6.prototype)),
     (M5.prototype.constructor = M5),
     (M5.prototype.SDa = M5),
     (M5.TDa = {}),
@@ -27632,23 +27621,20 @@ async function Ir(e = {}) {
     (M5.prototype.OnSoftBodyContactValidate = function (e, t, n) {
       var r = this.RDa;
       return (
-        e && typeof e == `object` && (e = e.RDa),
-        t && typeof t == `object` && (t = t.RDa),
-        n && typeof n == `object` && (n = n.RDa),
-        L$(r, e, t, n)
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), L$(r, e, t, n)
       );
     }),
     (M5.prototype.OnSoftBodyContactAdded = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), R$(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), R$(n, e, t);
     }),
     (M5.prototype.__destroy__ = function () {
       z$(this.RDa);
-    }));
+    });
   function N5() {
-    ((this.RDa = B$()), (d(N5)[this.RDa] = this));
+    (this.RDa = B$()), (d(N5)[this.RDa] = this);
   }
-  ((N5.prototype = Object.create(i6.prototype)),
+  (N5.prototype = Object.create(i6.prototype)),
     (N5.prototype.constructor = N5),
     (N5.prototype.SDa = N5),
     (N5.TDa = {}),
@@ -27658,15 +27644,15 @@ async function Ir(e = {}) {
     }),
     (N5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), H$(t, e));
+      e && typeof e == `object` && (e = e.RDa), H$(t, e);
     }),
     (N5.prototype.__destroy__ = function () {
       U$(this.RDa);
-    }));
+    });
   function P5() {
-    ((this.RDa = W$()), (d(P5)[this.RDa] = this));
+    (this.RDa = W$()), (d(P5)[this.RDa] = this);
   }
-  ((P5.prototype = Object.create(a6.prototype)),
+  (P5.prototype = Object.create(a6.prototype)),
     (P5.prototype.constructor = P5),
     (P5.prototype.SDa = P5),
     (P5.TDa = {}),
@@ -27676,15 +27662,15 @@ async function Ir(e = {}) {
     }),
     (P5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), K$(t, e));
+      e && typeof e == `object` && (e = e.RDa), K$(t, e);
     }),
     (P5.prototype.__destroy__ = function () {
       q$(this.RDa);
-    }));
+    });
   function F5() {
-    ((this.RDa = J$()), (d(F5)[this.RDa] = this));
+    (this.RDa = J$()), (d(F5)[this.RDa] = this);
   }
-  ((F5.prototype = Object.create(o6.prototype)),
+  (F5.prototype = Object.create(o6.prototype)),
     (F5.prototype.constructor = F5),
     (F5.prototype.SDa = F5),
     (F5.TDa = {}),
@@ -27694,85 +27680,85 @@ async function Ir(e = {}) {
     }),
     (F5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), X$(t, e));
+      e && typeof e == `object` && (e = e.RDa), X$(t, e);
     }),
     (F5.prototype.__destroy__ = function () {
       Z$(this.RDa);
-    }));
+    });
   function I5() {
     throw `cannot construct a BroadPhaseQuery, no constructor in IDL`;
   }
-  ((I5.prototype = Object.create(u.prototype)),
+  (I5.prototype = Object.create(u.prototype)),
     (I5.prototype.constructor = I5),
     (I5.prototype.SDa = I5),
     (I5.TDa = {}),
     (t.BroadPhaseQuery = I5),
     (I5.prototype.CastRay = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        Q$(i, e, t, n, r));
+        Q$(i, e, t, n, r);
     }),
     (I5.prototype.CollideAABox = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        $$(i, e, t, n, r));
+        $$(i, e, t, n, r);
     }),
     (I5.prototype.CollideSphere = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        e1(a, e, t, n, r, i));
+        e1(a, e, t, n, r, i);
     }),
     (I5.prototype.CollidePoint = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        t1(i, e, t, n, r));
+        t1(i, e, t, n, r);
     }),
     (I5.prototype.CollideOrientedBox = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        n1(i, e, t, n, r));
+        n1(i, e, t, n, r);
     }),
     (I5.prototype.CastAABox = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        r1(i, e, t, n, r));
+        r1(i, e, t, n, r);
     }),
     (I5.prototype.GetBounds = function () {
       return f(i1(this.RDa), w);
     }),
     (I5.prototype.__destroy__ = function () {
       a1(this.RDa);
-    }));
+    });
   function L5() {
-    ((this.RDa = o1()), (d(L5)[this.RDa] = this));
+    (this.RDa = o1()), (d(L5)[this.RDa] = this);
   }
-  ((L5.prototype = Object.create(u.prototype)),
+  (L5.prototype = Object.create(u.prototype)),
     (L5.prototype.constructor = L5),
     (L5.prototype.SDa = L5),
     (L5.TDa = {}),
     (t.RayCastSettings = L5),
     (L5.prototype.SetBackFaceMode = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), s1(t, e));
+      e && typeof e == `object` && (e = e.RDa), s1(t, e);
     }),
     (L5.prototype.get_mBackFaceModeTriangles = L5.prototype.QGa =
       function () {
@@ -27781,7 +27767,7 @@ async function Ir(e = {}) {
     (L5.prototype.set_mBackFaceModeTriangles = L5.prototype.oIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), l1(t, e));
+        e && typeof e == `object` && (e = e.RDa), l1(t, e);
       }),
     Object.defineProperty(L5.prototype, "mBackFaceModeTriangles", { get: L5.prototype.QGa, set: L5.prototype.oIa }),
     (L5.prototype.get_mBackFaceModeConvex = L5.prototype.PGa =
@@ -27791,7 +27777,7 @@ async function Ir(e = {}) {
     (L5.prototype.set_mBackFaceModeConvex = L5.prototype.nIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), d1(t, e));
+        e && typeof e == `object` && (e = e.RDa), d1(t, e);
       }),
     Object.defineProperty(L5.prototype, "mBackFaceModeConvex", { get: L5.prototype.PGa, set: L5.prototype.nIa }),
     (L5.prototype.get_mTreatConvexAsSolid = L5.prototype.nNa =
@@ -27801,16 +27787,16 @@ async function Ir(e = {}) {
     (L5.prototype.set_mTreatConvexAsSolid = L5.prototype.uRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), p1(t, e));
+        e && typeof e == `object` && (e = e.RDa), p1(t, e);
       }),
     Object.defineProperty(L5.prototype, "mTreatConvexAsSolid", { get: L5.prototype.nNa, set: L5.prototype.uRa }),
     (L5.prototype.__destroy__ = function () {
       m1(this.RDa);
-    }));
+    });
   function R5() {
-    ((this.RDa = h1()), (d(R5)[this.RDa] = this));
+    (this.RDa = h1()), (d(R5)[this.RDa] = this);
   }
-  ((R5.prototype = Object.create(s6.prototype)),
+  (R5.prototype = Object.create(s6.prototype)),
     (R5.prototype.constructor = R5),
     (R5.prototype.SDa = R5),
     (R5.TDa = {}),
@@ -27820,19 +27806,19 @@ async function Ir(e = {}) {
     }),
     (R5.prototype.OnBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _1(t, e));
+      e && typeof e == `object` && (e = e.RDa), _1(t, e);
     }),
     (R5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), v1(t, e));
+      e && typeof e == `object` && (e = e.RDa), v1(t, e);
     }),
     (R5.prototype.__destroy__ = function () {
       y1(this.RDa);
-    }));
+    });
   function z5() {
-    ((this.RDa = b1()), (d(z5)[this.RDa] = this));
+    (this.RDa = b1()), (d(z5)[this.RDa] = this);
   }
-  ((z5.prototype = Object.create(u.prototype)),
+  (z5.prototype = Object.create(u.prototype)),
     (z5.prototype.constructor = z5),
     (z5.prototype.SDa = z5),
     (z5.TDa = {}),
@@ -27848,20 +27834,20 @@ async function Ir(e = {}) {
     (z5.prototype.at = z5.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(C1(t, e), r8));
+        return e && typeof e == `object` && (e = e.RDa), f(C1(t, e), r8);
       }),
     (z5.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), w1(t, e));
+      e && typeof e == `object` && (e = e.RDa), w1(t, e);
     }),
     (z5.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), T1(t, e));
+      e && typeof e == `object` && (e = e.RDa), T1(t, e);
     }),
     (z5.prototype.resize = z5.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), E1(t, e));
+        e && typeof e == `object` && (e = e.RDa), E1(t, e);
       }),
     (z5.prototype.clear = z5.prototype.clear =
       function () {
@@ -27869,11 +27855,11 @@ async function Ir(e = {}) {
       }),
     (z5.prototype.__destroy__ = function () {
       O1(this.RDa);
-    }));
+    });
   function B5() {
-    ((this.RDa = k1()), (d(B5)[this.RDa] = this));
+    (this.RDa = k1()), (d(B5)[this.RDa] = this);
   }
-  ((B5.prototype = Object.create(s6.prototype)),
+  (B5.prototype = Object.create(s6.prototype)),
     (B5.prototype.constructor = B5),
     (B5.prototype.SDa = B5),
     (B5.TDa = {}),
@@ -27889,18 +27875,18 @@ async function Ir(e = {}) {
     }),
     (B5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), N1(t, e));
+      e && typeof e == `object` && (e = e.RDa), N1(t, e);
     }),
     (B5.prototype.GetContext = function () {
       return f(P1(this.RDa), T);
     }),
     (B5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), F1(t, e));
+      e && typeof e == `object` && (e = e.RDa), F1(t, e);
     }),
     (B5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? I1(t) : L1(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? I1(t) : L1(t, e);
     }),
     (B5.prototype.ForceEarlyOut = function () {
       R1(this.RDa);
@@ -27921,16 +27907,16 @@ async function Ir(e = {}) {
     (B5.prototype.set_mHits = B5.prototype.WEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), U1(t, e));
+        e && typeof e == `object` && (e = e.RDa), U1(t, e);
       }),
     Object.defineProperty(B5.prototype, "mHits", { get: B5.prototype.NEa, set: B5.prototype.WEa }),
     (B5.prototype.__destroy__ = function () {
       W1(this.RDa);
-    }));
+    });
   function V5() {
-    ((this.RDa = G1()), (d(V5)[this.RDa] = this));
+    (this.RDa = G1()), (d(V5)[this.RDa] = this);
   }
-  ((V5.prototype = Object.create(s6.prototype)),
+  (V5.prototype = Object.create(s6.prototype)),
     (V5.prototype.constructor = V5),
     (V5.prototype.SDa = V5),
     (V5.TDa = {}),
@@ -27943,18 +27929,18 @@ async function Ir(e = {}) {
     }),
     (V5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), J1(t, e));
+      e && typeof e == `object` && (e = e.RDa), J1(t, e);
     }),
     (V5.prototype.GetContext = function () {
       return f(Y1(this.RDa), T);
     }),
     (V5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), X1(t, e));
+      e && typeof e == `object` && (e = e.RDa), X1(t, e);
     }),
     (V5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Z1(t) : Q1(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Z1(t) : Q1(t, e);
     }),
     (V5.prototype.ForceEarlyOut = function () {
       $1(this.RDa);
@@ -27975,16 +27961,16 @@ async function Ir(e = {}) {
     (V5.prototype.set_mHit = V5.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), i0(t, e));
+        e && typeof e == `object` && (e = e.RDa), i0(t, e);
       }),
     Object.defineProperty(V5.prototype, "mHit", { get: V5.prototype.iEa, set: V5.prototype.kEa }),
     (V5.prototype.__destroy__ = function () {
       a0(this.RDa);
-    }));
+    });
   function H5() {
-    ((this.RDa = o0()), (d(H5)[this.RDa] = this));
+    (this.RDa = o0()), (d(H5)[this.RDa] = this);
   }
-  ((H5.prototype = Object.create(s6.prototype)),
+  (H5.prototype = Object.create(s6.prototype)),
     (H5.prototype.constructor = H5),
     (H5.prototype.SDa = H5),
     (H5.TDa = {}),
@@ -27997,18 +27983,18 @@ async function Ir(e = {}) {
     }),
     (H5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), l0(t, e));
+      e && typeof e == `object` && (e = e.RDa), l0(t, e);
     }),
     (H5.prototype.GetContext = function () {
       return f(u0(this.RDa), T);
     }),
     (H5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), d0(t, e));
+      e && typeof e == `object` && (e = e.RDa), d0(t, e);
     }),
     (H5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? f0(t) : p0(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? f0(t) : p0(t, e);
     }),
     (H5.prototype.ForceEarlyOut = function () {
       m0(this.RDa);
@@ -28029,16 +28015,16 @@ async function Ir(e = {}) {
     (H5.prototype.set_mHit = H5.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), y0(t, e));
+        e && typeof e == `object` && (e = e.RDa), y0(t, e);
       }),
     Object.defineProperty(H5.prototype, "mHit", { get: H5.prototype.iEa, set: H5.prototype.kEa }),
     (H5.prototype.__destroy__ = function () {
       b0(this.RDa);
-    }));
+    });
   function U5() {
-    ((this.RDa = x0()), (d(U5)[this.RDa] = this));
+    (this.RDa = x0()), (d(U5)[this.RDa] = this);
   }
-  ((U5.prototype = Object.create(u.prototype)),
+  (U5.prototype = Object.create(u.prototype)),
     (U5.prototype.constructor = U5),
     (U5.prototype.SDa = U5),
     (U5.TDa = {}),
@@ -28050,7 +28036,7 @@ async function Ir(e = {}) {
     (U5.prototype.set_mBodyID = U5.prototype.SEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), C0(t, e));
+        e && typeof e == `object` && (e = e.RDa), C0(t, e);
       }),
     Object.defineProperty(U5.prototype, "mBodyID", { get: U5.prototype.JEa, set: U5.prototype.SEa }),
     (U5.prototype.get_mSubShapeID2 = U5.prototype.GEa =
@@ -28060,16 +28046,16 @@ async function Ir(e = {}) {
     (U5.prototype.set_mSubShapeID2 = U5.prototype.HEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), T0(t, e));
+        e && typeof e == `object` && (e = e.RDa), T0(t, e);
       }),
     Object.defineProperty(U5.prototype, "mSubShapeID2", { get: U5.prototype.GEa, set: U5.prototype.HEa }),
     (U5.prototype.__destroy__ = function () {
       E0(this.RDa);
-    }));
+    });
   function W5() {
-    ((this.RDa = D0()), (d(W5)[this.RDa] = this));
+    (this.RDa = D0()), (d(W5)[this.RDa] = this);
   }
-  ((W5.prototype = Object.create(c6.prototype)),
+  (W5.prototype = Object.create(c6.prototype)),
     (W5.prototype.constructor = W5),
     (W5.prototype.SDa = W5),
     (W5.TDa = {}),
@@ -28079,19 +28065,19 @@ async function Ir(e = {}) {
     }),
     (W5.prototype.OnBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), k0(t, e));
+      e && typeof e == `object` && (e = e.RDa), k0(t, e);
     }),
     (W5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), A0(t, e));
+      e && typeof e == `object` && (e = e.RDa), A0(t, e);
     }),
     (W5.prototype.__destroy__ = function () {
       j0(this.RDa);
-    }));
+    });
   function G5() {
-    ((this.RDa = M0()), (d(G5)[this.RDa] = this));
+    (this.RDa = M0()), (d(G5)[this.RDa] = this);
   }
-  ((G5.prototype = Object.create(u.prototype)),
+  (G5.prototype = Object.create(u.prototype)),
     (G5.prototype.constructor = G5),
     (G5.prototype.SDa = G5),
     (G5.TDa = {}),
@@ -28107,20 +28093,20 @@ async function Ir(e = {}) {
     (G5.prototype.at = G5.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(F0(t, e), U5));
+        return e && typeof e == `object` && (e = e.RDa), f(F0(t, e), U5);
       }),
     (G5.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), I0(t, e));
+      e && typeof e == `object` && (e = e.RDa), I0(t, e);
     }),
     (G5.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), L0(t, e));
+      e && typeof e == `object` && (e = e.RDa), L0(t, e);
     }),
     (G5.prototype.resize = G5.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), R0(t, e));
+        e && typeof e == `object` && (e = e.RDa), R0(t, e);
       }),
     (G5.prototype.clear = G5.prototype.clear =
       function () {
@@ -28128,11 +28114,11 @@ async function Ir(e = {}) {
       }),
     (G5.prototype.__destroy__ = function () {
       B0(this.RDa);
-    }));
+    });
   function K5() {
-    ((this.RDa = V0()), (d(K5)[this.RDa] = this));
+    (this.RDa = V0()), (d(K5)[this.RDa] = this);
   }
-  ((K5.prototype = Object.create(c6.prototype)),
+  (K5.prototype = Object.create(c6.prototype)),
     (K5.prototype.constructor = K5),
     (K5.prototype.SDa = K5),
     (K5.TDa = {}),
@@ -28148,18 +28134,18 @@ async function Ir(e = {}) {
     }),
     (K5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), G0(t, e));
+      e && typeof e == `object` && (e = e.RDa), G0(t, e);
     }),
     (K5.prototype.GetContext = function () {
       return f(K0(this.RDa), T);
     }),
     (K5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), q0(t, e));
+      e && typeof e == `object` && (e = e.RDa), q0(t, e);
     }),
     (K5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? J0(t) : Y0(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? J0(t) : Y0(t, e);
     }),
     (K5.prototype.ForceEarlyOut = function () {
       X0(this.RDa);
@@ -28180,16 +28166,16 @@ async function Ir(e = {}) {
     (K5.prototype.set_mHits = K5.prototype.WEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t2(t, e));
+        e && typeof e == `object` && (e = e.RDa), t2(t, e);
       }),
     Object.defineProperty(K5.prototype, "mHits", { get: K5.prototype.NEa, set: K5.prototype.WEa }),
     (K5.prototype.__destroy__ = function () {
       n2(this.RDa);
-    }));
+    });
   function q5() {
-    ((this.RDa = r2()), (d(q5)[this.RDa] = this));
+    (this.RDa = r2()), (d(q5)[this.RDa] = this);
   }
-  ((q5.prototype = Object.create(c6.prototype)),
+  (q5.prototype = Object.create(c6.prototype)),
     (q5.prototype.constructor = q5),
     (q5.prototype.SDa = q5),
     (q5.TDa = {}),
@@ -28202,18 +28188,18 @@ async function Ir(e = {}) {
     }),
     (q5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), o2(t, e));
+      e && typeof e == `object` && (e = e.RDa), o2(t, e);
     }),
     (q5.prototype.GetContext = function () {
       return f(s2(this.RDa), T);
     }),
     (q5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), c2(t, e));
+      e && typeof e == `object` && (e = e.RDa), c2(t, e);
     }),
     (q5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? l2(t) : u2(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? l2(t) : u2(t, e);
     }),
     (q5.prototype.ForceEarlyOut = function () {
       d2(this.RDa);
@@ -28234,16 +28220,16 @@ async function Ir(e = {}) {
     (q5.prototype.set_mHit = q5.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), g2(t, e));
+        e && typeof e == `object` && (e = e.RDa), g2(t, e);
       }),
     Object.defineProperty(q5.prototype, "mHit", { get: q5.prototype.iEa, set: q5.prototype.kEa }),
     (q5.prototype.__destroy__ = function () {
       _2(this.RDa);
-    }));
+    });
   function J5() {
-    ((this.RDa = v2()), (d(J5)[this.RDa] = this));
+    (this.RDa = v2()), (d(J5)[this.RDa] = this);
   }
-  ((J5.prototype = Object.create(c6.prototype)),
+  (J5.prototype = Object.create(c6.prototype)),
     (J5.prototype.constructor = J5),
     (J5.prototype.SDa = J5),
     (J5.TDa = {}),
@@ -28256,18 +28242,18 @@ async function Ir(e = {}) {
     }),
     (J5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), x2(t, e));
+      e && typeof e == `object` && (e = e.RDa), x2(t, e);
     }),
     (J5.prototype.GetContext = function () {
       return f(S2(this.RDa), T);
     }),
     (J5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), C2(t, e));
+      e && typeof e == `object` && (e = e.RDa), C2(t, e);
     }),
     (J5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Coe(t) : w2(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Coe(t) : w2(t, e);
     }),
     (J5.prototype.ForceEarlyOut = function () {
       T2(this.RDa);
@@ -28288,16 +28274,16 @@ async function Ir(e = {}) {
     (J5.prototype.set_mHit = J5.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), A2(t, e));
+        e && typeof e == `object` && (e = e.RDa), A2(t, e);
       }),
     Object.defineProperty(J5.prototype, "mHit", { get: J5.prototype.iEa, set: J5.prototype.kEa }),
     (J5.prototype.__destroy__ = function () {
       j2(this.RDa);
-    }));
+    });
   function Y5() {
-    ((this.RDa = M2()), (d(Y5)[this.RDa] = this));
+    (this.RDa = M2()), (d(Y5)[this.RDa] = this);
   }
-  ((Y5.prototype = Object.create(l6.prototype)),
+  (Y5.prototype = Object.create(l6.prototype)),
     (Y5.prototype.constructor = Y5),
     (Y5.prototype.SDa = Y5),
     (Y5.TDa = {}),
@@ -28309,7 +28295,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mMaxSeparationDistance = Y5.prototype.XPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), P2(t, e));
+        e && typeof e == `object` && (e = e.RDa), P2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mMaxSeparationDistance", { get: Y5.prototype.OLa, set: Y5.prototype.XPa }),
     (Y5.prototype.get_mBackFaceMode = Y5.prototype.OGa =
@@ -28319,7 +28305,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mBackFaceMode = Y5.prototype.mIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), I2(t, e));
+        e && typeof e == `object` && (e = e.RDa), I2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mBackFaceMode", { get: Y5.prototype.OGa, set: Y5.prototype.mIa }),
     (Y5.prototype.get_mInternalEdgeRemovalVertexToleranceSq = Y5.prototype.lHa =
@@ -28329,7 +28315,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mInternalEdgeRemovalVertexToleranceSq = Y5.prototype.JIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), R2(t, e));
+        e && typeof e == `object` && (e = e.RDa), R2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mInternalEdgeRemovalVertexToleranceSq", { get: Y5.prototype.lHa, set: Y5.prototype.JIa }),
     (Y5.prototype.get_mActiveEdgeMode = Y5.prototype.aFa =
@@ -28339,7 +28325,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mActiveEdgeMode = Y5.prototype.PFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), B2(t, e));
+        e && typeof e == `object` && (e = e.RDa), B2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mActiveEdgeMode", { get: Y5.prototype.aFa, set: Y5.prototype.PFa }),
     (Y5.prototype.get_mCollectFacesMode = Y5.prototype.dFa =
@@ -28349,7 +28335,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mCollectFacesMode = Y5.prototype.SFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), H2(t, e));
+        e && typeof e == `object` && (e = e.RDa), H2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mCollectFacesMode", { get: Y5.prototype.dFa, set: Y5.prototype.SFa }),
     (Y5.prototype.get_mCollisionTolerance = Y5.prototype.KEa =
@@ -28359,7 +28345,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mCollisionTolerance = Y5.prototype.TEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), W2(t, e));
+        e && typeof e == `object` && (e = e.RDa), W2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mCollisionTolerance", { get: Y5.prototype.KEa, set: Y5.prototype.TEa }),
     (Y5.prototype.get_mPenetrationTolerance = Y5.prototype.xFa =
@@ -28369,7 +28355,7 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mPenetrationTolerance = Y5.prototype.mGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), K2(t, e));
+        e && typeof e == `object` && (e = e.RDa), K2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mPenetrationTolerance", { get: Y5.prototype.xFa, set: Y5.prototype.mGa }),
     (Y5.prototype.get_mActiveEdgeMovementDirection = Y5.prototype.bFa =
@@ -28379,16 +28365,16 @@ async function Ir(e = {}) {
     (Y5.prototype.set_mActiveEdgeMovementDirection = Y5.prototype.QFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), J2(t, e));
+        e && typeof e == `object` && (e = e.RDa), J2(t, e);
       }),
     Object.defineProperty(Y5.prototype, "mActiveEdgeMovementDirection", { get: Y5.prototype.bFa, set: Y5.prototype.QFa }),
     (Y5.prototype.__destroy__ = function () {
       Y2(this.RDa);
-    }));
+    });
   function X5() {
-    ((this.RDa = X2()), (d(X5)[this.RDa] = this));
+    (this.RDa = X2()), (d(X5)[this.RDa] = this);
   }
-  ((X5.prototype = Object.create(u6.prototype)),
+  (X5.prototype = Object.create(u6.prototype)),
     (X5.prototype.constructor = X5),
     (X5.prototype.SDa = X5),
     (X5.TDa = {}),
@@ -28398,19 +28384,19 @@ async function Ir(e = {}) {
     }),
     (X5.prototype.OnBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Q2(t, e));
+      e && typeof e == `object` && (e = e.RDa), Q2(t, e);
     }),
     (X5.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $2(t, e));
+      e && typeof e == `object` && (e = e.RDa), $2(t, e);
     }),
     (X5.prototype.__destroy__ = function () {
       e4(this.RDa);
-    }));
+    });
   function Z5() {
-    ((this.RDa = t4()), (d(Z5)[this.RDa] = this));
+    (this.RDa = t4()), (d(Z5)[this.RDa] = this);
   }
-  ((Z5.prototype = Object.create(u.prototype)),
+  (Z5.prototype = Object.create(u.prototype)),
     (Z5.prototype.constructor = Z5),
     (Z5.prototype.SDa = Z5),
     (Z5.TDa = {}),
@@ -28426,20 +28412,20 @@ async function Ir(e = {}) {
     (Z5.prototype.at = Z5.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(i4(t, e), m));
+        return e && typeof e == `object` && (e = e.RDa), f(i4(t, e), m);
       }),
     (Z5.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), a4(t, e));
+      e && typeof e == `object` && (e = e.RDa), a4(t, e);
     }),
     (Z5.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), o4(t, e));
+      e && typeof e == `object` && (e = e.RDa), o4(t, e);
     }),
     (Z5.prototype.resize = Z5.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), s4(t, e));
+        e && typeof e == `object` && (e = e.RDa), s4(t, e);
       }),
     (Z5.prototype.clear = Z5.prototype.clear =
       function () {
@@ -28447,11 +28433,11 @@ async function Ir(e = {}) {
       }),
     (Z5.prototype.__destroy__ = function () {
       l4(this.RDa);
-    }));
+    });
   function Q5() {
-    ((this.RDa = u4()), (d(Q5)[this.RDa] = this));
+    (this.RDa = u4()), (d(Q5)[this.RDa] = this);
   }
-  ((Q5.prototype = Object.create(u6.prototype)),
+  (Q5.prototype = Object.create(u6.prototype)),
     (Q5.prototype.constructor = Q5),
     (Q5.prototype.SDa = Q5),
     (Q5.TDa = {}),
@@ -28467,18 +28453,18 @@ async function Ir(e = {}) {
     }),
     (Q5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), m4(t, e));
+      e && typeof e == `object` && (e = e.RDa), m4(t, e);
     }),
     (Q5.prototype.GetContext = function () {
       return f(h4(this.RDa), T);
     }),
     (Q5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), g4(t, e));
+      e && typeof e == `object` && (e = e.RDa), g4(t, e);
     }),
     (Q5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? _4(t) : v4(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? _4(t) : v4(t, e);
     }),
     (Q5.prototype.ForceEarlyOut = function () {
       y4(this.RDa);
@@ -28499,16 +28485,16 @@ async function Ir(e = {}) {
     (Q5.prototype.set_mHits = Q5.prototype.WEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), w4(t, e));
+        e && typeof e == `object` && (e = e.RDa), w4(t, e);
       }),
     Object.defineProperty(Q5.prototype, "mHits", { get: Q5.prototype.NEa, set: Q5.prototype.WEa }),
     (Q5.prototype.__destroy__ = function () {
       T4(this.RDa);
-    }));
+    });
   function $5() {
-    ((this.RDa = E4()), (d($5)[this.RDa] = this));
+    (this.RDa = E4()), (d($5)[this.RDa] = this);
   }
-  (($5.prototype = Object.create(u6.prototype)),
+  ($5.prototype = Object.create(u6.prototype)),
     ($5.prototype.constructor = $5),
     ($5.prototype.SDa = $5),
     ($5.TDa = {}),
@@ -28521,18 +28507,18 @@ async function Ir(e = {}) {
     }),
     ($5.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), k4(t, e));
+      e && typeof e == `object` && (e = e.RDa), k4(t, e);
     }),
     ($5.prototype.GetContext = function () {
       return f(A4(this.RDa), T);
     }),
     ($5.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), j4(t, e));
+      e && typeof e == `object` && (e = e.RDa), j4(t, e);
     }),
     ($5.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? M4(t) : N4(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? M4(t) : N4(t, e);
     }),
     ($5.prototype.ForceEarlyOut = function () {
       P4(this.RDa);
@@ -28553,16 +28539,16 @@ async function Ir(e = {}) {
     ($5.prototype.set_mHit = $5.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), z4(t, e));
+        e && typeof e == `object` && (e = e.RDa), z4(t, e);
       }),
     Object.defineProperty($5.prototype, "mHit", { get: $5.prototype.iEa, set: $5.prototype.kEa }),
     ($5.prototype.__destroy__ = function () {
       B4(this.RDa);
-    }));
+    });
   function e7() {
-    ((this.RDa = V4()), (d(e7)[this.RDa] = this));
+    (this.RDa = V4()), (d(e7)[this.RDa] = this);
   }
-  ((e7.prototype = Object.create(u6.prototype)),
+  (e7.prototype = Object.create(u6.prototype)),
     (e7.prototype.constructor = e7),
     (e7.prototype.SDa = e7),
     (e7.TDa = {}),
@@ -28575,18 +28561,18 @@ async function Ir(e = {}) {
     }),
     (e7.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), W4(t, e));
+      e && typeof e == `object` && (e = e.RDa), W4(t, e);
     }),
     (e7.prototype.GetContext = function () {
       return f(G4(this.RDa), T);
     }),
     (e7.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), K4(t, e));
+      e && typeof e == `object` && (e = e.RDa), K4(t, e);
     }),
     (e7.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? q4(t) : J4(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? q4(t) : J4(t, e);
     }),
     (e7.prototype.ForceEarlyOut = function () {
       Y4(this.RDa);
@@ -28607,16 +28593,16 @@ async function Ir(e = {}) {
     (e7.prototype.set_mHit = e7.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), e3(t, e));
+        e && typeof e == `object` && (e = e.RDa), e3(t, e);
       }),
     Object.defineProperty(e7.prototype, "mHit", { get: e7.prototype.iEa, set: e7.prototype.kEa }),
     (e7.prototype.__destroy__ = function () {
       t3(this.RDa);
-    }));
+    });
   function B() {
-    ((this.RDa = n3()), (d(B)[this.RDa] = this));
+    (this.RDa = n3()), (d(B)[this.RDa] = this);
   }
-  ((B.prototype = Object.create(l6.prototype)),
+  (B.prototype = Object.create(l6.prototype)),
     (B.prototype.constructor = B),
     (B.prototype.SDa = B),
     (B.TDa = {}),
@@ -28628,7 +28614,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mExtraConvexRadius = B.prototype.BOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), i3(t, e));
+        e && typeof e == `object` && (e = e.RDa), i3(t, e);
       }),
     Object.defineProperty(B.prototype, "mExtraConvexRadius", { get: B.prototype.sKa, set: B.prototype.BOa }),
     (B.prototype.get_mBackFaceModeTriangles = B.prototype.QGa =
@@ -28638,7 +28624,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mBackFaceModeTriangles = B.prototype.oIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), o3(t, e));
+        e && typeof e == `object` && (e = e.RDa), o3(t, e);
       }),
     Object.defineProperty(B.prototype, "mBackFaceModeTriangles", { get: B.prototype.QGa, set: B.prototype.oIa }),
     (B.prototype.get_mBackFaceModeConvex = B.prototype.PGa =
@@ -28648,7 +28634,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mBackFaceModeConvex = B.prototype.nIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), c3(t, e));
+        e && typeof e == `object` && (e = e.RDa), c3(t, e);
       }),
     Object.defineProperty(B.prototype, "mBackFaceModeConvex", { get: B.prototype.PGa, set: B.prototype.nIa }),
     (B.prototype.get_mUseShrunkenShapeAndConvexRadius = B.prototype.vNa =
@@ -28658,7 +28644,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mUseShrunkenShapeAndConvexRadius = B.prototype.CRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), u3(t, e));
+        e && typeof e == `object` && (e = e.RDa), u3(t, e);
       }),
     Object.defineProperty(B.prototype, "mUseShrunkenShapeAndConvexRadius", { get: B.prototype.vNa, set: B.prototype.CRa }),
     (B.prototype.get_mReturnDeepestPoint = B.prototype.KMa =
@@ -28668,7 +28654,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mReturnDeepestPoint = B.prototype.RQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), f3(t, e));
+        e && typeof e == `object` && (e = e.RDa), f3(t, e);
       }),
     Object.defineProperty(B.prototype, "mReturnDeepestPoint", { get: B.prototype.KMa, set: B.prototype.RQa }),
     (B.prototype.get_mActiveEdgeMode = B.prototype.aFa =
@@ -28678,7 +28664,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mActiveEdgeMode = B.prototype.PFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), m3(t, e));
+        e && typeof e == `object` && (e = e.RDa), m3(t, e);
       }),
     Object.defineProperty(B.prototype, "mActiveEdgeMode", { get: B.prototype.aFa, set: B.prototype.PFa }),
     (B.prototype.get_mCollectFacesMode = B.prototype.dFa =
@@ -28688,7 +28674,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mCollectFacesMode = B.prototype.SFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), g3(t, e));
+        e && typeof e == `object` && (e = e.RDa), g3(t, e);
       }),
     Object.defineProperty(B.prototype, "mCollectFacesMode", { get: B.prototype.dFa, set: B.prototype.SFa }),
     (B.prototype.get_mCollisionTolerance = B.prototype.KEa =
@@ -28698,7 +28684,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mCollisionTolerance = B.prototype.TEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), v3(t, e));
+        e && typeof e == `object` && (e = e.RDa), v3(t, e);
       }),
     Object.defineProperty(B.prototype, "mCollisionTolerance", { get: B.prototype.KEa, set: B.prototype.TEa }),
     (B.prototype.get_mPenetrationTolerance = B.prototype.xFa =
@@ -28708,7 +28694,7 @@ async function Ir(e = {}) {
     (B.prototype.set_mPenetrationTolerance = B.prototype.mGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), b3(t, e));
+        e && typeof e == `object` && (e = e.RDa), b3(t, e);
       }),
     Object.defineProperty(B.prototype, "mPenetrationTolerance", { get: B.prototype.xFa, set: B.prototype.mGa }),
     (B.prototype.get_mActiveEdgeMovementDirection = B.prototype.bFa =
@@ -28718,16 +28704,16 @@ async function Ir(e = {}) {
     (B.prototype.set_mActiveEdgeMovementDirection = B.prototype.QFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Toe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Toe(t, e);
       }),
     Object.defineProperty(B.prototype, "mActiveEdgeMovementDirection", { get: B.prototype.bFa, set: B.prototype.QFa }),
     (B.prototype.__destroy__ = function () {
       Eoe(this.RDa);
-    }));
+    });
   function V() {
-    ((this.RDa = Doe()), (d(V)[this.RDa] = this));
+    (this.RDa = Doe()), (d(V)[this.RDa] = this);
   }
-  ((V.prototype = Object.create(m.prototype)),
+  (V.prototype = Object.create(m.prototype)),
     (V.prototype.constructor = V),
     (V.prototype.SDa = V),
     (V.TDa = {}),
@@ -28739,7 +28725,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mFraction = V.prototype.VEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), koe(t, e));
+        e && typeof e == `object` && (e = e.RDa), koe(t, e);
       }),
     Object.defineProperty(V.prototype, "mFraction", { get: V.prototype.MEa, set: V.prototype.VEa }),
     (V.prototype.get_mIsBackFaceHit = V.prototype.TKa =
@@ -28749,7 +28735,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mIsBackFaceHit = V.prototype.bPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), joe(t, e));
+        e && typeof e == `object` && (e = e.RDa), joe(t, e);
       }),
     Object.defineProperty(V.prototype, "mIsBackFaceHit", { get: V.prototype.TKa, set: V.prototype.bPa }),
     (V.prototype.get_mContactPointOn1 = V.prototype.aHa =
@@ -28759,7 +28745,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mContactPointOn1 = V.prototype.yIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Noe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Noe(t, e);
       }),
     Object.defineProperty(V.prototype, "mContactPointOn1", { get: V.prototype.aHa, set: V.prototype.yIa }),
     (V.prototype.get_mContactPointOn2 = V.prototype.bHa =
@@ -28769,7 +28755,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mContactPointOn2 = V.prototype.zIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Foe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Foe(t, e);
       }),
     Object.defineProperty(V.prototype, "mContactPointOn2", { get: V.prototype.bHa, set: V.prototype.zIa }),
     (V.prototype.get_mPenetrationAxis = V.prototype.LHa =
@@ -28779,7 +28765,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mPenetrationAxis = V.prototype.iJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Loe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Loe(t, e);
       }),
     Object.defineProperty(V.prototype, "mPenetrationAxis", { get: V.prototype.LHa, set: V.prototype.iJa }),
     (V.prototype.get_mPenetrationDepth = V.prototype.wFa =
@@ -28789,7 +28775,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mPenetrationDepth = V.prototype.lGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zoe(t, e));
+        e && typeof e == `object` && (e = e.RDa), zoe(t, e);
       }),
     Object.defineProperty(V.prototype, "mPenetrationDepth", { get: V.prototype.wFa, set: V.prototype.lGa }),
     (V.prototype.get_mSubShapeID1 = V.prototype.BFa =
@@ -28799,7 +28785,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mSubShapeID1 = V.prototype.qGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Voe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Voe(t, e);
       }),
     Object.defineProperty(V.prototype, "mSubShapeID1", { get: V.prototype.BFa, set: V.prototype.qGa }),
     (V.prototype.get_mSubShapeID2 = V.prototype.GEa =
@@ -28809,7 +28795,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mSubShapeID2 = V.prototype.HEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Uoe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Uoe(t, e);
       }),
     Object.defineProperty(V.prototype, "mSubShapeID2", { get: V.prototype.GEa, set: V.prototype.HEa }),
     (V.prototype.get_mBodyID2 = V.prototype.RGa =
@@ -28819,7 +28805,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mBodyID2 = V.prototype.pIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Goe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Goe(t, e);
       }),
     Object.defineProperty(V.prototype, "mBodyID2", { get: V.prototype.RGa, set: V.prototype.pIa }),
     (V.prototype.get_mShape1Face = V.prototype.QHa =
@@ -28829,7 +28815,7 @@ async function Ir(e = {}) {
     (V.prototype.set_mShape1Face = V.prototype.oJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qoe(t, e));
+        e && typeof e == `object` && (e = e.RDa), qoe(t, e);
       }),
     Object.defineProperty(V.prototype, "mShape1Face", { get: V.prototype.QHa, set: V.prototype.oJa }),
     (V.prototype.get_mShape2Face = V.prototype.RHa =
@@ -28839,16 +28825,16 @@ async function Ir(e = {}) {
     (V.prototype.set_mShape2Face = V.prototype.pJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Yoe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Yoe(t, e);
       }),
     Object.defineProperty(V.prototype, "mShape2Face", { get: V.prototype.RHa, set: V.prototype.pJa }),
     (V.prototype.__destroy__ = function () {
       Xoe(this.RDa);
-    }));
+    });
   function t7() {
-    ((this.RDa = Zoe()), (d(t7)[this.RDa] = this));
+    (this.RDa = Zoe()), (d(t7)[this.RDa] = this);
   }
-  ((t7.prototype = Object.create(d6.prototype)),
+  (t7.prototype = Object.create(d6.prototype)),
     (t7.prototype.constructor = t7),
     (t7.prototype.SDa = t7),
     (t7.TDa = {}),
@@ -28858,19 +28844,19 @@ async function Ir(e = {}) {
     }),
     (t7.prototype.OnBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $oe(t, e));
+      e && typeof e == `object` && (e = e.RDa), $oe(t, e);
     }),
     (t7.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ese(t, e));
+      e && typeof e == `object` && (e = e.RDa), ese(t, e);
     }),
     (t7.prototype.__destroy__ = function () {
       tse(this.RDa);
-    }));
+    });
   function n7() {
-    ((this.RDa = nse()), (d(n7)[this.RDa] = this));
+    (this.RDa = nse()), (d(n7)[this.RDa] = this);
   }
-  ((n7.prototype = Object.create(u.prototype)),
+  (n7.prototype = Object.create(u.prototype)),
     (n7.prototype.constructor = n7),
     (n7.prototype.SDa = n7),
     (n7.TDa = {}),
@@ -28886,20 +28872,20 @@ async function Ir(e = {}) {
     (n7.prototype.at = n7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(ase(t, e), V));
+        return e && typeof e == `object` && (e = e.RDa), f(ase(t, e), V);
       }),
     (n7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ose(t, e));
+      e && typeof e == `object` && (e = e.RDa), ose(t, e);
     }),
     (n7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sse(t, e));
+      e && typeof e == `object` && (e = e.RDa), sse(t, e);
     }),
     (n7.prototype.resize = n7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cse(t, e));
+        e && typeof e == `object` && (e = e.RDa), cse(t, e);
       }),
     (n7.prototype.clear = n7.prototype.clear =
       function () {
@@ -28907,11 +28893,11 @@ async function Ir(e = {}) {
       }),
     (n7.prototype.__destroy__ = function () {
       use(this.RDa);
-    }));
+    });
   function r7() {
-    ((this.RDa = dse()), (d(r7)[this.RDa] = this));
+    (this.RDa = dse()), (d(r7)[this.RDa] = this);
   }
-  ((r7.prototype = Object.create(d6.prototype)),
+  (r7.prototype = Object.create(d6.prototype)),
     (r7.prototype.constructor = r7),
     (r7.prototype.SDa = r7),
     (r7.TDa = {}),
@@ -28927,18 +28913,18 @@ async function Ir(e = {}) {
     }),
     (r7.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hse(t, e));
+      e && typeof e == `object` && (e = e.RDa), hse(t, e);
     }),
     (r7.prototype.GetContext = function () {
       return f(gse(this.RDa), T);
     }),
     (r7.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _se(t, e));
+      e && typeof e == `object` && (e = e.RDa), _se(t, e);
     }),
     (r7.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? vse(t) : yse(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? vse(t) : yse(t, e);
     }),
     (r7.prototype.ForceEarlyOut = function () {
       bse(this.RDa);
@@ -28959,16 +28945,16 @@ async function Ir(e = {}) {
     (r7.prototype.set_mHits = r7.prototype.WEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Tse(t, e));
+        e && typeof e == `object` && (e = e.RDa), Tse(t, e);
       }),
     Object.defineProperty(r7.prototype, "mHits", { get: r7.prototype.NEa, set: r7.prototype.WEa }),
     (r7.prototype.__destroy__ = function () {
       Ese(this.RDa);
-    }));
+    });
   function i7() {
-    ((this.RDa = Dse()), (d(i7)[this.RDa] = this));
+    (this.RDa = Dse()), (d(i7)[this.RDa] = this);
   }
-  ((i7.prototype = Object.create(d6.prototype)),
+  (i7.prototype = Object.create(d6.prototype)),
     (i7.prototype.constructor = i7),
     (i7.prototype.SDa = i7),
     (i7.TDa = {}),
@@ -28981,18 +28967,18 @@ async function Ir(e = {}) {
     }),
     (i7.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ase(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ase(t, e);
     }),
     (i7.prototype.GetContext = function () {
       return f(jse(this.RDa), T);
     }),
     (i7.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mse(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mse(t, e);
     }),
     (i7.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Nse(t) : Pse(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Nse(t) : Pse(t, e);
     }),
     (i7.prototype.ForceEarlyOut = function () {
       Fse(this.RDa);
@@ -29013,16 +28999,16 @@ async function Ir(e = {}) {
     (i7.prototype.set_mHit = i7.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Bse(t, e));
+        e && typeof e == `object` && (e = e.RDa), Bse(t, e);
       }),
     Object.defineProperty(i7.prototype, "mHit", { get: i7.prototype.iEa, set: i7.prototype.kEa }),
     (i7.prototype.__destroy__ = function () {
       Vse(this.RDa);
-    }));
+    });
   function a7() {
-    ((this.RDa = Hse()), (d(a7)[this.RDa] = this));
+    (this.RDa = Hse()), (d(a7)[this.RDa] = this);
   }
-  ((a7.prototype = Object.create(d6.prototype)),
+  (a7.prototype = Object.create(d6.prototype)),
     (a7.prototype.constructor = a7),
     (a7.prototype.SDa = a7),
     (a7.TDa = {}),
@@ -29035,18 +29021,18 @@ async function Ir(e = {}) {
     }),
     (a7.prototype.SetContext = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Gse(t, e));
+      e && typeof e == `object` && (e = e.RDa), Gse(t, e);
     }),
     (a7.prototype.GetContext = function () {
       return f(Kse(this.RDa), T);
     }),
     (a7.prototype.UpdateEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qse(t, e));
+      e && typeof e == `object` && (e = e.RDa), qse(t, e);
     }),
     (a7.prototype.ResetEarlyOutFraction = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? Jse(t) : Yse(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? Jse(t) : Yse(t, e);
     }),
     (a7.prototype.ForceEarlyOut = function () {
       Xse(this.RDa);
@@ -29067,16 +29053,16 @@ async function Ir(e = {}) {
     (a7.prototype.set_mHit = a7.prototype.kEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tce(t, e));
+        e && typeof e == `object` && (e = e.RDa), tce(t, e);
       }),
     Object.defineProperty(a7.prototype, "mHit", { get: a7.prototype.iEa, set: a7.prototype.kEa }),
     (a7.prototype.__destroy__ = function () {
       nce(this.RDa);
-    }));
+    });
   function o7() {
-    ((this.RDa = rce()), (d(o7)[this.RDa] = this));
+    (this.RDa = rce()), (d(o7)[this.RDa] = this);
   }
-  ((o7.prototype = Object.create(f6.prototype)),
+  (o7.prototype = Object.create(f6.prototype)),
     (o7.prototype.constructor = o7),
     (o7.prototype.SDa = o7),
     (o7.TDa = {}),
@@ -29086,47 +29072,47 @@ async function Ir(e = {}) {
     }),
     (o7.prototype.OnBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ace(t, e));
+      e && typeof e == `object` && (e = e.RDa), ace(t, e);
     }),
     (o7.prototype.AddHit = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), oce(t, e));
+      e && typeof e == `object` && (e = e.RDa), oce(t, e);
     }),
     (o7.prototype.__destroy__ = function () {
       sce(this.RDa);
-    }));
+    });
   function s7() {
     throw `cannot construct a NarrowPhaseQuery, no constructor in IDL`;
   }
-  ((s7.prototype = Object.create(u.prototype)),
+  (s7.prototype = Object.create(u.prototype)),
     (s7.prototype.constructor = s7),
     (s7.prototype.SDa = s7),
     (s7.TDa = {}),
     (t.NarrowPhaseQuery = s7),
     (s7.prototype.CastRay = function (e, t, n, r, i, a, o) {
       var s = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
-        cce(s, e, t, n, r, i, a, o));
+        cce(s, e, t, n, r, i, a, o);
     }),
     (s7.prototype.CollidePoint = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        lce(o, e, t, n, r, i, a));
+        lce(o, e, t, n, r, i, a);
     }),
     (s7.prototype.CollideShape = function (e, t, n, r, i, a, o, s, c, l) {
       var ee = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -29136,11 +29122,11 @@ async function Ir(e = {}) {
         s && typeof s == `object` && (s = s.RDa),
         c && typeof c == `object` && (c = c.RDa),
         l && typeof l == `object` && (l = l.RDa),
-        uce(ee, e, t, n, r, i, a, o, s, c, l));
+        uce(ee, e, t, n, r, i, a, o, s, c, l);
     }),
     (s7.prototype.CollideShapeWithInternalEdgeRemoval = function (e, t, n, r, i, a, o, s, c, l) {
       var ee = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -29150,11 +29136,11 @@ async function Ir(e = {}) {
         s && typeof s == `object` && (s = s.RDa),
         c && typeof c == `object` && (c = c.RDa),
         l && typeof l == `object` && (l = l.RDa),
-        dce(ee, e, t, n, r, i, a, o, s, c, l));
+        dce(ee, e, t, n, r, i, a, o, s, c, l);
     }),
     (s7.prototype.CastShape = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -29162,25 +29148,25 @@ async function Ir(e = {}) {
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
-        fce(c, e, t, n, r, i, a, o, s));
+        fce(c, e, t, n, r, i, a, o, s);
     }),
     (s7.prototype.CollectTransformedShapes = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        pce(o, e, t, n, r, i, a));
+        pce(o, e, t, n, r, i, a);
     }),
     (s7.prototype.__destroy__ = function () {
       mce(this.RDa);
-    }));
+    });
   function c7() {
     throw `cannot construct a PhysicsStepListenerContext, no constructor in IDL`;
   }
-  ((c7.prototype = Object.create(u.prototype)),
+  (c7.prototype = Object.create(u.prototype)),
     (c7.prototype.constructor = c7),
     (c7.prototype.SDa = c7),
     (c7.TDa = {}),
@@ -29192,7 +29178,7 @@ async function Ir(e = {}) {
     (c7.prototype.set_mDeltaTime = c7.prototype.vOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gce(t, e));
+        e && typeof e == `object` && (e = e.RDa), gce(t, e);
       }),
     Object.defineProperty(c7.prototype, "mDeltaTime", { get: c7.prototype.mKa, set: c7.prototype.vOa }),
     (c7.prototype.get_mIsFirstStep = c7.prototype.UKa =
@@ -29202,7 +29188,7 @@ async function Ir(e = {}) {
     (c7.prototype.set_mIsFirstStep = c7.prototype.cPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vce(t, e));
+        e && typeof e == `object` && (e = e.RDa), vce(t, e);
       }),
     Object.defineProperty(c7.prototype, "mIsFirstStep", { get: c7.prototype.UKa, set: c7.prototype.cPa }),
     (c7.prototype.get_mIsLastStep = c7.prototype.VKa =
@@ -29212,7 +29198,7 @@ async function Ir(e = {}) {
     (c7.prototype.set_mIsLastStep = c7.prototype.dPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bce(t, e));
+        e && typeof e == `object` && (e = e.RDa), bce(t, e);
       }),
     Object.defineProperty(c7.prototype, "mIsLastStep", { get: c7.prototype.VKa, set: c7.prototype.dPa }),
     (c7.prototype.get_mPhysicsSystem = c7.prototype.sMa =
@@ -29222,50 +29208,50 @@ async function Ir(e = {}) {
     (c7.prototype.set_mPhysicsSystem = c7.prototype.BQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sce(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sce(t, e);
       }),
     Object.defineProperty(c7.prototype, "mPhysicsSystem", { get: c7.prototype.sMa, set: c7.prototype.BQa }),
     (c7.prototype.__destroy__ = function () {
       Cce(this.RDa);
-    }));
+    });
   function l7() {
-    ((this.RDa = wce()), (d(l7)[this.RDa] = this));
+    (this.RDa = wce()), (d(l7)[this.RDa] = this);
   }
-  ((l7.prototype = Object.create(p6.prototype)),
+  (l7.prototype = Object.create(p6.prototype)),
     (l7.prototype.constructor = l7),
     (l7.prototype.SDa = l7),
     (l7.TDa = {}),
     (t.PhysicsStepListenerJS = l7),
     (l7.prototype.OnStep = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tce(t, e);
     }),
     (l7.prototype.__destroy__ = function () {
       Ece(this.RDa);
-    }));
+    });
   function u7() {
-    ((this.RDa = Dce()), (d(u7)[this.RDa] = this));
+    (this.RDa = Dce()), (d(u7)[this.RDa] = this);
   }
-  ((u7.prototype = Object.create(m6.prototype)),
+  (u7.prototype = Object.create(m6.prototype)),
     (u7.prototype.constructor = u7),
     (u7.prototype.SDa = u7),
     (u7.TDa = {}),
     (t.BodyActivationListenerJS = u7),
     (u7.prototype.OnBodyActivated = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Oce(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Oce(n, e, t);
     }),
     (u7.prototype.OnBodyDeactivated = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), kce(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), kce(n, e, t);
     }),
     (u7.prototype.__destroy__ = function () {
       Ace(this.RDa);
-    }));
+    });
   function d7() {
-    ((this.RDa = jce()), (d(d7)[this.RDa] = this));
+    (this.RDa = jce()), (d(d7)[this.RDa] = this);
   }
-  ((d7.prototype = Object.create(u.prototype)),
+  (d7.prototype = Object.create(u.prototype)),
     (d7.prototype.constructor = d7),
     (d7.prototype.SDa = d7),
     (d7.TDa = {}),
@@ -29281,20 +29267,20 @@ async function Ir(e = {}) {
     (d7.prototype.at = d7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Pce(t, e), m5));
+        return e && typeof e == `object` && (e = e.RDa), f(Pce(t, e), m5);
       }),
     (d7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fce(t, e);
     }),
     (d7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ice(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ice(t, e);
     }),
     (d7.prototype.resize = d7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lce(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lce(t, e);
       }),
     (d7.prototype.clear = d7.prototype.clear =
       function () {
@@ -29302,18 +29288,18 @@ async function Ir(e = {}) {
       }),
     (d7.prototype.__destroy__ = function () {
       zce(this.RDa);
-    }));
+    });
   function f7() {
     throw `cannot construct a PhysicsSystem, no constructor in IDL`;
   }
-  ((f7.prototype = Object.create(u.prototype)),
+  (f7.prototype = Object.create(u.prototype)),
     (f7.prototype.constructor = f7),
     (f7.prototype.SDa = f7),
     (f7.TDa = {}),
     (t.PhysicsSystem = f7),
     (f7.prototype.SetGravity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bce(t, e);
     }),
     (f7.prototype.GetGravity = function () {
       return f(Vce(this.RDa), v);
@@ -29323,47 +29309,47 @@ async function Ir(e = {}) {
     }),
     (f7.prototype.SetPhysicsSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Uce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Uce(t, e);
     }),
     (f7.prototype.GetNumBodies = function () {
       return Wce(this.RDa);
     }),
     (f7.prototype.GetNumActiveBodies = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Gce(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Gce(t, e);
     }),
     (f7.prototype.GetMaxBodies = function () {
       return Kce(this.RDa);
     }),
     (f7.prototype.GetBodies = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qce(t, e));
+      e && typeof e == `object` && (e = e.RDa), qce(t, e);
     }),
     (f7.prototype.GetActiveBodies = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Jce(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Jce(n, e, t);
     }),
     (f7.prototype.GetBounds = function () {
       return f(Yce(this.RDa), w);
     }),
     (f7.prototype.AddConstraint = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Xce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Xce(t, e);
     }),
     (f7.prototype.RemoveConstraint = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Zce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Zce(t, e);
     }),
     (f7.prototype.SetContactListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qce(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qce(t, e);
     }),
     (f7.prototype.GetContactListener = function () {
       return f($ce(this.RDa), N3);
     }),
     (f7.prototype.SetSoftBodyContactListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ele(t, e));
+      e && typeof e == `object` && (e = e.RDa), ele(t, e);
     }),
     (f7.prototype.GetSoftBodyContactListener = function () {
       return f(tle(this.RDa), P3);
@@ -29394,74 +29380,74 @@ async function Ir(e = {}) {
     }),
     (f7.prototype.SaveState = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        t === void 0 ? ule(r, e) : n === void 0 ? dle(r, e, t) : fle(r, e, t, n));
+        t === void 0 ? ule(r, e) : n === void 0 ? dle(r, e, t) : fle(r, e, t, n);
     }),
     (f7.prototype.RestoreState = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!ple(n, e) : !!mle(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? !!ple(n, e) : !!mle(n, e, t);
     }),
     (f7.prototype.AddStepListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hle(t, e));
+      e && typeof e == `object` && (e = e.RDa), hle(t, e);
     }),
     (f7.prototype.RemoveStepListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gle(t, e));
+      e && typeof e == `object` && (e = e.RDa), gle(t, e);
     }),
     (f7.prototype.SetBodyActivationListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _le(t, e));
+      e && typeof e == `object` && (e = e.RDa), _le(t, e);
     }),
     (f7.prototype.GetBodyActivationListener = function () {
       return f(vle(this.RDa), F3);
     }),
     (f7.prototype.WereBodiesInContact = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yle(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yle(n, e, t);
     }),
     (f7.prototype.SetSimShapeFilter = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ble(t, e));
+      e && typeof e == `object` && (e = e.RDa), ble(t, e);
     }),
     (f7.prototype.GetSimShapeFilter = function () {
       return f(xle(this.RDa), w6);
     }),
     (f7.prototype.__destroy__ = function () {
       Sle(this.RDa);
-    }));
+    });
   function p7() {
-    ((this.RDa = Cle()), (d(p7)[this.RDa] = this));
+    (this.RDa = Cle()), (d(p7)[this.RDa] = this);
   }
-  ((p7.prototype = Object.create(u.prototype)),
+  (p7.prototype = Object.create(u.prototype)),
     (p7.prototype.constructor = p7),
     (p7.prototype.SDa = p7),
     (p7.TDa = {}),
     (t.MassProperties = p7),
     (p7.prototype.SetMassAndInertiaOfSolidBox = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wle(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wle(n, e, t);
     }),
     (p7.prototype.ScaleToMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tle(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tle(t, e);
     }),
     (p7.prototype.sGetEquivalentSolidBoxSize = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ele(e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ele(e, t), v);
     }),
     (p7.prototype.Rotate = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Dle(t, e));
+      e && typeof e == `object` && (e = e.RDa), Dle(t, e);
     }),
     (p7.prototype.Translate = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ole(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ole(t, e);
     }),
     (p7.prototype.Scale = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kle(t, e));
+      e && typeof e == `object` && (e = e.RDa), kle(t, e);
     }),
     (p7.prototype.get_mMass = p7.prototype.uHa =
       function () {
@@ -29470,7 +29456,7 @@ async function Ir(e = {}) {
     (p7.prototype.set_mMass = p7.prototype.SIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jle(t, e));
+        e && typeof e == `object` && (e = e.RDa), jle(t, e);
       }),
     Object.defineProperty(p7.prototype, "mMass", { get: p7.prototype.uHa, set: p7.prototype.SIa }),
     (p7.prototype.get_mInertia = p7.prototype.qEa =
@@ -29480,16 +29466,16 @@ async function Ir(e = {}) {
     (p7.prototype.set_mInertia = p7.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nle(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nle(t, e);
       }),
     Object.defineProperty(p7.prototype, "mInertia", { get: p7.prototype.qEa, set: p7.prototype.xEa }),
     (p7.prototype.__destroy__ = function () {
       Ple(this.RDa);
-    }));
+    });
   function m7() {
-    ((this.RDa = Fle()), (d(m7)[this.RDa] = this));
+    (this.RDa = Fle()), (d(m7)[this.RDa] = this);
   }
-  ((m7.prototype = Object.create(u.prototype)),
+  (m7.prototype = Object.create(u.prototype)),
     (m7.prototype.constructor = m7),
     (m7.prototype.SDa = m7),
     (m7.TDa = {}),
@@ -29501,7 +29487,7 @@ async function Ir(e = {}) {
     (m7.prototype.set_mPosition = m7.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lle(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lle(t, e);
       }),
     Object.defineProperty(m7.prototype, "mPosition", { get: m7.prototype.eEa, set: m7.prototype.gEa }),
     (m7.prototype.get_mVelocity = m7.prototype.cIa =
@@ -29511,7 +29497,7 @@ async function Ir(e = {}) {
     (m7.prototype.set_mVelocity = m7.prototype.BJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zle(t, e));
+        e && typeof e == `object` && (e = e.RDa), zle(t, e);
       }),
     Object.defineProperty(m7.prototype, "mVelocity", { get: m7.prototype.cIa, set: m7.prototype.BJa }),
     (m7.prototype.get_mInvMass = m7.prototype.lFa =
@@ -29521,21 +29507,21 @@ async function Ir(e = {}) {
     (m7.prototype.set_mInvMass = m7.prototype.aGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vle(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vle(t, e);
       }),
     Object.defineProperty(m7.prototype, "mInvMass", { get: m7.prototype.lFa, set: m7.prototype.aGa }),
     (m7.prototype.__destroy__ = function () {
       Hle(this.RDa);
-    }));
+    });
   function h7(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = Ule(e, t, n, r)),
-      (d(h7)[this.RDa] = this));
+      (d(h7)[this.RDa] = this);
   }
-  ((h7.prototype = Object.create(u.prototype)),
+  (h7.prototype = Object.create(u.prototype)),
     (h7.prototype.constructor = h7),
     (h7.prototype.SDa = h7),
     (h7.TDa = {}),
@@ -29543,12 +29529,12 @@ async function Ir(e = {}) {
     (h7.prototype.get_mVertex = h7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Wle(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Wle(t, e);
       }),
     (h7.prototype.set_mVertex = h7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Gle(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Gle(n, e, t);
       }),
     Object.defineProperty(h7.prototype, "mVertex", { get: h7.prototype.mEa, set: h7.prototype.oEa }),
     (h7.prototype.get_mMaterialIndex = h7.prototype.oFa =
@@ -29558,20 +29544,20 @@ async function Ir(e = {}) {
     (h7.prototype.set_mMaterialIndex = h7.prototype.dGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qle(t, e));
+        e && typeof e == `object` && (e = e.RDa), qle(t, e);
       }),
     Object.defineProperty(h7.prototype, "mMaterialIndex", { get: h7.prototype.oFa, set: h7.prototype.dGa }),
     (h7.prototype.__destroy__ = function () {
       Jle(this.RDa);
-    }));
+    });
   function g7(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = Yle(e, t, n)),
-      (d(g7)[this.RDa] = this));
+      (d(g7)[this.RDa] = this);
   }
-  ((g7.prototype = Object.create(u.prototype)),
+  (g7.prototype = Object.create(u.prototype)),
     (g7.prototype.constructor = g7),
     (g7.prototype.SDa = g7),
     (g7.TDa = {}),
@@ -29579,12 +29565,12 @@ async function Ir(e = {}) {
     (g7.prototype.get_mVertex = g7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Xle(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Xle(t, e);
       }),
     (g7.prototype.set_mVertex = g7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Zle(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Zle(n, e, t);
       }),
     Object.defineProperty(g7.prototype, "mVertex", { get: g7.prototype.mEa, set: g7.prototype.oEa }),
     (g7.prototype.get_mRestLength = g7.prototype.JMa =
@@ -29594,7 +29580,7 @@ async function Ir(e = {}) {
     (g7.prototype.set_mRestLength = g7.prototype.QQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $le(t, e));
+        e && typeof e == `object` && (e = e.RDa), $le(t, e);
       }),
     Object.defineProperty(g7.prototype, "mRestLength", { get: g7.prototype.JMa, set: g7.prototype.QQa }),
     (g7.prototype.get_mCompliance = g7.prototype.pEa =
@@ -29604,22 +29590,22 @@ async function Ir(e = {}) {
     (g7.prototype.set_mCompliance = g7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tue(t, e));
+        e && typeof e == `object` && (e = e.RDa), tue(t, e);
       }),
     Object.defineProperty(g7.prototype, "mCompliance", { get: g7.prototype.pEa, set: g7.prototype.wEa }),
     (g7.prototype.__destroy__ = function () {
       nue(this.RDa);
-    }));
+    });
   function _7(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       i && typeof i == `object` && (i = i.RDa),
       (this.RDa = rue(e, t, n, r, i)),
-      (d(_7)[this.RDa] = this));
+      (d(_7)[this.RDa] = this);
   }
-  ((_7.prototype = Object.create(u.prototype)),
+  (_7.prototype = Object.create(u.prototype)),
     (_7.prototype.constructor = _7),
     (_7.prototype.SDa = _7),
     (_7.TDa = {}),
@@ -29627,12 +29613,12 @@ async function Ir(e = {}) {
     (_7.prototype.get_mVertex = _7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), iue(t, e));
+        return e && typeof e == `object` && (e = e.RDa), iue(t, e);
       }),
     (_7.prototype.set_mVertex = _7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), aue(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), aue(n, e, t);
       }),
     Object.defineProperty(_7.prototype, "mVertex", { get: _7.prototype.mEa, set: _7.prototype.oEa }),
     (_7.prototype.get_mCompliance = _7.prototype.pEa =
@@ -29642,7 +29628,7 @@ async function Ir(e = {}) {
     (_7.prototype.set_mCompliance = _7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sue(t, e));
+        e && typeof e == `object` && (e = e.RDa), sue(t, e);
       }),
     Object.defineProperty(_7.prototype, "mCompliance", { get: _7.prototype.pEa, set: _7.prototype.wEa }),
     (_7.prototype.get_mInitialAngle = _7.prototype.LKa =
@@ -29652,22 +29638,22 @@ async function Ir(e = {}) {
     (_7.prototype.set_mInitialAngle = _7.prototype.UOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lue(t, e));
+        e && typeof e == `object` && (e = e.RDa), lue(t, e);
       }),
     Object.defineProperty(_7.prototype, "mInitialAngle", { get: _7.prototype.LKa, set: _7.prototype.UOa }),
     (_7.prototype.__destroy__ = function () {
       uue(this.RDa);
-    }));
+    });
   function v7(e, t, n, r, i) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       i && typeof i == `object` && (i = i.RDa),
       (this.RDa = due(e, t, n, r, i)),
-      (d(v7)[this.RDa] = this));
+      (d(v7)[this.RDa] = this);
   }
-  ((v7.prototype = Object.create(u.prototype)),
+  (v7.prototype = Object.create(u.prototype)),
     (v7.prototype.constructor = v7),
     (v7.prototype.SDa = v7),
     (v7.TDa = {}),
@@ -29675,12 +29661,12 @@ async function Ir(e = {}) {
     (v7.prototype.get_mVertex = v7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), fue(t, e));
+        return e && typeof e == `object` && (e = e.RDa), fue(t, e);
       }),
     (v7.prototype.set_mVertex = v7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), pue(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), pue(n, e, t);
       }),
     Object.defineProperty(v7.prototype, "mVertex", { get: v7.prototype.mEa, set: v7.prototype.oEa }),
     (v7.prototype.get_mSixRestVolume = v7.prototype.VMa =
@@ -29690,7 +29676,7 @@ async function Ir(e = {}) {
     (v7.prototype.set_mSixRestVolume = v7.prototype.bRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hue(t, e));
+        e && typeof e == `object` && (e = e.RDa), hue(t, e);
       }),
     Object.defineProperty(v7.prototype, "mSixRestVolume", { get: v7.prototype.VMa, set: v7.prototype.bRa }),
     (v7.prototype.get_mCompliance = v7.prototype.pEa =
@@ -29700,16 +29686,16 @@ async function Ir(e = {}) {
     (v7.prototype.set_mCompliance = v7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _ue(t, e));
+        e && typeof e == `object` && (e = e.RDa), _ue(t, e);
       }),
     Object.defineProperty(v7.prototype, "mCompliance", { get: v7.prototype.pEa, set: v7.prototype.wEa }),
     (v7.prototype.__destroy__ = function () {
       vue(this.RDa);
-    }));
+    });
   function y7() {
     throw `cannot construct a SoftBodySharedSettingsInvBind, no constructor in IDL`;
   }
-  ((y7.prototype = Object.create(u.prototype)),
+  (y7.prototype = Object.create(u.prototype)),
     (y7.prototype.constructor = y7),
     (y7.prototype.SDa = y7),
     (y7.TDa = {}),
@@ -29721,7 +29707,7 @@ async function Ir(e = {}) {
     (y7.prototype.set_mJointIndex = y7.prototype.fPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bue(t, e));
+        e && typeof e == `object` && (e = e.RDa), bue(t, e);
       }),
     Object.defineProperty(y7.prototype, "mJointIndex", { get: y7.prototype.XKa, set: y7.prototype.fPa }),
     (y7.prototype.get_mInvBind = y7.prototype.PKa =
@@ -29731,16 +29717,16 @@ async function Ir(e = {}) {
     (y7.prototype.set_mInvBind = y7.prototype.YOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sue(t, e);
       }),
     Object.defineProperty(y7.prototype, "mInvBind", { get: y7.prototype.PKa, set: y7.prototype.YOa }),
     (y7.prototype.__destroy__ = function () {
       Cue(this.RDa);
-    }));
+    });
   function b7() {
     throw `cannot construct a SoftBodySharedSettingsSkinWeight, no constructor in IDL`;
   }
-  ((b7.prototype = Object.create(u.prototype)),
+  (b7.prototype = Object.create(u.prototype)),
     (b7.prototype.constructor = b7),
     (b7.prototype.SDa = b7),
     (b7.TDa = {}),
@@ -29752,7 +29738,7 @@ async function Ir(e = {}) {
     (b7.prototype.set_mInvBindIndex = b7.prototype.ZOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Tue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Tue(t, e);
       }),
     Object.defineProperty(b7.prototype, "mInvBindIndex", { get: b7.prototype.QKa, set: b7.prototype.ZOa }),
     (b7.prototype.get_mWeight = b7.prototype.HNa =
@@ -29762,16 +29748,16 @@ async function Ir(e = {}) {
     (b7.prototype.set_mWeight = b7.prototype.NRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Due(t, e));
+        e && typeof e == `object` && (e = e.RDa), Due(t, e);
       }),
     Object.defineProperty(b7.prototype, "mWeight", { get: b7.prototype.HNa, set: b7.prototype.NRa }),
     (b7.prototype.__destroy__ = function () {
       Oue(this.RDa);
-    }));
+    });
   function x7() {
     throw `cannot construct a SoftBodySharedSettingsSkinned, no constructor in IDL`;
   }
-  ((x7.prototype = Object.create(u.prototype)),
+  (x7.prototype = Object.create(u.prototype)),
     (x7.prototype.constructor = x7),
     (x7.prototype.SDa = x7),
     (x7.TDa = {}),
@@ -29783,18 +29769,18 @@ async function Ir(e = {}) {
     (x7.prototype.set_mVertex = x7.prototype.oEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Aue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Aue(t, e);
       }),
     Object.defineProperty(x7.prototype, "mVertex", { get: x7.prototype.mEa, set: x7.prototype.oEa }),
     (x7.prototype.get_mWeights = x7.prototype.INa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(jue(t, e), b7));
+        return e && typeof e == `object` && (e = e.RDa), f(jue(t, e), b7);
       }),
     (x7.prototype.set_mWeights = x7.prototype.ORa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Mue(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Mue(n, e, t);
       }),
     Object.defineProperty(x7.prototype, "mWeights", { get: x7.prototype.INa, set: x7.prototype.ORa }),
     (x7.prototype.get_mMaxDistance = x7.prototype.rFa =
@@ -29804,7 +29790,7 @@ async function Ir(e = {}) {
     (x7.prototype.set_mMaxDistance = x7.prototype.gGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Pue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Pue(t, e);
       }),
     Object.defineProperty(x7.prototype, "mMaxDistance", { get: x7.prototype.rFa, set: x7.prototype.gGa }),
     (x7.prototype.get_mBackStopDistance = x7.prototype.HJa =
@@ -29814,7 +29800,7 @@ async function Ir(e = {}) {
     (x7.prototype.set_mBackStopDistance = x7.prototype.QNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Iue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Iue(t, e);
       }),
     Object.defineProperty(x7.prototype, "mBackStopDistance", { get: x7.prototype.HJa, set: x7.prototype.QNa }),
     (x7.prototype.get_mBackStopRadius = x7.prototype.IJa =
@@ -29824,20 +29810,20 @@ async function Ir(e = {}) {
     (x7.prototype.set_mBackStopRadius = x7.prototype.RNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Rue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Rue(t, e);
       }),
     Object.defineProperty(x7.prototype, "mBackStopRadius", { get: x7.prototype.IJa, set: x7.prototype.RNa }),
     (x7.prototype.__destroy__ = function () {
       zue(this.RDa);
-    }));
+    });
   function S7(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = Bue(e, t, n)),
-      (d(S7)[this.RDa] = this));
+      (d(S7)[this.RDa] = this);
   }
-  ((S7.prototype = Object.create(u.prototype)),
+  (S7.prototype = Object.create(u.prototype)),
     (S7.prototype.constructor = S7),
     (S7.prototype.SDa = S7),
     (S7.TDa = {}),
@@ -29845,12 +29831,12 @@ async function Ir(e = {}) {
     (S7.prototype.get_mVertex = S7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Vue(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Vue(t, e);
       }),
     (S7.prototype.set_mVertex = S7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Hue(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Hue(n, e, t);
       }),
     Object.defineProperty(S7.prototype, "mVertex", { get: S7.prototype.mEa, set: S7.prototype.oEa }),
     (S7.prototype.get_mMaxDistance = S7.prototype.rFa =
@@ -29860,20 +29846,20 @@ async function Ir(e = {}) {
     (S7.prototype.set_mMaxDistance = S7.prototype.gGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wue(t, e);
       }),
     Object.defineProperty(S7.prototype, "mMaxDistance", { get: S7.prototype.rFa, set: S7.prototype.gGa }),
     (S7.prototype.__destroy__ = function () {
       Gue(this.RDa);
-    }));
+    });
   function C7(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = Kue(e, t, n)),
-      (d(C7)[this.RDa] = this));
+      (d(C7)[this.RDa] = this);
   }
-  ((C7.prototype = Object.create(u.prototype)),
+  (C7.prototype = Object.create(u.prototype)),
     (C7.prototype.constructor = C7),
     (C7.prototype.SDa = C7),
     (C7.TDa = {}),
@@ -29881,12 +29867,12 @@ async function Ir(e = {}) {
     (C7.prototype.get_mVertex = C7.prototype.mEa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), que(t, e));
+        return e && typeof e == `object` && (e = e.RDa), que(t, e);
       }),
     (C7.prototype.set_mVertex = C7.prototype.oEa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Jue(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Jue(n, e, t);
       }),
     Object.defineProperty(C7.prototype, "mVertex", { get: C7.prototype.mEa, set: C7.prototype.oEa }),
     (C7.prototype.get_mLength = C7.prototype.kLa =
@@ -29896,7 +29882,7 @@ async function Ir(e = {}) {
     (C7.prototype.set_mLength = C7.prototype.tPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xue(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xue(t, e);
       }),
     Object.defineProperty(C7.prototype, "mLength", { get: C7.prototype.kLa, set: C7.prototype.tPa }),
     (C7.prototype.get_mInvMass = C7.prototype.lFa =
@@ -29906,7 +29892,7 @@ async function Ir(e = {}) {
     (C7.prototype.set_mInvMass = C7.prototype.aGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Que(t, e));
+        e && typeof e == `object` && (e = e.RDa), Que(t, e);
       }),
     Object.defineProperty(C7.prototype, "mInvMass", { get: C7.prototype.lFa, set: C7.prototype.aGa }),
     (C7.prototype.get_mCompliance = C7.prototype.pEa =
@@ -29916,7 +29902,7 @@ async function Ir(e = {}) {
     (C7.prototype.set_mCompliance = C7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ede(t, e));
+        e && typeof e == `object` && (e = e.RDa), ede(t, e);
       }),
     Object.defineProperty(C7.prototype, "mCompliance", { get: C7.prototype.pEa, set: C7.prototype.wEa }),
     (C7.prototype.get_mBishop = C7.prototype.MJa =
@@ -29926,20 +29912,20 @@ async function Ir(e = {}) {
     (C7.prototype.set_mBishop = C7.prototype.VNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nde(t, e));
+        e && typeof e == `object` && (e = e.RDa), nde(t, e);
       }),
     Object.defineProperty(C7.prototype, "mBishop", { get: C7.prototype.MJa, set: C7.prototype.VNa }),
     (C7.prototype.__destroy__ = function () {
       rde(this.RDa);
-    }));
+    });
   function w7(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = ide(e, t, n)),
-      (d(w7)[this.RDa] = this));
+      (d(w7)[this.RDa] = this);
   }
-  ((w7.prototype = Object.create(u.prototype)),
+  (w7.prototype = Object.create(u.prototype)),
     (w7.prototype.constructor = w7),
     (w7.prototype.SDa = w7),
     (w7.TDa = {}),
@@ -29947,12 +29933,12 @@ async function Ir(e = {}) {
     (w7.prototype.get_mRod = w7.prototype.LMa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), ade(t, e));
+        return e && typeof e == `object` && (e = e.RDa), ade(t, e);
       }),
     (w7.prototype.set_mRod = w7.prototype.SQa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), ode(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), ode(n, e, t);
       }),
     Object.defineProperty(w7.prototype, "mRod", { get: w7.prototype.LMa, set: w7.prototype.SQa }),
     (w7.prototype.get_mCompliance = w7.prototype.pEa =
@@ -29962,7 +29948,7 @@ async function Ir(e = {}) {
     (w7.prototype.set_mCompliance = w7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cde(t, e));
+        e && typeof e == `object` && (e = e.RDa), cde(t, e);
       }),
     Object.defineProperty(w7.prototype, "mCompliance", { get: w7.prototype.pEa, set: w7.prototype.wEa }),
     (w7.prototype.get_mOmega0 = w7.prototype.iMa =
@@ -29972,16 +29958,16 @@ async function Ir(e = {}) {
     (w7.prototype.set_mOmega0 = w7.prototype.rQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ude(t, e));
+        e && typeof e == `object` && (e = e.RDa), ude(t, e);
       }),
     Object.defineProperty(w7.prototype, "mOmega0", { get: w7.prototype.iMa, set: w7.prototype.rQa }),
     (w7.prototype.__destroy__ = function () {
       dde(this.RDa);
-    }));
+    });
   function T7() {
-    ((this.RDa = fde()), (d(T7)[this.RDa] = this));
+    (this.RDa = fde()), (d(T7)[this.RDa] = this);
   }
-  ((T7.prototype = Object.create(u.prototype)),
+  (T7.prototype = Object.create(u.prototype)),
     (T7.prototype.constructor = T7),
     (T7.prototype.SDa = T7),
     (T7.TDa = {}),
@@ -29997,20 +29983,20 @@ async function Ir(e = {}) {
     (T7.prototype.at = T7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(hde(t, e), m7));
+        return e && typeof e == `object` && (e = e.RDa), f(hde(t, e), m7);
       }),
     (T7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gde(t, e));
+      e && typeof e == `object` && (e = e.RDa), gde(t, e);
     }),
     (T7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _de(t, e));
+      e && typeof e == `object` && (e = e.RDa), _de(t, e);
     }),
     (T7.prototype.resize = T7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vde(t, e));
+        e && typeof e == `object` && (e = e.RDa), vde(t, e);
       }),
     (T7.prototype.clear = T7.prototype.clear =
       function () {
@@ -30018,11 +30004,11 @@ async function Ir(e = {}) {
       }),
     (T7.prototype.__destroy__ = function () {
       bde(this.RDa);
-    }));
+    });
   function E7() {
-    ((this.RDa = xde()), (d(E7)[this.RDa] = this));
+    (this.RDa = xde()), (d(E7)[this.RDa] = this);
   }
-  ((E7.prototype = Object.create(u.prototype)),
+  (E7.prototype = Object.create(u.prototype)),
     (E7.prototype.constructor = E7),
     (E7.prototype.SDa = E7),
     (E7.TDa = {}),
@@ -30038,20 +30024,20 @@ async function Ir(e = {}) {
     (E7.prototype.at = E7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(wde(t, e), h7));
+        return e && typeof e == `object` && (e = e.RDa), f(wde(t, e), h7);
       }),
     (E7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tde(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tde(t, e);
     }),
     (E7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ede(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ede(t, e);
     }),
     (E7.prototype.resize = E7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dde(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dde(t, e);
       }),
     (E7.prototype.clear = E7.prototype.clear =
       function () {
@@ -30059,11 +30045,11 @@ async function Ir(e = {}) {
       }),
     (E7.prototype.__destroy__ = function () {
       kde(this.RDa);
-    }));
+    });
   function D7() {
-    ((this.RDa = Ade()), (d(D7)[this.RDa] = this));
+    (this.RDa = Ade()), (d(D7)[this.RDa] = this);
   }
-  ((D7.prototype = Object.create(u.prototype)),
+  (D7.prototype = Object.create(u.prototype)),
     (D7.prototype.constructor = D7),
     (D7.prototype.SDa = D7),
     (D7.TDa = {}),
@@ -30079,20 +30065,20 @@ async function Ir(e = {}) {
     (D7.prototype.at = D7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Nde(t, e), g7));
+        return e && typeof e == `object` && (e = e.RDa), f(Nde(t, e), g7);
       }),
     (D7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pde(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pde(t, e);
     }),
     (D7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fde(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fde(t, e);
     }),
     (D7.prototype.resize = D7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ide(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ide(t, e);
       }),
     (D7.prototype.clear = D7.prototype.clear =
       function () {
@@ -30100,11 +30086,11 @@ async function Ir(e = {}) {
       }),
     (D7.prototype.__destroy__ = function () {
       Rde(this.RDa);
-    }));
+    });
   function O7() {
-    ((this.RDa = zde()), (d(O7)[this.RDa] = this));
+    (this.RDa = zde()), (d(O7)[this.RDa] = this);
   }
-  ((O7.prototype = Object.create(u.prototype)),
+  (O7.prototype = Object.create(u.prototype)),
     (O7.prototype.constructor = O7),
     (O7.prototype.SDa = O7),
     (O7.TDa = {}),
@@ -30120,20 +30106,20 @@ async function Ir(e = {}) {
     (O7.prototype.at = O7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Hde(t, e), _7));
+        return e && typeof e == `object` && (e = e.RDa), f(Hde(t, e), _7);
       }),
     (O7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ude(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ude(t, e);
     }),
     (O7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Wde(t, e));
+      e && typeof e == `object` && (e = e.RDa), Wde(t, e);
     }),
     (O7.prototype.resize = O7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gde(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gde(t, e);
       }),
     (O7.prototype.clear = O7.prototype.clear =
       function () {
@@ -30141,11 +30127,11 @@ async function Ir(e = {}) {
       }),
     (O7.prototype.__destroy__ = function () {
       qde(this.RDa);
-    }));
+    });
   function k7() {
-    ((this.RDa = Jde()), (d(k7)[this.RDa] = this));
+    (this.RDa = Jde()), (d(k7)[this.RDa] = this);
   }
-  ((k7.prototype = Object.create(u.prototype)),
+  (k7.prototype = Object.create(u.prototype)),
     (k7.prototype.constructor = k7),
     (k7.prototype.SDa = k7),
     (k7.TDa = {}),
@@ -30161,20 +30147,20 @@ async function Ir(e = {}) {
     (k7.prototype.at = k7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Zde(t, e), v7));
+        return e && typeof e == `object` && (e = e.RDa), f(Zde(t, e), v7);
       }),
     (k7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qde(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qde(t, e);
     }),
     (k7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $de(t, e));
+      e && typeof e == `object` && (e = e.RDa), $de(t, e);
     }),
     (k7.prototype.resize = k7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), efe(t, e));
+        e && typeof e == `object` && (e = e.RDa), efe(t, e);
       }),
     (k7.prototype.clear = k7.prototype.clear =
       function () {
@@ -30182,11 +30168,11 @@ async function Ir(e = {}) {
       }),
     (k7.prototype.__destroy__ = function () {
       nfe(this.RDa);
-    }));
+    });
   function A7() {
-    ((this.RDa = rfe()), (d(A7)[this.RDa] = this));
+    (this.RDa = rfe()), (d(A7)[this.RDa] = this);
   }
-  ((A7.prototype = Object.create(u.prototype)),
+  (A7.prototype = Object.create(u.prototype)),
     (A7.prototype.constructor = A7),
     (A7.prototype.SDa = A7),
     (A7.TDa = {}),
@@ -30202,20 +30188,20 @@ async function Ir(e = {}) {
     (A7.prototype.at = A7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(ofe(t, e), y7));
+        return e && typeof e == `object` && (e = e.RDa), f(ofe(t, e), y7);
       }),
     (A7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), sfe(t, e);
     }),
     (A7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), cfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), cfe(t, e);
     }),
     (A7.prototype.resize = A7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), lfe(t, e);
       }),
     (A7.prototype.clear = A7.prototype.clear =
       function () {
@@ -30223,11 +30209,11 @@ async function Ir(e = {}) {
       }),
     (A7.prototype.__destroy__ = function () {
       dfe(this.RDa);
-    }));
+    });
   function j7() {
-    ((this.RDa = ffe()), (d(j7)[this.RDa] = this));
+    (this.RDa = ffe()), (d(j7)[this.RDa] = this);
   }
-  ((j7.prototype = Object.create(u.prototype)),
+  (j7.prototype = Object.create(u.prototype)),
     (j7.prototype.constructor = j7),
     (j7.prototype.SDa = j7),
     (j7.TDa = {}),
@@ -30243,20 +30229,20 @@ async function Ir(e = {}) {
     (j7.prototype.at = j7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(hfe(t, e), x7));
+        return e && typeof e == `object` && (e = e.RDa), f(hfe(t, e), x7);
       }),
     (j7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), gfe(t, e);
     }),
     (j7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _fe(t, e));
+      e && typeof e == `object` && (e = e.RDa), _fe(t, e);
     }),
     (j7.prototype.resize = j7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), vfe(t, e);
       }),
     (j7.prototype.clear = j7.prototype.clear =
       function () {
@@ -30264,11 +30250,11 @@ async function Ir(e = {}) {
       }),
     (j7.prototype.__destroy__ = function () {
       bfe(this.RDa);
-    }));
+    });
   function M7() {
-    ((this.RDa = xfe()), (d(M7)[this.RDa] = this));
+    (this.RDa = xfe()), (d(M7)[this.RDa] = this);
   }
-  ((M7.prototype = Object.create(u.prototype)),
+  (M7.prototype = Object.create(u.prototype)),
     (M7.prototype.constructor = M7),
     (M7.prototype.SDa = M7),
     (M7.TDa = {}),
@@ -30284,20 +30270,20 @@ async function Ir(e = {}) {
     (M7.prototype.at = M7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(wfe(t, e), S7));
+        return e && typeof e == `object` && (e = e.RDa), f(wfe(t, e), S7);
       }),
     (M7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tfe(t, e);
     }),
     (M7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Efe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Efe(t, e);
     }),
     (M7.prototype.resize = M7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dfe(t, e);
       }),
     (M7.prototype.clear = M7.prototype.clear =
       function () {
@@ -30305,11 +30291,11 @@ async function Ir(e = {}) {
       }),
     (M7.prototype.__destroy__ = function () {
       kfe(this.RDa);
-    }));
+    });
   function N7() {
-    ((this.RDa = Afe()), (d(N7)[this.RDa] = this));
+    (this.RDa = Afe()), (d(N7)[this.RDa] = this);
   }
-  ((N7.prototype = Object.create(u.prototype)),
+  (N7.prototype = Object.create(u.prototype)),
     (N7.prototype.constructor = N7),
     (N7.prototype.SDa = N7),
     (N7.TDa = {}),
@@ -30325,20 +30311,20 @@ async function Ir(e = {}) {
     (N7.prototype.at = N7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Nfe(t, e), C7));
+        return e && typeof e == `object` && (e = e.RDa), f(Nfe(t, e), C7);
       }),
     (N7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Pfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Pfe(t, e);
     }),
     (N7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ffe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ffe(t, e);
     }),
     (N7.prototype.resize = N7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ife(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ife(t, e);
       }),
     (N7.prototype.clear = N7.prototype.clear =
       function () {
@@ -30346,11 +30332,11 @@ async function Ir(e = {}) {
       }),
     (N7.prototype.__destroy__ = function () {
       Rfe(this.RDa);
-    }));
+    });
   function P7() {
-    ((this.RDa = zfe()), (d(P7)[this.RDa] = this));
+    (this.RDa = zfe()), (d(P7)[this.RDa] = this);
   }
-  ((P7.prototype = Object.create(u.prototype)),
+  (P7.prototype = Object.create(u.prototype)),
     (P7.prototype.constructor = P7),
     (P7.prototype.SDa = P7),
     (P7.TDa = {}),
@@ -30366,20 +30352,20 @@ async function Ir(e = {}) {
     (P7.prototype.at = P7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Hfe(t, e), w7));
+        return e && typeof e == `object` && (e = e.RDa), f(Hfe(t, e), w7);
       }),
     (P7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ufe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ufe(t, e);
     }),
     (P7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Wfe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Wfe(t, e);
     }),
     (P7.prototype.resize = P7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gfe(t, e);
       }),
     (P7.prototype.clear = P7.prototype.clear =
       function () {
@@ -30387,11 +30373,11 @@ async function Ir(e = {}) {
       }),
     (P7.prototype.__destroy__ = function () {
       qfe(this.RDa);
-    }));
+    });
   function F7() {
-    ((this.RDa = Jfe()), (d(F7)[this.RDa] = this));
+    (this.RDa = Jfe()), (d(F7)[this.RDa] = this);
   }
-  ((F7.prototype = Object.create(u.prototype)),
+  (F7.prototype = Object.create(u.prototype)),
     (F7.prototype.constructor = F7),
     (F7.prototype.SDa = F7),
     (F7.TDa = {}),
@@ -30403,7 +30389,7 @@ async function Ir(e = {}) {
     (F7.prototype.set_mCompliance = F7.prototype.wEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xfe(t, e);
       }),
     Object.defineProperty(F7.prototype, "mCompliance", { get: F7.prototype.pEa, set: F7.prototype.wEa }),
     (F7.prototype.get_mShearCompliance = F7.prototype.UMa =
@@ -30413,7 +30399,7 @@ async function Ir(e = {}) {
     (F7.prototype.set_mShearCompliance = F7.prototype.aRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qfe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qfe(t, e);
       }),
     Object.defineProperty(F7.prototype, "mShearCompliance", { get: F7.prototype.UMa, set: F7.prototype.aRa }),
     (F7.prototype.get_mBendCompliance = F7.prototype.LJa =
@@ -30423,7 +30409,7 @@ async function Ir(e = {}) {
     (F7.prototype.set_mBendCompliance = F7.prototype.UNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), epe(t, e));
+        e && typeof e == `object` && (e = e.RDa), epe(t, e);
       }),
     Object.defineProperty(F7.prototype, "mBendCompliance", { get: F7.prototype.LJa, set: F7.prototype.UNa }),
     (F7.prototype.get_mLRAType = F7.prototype.bLa =
@@ -30433,7 +30419,7 @@ async function Ir(e = {}) {
     (F7.prototype.set_mLRAType = F7.prototype.kPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), npe(t, e));
+        e && typeof e == `object` && (e = e.RDa), npe(t, e);
       }),
     Object.defineProperty(F7.prototype, "mLRAType", { get: F7.prototype.bLa, set: F7.prototype.kPa }),
     (F7.prototype.get_mLRAMaxDistanceMultiplier = F7.prototype.aLa =
@@ -30443,16 +30429,16 @@ async function Ir(e = {}) {
     (F7.prototype.set_mLRAMaxDistanceMultiplier = F7.prototype.jPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ipe(t, e));
+        e && typeof e == `object` && (e = e.RDa), ipe(t, e);
       }),
     Object.defineProperty(F7.prototype, "mLRAMaxDistanceMultiplier", { get: F7.prototype.aLa, set: F7.prototype.jPa }),
     (F7.prototype.__destroy__ = function () {
       ape(this.RDa);
-    }));
+    });
   function I7() {
-    ((this.RDa = ope()), (d(I7)[this.RDa] = this));
+    (this.RDa = ope()), (d(I7)[this.RDa] = this);
   }
-  ((I7.prototype = Object.create(u.prototype)),
+  (I7.prototype = Object.create(u.prototype)),
     (I7.prototype.constructor = I7),
     (I7.prototype.SDa = I7),
     (I7.TDa = {}),
@@ -30468,20 +30454,20 @@ async function Ir(e = {}) {
     (I7.prototype.at = I7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(lpe(t, e), F7));
+        return e && typeof e == `object` && (e = e.RDa), f(lpe(t, e), F7);
       }),
     (I7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), upe(t, e));
+      e && typeof e == `object` && (e = e.RDa), upe(t, e);
     }),
     (I7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dpe(t, e));
+      e && typeof e == `object` && (e = e.RDa), dpe(t, e);
     }),
     (I7.prototype.resize = I7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), fpe(t, e);
       }),
     (I7.prototype.clear = I7.prototype.clear =
       function () {
@@ -30493,11 +30479,11 @@ async function Ir(e = {}) {
       }),
     (I7.prototype.__destroy__ = function () {
       hpe(this.RDa);
-    }));
+    });
   function H() {
-    ((this.RDa = gpe()), (d(H)[this.RDa] = this));
+    (this.RDa = gpe()), (d(H)[this.RDa] = this);
   }
-  ((H.prototype = Object.create(u.prototype)),
+  (H.prototype = Object.create(u.prototype)),
     (H.prototype.constructor = H),
     (H.prototype.SDa = H),
     (H.TDa = {}),
@@ -30513,15 +30499,15 @@ async function Ir(e = {}) {
     }),
     (H.prototype.CreateConstraints = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        n === void 0 ? bpe(i, e, t) : r === void 0 ? xpe(i, e, t, n) : Spe(i, e, t, n, r));
+        n === void 0 ? bpe(i, e, t) : r === void 0 ? xpe(i, e, t, n) : Spe(i, e, t, n, r);
     }),
     (H.prototype.AddFace = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Cpe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Cpe(t, e);
     }),
     (H.prototype.CalculateEdgeLengths = function () {
       wpe(this.RDa);
@@ -30554,7 +30540,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mVertices = H.prototype.FRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Npe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Npe(t, e);
       }),
     Object.defineProperty(H.prototype, "mVertices", { get: H.prototype.zNa, set: H.prototype.FRa }),
     (H.prototype.get_mFaces = H.prototype.tKa =
@@ -30564,7 +30550,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mFaces = H.prototype.COa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mFaces", { get: H.prototype.tKa, set: H.prototype.COa }),
     (H.prototype.get_mEdgeConstraints = H.prototype.qKa =
@@ -30574,7 +30560,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mEdgeConstraints = H.prototype.zOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mEdgeConstraints", { get: H.prototype.qKa, set: H.prototype.zOa }),
     (H.prototype.get_mDihedralBendConstraints = H.prototype.oKa =
@@ -30584,7 +30570,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mDihedralBendConstraints = H.prototype.xOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), zpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mDihedralBendConstraints", { get: H.prototype.oKa, set: H.prototype.xOa }),
     (H.prototype.get_mVolumeConstraints = H.prototype.ANa =
@@ -30594,7 +30580,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mVolumeConstraints = H.prototype.GRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mVolumeConstraints", { get: H.prototype.ANa, set: H.prototype.GRa }),
     (H.prototype.get_mSkinnedConstraints = H.prototype.XMa =
@@ -30604,7 +30590,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mSkinnedConstraints = H.prototype.dRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Upe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Upe(t, e);
       }),
     Object.defineProperty(H.prototype, "mSkinnedConstraints", { get: H.prototype.XMa, set: H.prototype.dRa }),
     (H.prototype.get_mInvBindMatrices = H.prototype.RKa =
@@ -30614,7 +30600,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mInvBindMatrices = H.prototype.$Oa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mInvBindMatrices", { get: H.prototype.RKa, set: H.prototype.$Oa }),
     (H.prototype.get_mLRAConstraints = H.prototype.$Ka =
@@ -30624,7 +30610,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mLRAConstraints = H.prototype.iPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), qpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mLRAConstraints", { get: H.prototype.$Ka, set: H.prototype.iPa }),
     (H.prototype.get_mRodStretchShearConstraints = H.prototype.NMa =
@@ -30634,7 +30620,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mRodStretchShearConstraints = H.prototype.UQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ype(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ype(t, e);
       }),
     Object.defineProperty(H.prototype, "mRodStretchShearConstraints", { get: H.prototype.NMa, set: H.prototype.UQa }),
     (H.prototype.get_mRodBendTwistConstraints = H.prototype.MMa =
@@ -30644,7 +30630,7 @@ async function Ir(e = {}) {
     (H.prototype.set_mRodBendTwistConstraints = H.prototype.TQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zpe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zpe(t, e);
       }),
     Object.defineProperty(H.prototype, "mRodBendTwistConstraints", { get: H.prototype.MMa, set: H.prototype.TQa }),
     (H.prototype.get_mMaterials = H.prototype.pFa =
@@ -30654,21 +30640,21 @@ async function Ir(e = {}) {
     (H.prototype.set_mMaterials = H.prototype.eGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $pe(t, e));
+        e && typeof e == `object` && (e = e.RDa), $pe(t, e);
       }),
     Object.defineProperty(H.prototype, "mMaterials", { get: H.prototype.pFa, set: H.prototype.eGa }),
     (H.prototype.__destroy__ = function () {
       eme(this.RDa);
-    }));
+    });
   function U(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = tme(e, t, n, r)),
-      (d(U)[this.RDa] = this));
+      (d(U)[this.RDa] = this);
   }
-  ((U.prototype = Object.create(u.prototype)),
+  (U.prototype = Object.create(u.prototype)),
     (U.prototype.constructor = U),
     (U.prototype.SDa = U),
     (U.TDa = {}),
@@ -30680,7 +30666,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mPosition = U.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), rme(t, e));
+        e && typeof e == `object` && (e = e.RDa), rme(t, e);
       }),
     Object.defineProperty(U.prototype, "mPosition", { get: U.prototype.eEa, set: U.prototype.gEa }),
     (U.prototype.get_mRotation = U.prototype.uEa =
@@ -30690,7 +30676,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mRotation = U.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ame(t, e));
+        e && typeof e == `object` && (e = e.RDa), ame(t, e);
       }),
     Object.defineProperty(U.prototype, "mRotation", { get: U.prototype.uEa, set: U.prototype.BEa }),
     (U.prototype.get_mUserData = U.prototype.UDa =
@@ -30700,7 +30686,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mUserData = U.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sme(t, e));
+        e && typeof e == `object` && (e = e.RDa), sme(t, e);
       }),
     Object.defineProperty(U.prototype, "mUserData", { get: U.prototype.UDa, set: U.prototype.VDa }),
     (U.prototype.get_mObjectLayer = U.prototype.vFa =
@@ -30710,7 +30696,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mObjectLayer = U.prototype.kGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lme(t, e));
+        e && typeof e == `object` && (e = e.RDa), lme(t, e);
       }),
     Object.defineProperty(U.prototype, "mObjectLayer", { get: U.prototype.vFa, set: U.prototype.kGa }),
     (U.prototype.get_mCollisionGroup = U.prototype.eFa =
@@ -30720,7 +30706,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mCollisionGroup = U.prototype.TFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dme(t, e));
+        e && typeof e == `object` && (e = e.RDa), dme(t, e);
       }),
     Object.defineProperty(U.prototype, "mCollisionGroup", { get: U.prototype.eFa, set: U.prototype.TFa }),
     (U.prototype.get_mNumIterations = U.prototype.dMa =
@@ -30730,7 +30716,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mNumIterations = U.prototype.mQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pme(t, e));
+        e && typeof e == `object` && (e = e.RDa), pme(t, e);
       }),
     Object.defineProperty(U.prototype, "mNumIterations", { get: U.prototype.dMa, set: U.prototype.mQa }),
     (U.prototype.get_mLinearDamping = U.prototype.mFa =
@@ -30740,7 +30726,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mLinearDamping = U.prototype.bGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hme(t, e));
+        e && typeof e == `object` && (e = e.RDa), hme(t, e);
       }),
     Object.defineProperty(U.prototype, "mLinearDamping", { get: U.prototype.mFa, set: U.prototype.bGa }),
     (U.prototype.get_mMaxLinearVelocity = U.prototype.sFa =
@@ -30750,7 +30736,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mMaxLinearVelocity = U.prototype.hGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _me(t, e));
+        e && typeof e == `object` && (e = e.RDa), _me(t, e);
       }),
     Object.defineProperty(U.prototype, "mMaxLinearVelocity", { get: U.prototype.sFa, set: U.prototype.hGa }),
     (U.prototype.get_mRestitution = U.prototype.zFa =
@@ -30760,7 +30746,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mRestitution = U.prototype.oGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yme(t, e));
+        e && typeof e == `object` && (e = e.RDa), yme(t, e);
       }),
     Object.defineProperty(U.prototype, "mRestitution", { get: U.prototype.zFa, set: U.prototype.oGa }),
     (U.prototype.get_mFriction = U.prototype.jFa =
@@ -30770,7 +30756,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mFriction = U.prototype.ZFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xme(t, e));
+        e && typeof e == `object` && (e = e.RDa), xme(t, e);
       }),
     Object.defineProperty(U.prototype, "mFriction", { get: U.prototype.jFa, set: U.prototype.ZFa }),
     (U.prototype.get_mPressure = U.prototype.CMa =
@@ -30780,7 +30766,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mPressure = U.prototype.KQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Cme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Cme(t, e);
       }),
     Object.defineProperty(U.prototype, "mPressure", { get: U.prototype.CMa, set: U.prototype.KQa }),
     (U.prototype.get_mGravityFactor = U.prototype.kFa =
@@ -30790,7 +30776,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mGravityFactor = U.prototype.$Fa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Tme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Tme(t, e);
       }),
     Object.defineProperty(U.prototype, "mGravityFactor", { get: U.prototype.kFa, set: U.prototype.$Fa }),
     (U.prototype.get_mVertexRadius = U.prototype.yNa =
@@ -30800,7 +30786,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mVertexRadius = U.prototype.ERa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dme(t, e);
       }),
     Object.defineProperty(U.prototype, "mVertexRadius", { get: U.prototype.yNa, set: U.prototype.ERa }),
     (U.prototype.get_mUpdatePosition = U.prototype.sNa =
@@ -30810,7 +30796,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mUpdatePosition = U.prototype.zRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kme(t, e));
+        e && typeof e == `object` && (e = e.RDa), kme(t, e);
       }),
     Object.defineProperty(U.prototype, "mUpdatePosition", { get: U.prototype.sNa, set: U.prototype.zRa }),
     (U.prototype.get_mMakeRotationIdentity = U.prototype.sLa =
@@ -30820,7 +30806,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mMakeRotationIdentity = U.prototype.BPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jme(t, e));
+        e && typeof e == `object` && (e = e.RDa), jme(t, e);
       }),
     Object.defineProperty(U.prototype, "mMakeRotationIdentity", { get: U.prototype.sLa, set: U.prototype.BPa }),
     (U.prototype.get_mAllowSleeping = U.prototype.IEa =
@@ -30830,7 +30816,7 @@ async function Ir(e = {}) {
     (U.prototype.set_mAllowSleeping = U.prototype.REa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nme(t, e);
       }),
     Object.defineProperty(U.prototype, "mAllowSleeping", { get: U.prototype.IEa, set: U.prototype.REa }),
     (U.prototype.get_mFacesDoubleSided = U.prototype.uKa =
@@ -30840,16 +30826,16 @@ async function Ir(e = {}) {
     (U.prototype.set_mFacesDoubleSided = U.prototype.DOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fme(t, e);
       }),
     Object.defineProperty(U.prototype, "mFacesDoubleSided", { get: U.prototype.uKa, set: U.prototype.DOa }),
     (U.prototype.__destroy__ = function () {
       Ime(this.RDa);
-    }));
+    });
   function L7() {
     throw `cannot construct a SoftBodyVertex, no constructor in IDL`;
   }
-  ((L7.prototype = Object.create(u.prototype)),
+  (L7.prototype = Object.create(u.prototype)),
     (L7.prototype.constructor = L7),
     (L7.prototype.SDa = L7),
     (L7.TDa = {}),
@@ -30861,7 +30847,7 @@ async function Ir(e = {}) {
     (L7.prototype.set_mPreviousPosition = L7.prototype.LQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Rme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Rme(t, e);
       }),
     Object.defineProperty(L7.prototype, "mPreviousPosition", { get: L7.prototype.DMa, set: L7.prototype.LQa }),
     (L7.prototype.get_mPosition = L7.prototype.eEa =
@@ -30871,7 +30857,7 @@ async function Ir(e = {}) {
     (L7.prototype.set_mPosition = L7.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Bme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Bme(t, e);
       }),
     Object.defineProperty(L7.prototype, "mPosition", { get: L7.prototype.eEa, set: L7.prototype.gEa }),
     (L7.prototype.get_mVelocity = L7.prototype.cIa =
@@ -30881,7 +30867,7 @@ async function Ir(e = {}) {
     (L7.prototype.set_mVelocity = L7.prototype.BJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Hme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Hme(t, e);
       }),
     Object.defineProperty(L7.prototype, "mVelocity", { get: L7.prototype.cIa, set: L7.prototype.BJa }),
     (L7.prototype.get_mInvMass = L7.prototype.lFa =
@@ -30891,16 +30877,16 @@ async function Ir(e = {}) {
     (L7.prototype.set_mInvMass = L7.prototype.aGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wme(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wme(t, e);
       }),
     Object.defineProperty(L7.prototype, "mInvMass", { get: L7.prototype.lFa, set: L7.prototype.aGa }),
     (L7.prototype.__destroy__ = function () {
       Gme(this.RDa);
-    }));
+    });
   function R7() {
     throw `cannot construct a SoftBodyVertexTraits, no constructor in IDL`;
   }
-  ((R7.prototype = Object.create(u.prototype)),
+  (R7.prototype = Object.create(u.prototype)),
     (R7.prototype.constructor = R7),
     (R7.prototype.SDa = R7),
     (R7.TDa = {}),
@@ -30922,11 +30908,11 @@ async function Ir(e = {}) {
     Object.defineProperty(R7.prototype, "mVelocityOffset", { get: R7.prototype.xNa }),
     (R7.prototype.__destroy__ = function () {
       Yme(this.RDa);
-    }));
+    });
   function z7() {
-    ((this.RDa = Xme()), (d(z7)[this.RDa] = this));
+    (this.RDa = Xme()), (d(z7)[this.RDa] = this);
   }
-  ((z7.prototype = Object.create(u.prototype)),
+  (z7.prototype = Object.create(u.prototype)),
     (z7.prototype.constructor = z7),
     (z7.prototype.SDa = z7),
     (z7.TDa = {}),
@@ -30942,20 +30928,20 @@ async function Ir(e = {}) {
     (z7.prototype.at = z7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f($me(t, e), L7));
+        return e && typeof e == `object` && (e = e.RDa), f($me(t, e), L7);
       }),
     (z7.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ehe(t, e));
+      e && typeof e == `object` && (e = e.RDa), ehe(t, e);
     }),
     (z7.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), the(t, e));
+      e && typeof e == `object` && (e = e.RDa), the(t, e);
     }),
     (z7.prototype.resize = z7.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nhe(t, e));
+        e && typeof e == `object` && (e = e.RDa), nhe(t, e);
       }),
     (z7.prototype.clear = z7.prototype.clear =
       function () {
@@ -30963,11 +30949,11 @@ async function Ir(e = {}) {
       }),
     (z7.prototype.__destroy__ = function () {
       ihe(this.RDa);
-    }));
+    });
   function W() {
     throw `cannot construct a SoftBodyMotionProperties, no constructor in IDL`;
   }
-  ((W.prototype = Object.create(Z3.prototype)),
+  (W.prototype = Object.create(Z3.prototype)),
     (W.prototype.constructor = W),
     (W.prototype.SDa = W),
     (W.TDa = {}),
@@ -30980,15 +30966,15 @@ async function Ir(e = {}) {
     }),
     (W.prototype.GetVertex = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(she(t, e), L7));
+      return e && typeof e == `object` && (e = e.RDa), f(she(t, e), L7);
     }),
     (W.prototype.GetRodRotation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(che(t, e), x));
+      return e && typeof e == `object` && (e = e.RDa), f(che(t, e), x);
     }),
     (W.prototype.GetRodAngularVelocity = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(lhe(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(lhe(t, e), v);
     }),
     (W.prototype.GetMaterials = function () {
       return f(uhe(this.RDa), l8);
@@ -30998,65 +30984,65 @@ async function Ir(e = {}) {
     }),
     (W.prototype.GetFace = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(fhe(t, e), h7));
+      return e && typeof e == `object` && (e = e.RDa), f(fhe(t, e), h7);
     }),
     (W.prototype.GetNumIterations = function () {
       return phe(this.RDa);
     }),
     (W.prototype.SetNumIterations = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), mhe(t, e);
     }),
     (W.prototype.GetPressure = function () {
       return hhe(this.RDa);
     }),
     (W.prototype.SetPressure = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ghe(t, e));
+      e && typeof e == `object` && (e = e.RDa), ghe(t, e);
     }),
     (W.prototype.GetUpdatePosition = function () {
       return !!_he(this.RDa);
     }),
     (W.prototype.SetUpdatePosition = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), vhe(t, e);
     }),
     (W.prototype.GetEnableSkinConstraints = function () {
       return !!yhe(this.RDa);
     }),
     (W.prototype.SetEnableSkinConstraints = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), bhe(t, e);
     }),
     (W.prototype.GetSkinnedMaxDistanceMultiplier = function () {
       return xhe(this.RDa);
     }),
     (W.prototype.SetSkinnedMaxDistanceMultiplier = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), She(t, e));
+      e && typeof e == `object` && (e = e.RDa), She(t, e);
     }),
     (W.prototype.GetVertexRadius = function () {
       return Che(this.RDa);
     }),
     (W.prototype.SetVertexRadius = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), whe(t, e));
+      e && typeof e == `object` && (e = e.RDa), whe(t, e);
     }),
     (W.prototype.GetLocalBounds = function () {
       return f(The(this.RDa), w);
     }),
     (W.prototype.CustomUpdate = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Ehe(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Ehe(r, e, t, n);
     }),
     (W.prototype.SkinVertices = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        Dhe(a, e, t, n, r, i));
+        Dhe(a, e, t, n, r, i);
     }),
     (W.prototype.GetMotionQuality = function () {
       return Ohe(this.RDa);
@@ -31072,40 +31058,40 @@ async function Ir(e = {}) {
     }),
     (W.prototype.SetLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mhe(t, e);
     }),
     (W.prototype.SetLinearVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Nhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Nhe(t, e);
     }),
     (W.prototype.GetAngularVelocity = function () {
       return f(Phe(this.RDa), v);
     }),
     (W.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Fhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Fhe(t, e);
     }),
     (W.prototype.SetAngularVelocityClamped = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ihe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ihe(t, e);
     }),
     (W.prototype.MoveKinematic = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Lhe(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), Lhe(r, e, t, n);
     }),
     (W.prototype.GetMaxLinearVelocity = function () {
       return Rhe(this.RDa);
     }),
     (W.prototype.SetMaxLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), zhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), zhe(t, e);
     }),
     (W.prototype.GetMaxAngularVelocity = function () {
       return Bhe(this.RDa);
     }),
     (W.prototype.SetMaxAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Vhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Vhe(t, e);
     }),
     (W.prototype.ClampLinearVelocity = function () {
       Hhe(this.RDa);
@@ -31118,25 +31104,25 @@ async function Ir(e = {}) {
     }),
     (W.prototype.SetLinearDamping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ghe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ghe(t, e);
     }),
     (W.prototype.GetAngularDamping = function () {
       return Khe(this.RDa);
     }),
     (W.prototype.SetAngularDamping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), qhe(t, e);
     }),
     (W.prototype.GetGravityFactor = function () {
       return Jhe(this.RDa);
     }),
     (W.prototype.SetGravityFactor = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yhe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yhe(t, e);
     }),
     (W.prototype.SetMassProperties = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Xhe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Xhe(n, e, t);
     }),
     (W.prototype.GetInverseMass = function () {
       return Zhe(this.RDa);
@@ -31146,7 +31132,7 @@ async function Ir(e = {}) {
     }),
     (W.prototype.SetInverseMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $he(t, e));
+      e && typeof e == `object` && (e = e.RDa), $he(t, e);
     }),
     (W.prototype.GetInverseInertiaDiagonal = function () {
       return f(ege(this.RDa), v);
@@ -31156,26 +31142,26 @@ async function Ir(e = {}) {
     }),
     (W.prototype.SetInverseInertia = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), nge(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), nge(n, e, t);
     }),
     (W.prototype.ScaleToMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rge(t, e));
+      e && typeof e == `object` && (e = e.RDa), rge(t, e);
     }),
     (W.prototype.GetLocalSpaceInverseInertia = function () {
       return f(ige(this.RDa), S);
     }),
     (W.prototype.GetInverseInertiaForRotation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(age(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(age(t, e), S);
     }),
     (W.prototype.MultiplyWorldSpaceInverseInertiaByVector = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(oge(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(oge(n, e, t), v);
     }),
     (W.prototype.GetPointVelocityCOM = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(sge(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(sge(t, e), v);
     }),
     (W.prototype.GetAccumulatedForce = function () {
       return f(cge(this.RDa), v);
@@ -31194,33 +31180,33 @@ async function Ir(e = {}) {
     }),
     (W.prototype.LockTranslation = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(pge(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(pge(t, e), v);
     }),
     (W.prototype.LockAngular = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(mge(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(mge(t, e), v);
     }),
     (W.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hge(t, e));
+      e && typeof e == `object` && (e = e.RDa), hge(t, e);
     }),
     (W.prototype.GetNumVelocityStepsOverride = function () {
       return gge(this.RDa);
     }),
     (W.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _ge(t, e));
+      e && typeof e == `object` && (e = e.RDa), _ge(t, e);
     }),
     (W.prototype.GetNumPositionStepsOverride = function () {
       return vge(this.RDa);
     }),
     (W.prototype.__destroy__ = function () {
       yge(this.RDa);
-    }));
+    });
   function B7() {
     throw `cannot construct a SoftBodyShape, no constructor in IDL`;
   }
-  ((B7.prototype = Object.create(p.prototype)),
+  (B7.prototype = Object.create(p.prototype)),
     (B7.prototype.constructor = B7),
     (B7.prototype.SDa = B7),
     (B7.TDa = {}),
@@ -31230,7 +31216,7 @@ async function Ir(e = {}) {
     }),
     (B7.prototype.GetFaceIndex = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), xge(t, e));
+      return e && typeof e == `object` && (e = e.RDa), xge(t, e);
     }),
     (B7.prototype.GetRefCount = function () {
       return Sge(this.RDa);
@@ -31255,7 +31241,7 @@ async function Ir(e = {}) {
     }),
     (B7.prototype.GetWorldSpaceBounds = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kge(n, e, t), w));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(kge(n, e, t), w);
     }),
     (B7.prototype.GetCenterOfMass = function () {
       return f(Age(this.RDa), v);
@@ -31265,7 +31251,7 @@ async function Ir(e = {}) {
     }),
     (B7.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Mge(t, e));
+      e && typeof e == `object` && (e = e.RDa), Mge(t, e);
     }),
     (B7.prototype.GetSubShapeIDBitsRecursive = function () {
       return Nge(this.RDa);
@@ -31278,19 +31264,19 @@ async function Ir(e = {}) {
     }),
     (B7.prototype.GetLeafShape = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ige(n, e, t), p));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Ige(n, e, t), p);
     }),
     (B7.prototype.GetMaterial = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Lge(t, e), c8));
+      return e && typeof e == `object` && (e = e.RDa), f(Lge(t, e), c8);
     }),
     (B7.prototype.GetSurfaceNormal = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Rge(n, e, t), v));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), f(Rge(n, e, t), v);
     }),
     (B7.prototype.GetSubShapeUserData = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), zge(t, e));
+      return e && typeof e == `object` && (e = e.RDa), zge(t, e);
     }),
     (B7.prototype.GetSubShapeTransformedShape = function (e, t, n, r, i) {
       var a = this.RDa;
@@ -31308,23 +31294,23 @@ async function Ir(e = {}) {
     }),
     (B7.prototype.IsValidScale = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Hge(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Hge(t, e);
     }),
     (B7.prototype.MakeScaleValid = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Uge(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Uge(t, e), v);
     }),
     (B7.prototype.ScaleShape = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Wge(t, e), h8));
+      return e && typeof e == `object` && (e = e.RDa), f(Wge(t, e), h8);
     }),
     (B7.prototype.__destroy__ = function () {
       Gge(this.RDa);
-    }));
+    });
   function V7() {
-    ((this.RDa = Kge()), (d(V7)[this.RDa] = this));
+    (this.RDa = Kge()), (d(V7)[this.RDa] = this);
   }
-  ((V7.prototype = Object.create(u.prototype)),
+  (V7.prototype = Object.create(u.prototype)),
     (V7.prototype.constructor = V7),
     (V7.prototype.SDa = V7),
     (V7.TDa = {}),
@@ -31339,15 +31325,15 @@ async function Ir(e = {}) {
       return f(Yge(), V7);
     }),
     (V7.prototype.sSetNextCharacterID = function (e) {
-      (e && typeof e == `object` && (e = e.RDa), Xge(e));
+      e && typeof e == `object` && (e = e.RDa), Xge(e);
     }),
     (V7.prototype.__destroy__ = function () {
       Zge(this.RDa);
-    }));
+    });
   function G() {
-    ((this.RDa = Qge()), (d(G)[this.RDa] = this));
+    (this.RDa = Qge()), (d(G)[this.RDa] = this);
   }
-  ((G.prototype = Object.create(h6.prototype)),
+  (G.prototype = Object.create(h6.prototype)),
     (G.prototype.constructor = G),
     (G.prototype.SDa = G),
     (G.TDa = {}),
@@ -31368,7 +31354,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mID = G.prototype.ROa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), r_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), r_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mID", { get: G.prototype.IKa, set: G.prototype.ROa }),
     (G.prototype.get_mMass = G.prototype.uHa =
@@ -31378,7 +31364,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMass = G.prototype.SIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), a_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), a_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMass", { get: G.prototype.uHa, set: G.prototype.SIa }),
     (G.prototype.get_mMaxStrength = G.prototype.QLa =
@@ -31388,7 +31374,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMaxStrength = G.prototype.ZPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), s_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), s_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMaxStrength", { get: G.prototype.QLa, set: G.prototype.ZPa }),
     (G.prototype.get_mShapeOffset = G.prototype.QMa =
@@ -31398,7 +31384,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mShapeOffset = G.prototype.XQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), l_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), l_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mShapeOffset", { get: G.prototype.QMa, set: G.prototype.XQa }),
     (G.prototype.get_mBackFaceMode = G.prototype.OGa =
@@ -31408,7 +31394,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mBackFaceMode = G.prototype.mIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), d_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), d_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mBackFaceMode", { get: G.prototype.OGa, set: G.prototype.mIa }),
     (G.prototype.get_mPredictiveContactDistance = G.prototype.BMa =
@@ -31418,7 +31404,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mPredictiveContactDistance = G.prototype.JQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), p_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), p_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mPredictiveContactDistance", { get: G.prototype.BMa, set: G.prototype.JQa }),
     (G.prototype.get_mMaxCollisionIterations = G.prototype.zLa =
@@ -31428,7 +31414,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMaxCollisionIterations = G.prototype.IPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), h_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), h_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMaxCollisionIterations", { get: G.prototype.zLa, set: G.prototype.IPa }),
     (G.prototype.get_mMaxConstraintIterations = G.prototype.ALa =
@@ -31438,7 +31424,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMaxConstraintIterations = G.prototype.JPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), __e(t, e));
+        e && typeof e == `object` && (e = e.RDa), __e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMaxConstraintIterations", { get: G.prototype.ALa, set: G.prototype.JPa }),
     (G.prototype.get_mMinTimeRemaining = G.prototype.ZLa =
@@ -31448,7 +31434,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMinTimeRemaining = G.prototype.hQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), y_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), y_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMinTimeRemaining", { get: G.prototype.ZLa, set: G.prototype.hQa }),
     (G.prototype.get_mCollisionTolerance = G.prototype.KEa =
@@ -31458,7 +31444,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mCollisionTolerance = G.prototype.TEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), x_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), x_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mCollisionTolerance", { get: G.prototype.KEa, set: G.prototype.TEa }),
     (G.prototype.get_mCharacterPadding = G.prototype.bKa =
@@ -31468,7 +31454,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mCharacterPadding = G.prototype.kOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), C_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), C_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mCharacterPadding", { get: G.prototype.bKa, set: G.prototype.kOa }),
     (G.prototype.get_mMaxNumHits = G.prototype.LLa =
@@ -31478,7 +31464,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMaxNumHits = G.prototype.UPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), T_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), T_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMaxNumHits", { get: G.prototype.LLa, set: G.prototype.UPa }),
     (G.prototype.get_mHitReductionCosMaxAngle = G.prototype.GKa =
@@ -31488,7 +31474,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mHitReductionCosMaxAngle = G.prototype.POa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), D_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), D_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mHitReductionCosMaxAngle", { get: G.prototype.GKa, set: G.prototype.POa }),
     (G.prototype.get_mPenetrationRecoverySpeed = G.prototype.pMa =
@@ -31498,7 +31484,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mPenetrationRecoverySpeed = G.prototype.yQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), k_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), k_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mPenetrationRecoverySpeed", { get: G.prototype.pMa, set: G.prototype.yQa }),
     (G.prototype.get_mInnerBodyShape = G.prototype.OKa =
@@ -31508,7 +31494,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mInnerBodyShape = G.prototype.XOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), j_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), j_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mInnerBodyShape", { get: G.prototype.OKa, set: G.prototype.XOa }),
     (G.prototype.get_mInnerBodyIDOverride = G.prototype.MKa =
@@ -31518,7 +31504,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mInnerBodyIDOverride = G.prototype.VOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), N_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), N_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mInnerBodyIDOverride", { get: G.prototype.MKa, set: G.prototype.VOa }),
     (G.prototype.get_mInnerBodyLayer = G.prototype.NKa =
@@ -31528,7 +31514,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mInnerBodyLayer = G.prototype.WOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), F_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), F_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mInnerBodyLayer", { get: G.prototype.NKa, set: G.prototype.WOa }),
     (G.prototype.get_mUp = G.prototype.JFa =
@@ -31538,7 +31524,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mUp = G.prototype.yGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), L_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), L_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mUp", { get: G.prototype.JFa, set: G.prototype.yGa }),
     (G.prototype.get_mSupportingVolume = G.prototype.VHa =
@@ -31548,7 +31534,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mSupportingVolume = G.prototype.tJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), z_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), z_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mSupportingVolume", { get: G.prototype.VHa, set: G.prototype.tJa }),
     (G.prototype.get_mMaxSlopeAngle = G.prototype.AHa =
@@ -31558,7 +31544,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mMaxSlopeAngle = G.prototype.YIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), V_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), V_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mMaxSlopeAngle", { get: G.prototype.AHa, set: G.prototype.YIa }),
     (G.prototype.get_mEnhancedInternalEdgeRemoval = G.prototype.LEa =
@@ -31568,7 +31554,7 @@ async function Ir(e = {}) {
     (G.prototype.set_mEnhancedInternalEdgeRemoval = G.prototype.UEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), U_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), U_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mEnhancedInternalEdgeRemoval", { get: G.prototype.LEa, set: G.prototype.UEa }),
     (G.prototype.get_mShape = G.prototype.vEa =
@@ -31578,16 +31564,16 @@ async function Ir(e = {}) {
     (G.prototype.set_mShape = G.prototype.ZEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), G_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), G_e(t, e);
       }),
     Object.defineProperty(G.prototype, "mShape", { get: G.prototype.vEa, set: G.prototype.ZEa }),
     (G.prototype.__destroy__ = function () {
       K_e(this.RDa);
-    }));
+    });
   function H7() {
-    ((this.RDa = q_e()), (d(H7)[this.RDa] = this));
+    (this.RDa = q_e()), (d(H7)[this.RDa] = this);
   }
-  ((H7.prototype = Object.create(u.prototype)),
+  (H7.prototype = Object.create(u.prototype)),
     (H7.prototype.constructor = H7),
     (H7.prototype.SDa = H7),
     (H7.TDa = {}),
@@ -31599,7 +31585,7 @@ async function Ir(e = {}) {
     (H7.prototype.set_mCanPushCharacter = H7.prototype.sIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Y_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), Y_e(t, e);
       }),
     Object.defineProperty(H7.prototype, "mCanPushCharacter", { get: H7.prototype.UGa, set: H7.prototype.sIa }),
     (H7.prototype.get_mCanReceiveImpulses = H7.prototype.YJa =
@@ -31609,27 +31595,27 @@ async function Ir(e = {}) {
     (H7.prototype.set_mCanReceiveImpulses = H7.prototype.gOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Z_e(t, e));
+        e && typeof e == `object` && (e = e.RDa), Z_e(t, e);
       }),
     Object.defineProperty(H7.prototype, "mCanReceiveImpulses", { get: H7.prototype.YJa, set: H7.prototype.gOa }),
     (H7.prototype.__destroy__ = function () {
       Q_e(this.RDa);
-    }));
+    });
   function U7() {
-    ((this.RDa = $_e()), (d(U7)[this.RDa] = this));
+    (this.RDa = $_e()), (d(U7)[this.RDa] = this);
   }
-  ((U7.prototype = Object.create(g6.prototype)),
+  (U7.prototype = Object.create(g6.prototype)),
     (U7.prototype.constructor = U7),
     (U7.prototype.SDa = U7),
     (U7.TDa = {}),
     (t.CharacterContactListenerJS = U7),
     (U7.prototype.OnAdjustBodyVelocity = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        eve(i, e, t, n, r));
+        eve(i, e, t, n, r);
     }),
     (U7.prototype.OnContactValidate = function (e, t, n) {
       var r = this.RDa;
@@ -31651,55 +31637,55 @@ async function Ir(e = {}) {
     }),
     (U7.prototype.OnContactAdded = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        rve(o, e, t, n, r, i, a));
+        rve(o, e, t, n, r, i, a);
     }),
     (U7.prototype.OnContactPersisted = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        ive(o, e, t, n, r, i, a));
+        ive(o, e, t, n, r, i, a);
     }),
     (U7.prototype.OnContactRemoved = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), ave(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), ave(r, e, t, n);
     }),
     (U7.prototype.OnCharacterContactAdded = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        ove(o, e, t, n, r, i, a));
+        ove(o, e, t, n, r, i, a);
     }),
     (U7.prototype.OnCharacterContactPersisted = function (e, t, n, r, i, a) {
       var o = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
-        sve(o, e, t, n, r, i, a));
+        sve(o, e, t, n, r, i, a);
     }),
     (U7.prototype.OnCharacterContactRemoved = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), cve(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), cve(r, e, t, n);
     }),
     (U7.prototype.OnContactSolve = function (e, t, n, r, i, a, o, s, c) {
       var l = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -31708,11 +31694,11 @@ async function Ir(e = {}) {
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
         c && typeof c == `object` && (c = c.RDa),
-        lve(l, e, t, n, r, i, a, o, s, c));
+        lve(l, e, t, n, r, i, a, o, s, c);
     }),
     (U7.prototype.OnCharacterContactSolve = function (e, t, n, r, i, a, o, s, c) {
       var l = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -31721,34 +31707,34 @@ async function Ir(e = {}) {
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
         c && typeof c == `object` && (c = c.RDa),
-        uve(l, e, t, n, r, i, a, o, s, c));
+        uve(l, e, t, n, r, i, a, o, s, c);
     }),
     (U7.prototype.__destroy__ = function () {
       dve(this.RDa);
-    }));
+    });
   function W7() {
-    ((this.RDa = fve()), (d(W7)[this.RDa] = this));
+    (this.RDa = fve()), (d(W7)[this.RDa] = this);
   }
-  ((W7.prototype = Object.create(_6.prototype)),
+  (W7.prototype = Object.create(_6.prototype)),
     (W7.prototype.constructor = W7),
     (W7.prototype.SDa = W7),
     (W7.TDa = {}),
     (t.CharacterVsCharacterCollisionSimple = W7),
     (W7.prototype.Add = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pve(t, e));
+      e && typeof e == `object` && (e = e.RDa), pve(t, e);
     }),
     (W7.prototype.Remove = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mve(t, e));
+      e && typeof e == `object` && (e = e.RDa), mve(t, e);
     }),
     (W7.prototype.__destroy__ = function () {
       hve(this.RDa);
-    }));
+    });
   function G7() {
-    ((this.RDa = gve()), (d(G7)[this.RDa] = this));
+    (this.RDa = gve()), (d(G7)[this.RDa] = this);
   }
-  ((G7.prototype = Object.create(u.prototype)),
+  (G7.prototype = Object.create(u.prototype)),
     (G7.prototype.constructor = G7),
     (G7.prototype.SDa = G7),
     (G7.TDa = {}),
@@ -31760,7 +31746,7 @@ async function Ir(e = {}) {
     (G7.prototype.set_mStickToFloorStepDown = G7.prototype.lRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vve(t, e));
+        e && typeof e == `object` && (e = e.RDa), vve(t, e);
       }),
     Object.defineProperty(G7.prototype, "mStickToFloorStepDown", { get: G7.prototype.eNa, set: G7.prototype.lRa }),
     (G7.prototype.get_mWalkStairsStepUp = G7.prototype.FNa =
@@ -31770,7 +31756,7 @@ async function Ir(e = {}) {
     (G7.prototype.set_mWalkStairsStepUp = G7.prototype.LRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bve(t, e));
+        e && typeof e == `object` && (e = e.RDa), bve(t, e);
       }),
     Object.defineProperty(G7.prototype, "mWalkStairsStepUp", { get: G7.prototype.FNa, set: G7.prototype.LRa }),
     (G7.prototype.get_mWalkStairsMinStepForward = G7.prototype.CNa =
@@ -31780,7 +31766,7 @@ async function Ir(e = {}) {
     (G7.prototype.set_mWalkStairsMinStepForward = G7.prototype.IRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Sve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Sve(t, e);
       }),
     Object.defineProperty(G7.prototype, "mWalkStairsMinStepForward", { get: G7.prototype.CNa, set: G7.prototype.IRa }),
     (G7.prototype.get_mWalkStairsStepForwardTest = G7.prototype.ENa =
@@ -31790,7 +31776,7 @@ async function Ir(e = {}) {
     (G7.prototype.set_mWalkStairsStepForwardTest = G7.prototype.KRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wve(t, e));
+        e && typeof e == `object` && (e = e.RDa), wve(t, e);
       }),
     Object.defineProperty(G7.prototype, "mWalkStairsStepForwardTest", { get: G7.prototype.ENa, set: G7.prototype.KRa }),
     (G7.prototype.get_mWalkStairsCosAngleForwardContact = G7.prototype.BNa =
@@ -31800,7 +31786,7 @@ async function Ir(e = {}) {
     (G7.prototype.set_mWalkStairsCosAngleForwardContact = G7.prototype.HRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Eve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Eve(t, e);
       }),
     Object.defineProperty(G7.prototype, "mWalkStairsCosAngleForwardContact", { get: G7.prototype.BNa, set: G7.prototype.HRa }),
     (G7.prototype.get_mWalkStairsStepDownExtra = G7.prototype.DNa =
@@ -31810,23 +31796,23 @@ async function Ir(e = {}) {
     (G7.prototype.set_mWalkStairsStepDownExtra = G7.prototype.JRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ove(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ove(t, e);
       }),
     Object.defineProperty(G7.prototype, "mWalkStairsStepDownExtra", { get: G7.prototype.DNa, set: G7.prototype.JRa }),
     (G7.prototype.__destroy__ = function () {
       kve(this.RDa);
-    }));
+    });
   function K() {
     throw `cannot construct a CharacterVirtualContact, no constructor in IDL`;
   }
-  ((K.prototype = Object.create(u.prototype)),
+  (K.prototype = Object.create(u.prototype)),
     (K.prototype.constructor = K),
     (K.prototype.SDa = K),
     (K.TDa = {}),
     (t.CharacterVirtualContact = K),
     (K.prototype.IsSameBody = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Ave(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Ave(t, e);
     }),
     (K.prototype.get_mPosition = K.prototype.eEa =
       function () {
@@ -31835,7 +31821,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mPosition = K.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Mve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Mve(t, e);
       }),
     Object.defineProperty(K.prototype, "mPosition", { get: K.prototype.eEa, set: K.prototype.gEa }),
     (K.prototype.get_mLinearVelocity = K.prototype.nFa =
@@ -31845,7 +31831,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mLinearVelocity = K.prototype.cGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Pve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Pve(t, e);
       }),
     Object.defineProperty(K.prototype, "mLinearVelocity", { get: K.prototype.nFa, set: K.prototype.cGa }),
     (K.prototype.get_mContactNormal = K.prototype.hKa =
@@ -31855,7 +31841,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mContactNormal = K.prototype.qOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ive(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ive(t, e);
       }),
     Object.defineProperty(K.prototype, "mContactNormal", { get: K.prototype.hKa, set: K.prototype.qOa }),
     (K.prototype.get_mSurfaceNormal = K.prototype.gNa =
@@ -31865,7 +31851,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mSurfaceNormal = K.prototype.nRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Rve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Rve(t, e);
       }),
     Object.defineProperty(K.prototype, "mSurfaceNormal", { get: K.prototype.gNa, set: K.prototype.nRa }),
     (K.prototype.get_mDistance = K.prototype.pKa =
@@ -31875,7 +31861,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mDistance = K.prototype.yOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Bve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Bve(t, e);
       }),
     Object.defineProperty(K.prototype, "mDistance", { get: K.prototype.pKa, set: K.prototype.yOa }),
     (K.prototype.get_mFraction = K.prototype.MEa =
@@ -31885,7 +31871,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mFraction = K.prototype.VEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Hve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Hve(t, e);
       }),
     Object.defineProperty(K.prototype, "mFraction", { get: K.prototype.MEa, set: K.prototype.VEa }),
     (K.prototype.get_mBodyB = K.prototype.PJa =
@@ -31895,7 +31881,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mBodyB = K.prototype.YNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Wve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Wve(t, e);
       }),
     Object.defineProperty(K.prototype, "mBodyB", { get: K.prototype.PJa, set: K.prototype.YNa }),
     (K.prototype.get_mCharacterIDB = K.prototype.aKa =
@@ -31905,7 +31891,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mCharacterIDB = K.prototype.jOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Kve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Kve(t, e);
       }),
     Object.defineProperty(K.prototype, "mCharacterIDB", { get: K.prototype.aKa, set: K.prototype.jOa }),
     (K.prototype.get_mSubShapeIDB = K.prototype.fNa =
@@ -31915,7 +31901,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mSubShapeIDB = K.prototype.mRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Jve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Jve(t, e);
       }),
     Object.defineProperty(K.prototype, "mSubShapeIDB", { get: K.prototype.fNa, set: K.prototype.mRa }),
     (K.prototype.get_mMotionTypeB = K.prototype.bMa =
@@ -31925,7 +31911,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mMotionTypeB = K.prototype.kQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Xve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Xve(t, e);
       }),
     Object.defineProperty(K.prototype, "mMotionTypeB", { get: K.prototype.bMa, set: K.prototype.kQa }),
     (K.prototype.get_mIsSensorB = K.prototype.WKa =
@@ -31935,7 +31921,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mIsSensorB = K.prototype.ePa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Qve(t, e));
+        e && typeof e == `object` && (e = e.RDa), Qve(t, e);
       }),
     Object.defineProperty(K.prototype, "mIsSensorB", { get: K.prototype.WKa, set: K.prototype.ePa }),
     (K.prototype.get_mCharacterB = K.prototype.$Ja =
@@ -31945,7 +31931,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mCharacterB = K.prototype.iOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eye(t, e));
+        e && typeof e == `object` && (e = e.RDa), eye(t, e);
       }),
     Object.defineProperty(K.prototype, "mCharacterB", { get: K.prototype.$Ja, set: K.prototype.iOa }),
     (K.prototype.get_mUserData = K.prototype.UDa =
@@ -31955,7 +31941,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mUserData = K.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nye(t, e));
+        e && typeof e == `object` && (e = e.RDa), nye(t, e);
       }),
     Object.defineProperty(K.prototype, "mUserData", { get: K.prototype.UDa, set: K.prototype.VDa }),
     (K.prototype.get_mMaterial = K.prototype.dEa =
@@ -31965,7 +31951,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mMaterial = K.prototype.fEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iye(t, e));
+        e && typeof e == `object` && (e = e.RDa), iye(t, e);
       }),
     Object.defineProperty(K.prototype, "mMaterial", { get: K.prototype.dEa, set: K.prototype.fEa }),
     (K.prototype.get_mHadCollision = K.prototype.zKa =
@@ -31975,7 +31961,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mHadCollision = K.prototype.IOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oye(t, e));
+        e && typeof e == `object` && (e = e.RDa), oye(t, e);
       }),
     Object.defineProperty(K.prototype, "mHadCollision", { get: K.prototype.zKa, set: K.prototype.IOa }),
     (K.prototype.get_mWasDiscarded = K.prototype.GNa =
@@ -31985,7 +31971,7 @@ async function Ir(e = {}) {
     (K.prototype.set_mWasDiscarded = K.prototype.MRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cye(t, e));
+        e && typeof e == `object` && (e = e.RDa), cye(t, e);
       }),
     Object.defineProperty(K.prototype, "mWasDiscarded", { get: K.prototype.GNa, set: K.prototype.MRa }),
     (K.prototype.get_mCanPushCharacter = K.prototype.UGa =
@@ -31995,16 +31981,16 @@ async function Ir(e = {}) {
     (K.prototype.set_mCanPushCharacter = K.prototype.sIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uye(t, e));
+        e && typeof e == `object` && (e = e.RDa), uye(t, e);
       }),
     Object.defineProperty(K.prototype, "mCanPushCharacter", { get: K.prototype.UGa, set: K.prototype.sIa }),
     (K.prototype.__destroy__ = function () {
       dye(this.RDa);
-    }));
+    });
   function K7() {
-    ((this.RDa = fye()), (d(K7)[this.RDa] = this));
+    (this.RDa = fye()), (d(K7)[this.RDa] = this);
   }
-  ((K7.prototype = Object.create(u.prototype)),
+  (K7.prototype = Object.create(u.prototype)),
     (K7.prototype.constructor = K7),
     (K7.prototype.SDa = K7),
     (K7.TDa = {}),
@@ -32020,145 +32006,145 @@ async function Ir(e = {}) {
     (K7.prototype.at = K7.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(hye(t, e), K));
+        return e && typeof e == `object` && (e = e.RDa), f(hye(t, e), K);
       }),
     (K7.prototype.__destroy__ = function () {
       gye(this.RDa);
-    }));
+    });
   function q7() {
     throw `cannot construct a TempAllocator, no constructor in IDL`;
   }
-  ((q7.prototype = Object.create(u.prototype)),
+  (q7.prototype = Object.create(u.prototype)),
     (q7.prototype.constructor = q7),
     (q7.prototype.SDa = q7),
     (q7.TDa = {}),
     (t.TempAllocator = q7),
     (q7.prototype.__destroy__ = function () {
       _ye(this.RDa);
-    }));
+    });
   function J7() {
-    ((this.RDa = vye()), (d(J7)[this.RDa] = this));
+    (this.RDa = vye()), (d(J7)[this.RDa] = this);
   }
-  ((J7.prototype = Object.create(y6.prototype)),
+  (J7.prototype = Object.create(y6.prototype)),
     (J7.prototype.constructor = J7),
     (J7.prototype.SDa = J7),
     (J7.TDa = {}),
     (t.ObjectVsBroadPhaseLayerFilterJS = J7),
     (J7.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yye(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!yye(n, e, t);
     }),
     (J7.prototype.__destroy__ = function () {
       bye(this.RDa);
-    }));
+    });
   function Y7(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = xye(e, t)), (d(Y7)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = xye(e, t)), (d(Y7)[this.RDa] = this);
   }
-  ((Y7.prototype = Object.create(v6.prototype)),
+  (Y7.prototype = Object.create(v6.prototype)),
     (Y7.prototype.constructor = Y7),
     (Y7.prototype.SDa = Y7),
     (Y7.TDa = {}),
     (t.DefaultBroadPhaseLayerFilter = Y7),
     (Y7.prototype.__destroy__ = function () {
       Sye(this.RDa);
-    }));
+    });
   function X7(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = Cye(e)), (d(X7)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = Cye(e)), (d(X7)[this.RDa] = this);
   }
-  ((X7.prototype = Object.create(v6.prototype)),
+  (X7.prototype = Object.create(v6.prototype)),
     (X7.prototype.constructor = X7),
     (X7.prototype.SDa = X7),
     (X7.TDa = {}),
     (t.SpecifiedBroadPhaseLayerFilter = X7),
     (X7.prototype.__destroy__ = function () {
       wye(this.RDa);
-    }));
+    });
   function Z7() {
-    ((this.RDa = Tye()), (d(Z7)[this.RDa] = this));
+    (this.RDa = Tye()), (d(Z7)[this.RDa] = this);
   }
-  ((Z7.prototype = Object.create(b6.prototype)),
+  (Z7.prototype = Object.create(b6.prototype)),
     (Z7.prototype.constructor = Z7),
     (Z7.prototype.SDa = Z7),
     (Z7.TDa = {}),
     (t.ObjectLayerFilterJS = Z7),
     (Z7.prototype.ShouldCollide = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Eye(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Eye(t, e);
     }),
     (Z7.prototype.__destroy__ = function () {
       Dye(this.RDa);
-    }));
+    });
   function Q7() {
-    ((this.RDa = Oye()), (d(Q7)[this.RDa] = this));
+    (this.RDa = Oye()), (d(Q7)[this.RDa] = this);
   }
-  ((Q7.prototype = Object.create(x6.prototype)),
+  (Q7.prototype = Object.create(x6.prototype)),
     (Q7.prototype.constructor = Q7),
     (Q7.prototype.SDa = Q7),
     (Q7.TDa = {}),
     (t.ObjectLayerPairFilterJS = Q7),
     (Q7.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!kye(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!kye(n, e, t);
     }),
     (Q7.prototype.__destroy__ = function () {
       Aye(this.RDa);
-    }));
+    });
   function $7(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = jye(e, t)), (d($7)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = jye(e, t)), (d($7)[this.RDa] = this);
   }
-  (($7.prototype = Object.create(b6.prototype)),
+  ($7.prototype = Object.create(b6.prototype)),
     ($7.prototype.constructor = $7),
     ($7.prototype.SDa = $7),
     ($7.TDa = {}),
     (t.DefaultObjectLayerFilter = $7),
     ($7.prototype.__destroy__ = function () {
       Mye(this.RDa);
-    }));
+    });
   function e9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = Nye(e)), (d(e9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = Nye(e)), (d(e9)[this.RDa] = this);
   }
-  ((e9.prototype = Object.create(b6.prototype)),
+  (e9.prototype = Object.create(b6.prototype)),
     (e9.prototype.constructor = e9),
     (e9.prototype.SDa = e9),
     (e9.TDa = {}),
     (t.SpecifiedObjectLayerFilter = e9),
     (e9.prototype.__destroy__ = function () {
       Pye(this.RDa);
-    }));
+    });
   function t9() {
-    ((this.RDa = Fye()), (d(t9)[this.RDa] = this));
+    (this.RDa = Fye()), (d(t9)[this.RDa] = this);
   }
-  ((t9.prototype = Object.create(S6.prototype)),
+  (t9.prototype = Object.create(S6.prototype)),
     (t9.prototype.constructor = t9),
     (t9.prototype.SDa = t9),
     (t9.TDa = {}),
     (t.BodyFilterJS = t9),
     (t9.prototype.ShouldCollide = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Iye(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Iye(t, e);
     }),
     (t9.prototype.ShouldCollideLocked = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Lye(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Lye(t, e);
     }),
     (t9.prototype.__destroy__ = function () {
       Rye(this.RDa);
-    }));
+    });
   function n9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = zye(e)), (d(n9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = zye(e)), (d(n9)[this.RDa] = this);
   }
-  ((n9.prototype = Object.create(S6.prototype)),
+  (n9.prototype = Object.create(S6.prototype)),
     (n9.prototype.constructor = n9),
     (n9.prototype.SDa = n9),
     (n9.TDa = {}),
     (t.IgnoreSingleBodyFilter = n9),
     (n9.prototype.__destroy__ = function () {
       Bye(this.RDa);
-    }));
+    });
   function r9() {
-    ((this.RDa = Vye()), (d(r9)[this.RDa] = this));
+    (this.RDa = Vye()), (d(r9)[this.RDa] = this);
   }
-  ((r9.prototype = Object.create(S6.prototype)),
+  (r9.prototype = Object.create(S6.prototype)),
     (r9.prototype.constructor = r9),
     (r9.prototype.SDa = r9),
     (r9.TDa = {}),
@@ -32168,34 +32154,34 @@ async function Ir(e = {}) {
     }),
     (r9.prototype.Reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Uye(t, e));
+      e && typeof e == `object` && (e = e.RDa), Uye(t, e);
     }),
     (r9.prototype.IgnoreBody = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Wye(t, e));
+      e && typeof e == `object` && (e = e.RDa), Wye(t, e);
     }),
     (r9.prototype.__destroy__ = function () {
       Gye(this.RDa);
-    }));
+    });
   function i9() {
-    ((this.RDa = Kye()), (d(i9)[this.RDa] = this));
+    (this.RDa = Kye()), (d(i9)[this.RDa] = this);
   }
-  ((i9.prototype = Object.create(C6.prototype)),
+  (i9.prototype = Object.create(C6.prototype)),
     (i9.prototype.constructor = i9),
     (i9.prototype.SDa = i9),
     (i9.TDa = {}),
     (t.ShapeFilterJS = i9),
     (i9.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!qye(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!qye(n, e, t);
     }),
     (i9.prototype.__destroy__ = function () {
       Jye(this.RDa);
-    }));
+    });
   function a9() {
-    ((this.RDa = Yye()), (d(a9)[this.RDa] = this));
+    (this.RDa = Yye()), (d(a9)[this.RDa] = this);
   }
-  ((a9.prototype = Object.create(C6.prototype)),
+  (a9.prototype = Object.create(C6.prototype)),
     (a9.prototype.constructor = a9),
     (a9.prototype.SDa = a9),
     (a9.TDa = {}),
@@ -32212,11 +32198,11 @@ async function Ir(e = {}) {
     }),
     (a9.prototype.__destroy__ = function () {
       Zye(this.RDa);
-    }));
+    });
   function o9() {
-    ((this.RDa = Qye()), (d(o9)[this.RDa] = this));
+    (this.RDa = Qye()), (d(o9)[this.RDa] = this);
   }
-  ((o9.prototype = Object.create(w6.prototype)),
+  (o9.prototype = Object.create(w6.prototype)),
     (o9.prototype.constructor = o9),
     (o9.prototype.SDa = o9),
     (o9.TDa = {}),
@@ -32235,16 +32221,16 @@ async function Ir(e = {}) {
     }),
     (o9.prototype.__destroy__ = function () {
       ebe(this.RDa);
-    }));
+    });
   function q(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = tbe(e, t, n, r)),
-      (d(q)[this.RDa] = this));
+      (d(q)[this.RDa] = this);
   }
-  ((q.prototype = Object.create(T6.prototype)),
+  (q.prototype = Object.create(T6.prototype)),
     (q.prototype.constructor = q),
     (q.prototype.SDa = q),
     (q.TDa = {}),
@@ -32254,11 +32240,11 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetListener = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), rbe(t, e);
     }),
     (q.prototype.SetCharacterVsCharacterCollision = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ibe(t, e));
+      e && typeof e == `object` && (e = e.RDa), ibe(t, e);
     }),
     (q.prototype.GetListener = function () {
       return f(abe(this.RDa), I3);
@@ -32268,21 +32254,21 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetLinearVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), sbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), sbe(t, e);
     }),
     (q.prototype.GetPosition = function () {
       return f(cbe(this.RDa), y);
     }),
     (q.prototype.SetPosition = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), lbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), lbe(t, e);
     }),
     (q.prototype.GetRotation = function () {
       return f(ube(this.RDa), x);
     }),
     (q.prototype.SetRotation = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), dbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), dbe(t, e);
     }),
     (q.prototype.GetCenterOfMassPosition = function () {
       return f(fbe(this.RDa), y);
@@ -32298,21 +32284,21 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetMass = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), gbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), gbe(t, e);
     }),
     (q.prototype.GetMaxStrength = function () {
       return _be(this.RDa);
     }),
     (q.prototype.SetMaxStrength = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), vbe(t, e);
     }),
     (q.prototype.GetPenetrationRecoverySpeed = function () {
       return ybe(this.RDa);
     }),
     (q.prototype.SetPenetrationRecoverySpeed = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), bbe(t, e);
     }),
     (q.prototype.GetCharacterPadding = function () {
       return xbe(this.RDa);
@@ -32322,14 +32308,14 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetMaxNumHits = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Cbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Cbe(t, e);
     }),
     (q.prototype.GetHitReductionCosMaxAngle = function () {
       return wbe(this.RDa);
     }),
     (q.prototype.SetHitReductionCosMaxAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Tbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Tbe(t, e);
     }),
     (q.prototype.GetMaxHitsExceeded = function () {
       return !!Ebe(this.RDa);
@@ -32339,14 +32325,14 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetShapeOffset = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Obe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Obe(t, e);
     }),
     (q.prototype.GetUserData = function () {
       return kbe(this.RDa);
     }),
     (q.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Abe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Abe(t, e);
     }),
     (q.prototype.GetInnerBodyID = function () {
       return f(jbe(this.RDa), m5);
@@ -32359,22 +32345,22 @@ async function Ir(e = {}) {
     }),
     (q.prototype.CancelVelocityTowardsSteepSlopes = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(Pbe(t, e), v));
+      return e && typeof e == `object` && (e = e.RDa), f(Pbe(t, e), v);
     }),
     (q.prototype.Update = function (e, t, n, r, i, a, o) {
       var s = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
-        Fbe(s, e, t, n, r, i, a, o));
+        Fbe(s, e, t, n, r, i, a, o);
     }),
     (q.prototype.CanWalkStairs = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Ibe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Ibe(t, e);
     }),
     (q.prototype.WalkStairs = function (e, t, n, r, i, a, o, s, c, l) {
       var ee = this.RDa;
@@ -32406,7 +32392,7 @@ async function Ir(e = {}) {
     }),
     (q.prototype.ExtendedUpdate = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -32414,16 +32400,16 @@ async function Ir(e = {}) {
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
-        zbe(c, e, t, n, r, i, a, o, s));
+        zbe(c, e, t, n, r, i, a, o, s);
     }),
     (q.prototype.RefreshContacts = function (e, t, n, r, i) {
       var a = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
         i && typeof i == `object` && (i = i.RDa),
-        Bbe(a, e, t, n, r, i));
+        Bbe(a, e, t, n, r, i);
     }),
     (q.prototype.UpdateGroundVelocity = function () {
       Vbe(this.RDa);
@@ -32443,22 +32429,22 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetInnerBodyShape = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ube(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ube(t, e);
     }),
     (q.prototype.GetTransformedShape = function () {
       return f(Wbe(this.RDa), T);
     }),
     (q.prototype.HasCollidedWith = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Gbe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Gbe(t, e);
     }),
     (q.prototype.HasCollidedWithCharacterID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!Kbe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!Kbe(t, e);
     }),
     (q.prototype.HasCollidedWithCharacter = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!qbe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!qbe(t, e);
     }),
     (q.prototype.GetActiveContacts = function () {
       return f(Jbe(this.RDa), K7);
@@ -32474,21 +32460,21 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SetMaxSlopeAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Qbe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Qbe(t, e);
     }),
     (q.prototype.GetCosMaxSlopeAngle = function () {
       return $be(this.RDa);
     }),
     (q.prototype.SetUp = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), exe(t, e));
+      e && typeof e == `object` && (e = e.RDa), exe(t, e);
     }),
     (q.prototype.GetUp = function () {
       return f(txe(this.RDa), v);
     }),
     (q.prototype.SetSupportingVolume = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), nxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), nxe(t, e);
     }),
     (q.prototype.GetSupportingVolume = function () {
       return f(rxe(this.RDa), s8);
@@ -32501,7 +32487,7 @@ async function Ir(e = {}) {
     }),
     (q.prototype.IsSlopeTooSteep = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), !!oxe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), !!oxe(t, e);
     }),
     (q.prototype.IsSupported = function () {
       return !!sxe(this.RDa);
@@ -32523,19 +32509,19 @@ async function Ir(e = {}) {
     }),
     (q.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), pxe(t, e);
     }),
     (q.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), mxe(t, e);
     }),
     (q.prototype.__destroy__ = function () {
       hxe(this.RDa);
-    }));
+    });
   function s9() {
-    ((this.RDa = gxe()), (d(s9)[this.RDa] = this));
+    (this.RDa = gxe()), (d(s9)[this.RDa] = this);
   }
-  ((s9.prototype = Object.create(u.prototype)),
+  (s9.prototype = Object.create(u.prototype)),
     (s9.prototype.constructor = s9),
     (s9.prototype.SDa = s9),
     (s9.TDa = {}),
@@ -32545,11 +32531,11 @@ async function Ir(e = {}) {
     }),
     (s9.prototype.Reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), vxe(t, e);
     }),
     (s9.prototype.AddPoint = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), yxe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), yxe(n, e, t);
     }),
     (s9.prototype.Sort = function () {
       bxe(this.RDa);
@@ -32562,15 +32548,15 @@ async function Ir(e = {}) {
     }),
     (s9.prototype.GetValue = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), Cxe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), Cxe(t, e);
     }),
     (s9.prototype.__destroy__ = function () {
       wxe(this.RDa);
-    }));
+    });
   function c9() {
-    ((this.RDa = Txe()), (d(c9)[this.RDa] = this));
+    (this.RDa = Txe()), (d(c9)[this.RDa] = this);
   }
-  ((c9.prototype = Object.create(u.prototype)),
+  (c9.prototype = Object.create(u.prototype)),
     (c9.prototype.constructor = c9),
     (c9.prototype.SDa = c9),
     (c9.TDa = {}),
@@ -32586,20 +32572,20 @@ async function Ir(e = {}) {
     (c9.prototype.at = c9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Oxe(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Oxe(t, e);
       }),
     (c9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), kxe(t, e);
     }),
     (c9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Axe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Axe(t, e);
     }),
     (c9.prototype.resize = c9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jxe(t, e));
+        e && typeof e == `object` && (e = e.RDa), jxe(t, e);
       }),
     (c9.prototype.clear = c9.prototype.clear =
       function () {
@@ -32611,11 +32597,11 @@ async function Ir(e = {}) {
       }),
     (c9.prototype.__destroy__ = function () {
       Pxe(this.RDa);
-    }));
+    });
   function l9() {
-    ((this.RDa = Fxe()), (d(l9)[this.RDa] = this));
+    (this.RDa = Fxe()), (d(l9)[this.RDa] = this);
   }
-  ((l9.prototype = Object.create(u.prototype)),
+  (l9.prototype = Object.create(u.prototype)),
     (l9.prototype.constructor = l9),
     (l9.prototype.SDa = l9),
     (l9.TDa = {}),
@@ -32631,20 +32617,20 @@ async function Ir(e = {}) {
     (l9.prototype.at = l9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Rxe(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Rxe(t, e);
       }),
     (l9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), zxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), zxe(t, e);
     }),
     (l9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bxe(t, e);
     }),
     (l9.prototype.resize = l9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vxe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vxe(t, e);
       }),
     (l9.prototype.clear = l9.prototype.clear =
       function () {
@@ -32656,11 +32642,11 @@ async function Ir(e = {}) {
       }),
     (l9.prototype.__destroy__ = function () {
       Wxe(this.RDa);
-    }));
+    });
   function u9() {
-    ((this.RDa = Gxe()), (d(u9)[this.RDa] = this));
+    (this.RDa = Gxe()), (d(u9)[this.RDa] = this);
   }
-  ((u9.prototype = Object.create(u.prototype)),
+  (u9.prototype = Object.create(u.prototype)),
     (u9.prototype.constructor = u9),
     (u9.prototype.SDa = u9),
     (u9.TDa = {}),
@@ -32676,20 +32662,20 @@ async function Ir(e = {}) {
     (u9.prototype.at = u9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), Jxe(t, e));
+        return e && typeof e == `object` && (e = e.RDa), Jxe(t, e);
       }),
     (u9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Yxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Yxe(t, e);
     }),
     (u9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Xxe(t, e));
+      e && typeof e == `object` && (e = e.RDa), Xxe(t, e);
     }),
     (u9.prototype.resize = u9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zxe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zxe(t, e);
       }),
     (u9.prototype.clear = u9.prototype.clear =
       function () {
@@ -32701,11 +32687,11 @@ async function Ir(e = {}) {
       }),
     (u9.prototype.__destroy__ = function () {
       eSe(this.RDa);
-    }));
+    });
   function d9() {
-    ((this.RDa = tSe()), (d(d9)[this.RDa] = this));
+    (this.RDa = tSe()), (d(d9)[this.RDa] = this);
   }
-  ((d9.prototype = Object.create(u.prototype)),
+  (d9.prototype = Object.create(u.prototype)),
     (d9.prototype.constructor = d9),
     (d9.prototype.SDa = d9),
     (d9.TDa = {}),
@@ -32721,16 +32707,16 @@ async function Ir(e = {}) {
     (d9.prototype.at = d9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(iSe(t, e), S9));
+        return e && typeof e == `object` && (e = e.RDa), f(iSe(t, e), S9);
       }),
     (d9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), aSe(t, e));
+      e && typeof e == `object` && (e = e.RDa), aSe(t, e);
     }),
     (d9.prototype.resize = d9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oSe(t, e));
+        e && typeof e == `object` && (e = e.RDa), oSe(t, e);
       }),
     (d9.prototype.clear = d9.prototype.clear =
       function () {
@@ -32738,11 +32724,11 @@ async function Ir(e = {}) {
       }),
     (d9.prototype.__destroy__ = function () {
       cSe(this.RDa);
-    }));
+    });
   function f9() {
-    ((this.RDa = lSe()), (d(f9)[this.RDa] = this));
+    (this.RDa = lSe()), (d(f9)[this.RDa] = this);
   }
-  ((f9.prototype = Object.create(u.prototype)),
+  (f9.prototype = Object.create(u.prototype)),
     (f9.prototype.constructor = f9),
     (f9.prototype.SDa = f9),
     (f9.TDa = {}),
@@ -32758,16 +32744,16 @@ async function Ir(e = {}) {
     (f9.prototype.at = f9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(fSe(t, e), g));
+        return e && typeof e == `object` && (e = e.RDa), f(fSe(t, e), g);
       }),
     (f9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), pSe(t, e));
+      e && typeof e == `object` && (e = e.RDa), pSe(t, e);
     }),
     (f9.prototype.resize = f9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mSe(t, e));
+        e && typeof e == `object` && (e = e.RDa), mSe(t, e);
       }),
     (f9.prototype.clear = f9.prototype.clear =
       function () {
@@ -32775,11 +32761,11 @@ async function Ir(e = {}) {
       }),
     (f9.prototype.__destroy__ = function () {
       gSe(this.RDa);
-    }));
+    });
   function p9() {
-    ((this.RDa = _Se()), (d(p9)[this.RDa] = this));
+    (this.RDa = _Se()), (d(p9)[this.RDa] = this);
   }
-  ((p9.prototype = Object.create(u.prototype)),
+  (p9.prototype = Object.create(u.prototype)),
     (p9.prototype.constructor = p9),
     (p9.prototype.SDa = p9),
     (p9.TDa = {}),
@@ -32795,16 +32781,16 @@ async function Ir(e = {}) {
     (p9.prototype.at = p9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(bSe(t, e), k9));
+        return e && typeof e == `object` && (e = e.RDa), f(bSe(t, e), k9);
       }),
     (p9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), xSe(t, e));
+      e && typeof e == `object` && (e = e.RDa), xSe(t, e);
     }),
     (p9.prototype.resize = p9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SSe(t, e));
+        e && typeof e == `object` && (e = e.RDa), SSe(t, e);
       }),
     (p9.prototype.clear = p9.prototype.clear =
       function () {
@@ -32812,15 +32798,15 @@ async function Ir(e = {}) {
       }),
     (p9.prototype.__destroy__ = function () {
       wSe(this.RDa);
-    }));
+    });
   function m9(e, t, n) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       (this.RDa = t === void 0 ? TSe(e) : n === void 0 ? ESe(e, t) : DSe(e, t, n)),
-      (d(m9)[this.RDa] = this));
+      (d(m9)[this.RDa] = this);
   }
-  ((m9.prototype = Object.create(E6.prototype)),
+  (m9.prototype = Object.create(E6.prototype)),
     (m9.prototype.constructor = m9),
     (m9.prototype.SDa = m9),
     (m9.TDa = {}),
@@ -32836,16 +32822,16 @@ async function Ir(e = {}) {
     }),
     (m9.prototype.__destroy__ = function () {
       jSe(this.RDa);
-    }));
+    });
   function h9(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = n === void 0 ? MSe(e, t) : r === void 0 ? NSe(e, t, n) : PSe(e, t, n, r)),
-      (d(h9)[this.RDa] = this));
+      (d(h9)[this.RDa] = this);
   }
-  ((h9.prototype = Object.create(E6.prototype)),
+  (h9.prototype = Object.create(E6.prototype)),
     (h9.prototype.constructor = h9),
     (h9.prototype.SDa = h9),
     (h9.TDa = {}),
@@ -32861,14 +32847,14 @@ async function Ir(e = {}) {
     }),
     (h9.prototype.__destroy__ = function () {
       RSe(this.RDa);
-    }));
+    });
   function g9(e, t) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       (this.RDa = t === void 0 ? zSe(e) : BSe(e, t)),
-      (d(g9)[this.RDa] = this));
+      (d(g9)[this.RDa] = this);
   }
-  ((g9.prototype = Object.create(E6.prototype)),
+  (g9.prototype = Object.create(E6.prototype)),
     (g9.prototype.constructor = g9),
     (g9.prototype.SDa = g9),
     (g9.TDa = {}),
@@ -32884,11 +32870,11 @@ async function Ir(e = {}) {
     }),
     (g9.prototype.__destroy__ = function () {
       WSe(this.RDa);
-    }));
+    });
   function J() {
-    ((this.RDa = GSe()), (d(J)[this.RDa] = this));
+    (this.RDa = GSe()), (d(J)[this.RDa] = this);
   }
-  ((J.prototype = Object.create(k3.prototype)),
+  (J.prototype = Object.create(k3.prototype)),
     (J.prototype.constructor = J),
     (J.prototype.SDa = J),
     (J.TDa = {}),
@@ -32909,7 +32895,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mUp = J.prototype.yGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XSe(t, e));
+        e && typeof e == `object` && (e = e.RDa), XSe(t, e);
       }),
     Object.defineProperty(J.prototype, "mUp", { get: J.prototype.JFa, set: J.prototype.yGa }),
     (J.prototype.get_mForward = J.prototype.xKa =
@@ -32919,7 +32905,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mForward = J.prototype.GOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QSe(t, e));
+        e && typeof e == `object` && (e = e.RDa), QSe(t, e);
       }),
     Object.defineProperty(J.prototype, "mForward", { get: J.prototype.xKa, set: J.prototype.GOa }),
     (J.prototype.get_mMaxPitchRollAngle = J.prototype.NLa =
@@ -32929,7 +32915,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mMaxPitchRollAngle = J.prototype.WPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), eCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mMaxPitchRollAngle", { get: J.prototype.NLa, set: J.prototype.WPa }),
     (J.prototype.get_mWheels = J.prototype.NFa =
@@ -32939,7 +32925,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mWheels = J.prototype.CGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), nCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mWheels", { get: J.prototype.NFa, set: J.prototype.CGa }),
     (J.prototype.get_mAntiRollBars = J.prototype.FJa =
@@ -32949,7 +32935,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mAntiRollBars = J.prototype.ONa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), iCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mAntiRollBars", { get: J.prototype.FJa, set: J.prototype.ONa }),
     (J.prototype.get_mController = J.prototype.kKa =
@@ -32959,7 +32945,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mController = J.prototype.tOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), oCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mController", { get: J.prototype.kKa, set: J.prototype.tOa }),
     (J.prototype.get_mEnabled = J.prototype.$Da =
@@ -32969,7 +32955,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mEnabled = J.prototype.aEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), cCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mEnabled", { get: J.prototype.$Da, set: J.prototype.aEa }),
     (J.prototype.get_mNumVelocityStepsOverride = J.prototype.XDa =
@@ -32979,7 +32965,7 @@ async function Ir(e = {}) {
     (J.prototype.set_mNumVelocityStepsOverride = J.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), uCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mNumVelocityStepsOverride", { get: J.prototype.XDa, set: J.prototype.ZDa }),
     (J.prototype.get_mNumPositionStepsOverride = J.prototype.WDa =
@@ -32989,37 +32975,37 @@ async function Ir(e = {}) {
     (J.prototype.set_mNumPositionStepsOverride = J.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fCe(t, e));
+        e && typeof e == `object` && (e = e.RDa), fCe(t, e);
       }),
     Object.defineProperty(J.prototype, "mNumPositionStepsOverride", { get: J.prototype.WDa, set: J.prototype.YDa }),
     (J.prototype.__destroy__ = function () {
       pCe(this.RDa);
-    }));
+    });
   function _9(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = mCe(e, t)), (d(_9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = mCe(e, t)), (d(_9)[this.RDa] = this);
   }
-  ((_9.prototype = Object.create(A3.prototype)),
+  (_9.prototype = Object.create(A3.prototype)),
     (_9.prototype.constructor = _9),
     (_9.prototype.SDa = _9),
     (_9.TDa = {}),
     (t.VehicleConstraint = _9),
     (_9.prototype.SetMaxPitchRollAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), hCe(t, e);
     }),
     (_9.prototype.GetMaxPitchRollAngle = function () {
       return gCe(this.RDa);
     }),
     (_9.prototype.SetVehicleCollisionTester = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _Ce(t, e));
+      e && typeof e == `object` && (e = e.RDa), _Ce(t, e);
     }),
     (_9.prototype.GetVehicleCollisionTester = function () {
       return f(vCe(this.RDa), E6);
     }),
     (_9.prototype.OverrideGravity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), yCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), yCe(t, e);
     }),
     (_9.prototype.IsGravityOverridden = function () {
       return !!bCe(this.RDa);
@@ -33047,7 +33033,7 @@ async function Ir(e = {}) {
     }),
     (_9.prototype.GetWheel = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(OCe(t, e), k6));
+      return e && typeof e == `object` && (e = e.RDa), f(OCe(t, e), k6);
     }),
     (_9.prototype.GetWheelLocalTransform = function (e, t, n) {
       var r = this.RDa;
@@ -33072,14 +33058,14 @@ async function Ir(e = {}) {
     }),
     (_9.prototype.SetNumStepsBetweenCollisionTestActive = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), MCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), MCe(t, e);
     }),
     (_9.prototype.GetNumStepsBetweenCollisionTestActive = function () {
       return NCe(this.RDa);
     }),
     (_9.prototype.SetNumStepsBetweenCollisionTestInactive = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), PCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), PCe(t, e);
     }),
     (_9.prototype.GetNumStepsBetweenCollisionTestInactive = function () {
       return FCe(this.RDa);
@@ -33104,25 +33090,25 @@ async function Ir(e = {}) {
     }),
     (_9.prototype.SetConstraintPriority = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), HCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), HCe(t, e);
     }),
     (_9.prototype.SetNumVelocityStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), UCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), UCe(t, e);
     }),
     (_9.prototype.GetNumVelocityStepsOverride = function () {
       return WCe(this.RDa);
     }),
     (_9.prototype.SetNumPositionStepsOverride = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), GCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), GCe(t, e);
     }),
     (_9.prototype.GetNumPositionStepsOverride = function () {
       return KCe(this.RDa);
     }),
     (_9.prototype.SetEnabled = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), qCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), qCe(t, e);
     }),
     (_9.prototype.GetEnabled = function () {
       return !!JCe(this.RDa);
@@ -33135,37 +33121,37 @@ async function Ir(e = {}) {
     }),
     (_9.prototype.SetUserData = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ZCe(t, e));
+      e && typeof e == `object` && (e = e.RDa), ZCe(t, e);
     }),
     (_9.prototype.ResetWarmStart = function () {
       QCe(this.RDa);
     }),
     (_9.prototype.SaveState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $Ce(t, e));
+      e && typeof e == `object` && (e = e.RDa), $Ce(t, e);
     }),
     (_9.prototype.RestoreState = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), ewe(t, e));
+      e && typeof e == `object` && (e = e.RDa), ewe(t, e);
     }),
     (_9.prototype.__destroy__ = function () {
       twe(this.RDa);
-    }));
+    });
   function v9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = nwe(e)), (d(v9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = nwe(e)), (d(v9)[this.RDa] = this);
   }
-  ((v9.prototype = Object.create(p6.prototype)),
+  (v9.prototype = Object.create(p6.prototype)),
     (v9.prototype.constructor = v9),
     (v9.prototype.SDa = v9),
     (v9.TDa = {}),
     (t.VehicleConstraintStepListener = v9),
     (v9.prototype.__destroy__ = function () {
       rwe(this.RDa);
-    }));
+    });
   function y9() {
-    ((this.RDa = iwe()), (d(y9)[this.RDa] = this));
+    (this.RDa = iwe()), (d(y9)[this.RDa] = this);
   }
-  ((y9.prototype = Object.create(D6.prototype)),
+  (y9.prototype = Object.create(D6.prototype)),
     (y9.prototype.constructor = y9),
     (y9.prototype.SDa = y9),
     (y9.TDa = {}),
@@ -33183,23 +33169,23 @@ async function Ir(e = {}) {
     }),
     (y9.prototype.OnPreStepCallback = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), owe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), owe(n, e, t);
     }),
     (y9.prototype.OnPostCollideCallback = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), swe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), swe(n, e, t);
     }),
     (y9.prototype.OnPostStepCallback = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), cwe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), cwe(n, e, t);
     }),
     (y9.prototype.__destroy__ = function () {
       lwe(this.RDa);
-    }));
+    });
   function b9() {
     throw `cannot construct a TireMaxImpulseCallbackResult, no constructor in IDL`;
   }
-  ((b9.prototype = Object.create(u.prototype)),
+  (b9.prototype = Object.create(u.prototype)),
     (b9.prototype.constructor = b9),
     (b9.prototype.SDa = b9),
     (b9.TDa = {}),
@@ -33211,7 +33197,7 @@ async function Ir(e = {}) {
     (b9.prototype.set_mLongitudinalImpulse = b9.prototype.zPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dwe(t, e);
       }),
     Object.defineProperty(b9.prototype, "mLongitudinalImpulse", { get: b9.prototype.qLa, set: b9.prototype.zPa }),
     (b9.prototype.get_mLateralImpulse = b9.prototype.cLa =
@@ -33221,23 +33207,23 @@ async function Ir(e = {}) {
     (b9.prototype.set_mLateralImpulse = b9.prototype.lPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), pwe(t, e);
       }),
     Object.defineProperty(b9.prototype, "mLateralImpulse", { get: b9.prototype.cLa, set: b9.prototype.lPa }),
     (b9.prototype.__destroy__ = function () {
       mwe(this.RDa);
-    }));
+    });
   function x9() {
-    ((this.RDa = hwe()), (d(x9)[this.RDa] = this));
+    (this.RDa = hwe()), (d(x9)[this.RDa] = this);
   }
-  ((x9.prototype = Object.create(O6.prototype)),
+  (x9.prototype = Object.create(O6.prototype)),
     (x9.prototype.constructor = x9),
     (x9.prototype.SDa = x9),
     (x9.TDa = {}),
     (t.WheeledVehicleControllerCallbacksJS = x9),
     (x9.prototype.OnTireMaxImpulseCallback = function (e, t, n, r, i, a, o, s) {
       var c = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
@@ -33245,15 +33231,15 @@ async function Ir(e = {}) {
         a && typeof a == `object` && (a = a.RDa),
         o && typeof o == `object` && (o = o.RDa),
         s && typeof s == `object` && (s = s.RDa),
-        gwe(c, e, t, n, r, i, a, o, s));
+        gwe(c, e, t, n, r, i, a, o, s);
     }),
     (x9.prototype.__destroy__ = function () {
       _we(this.RDa);
-    }));
+    });
   function S9() {
-    ((this.RDa = vwe()), (d(S9)[this.RDa] = this));
+    (this.RDa = vwe()), (d(S9)[this.RDa] = this);
   }
-  ((S9.prototype = Object.create(u.prototype)),
+  (S9.prototype = Object.create(u.prototype)),
     (S9.prototype.constructor = S9),
     (S9.prototype.SDa = S9),
     (S9.TDa = {}),
@@ -33265,7 +33251,7 @@ async function Ir(e = {}) {
     (S9.prototype.set_mLeftWheel = S9.prototype.OIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), bwe(t, e);
       }),
     Object.defineProperty(S9.prototype, "mLeftWheel", { get: S9.prototype.qHa, set: S9.prototype.OIa }),
     (S9.prototype.get_mRightWheel = S9.prototype.PHa =
@@ -33275,7 +33261,7 @@ async function Ir(e = {}) {
     (S9.prototype.set_mRightWheel = S9.prototype.mJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Swe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Swe(t, e);
       }),
     Object.defineProperty(S9.prototype, "mRightWheel", { get: S9.prototype.PHa, set: S9.prototype.mJa }),
     (S9.prototype.get_mStiffness = S9.prototype.UHa =
@@ -33285,16 +33271,16 @@ async function Ir(e = {}) {
     (S9.prototype.set_mStiffness = S9.prototype.sJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), wwe(t, e);
       }),
     Object.defineProperty(S9.prototype, "mStiffness", { get: S9.prototype.UHa, set: S9.prototype.sJa }),
     (S9.prototype.__destroy__ = function () {
       Twe(this.RDa);
-    }));
+    });
   function Y() {
-    ((this.RDa = Ewe()), (d(Y)[this.RDa] = this));
+    (this.RDa = Ewe()), (d(Y)[this.RDa] = this);
   }
-  ((Y.prototype = Object.create(g.prototype)),
+  (Y.prototype = Object.create(g.prototype)),
     (Y.prototype.constructor = Y),
     (Y.prototype.SDa = Y),
     (Y.TDa = {}),
@@ -33315,7 +33301,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mInertia = Y.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), jwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mInertia", { get: Y.prototype.qEa, set: Y.prototype.xEa }),
     (Y.prototype.get_mAngularDamping = Y.prototype.lEa =
@@ -33325,7 +33311,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mAngularDamping = Y.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mAngularDamping", { get: Y.prototype.lEa, set: Y.prototype.nEa }),
     (Y.prototype.get_mMaxSteerAngle = Y.prototype.PLa =
@@ -33335,7 +33321,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mMaxSteerAngle = Y.prototype.YPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mMaxSteerAngle", { get: Y.prototype.PLa, set: Y.prototype.YPa }),
     (Y.prototype.get_mLongitudinalFriction = Y.prototype.tHa =
@@ -33345,7 +33331,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mLongitudinalFriction = Y.prototype.RIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mLongitudinalFriction", { get: Y.prototype.tHa, set: Y.prototype.RIa }),
     (Y.prototype.get_mLateralFriction = Y.prototype.pHa =
@@ -33355,7 +33341,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mLateralFriction = Y.prototype.NIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), zwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mLateralFriction", { get: Y.prototype.pHa, set: Y.prototype.NIa }),
     (Y.prototype.get_mMaxBrakeTorque = Y.prototype.qFa =
@@ -33365,7 +33351,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mMaxBrakeTorque = Y.prototype.fGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mMaxBrakeTorque", { get: Y.prototype.qFa, set: Y.prototype.fGa }),
     (Y.prototype.get_mMaxHandBrakeTorque = Y.prototype.GLa =
@@ -33375,7 +33361,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mMaxHandBrakeTorque = Y.prototype.PPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Uwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Uwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mMaxHandBrakeTorque", { get: Y.prototype.GLa, set: Y.prototype.PPa }),
     (Y.prototype.get_mPosition = Y.prototype.eEa =
@@ -33385,7 +33371,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mPosition = Y.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mPosition", { get: Y.prototype.eEa, set: Y.prototype.gEa }),
     (Y.prototype.get_mSuspensionForcePoint = Y.prototype.DFa =
@@ -33395,7 +33381,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionForcePoint = Y.prototype.sGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), qwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionForcePoint", { get: Y.prototype.DFa, set: Y.prototype.sGa }),
     (Y.prototype.get_mSuspensionDirection = Y.prototype.CFa =
@@ -33405,7 +33391,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionDirection = Y.prototype.rGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Ywe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Ywe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionDirection", { get: Y.prototype.CFa, set: Y.prototype.rGa }),
     (Y.prototype.get_mSteeringAxis = Y.prototype.AFa =
@@ -33415,7 +33401,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSteeringAxis = Y.prototype.pGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zwe(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zwe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSteeringAxis", { get: Y.prototype.AFa, set: Y.prototype.pGa }),
     (Y.prototype.get_mWheelUp = Y.prototype.MFa =
@@ -33425,7 +33411,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mWheelUp = Y.prototype.BGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $we(t, e));
+        e && typeof e == `object` && (e = e.RDa), $we(t, e);
       }),
     Object.defineProperty(Y.prototype, "mWheelUp", { get: Y.prototype.MFa, set: Y.prototype.BGa }),
     (Y.prototype.get_mWheelForward = Y.prototype.LFa =
@@ -33435,7 +33421,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mWheelForward = Y.prototype.AGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), tTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mWheelForward", { get: Y.prototype.LFa, set: Y.prototype.AGa }),
     (Y.prototype.get_mSuspensionSpring = Y.prototype.HFa =
@@ -33445,7 +33431,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionSpring = Y.prototype.wGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), rTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), rTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionSpring", { get: Y.prototype.HFa, set: Y.prototype.wGa }),
     (Y.prototype.get_mSuspensionMinLength = Y.prototype.FFa =
@@ -33455,7 +33441,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionMinLength = Y.prototype.uGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), aTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionMinLength", { get: Y.prototype.FFa, set: Y.prototype.uGa }),
     (Y.prototype.get_mSuspensionMaxLength = Y.prototype.EFa =
@@ -33465,7 +33451,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionMaxLength = Y.prototype.tGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), sTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionMaxLength", { get: Y.prototype.EFa, set: Y.prototype.tGa }),
     (Y.prototype.get_mSuspensionPreloadLength = Y.prototype.GFa =
@@ -33475,7 +33461,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mSuspensionPreloadLength = Y.prototype.vGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), lTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mSuspensionPreloadLength", { get: Y.prototype.GFa, set: Y.prototype.vGa }),
     (Y.prototype.get_mRadius = Y.prototype.tEa =
@@ -33485,7 +33471,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mRadius = Y.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mRadius", { get: Y.prototype.tEa, set: Y.prototype.AEa }),
     (Y.prototype.get_mWidth = Y.prototype.OFa =
@@ -33495,7 +33481,7 @@ async function Ir(e = {}) {
     (Y.prototype.set_mWidth = Y.prototype.DGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), pTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mWidth", { get: Y.prototype.OFa, set: Y.prototype.DGa }),
     (Y.prototype.get_mEnableSuspensionForcePoint = Y.prototype.hFa =
@@ -33505,16 +33491,16 @@ async function Ir(e = {}) {
     (Y.prototype.set_mEnableSuspensionForcePoint = Y.prototype.XFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), hTe(t, e);
       }),
     Object.defineProperty(Y.prototype, "mEnableSuspensionForcePoint", { get: Y.prototype.hFa, set: Y.prototype.XFa }),
     (Y.prototype.__destroy__ = function () {
       gTe(this.RDa);
-    }));
+    });
   function C9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = _Te(e)), (d(C9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = _Te(e)), (d(C9)[this.RDa] = this);
   }
-  ((C9.prototype = Object.create(k6.prototype)),
+  (C9.prototype = Object.create(k6.prototype)),
     (C9.prototype.constructor = C9),
     (C9.prototype.SDa = C9),
     (C9.TDa = {}),
@@ -33527,21 +33513,21 @@ async function Ir(e = {}) {
     }),
     (C9.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bTe(t, e));
+      e && typeof e == `object` && (e = e.RDa), bTe(t, e);
     }),
     (C9.prototype.GetRotationAngle = function () {
       return xTe(this.RDa);
     }),
     (C9.prototype.SetRotationAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), STe(t, e));
+      e && typeof e == `object` && (e = e.RDa), STe(t, e);
     }),
     (C9.prototype.GetSteerAngle = function () {
       return CTe(this.RDa);
     }),
     (C9.prototype.SetSteerAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), wTe(t, e));
+      e && typeof e == `object` && (e = e.RDa), wTe(t, e);
     }),
     (C9.prototype.HasContact = function () {
       return !!TTe(this.RDa);
@@ -33586,7 +33572,7 @@ async function Ir(e = {}) {
     (C9.prototype.set_mLongitudinalSlip = C9.prototype.APa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), RTe(t, e);
       }),
     Object.defineProperty(C9.prototype, "mLongitudinalSlip", { get: C9.prototype.rLa, set: C9.prototype.APa }),
     (C9.prototype.get_mLateralSlip = C9.prototype.dLa =
@@ -33596,7 +33582,7 @@ async function Ir(e = {}) {
     (C9.prototype.set_mLateralSlip = C9.prototype.mPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), BTe(t, e);
       }),
     Object.defineProperty(C9.prototype, "mLateralSlip", { get: C9.prototype.dLa, set: C9.prototype.mPa }),
     (C9.prototype.get_mCombinedLongitudinalFriction = C9.prototype.$Ga =
@@ -33606,7 +33592,7 @@ async function Ir(e = {}) {
     (C9.prototype.set_mCombinedLongitudinalFriction = C9.prototype.xIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), HTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), HTe(t, e);
       }),
     Object.defineProperty(C9.prototype, "mCombinedLongitudinalFriction", { get: C9.prototype.$Ga, set: C9.prototype.xIa }),
     (C9.prototype.get_mCombinedLateralFriction = C9.prototype.ZGa =
@@ -33616,7 +33602,7 @@ async function Ir(e = {}) {
     (C9.prototype.set_mCombinedLateralFriction = C9.prototype.wIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), WTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), WTe(t, e);
       }),
     Object.defineProperty(C9.prototype, "mCombinedLateralFriction", { get: C9.prototype.ZGa, set: C9.prototype.wIa }),
     (C9.prototype.get_mBrakeImpulse = C9.prototype.TGa =
@@ -33626,16 +33612,16 @@ async function Ir(e = {}) {
     (C9.prototype.set_mBrakeImpulse = C9.prototype.rIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), KTe(t, e));
+        e && typeof e == `object` && (e = e.RDa), KTe(t, e);
       }),
     Object.defineProperty(C9.prototype, "mBrakeImpulse", { get: C9.prototype.TGa, set: C9.prototype.rIa }),
     (C9.prototype.__destroy__ = function () {
       qTe(this.RDa);
-    }));
+    });
   function X() {
-    ((this.RDa = JTe()), (d(X)[this.RDa] = this));
+    (this.RDa = JTe()), (d(X)[this.RDa] = this);
   }
-  ((X.prototype = Object.create(g.prototype)),
+  (X.prototype = Object.create(g.prototype)),
     (X.prototype.constructor = X),
     (X.prototype.SDa = X),
     (X.TDa = {}),
@@ -33656,7 +33642,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mLongitudinalFriction = X.prototype.RIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $Te(t, e));
+        e && typeof e == `object` && (e = e.RDa), $Te(t, e);
       }),
     Object.defineProperty(X.prototype, "mLongitudinalFriction", { get: X.prototype.tHa, set: X.prototype.RIa }),
     (X.prototype.get_mLateralFriction = X.prototype.pHa =
@@ -33666,7 +33652,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mLateralFriction = X.prototype.NIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), tEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mLateralFriction", { get: X.prototype.pHa, set: X.prototype.NIa }),
     (X.prototype.get_mPosition = X.prototype.eEa =
@@ -33676,7 +33662,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mPosition = X.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), rEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), rEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mPosition", { get: X.prototype.eEa, set: X.prototype.gEa }),
     (X.prototype.get_mSuspensionForcePoint = X.prototype.DFa =
@@ -33686,7 +33672,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionForcePoint = X.prototype.sGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), aEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionForcePoint", { get: X.prototype.DFa, set: X.prototype.sGa }),
     (X.prototype.get_mSuspensionDirection = X.prototype.CFa =
@@ -33696,7 +33682,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionDirection = X.prototype.rGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), sEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionDirection", { get: X.prototype.CFa, set: X.prototype.rGa }),
     (X.prototype.get_mSteeringAxis = X.prototype.AFa =
@@ -33706,7 +33692,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSteeringAxis = X.prototype.pGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), lEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSteeringAxis", { get: X.prototype.AFa, set: X.prototype.pGa }),
     (X.prototype.get_mWheelUp = X.prototype.MFa =
@@ -33716,7 +33702,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mWheelUp = X.prototype.BGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mWheelUp", { get: X.prototype.MFa, set: X.prototype.BGa }),
     (X.prototype.get_mWheelForward = X.prototype.LFa =
@@ -33726,7 +33712,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mWheelForward = X.prototype.AGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), pEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mWheelForward", { get: X.prototype.LFa, set: X.prototype.AGa }),
     (X.prototype.get_mSuspensionSpring = X.prototype.HFa =
@@ -33736,7 +33722,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionSpring = X.prototype.wGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), hEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionSpring", { get: X.prototype.HFa, set: X.prototype.wGa }),
     (X.prototype.get_mSuspensionMinLength = X.prototype.FFa =
@@ -33746,7 +33732,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionMinLength = X.prototype.uGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _Ee(t, e));
+        e && typeof e == `object` && (e = e.RDa), _Ee(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionMinLength", { get: X.prototype.FFa, set: X.prototype.uGa }),
     (X.prototype.get_mSuspensionMaxLength = X.prototype.EFa =
@@ -33756,7 +33742,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionMaxLength = X.prototype.tGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), yEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionMaxLength", { get: X.prototype.EFa, set: X.prototype.tGa }),
     (X.prototype.get_mSuspensionPreloadLength = X.prototype.GFa =
@@ -33766,7 +33752,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mSuspensionPreloadLength = X.prototype.vGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), xEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mSuspensionPreloadLength", { get: X.prototype.GFa, set: X.prototype.vGa }),
     (X.prototype.get_mRadius = X.prototype.tEa =
@@ -33776,7 +33762,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mRadius = X.prototype.AEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), CEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mRadius", { get: X.prototype.tEa, set: X.prototype.AEa }),
     (X.prototype.get_mWidth = X.prototype.OFa =
@@ -33786,7 +33772,7 @@ async function Ir(e = {}) {
     (X.prototype.set_mWidth = X.prototype.DGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), TEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), TEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mWidth", { get: X.prototype.OFa, set: X.prototype.DGa }),
     (X.prototype.get_mEnableSuspensionForcePoint = X.prototype.hFa =
@@ -33796,16 +33782,16 @@ async function Ir(e = {}) {
     (X.prototype.set_mEnableSuspensionForcePoint = X.prototype.XFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), DEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), DEe(t, e);
       }),
     Object.defineProperty(X.prototype, "mEnableSuspensionForcePoint", { get: X.prototype.hFa, set: X.prototype.XFa }),
     (X.prototype.__destroy__ = function () {
       OEe(this.RDa);
-    }));
+    });
   function w9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = kEe(e)), (d(w9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = kEe(e)), (d(w9)[this.RDa] = this);
   }
-  ((w9.prototype = Object.create(k6.prototype)),
+  (w9.prototype = Object.create(k6.prototype)),
     (w9.prototype.constructor = w9),
     (w9.prototype.SDa = w9),
     (w9.TDa = {}),
@@ -33818,21 +33804,21 @@ async function Ir(e = {}) {
     }),
     (w9.prototype.SetAngularVelocity = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), MEe(t, e));
+      e && typeof e == `object` && (e = e.RDa), MEe(t, e);
     }),
     (w9.prototype.GetRotationAngle = function () {
       return NEe(this.RDa);
     }),
     (w9.prototype.SetRotationAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), PEe(t, e));
+      e && typeof e == `object` && (e = e.RDa), PEe(t, e);
     }),
     (w9.prototype.GetSteerAngle = function () {
       return FEe(this.RDa);
     }),
     (w9.prototype.SetSteerAngle = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), IEe(t, e));
+      e && typeof e == `object` && (e = e.RDa), IEe(t, e);
     }),
     (w9.prototype.HasContact = function () {
       return !!LEe(this.RDa);
@@ -33877,7 +33863,7 @@ async function Ir(e = {}) {
     (w9.prototype.set_mTrackIndex = w9.prototype.sRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), XEe(t, e);
       }),
     Object.defineProperty(w9.prototype, "mTrackIndex", { get: w9.prototype.lNa, set: w9.prototype.sRa }),
     (w9.prototype.get_mCombinedLongitudinalFriction = w9.prototype.$Ga =
@@ -33887,7 +33873,7 @@ async function Ir(e = {}) {
     (w9.prototype.set_mCombinedLongitudinalFriction = w9.prototype.xIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QEe(t, e));
+        e && typeof e == `object` && (e = e.RDa), QEe(t, e);
       }),
     Object.defineProperty(w9.prototype, "mCombinedLongitudinalFriction", { get: w9.prototype.$Ga, set: w9.prototype.xIa }),
     (w9.prototype.get_mCombinedLateralFriction = w9.prototype.ZGa =
@@ -33897,7 +33883,7 @@ async function Ir(e = {}) {
     (w9.prototype.set_mCombinedLateralFriction = w9.prototype.wIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), eDe(t, e);
       }),
     Object.defineProperty(w9.prototype, "mCombinedLateralFriction", { get: w9.prototype.ZGa, set: w9.prototype.wIa }),
     (w9.prototype.get_mBrakeImpulse = w9.prototype.TGa =
@@ -33907,16 +33893,16 @@ async function Ir(e = {}) {
     (w9.prototype.set_mBrakeImpulse = w9.prototype.rIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), nDe(t, e);
       }),
     Object.defineProperty(w9.prototype, "mBrakeImpulse", { get: w9.prototype.TGa, set: w9.prototype.rIa }),
     (w9.prototype.__destroy__ = function () {
       rDe(this.RDa);
-    }));
+    });
   function T9() {
     throw `cannot construct a VehicleTrack, no constructor in IDL`;
   }
-  ((T9.prototype = Object.create(A6.prototype)),
+  (T9.prototype = Object.create(A6.prototype)),
     (T9.prototype.constructor = T9),
     (T9.prototype.SDa = T9),
     (T9.TDa = {}),
@@ -33928,7 +33914,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mAngularVelocity = T9.prototype.RFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), aDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mAngularVelocity", { get: T9.prototype.cFa, set: T9.prototype.RFa }),
     (T9.prototype.get_mDrivenWheel = T9.prototype.eHa =
@@ -33938,7 +33924,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mDrivenWheel = T9.prototype.CIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), sDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mDrivenWheel", { get: T9.prototype.eHa, set: T9.prototype.CIa }),
     (T9.prototype.get_mWheels = T9.prototype.NFa =
@@ -33948,7 +33934,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mWheels = T9.prototype.CGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), lDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mWheels", { get: T9.prototype.NFa, set: T9.prototype.CGa }),
     (T9.prototype.get_mInertia = T9.prototype.qEa =
@@ -33958,7 +33944,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mInertia = T9.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mInertia", { get: T9.prototype.qEa, set: T9.prototype.xEa }),
     (T9.prototype.get_mAngularDamping = T9.prototype.lEa =
@@ -33968,7 +33954,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mAngularDamping = T9.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), pDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mAngularDamping", { get: T9.prototype.lEa, set: T9.prototype.nEa }),
     (T9.prototype.get_mMaxBrakeTorque = T9.prototype.qFa =
@@ -33978,7 +33964,7 @@ async function Ir(e = {}) {
     (T9.prototype.set_mMaxBrakeTorque = T9.prototype.fGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), hDe(t, e);
       }),
     Object.defineProperty(T9.prototype, "mMaxBrakeTorque", { get: T9.prototype.qFa, set: T9.prototype.fGa }),
     (T9.prototype.get_mDifferentialRatio = T9.prototype.gFa =
@@ -33988,16 +33974,16 @@ async function Ir(e = {}) {
     (T9.prototype.set_mDifferentialRatio = T9.prototype.VFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _De(t, e));
+        e && typeof e == `object` && (e = e.RDa), _De(t, e);
       }),
     Object.defineProperty(T9.prototype, "mDifferentialRatio", { get: T9.prototype.gFa, set: T9.prototype.VFa }),
     (T9.prototype.__destroy__ = function () {
       vDe(this.RDa);
-    }));
+    });
   function E9() {
-    ((this.RDa = yDe()), (d(E9)[this.RDa] = this));
+    (this.RDa = yDe()), (d(E9)[this.RDa] = this);
   }
-  ((E9.prototype = Object.create(R3.prototype)),
+  (E9.prototype = Object.create(R3.prototype)),
     (E9.prototype.constructor = E9),
     (E9.prototype.SDa = E9),
     (E9.TDa = {}),
@@ -34009,7 +33995,7 @@ async function Ir(e = {}) {
     (E9.prototype.set_mEngine = E9.prototype.YFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), xDe(t, e);
       }),
     Object.defineProperty(E9.prototype, "mEngine", { get: E9.prototype.iFa, set: E9.prototype.YFa }),
     (E9.prototype.get_mTransmission = E9.prototype.IFa =
@@ -34019,63 +34005,63 @@ async function Ir(e = {}) {
     (E9.prototype.set_mTransmission = E9.prototype.xGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), CDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), CDe(t, e);
       }),
     Object.defineProperty(E9.prototype, "mTransmission", { get: E9.prototype.IFa, set: E9.prototype.xGa }),
     (E9.prototype.get_mTracks = E9.prototype.mNa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(wDe(t, e), A6));
+        return e && typeof e == `object` && (e = e.RDa), f(wDe(t, e), A6);
       }),
     (E9.prototype.set_mTracks = E9.prototype.tRa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), TDe(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), TDe(n, e, t);
       }),
     Object.defineProperty(E9.prototype, "mTracks", { get: E9.prototype.mNa, set: E9.prototype.tRa }),
     (E9.prototype.__destroy__ = function () {
       EDe(this.RDa);
-    }));
+    });
   function D9(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = DDe(e, t)), (d(D9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = DDe(e, t)), (d(D9)[this.RDa] = this);
   }
-  ((D9.prototype = Object.create(z3.prototype)),
+  (D9.prototype = Object.create(z3.prototype)),
     (D9.prototype.constructor = D9),
     (D9.prototype.SDa = D9),
     (D9.TDa = {}),
     (t.TrackedVehicleController = D9),
     (D9.prototype.SetDriverInput = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        ODe(i, e, t, n, r));
+        ODe(i, e, t, n, r);
     }),
     (D9.prototype.SetForwardInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), kDe(t, e));
+      e && typeof e == `object` && (e = e.RDa), kDe(t, e);
     }),
     (D9.prototype.GetForwardInput = function () {
       return ADe(this.RDa);
     }),
     (D9.prototype.SetLeftRatio = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), jDe(t, e));
+      e && typeof e == `object` && (e = e.RDa), jDe(t, e);
     }),
     (D9.prototype.GetLeftRatio = function () {
       return MDe(this.RDa);
     }),
     (D9.prototype.SetRightRatio = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), NDe(t, e));
+      e && typeof e == `object` && (e = e.RDa), NDe(t, e);
     }),
     (D9.prototype.GetRightRatio = function () {
       return PDe(this.RDa);
     }),
     (D9.prototype.SetBrakeInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), FDe(t, e));
+      e && typeof e == `object` && (e = e.RDa), FDe(t, e);
     }),
     (D9.prototype.GetBrakeInput = function () {
       return IDe(this.RDa);
@@ -34094,11 +34080,11 @@ async function Ir(e = {}) {
     }),
     (D9.prototype.__destroy__ = function () {
       VDe(this.RDa);
-    }));
+    });
   function O9() {
     throw `cannot construct a VehicleEngine, no constructor in IDL`;
   }
-  ((O9.prototype = Object.create(M6.prototype)),
+  (O9.prototype = Object.create(M6.prototype)),
     (O9.prototype.constructor = O9),
     (O9.prototype.SDa = O9),
     (O9.TDa = {}),
@@ -34111,14 +34097,14 @@ async function Ir(e = {}) {
     }),
     (O9.prototype.SetCurrentRPM = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), WDe(t, e));
+      e && typeof e == `object` && (e = e.RDa), WDe(t, e);
     }),
     (O9.prototype.GetAngularVelocity = function () {
       return GDe(this.RDa);
     }),
     (O9.prototype.GetTorque = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), KDe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), KDe(t, e);
     }),
     (O9.prototype.get_mMaxTorque = O9.prototype.BHa =
       function () {
@@ -34127,7 +34113,7 @@ async function Ir(e = {}) {
     (O9.prototype.set_mMaxTorque = O9.prototype.ZIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), JDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), JDe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mMaxTorque", { get: O9.prototype.BHa, set: O9.prototype.ZIa }),
     (O9.prototype.get_mMinRPM = O9.prototype.CHa =
@@ -34137,7 +34123,7 @@ async function Ir(e = {}) {
     (O9.prototype.set_mMinRPM = O9.prototype.$Ia =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), XDe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mMinRPM", { get: O9.prototype.CHa, set: O9.prototype.$Ia }),
     (O9.prototype.get_mMaxRPM = O9.prototype.zHa =
@@ -34147,7 +34133,7 @@ async function Ir(e = {}) {
     (O9.prototype.set_mMaxRPM = O9.prototype.XIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QDe(t, e));
+        e && typeof e == `object` && (e = e.RDa), QDe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mMaxRPM", { get: O9.prototype.zHa, set: O9.prototype.XIa }),
     (O9.prototype.get_mNormalizedTorque = O9.prototype.HHa =
@@ -34157,7 +34143,7 @@ async function Ir(e = {}) {
     (O9.prototype.set_mNormalizedTorque = O9.prototype.eJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), eOe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mNormalizedTorque", { get: O9.prototype.HHa, set: O9.prototype.eJa }),
     (O9.prototype.get_mInertia = O9.prototype.qEa =
@@ -34167,7 +34153,7 @@ async function Ir(e = {}) {
     (O9.prototype.set_mInertia = O9.prototype.xEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), nOe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mInertia", { get: O9.prototype.qEa, set: O9.prototype.xEa }),
     (O9.prototype.get_mAngularDamping = O9.prototype.lEa =
@@ -34177,16 +34163,16 @@ async function Ir(e = {}) {
     (O9.prototype.set_mAngularDamping = O9.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), iOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), iOe(t, e);
       }),
     Object.defineProperty(O9.prototype, "mAngularDamping", { get: O9.prototype.lEa, set: O9.prototype.nEa }),
     (O9.prototype.__destroy__ = function () {
       aOe(this.RDa);
-    }));
+    });
   function Z() {
     throw `cannot construct a VehicleTransmission, no constructor in IDL`;
   }
-  ((Z.prototype = Object.create(_.prototype)),
+  (Z.prototype = Object.create(_.prototype)),
     (Z.prototype.constructor = Z),
     (Z.prototype.SDa = Z),
     (Z.TDa = {}),
@@ -34194,7 +34180,7 @@ async function Ir(e = {}) {
     (Z.prototype.Set = Z.prototype.Set =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), oOe(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), oOe(n, e, t);
       }),
     (Z.prototype.GetCurrentGear = function () {
       return sOe(this.RDa);
@@ -34215,7 +34201,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mMode = Z.prototype.iGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), fOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), fOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mMode", { get: Z.prototype.tFa, set: Z.prototype.iGa }),
     (Z.prototype.get_mGearRatios = Z.prototype.fHa =
@@ -34225,7 +34211,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mGearRatios = Z.prototype.DIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), mOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), mOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mGearRatios", { get: Z.prototype.fHa, set: Z.prototype.DIa }),
     (Z.prototype.get_mReverseGearRatios = Z.prototype.OHa =
@@ -34235,7 +34221,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mReverseGearRatios = Z.prototype.lJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), gOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mReverseGearRatios", { get: Z.prototype.OHa, set: Z.prototype.lJa }),
     (Z.prototype.get_mSwitchTime = Z.prototype.YHa =
@@ -34245,7 +34231,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mSwitchTime = Z.prototype.wJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), vOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), vOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mSwitchTime", { get: Z.prototype.YHa, set: Z.prototype.wJa }),
     (Z.prototype.get_mClutchReleaseTime = Z.prototype.WGa =
@@ -34255,7 +34241,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mClutchReleaseTime = Z.prototype.tIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), bOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), bOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mClutchReleaseTime", { get: Z.prototype.WGa, set: Z.prototype.tIa }),
     (Z.prototype.get_mSwitchLatency = Z.prototype.XHa =
@@ -34265,7 +34251,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mSwitchLatency = Z.prototype.vJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), SOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), SOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mSwitchLatency", { get: Z.prototype.XHa, set: Z.prototype.vJa }),
     (Z.prototype.get_mShiftUpRPM = Z.prototype.THa =
@@ -34275,7 +34261,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mShiftUpRPM = Z.prototype.rJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), wOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), wOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mShiftUpRPM", { get: Z.prototype.THa, set: Z.prototype.rJa }),
     (Z.prototype.get_mShiftDownRPM = Z.prototype.SHa =
@@ -34285,7 +34271,7 @@ async function Ir(e = {}) {
     (Z.prototype.set_mShiftDownRPM = Z.prototype.qJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), EOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), EOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mShiftDownRPM", { get: Z.prototype.SHa, set: Z.prototype.qJa }),
     (Z.prototype.get_mClutchStrength = Z.prototype.XGa =
@@ -34295,16 +34281,16 @@ async function Ir(e = {}) {
     (Z.prototype.set_mClutchStrength = Z.prototype.uIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), OOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), OOe(t, e);
       }),
     Object.defineProperty(Z.prototype, "mClutchStrength", { get: Z.prototype.XGa, set: Z.prototype.uIa }),
     (Z.prototype.__destroy__ = function () {
       kOe(this.RDa);
-    }));
+    });
   function k9() {
-    ((this.RDa = AOe()), (d(k9)[this.RDa] = this));
+    (this.RDa = AOe()), (d(k9)[this.RDa] = this);
   }
-  ((k9.prototype = Object.create(u.prototype)),
+  (k9.prototype = Object.create(u.prototype)),
     (k9.prototype.constructor = k9),
     (k9.prototype.SDa = k9),
     (k9.TDa = {}),
@@ -34316,7 +34302,7 @@ async function Ir(e = {}) {
     (k9.prototype.set_mLeftWheel = k9.prototype.OIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), MOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), MOe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mLeftWheel", { get: k9.prototype.qHa, set: k9.prototype.OIa }),
     (k9.prototype.get_mRightWheel = k9.prototype.PHa =
@@ -34326,7 +34312,7 @@ async function Ir(e = {}) {
     (k9.prototype.set_mRightWheel = k9.prototype.mJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), POe(t, e));
+        e && typeof e == `object` && (e = e.RDa), POe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mRightWheel", { get: k9.prototype.PHa, set: k9.prototype.mJa }),
     (k9.prototype.get_mDifferentialRatio = k9.prototype.gFa =
@@ -34336,7 +34322,7 @@ async function Ir(e = {}) {
     (k9.prototype.set_mDifferentialRatio = k9.prototype.VFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), IOe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mDifferentialRatio", { get: k9.prototype.gFa, set: k9.prototype.VFa }),
     (k9.prototype.get_mLeftRightSplit = k9.prototype.jLa =
@@ -34346,7 +34332,7 @@ async function Ir(e = {}) {
     (k9.prototype.set_mLeftRightSplit = k9.prototype.sPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ROe(t, e));
+        e && typeof e == `object` && (e = e.RDa), ROe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mLeftRightSplit", { get: k9.prototype.jLa, set: k9.prototype.sPa }),
     (k9.prototype.get_mLimitedSlipRatio = k9.prototype.nLa =
@@ -34356,7 +34342,7 @@ async function Ir(e = {}) {
     (k9.prototype.set_mLimitedSlipRatio = k9.prototype.wPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), BOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), BOe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mLimitedSlipRatio", { get: k9.prototype.nLa, set: k9.prototype.wPa }),
     (k9.prototype.get_mEngineTorqueRatio = k9.prototype.rKa =
@@ -34366,16 +34352,16 @@ async function Ir(e = {}) {
     (k9.prototype.set_mEngineTorqueRatio = k9.prototype.AOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), HOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), HOe(t, e);
       }),
     Object.defineProperty(k9.prototype, "mEngineTorqueRatio", { get: k9.prototype.rKa, set: k9.prototype.AOa }),
     (k9.prototype.__destroy__ = function () {
       UOe(this.RDa);
-    }));
+    });
   function Q() {
-    ((this.RDa = WOe()), (d(Q)[this.RDa] = this));
+    (this.RDa = WOe()), (d(Q)[this.RDa] = this);
   }
-  ((Q.prototype = Object.create(j6.prototype)),
+  (Q.prototype = Object.create(j6.prototype)),
     (Q.prototype.constructor = Q),
     (Q.prototype.SDa = Q),
     (Q.TDa = {}),
@@ -34387,7 +34373,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mMaxLeanAngle = Q.prototype.SPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), KOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), KOe(t, e);
       }),
     Object.defineProperty(Q.prototype, "mMaxLeanAngle", { get: Q.prototype.JLa, set: Q.prototype.SPa }),
     (Q.prototype.get_mLeanSpringConstant = Q.prototype.fLa =
@@ -34397,7 +34383,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mLeanSpringConstant = Q.prototype.oPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), JOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), JOe(t, e);
       }),
     Object.defineProperty(Q.prototype, "mLeanSpringConstant", { get: Q.prototype.fLa, set: Q.prototype.oPa }),
     (Q.prototype.get_mLeanSpringDamping = Q.prototype.gLa =
@@ -34407,7 +34393,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mLeanSpringDamping = Q.prototype.pPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), XOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), XOe(t, e);
       }),
     Object.defineProperty(Q.prototype, "mLeanSpringDamping", { get: Q.prototype.gLa, set: Q.prototype.pPa }),
     (Q.prototype.get_mLeanSpringIntegrationCoefficient = Q.prototype.hLa =
@@ -34417,7 +34403,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mLeanSpringIntegrationCoefficient = Q.prototype.qPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), QOe(t, e));
+        e && typeof e == `object` && (e = e.RDa), QOe(t, e);
       }),
     Object.defineProperty(Q.prototype, "mLeanSpringIntegrationCoefficient", { get: Q.prototype.hLa, set: Q.prototype.qPa }),
     (Q.prototype.get_mLeanSpringIntegrationCoefficientDecay = Q.prototype.iLa =
@@ -34427,7 +34413,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mLeanSpringIntegrationCoefficientDecay = Q.prototype.rPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), eke(t, e));
+        e && typeof e == `object` && (e = e.RDa), eke(t, e);
       }),
     Object.defineProperty(Q.prototype, "mLeanSpringIntegrationCoefficientDecay", { get: Q.prototype.iLa, set: Q.prototype.rPa }),
     (Q.prototype.get_mLeanSmoothingFactor = Q.prototype.eLa =
@@ -34437,7 +34423,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mLeanSmoothingFactor = Q.prototype.nPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), nke(t, e));
+        e && typeof e == `object` && (e = e.RDa), nke(t, e);
       }),
     Object.defineProperty(Q.prototype, "mLeanSmoothingFactor", { get: Q.prototype.eLa, set: Q.prototype.nPa }),
     (Q.prototype.get_mEngine = Q.prototype.iFa =
@@ -34447,7 +34433,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mEngine = Q.prototype.YFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ike(t, e));
+        e && typeof e == `object` && (e = e.RDa), ike(t, e);
       }),
     Object.defineProperty(Q.prototype, "mEngine", { get: Q.prototype.iFa, set: Q.prototype.YFa }),
     (Q.prototype.get_mTransmission = Q.prototype.IFa =
@@ -34457,7 +34443,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mTransmission = Q.prototype.xGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oke(t, e));
+        e && typeof e == `object` && (e = e.RDa), oke(t, e);
       }),
     Object.defineProperty(Q.prototype, "mTransmission", { get: Q.prototype.IFa, set: Q.prototype.xGa }),
     (Q.prototype.get_mDifferentials = Q.prototype.dHa =
@@ -34467,7 +34453,7 @@ async function Ir(e = {}) {
     (Q.prototype.set_mDifferentials = Q.prototype.BIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cke(t, e));
+        e && typeof e == `object` && (e = e.RDa), cke(t, e);
       }),
     Object.defineProperty(Q.prototype, "mDifferentials", { get: Q.prototype.dHa, set: Q.prototype.BIa }),
     (Q.prototype.get_mDifferentialLimitedSlipRatio = Q.prototype.cHa =
@@ -34477,16 +34463,16 @@ async function Ir(e = {}) {
     (Q.prototype.set_mDifferentialLimitedSlipRatio = Q.prototype.AIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), uke(t, e));
+        e && typeof e == `object` && (e = e.RDa), uke(t, e);
       }),
     Object.defineProperty(Q.prototype, "mDifferentialLimitedSlipRatio", { get: Q.prototype.cHa, set: Q.prototype.AIa }),
     (Q.prototype.__destroy__ = function () {
       dke(this.RDa);
-    }));
+    });
   function A9(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = fke(e, t)), (d(A9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = fke(e, t)), (d(A9)[this.RDa] = this);
   }
-  ((A9.prototype = Object.create(N6.prototype)),
+  (A9.prototype = Object.create(N6.prototype)),
     (A9.prototype.constructor = A9),
     (A9.prototype.SDa = A9),
     (A9.TDa = {}),
@@ -34496,7 +34482,7 @@ async function Ir(e = {}) {
     }),
     (A9.prototype.EnableLeanController = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mke(t, e));
+      e && typeof e == `object` && (e = e.RDa), mke(t, e);
     }),
     (A9.prototype.IsLeanControllerEnabled = function () {
       return !!hke(this.RDa);
@@ -34506,36 +34492,36 @@ async function Ir(e = {}) {
     }),
     (A9.prototype.SetDriverInput = function (e, t, n, r) {
       var i = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
         r && typeof r == `object` && (r = r.RDa),
-        _ke(i, e, t, n, r));
+        _ke(i, e, t, n, r);
     }),
     (A9.prototype.SetForwardInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vke(t, e));
+      e && typeof e == `object` && (e = e.RDa), vke(t, e);
     }),
     (A9.prototype.GetForwardInput = function () {
       return yke(this.RDa);
     }),
     (A9.prototype.SetRightInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bke(t, e));
+      e && typeof e == `object` && (e = e.RDa), bke(t, e);
     }),
     (A9.prototype.GetRightInput = function () {
       return xke(this.RDa);
     }),
     (A9.prototype.SetBrakeInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ske(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ske(t, e);
     }),
     (A9.prototype.GetBrakeInput = function () {
       return Cke(this.RDa);
     }),
     (A9.prototype.SetHandBrakeInput = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), wke(t, e));
+      e && typeof e == `object` && (e = e.RDa), wke(t, e);
     }),
     (A9.prototype.GetHandBrakeInput = function () {
       return Tke(this.RDa);
@@ -34554,25 +34540,25 @@ async function Ir(e = {}) {
     }),
     (A9.prototype.SetDifferentialLimitedSlipRatio = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Ake(t, e));
+      e && typeof e == `object` && (e = e.RDa), Ake(t, e);
     }),
     (A9.prototype.GetWheelSpeedAtClutch = function () {
       return jke(this.RDa);
     }),
     (A9.prototype.__destroy__ = function () {
       Mke(this.RDa);
-    }));
+    });
   function j9() {
-    ((this.RDa = Nke()), (d(j9)[this.RDa] = this));
+    (this.RDa = Nke()), (d(j9)[this.RDa] = this);
   }
-  ((j9.prototype = Object.create(u.prototype)),
+  (j9.prototype = Object.create(u.prototype)),
     (j9.prototype.constructor = j9),
     (j9.prototype.SDa = j9),
     (j9.TDa = {}),
     (t.Skeleton = j9),
     (j9.prototype.AddJoint = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Pke(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), Pke(n, e, t);
     }),
     (j9.prototype.GetJointCount = function () {
       return Fke(this.RDa);
@@ -34585,18 +34571,18 @@ async function Ir(e = {}) {
     }),
     (j9.prototype.__destroy__ = function () {
       Rke(this.RDa);
-    }));
+    });
   function M9() {
-    ((this.RDa = zke()), (d(M9)[this.RDa] = this));
+    (this.RDa = zke()), (d(M9)[this.RDa] = this);
   }
-  ((M9.prototype = Object.create(P6.prototype)),
+  (M9.prototype = Object.create(P6.prototype)),
     (M9.prototype.constructor = M9),
     (M9.prototype.SDa = M9),
     (M9.TDa = {}),
     (t.SkeletalAnimationKeyframe = M9),
     (M9.prototype.FromMatrix = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), Bke(t, e));
+      e && typeof e == `object` && (e = e.RDa), Bke(t, e);
     }),
     (M9.prototype.ToMatrix = function () {
       return f(Vke(this.RDa), S);
@@ -34608,7 +34594,7 @@ async function Ir(e = {}) {
     (M9.prototype.set_mTime = M9.prototype.pRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Uke(t, e));
+        e && typeof e == `object` && (e = e.RDa), Uke(t, e);
       }),
     Object.defineProperty(M9.prototype, "mTime", { get: M9.prototype.iNa, set: M9.prototype.pRa }),
     (M9.prototype.get_mTranslation = M9.prototype.$Ha =
@@ -34618,7 +34604,7 @@ async function Ir(e = {}) {
     (M9.prototype.set_mTranslation = M9.prototype.yJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gke(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gke(t, e);
       }),
     Object.defineProperty(M9.prototype, "mTranslation", { get: M9.prototype.$Ha, set: M9.prototype.yJa }),
     (M9.prototype.get_mRotation = M9.prototype.uEa =
@@ -34628,16 +34614,16 @@ async function Ir(e = {}) {
     (M9.prototype.set_mRotation = M9.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qke(t, e));
+        e && typeof e == `object` && (e = e.RDa), qke(t, e);
       }),
     Object.defineProperty(M9.prototype, "mRotation", { get: M9.prototype.uEa, set: M9.prototype.BEa }),
     (M9.prototype.__destroy__ = function () {
       Jke(this.RDa);
-    }));
+    });
   function N9() {
-    ((this.RDa = Yke()), (d(N9)[this.RDa] = this));
+    (this.RDa = Yke()), (d(N9)[this.RDa] = this);
   }
-  ((N9.prototype = Object.create(u.prototype)),
+  (N9.prototype = Object.create(u.prototype)),
     (N9.prototype.constructor = N9),
     (N9.prototype.SDa = N9),
     (N9.TDa = {}),
@@ -34653,20 +34639,20 @@ async function Ir(e = {}) {
     (N9.prototype.at = N9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(Qke(t, e), M9));
+        return e && typeof e == `object` && (e = e.RDa), f(Qke(t, e), M9);
       }),
     (N9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), $ke(t, e));
+      e && typeof e == `object` && (e = e.RDa), $ke(t, e);
     }),
     (N9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), eAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), eAe(t, e);
     }),
     (N9.prototype.resize = N9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), tAe(t, e);
       }),
     (N9.prototype.clear = N9.prototype.clear =
       function () {
@@ -34674,11 +34660,11 @@ async function Ir(e = {}) {
       }),
     (N9.prototype.__destroy__ = function () {
       rAe(this.RDa);
-    }));
+    });
   function P9() {
-    ((this.RDa = iAe()), (d(P9)[this.RDa] = this));
+    (this.RDa = iAe()), (d(P9)[this.RDa] = this);
   }
-  ((P9.prototype = Object.create(u.prototype)),
+  (P9.prototype = Object.create(u.prototype)),
     (P9.prototype.constructor = P9),
     (P9.prototype.SDa = P9),
     (P9.TDa = {}),
@@ -34690,7 +34676,7 @@ async function Ir(e = {}) {
     (P9.prototype.set_mJointName = P9.prototype.gPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), oAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), oAe(t, e);
       }),
     Object.defineProperty(P9.prototype, "mJointName", { get: P9.prototype.YKa, set: P9.prototype.gPa }),
     (P9.prototype.get_mKeyframes = P9.prototype.ZKa =
@@ -34700,16 +34686,16 @@ async function Ir(e = {}) {
     (P9.prototype.set_mKeyframes = P9.prototype.hPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), cAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), cAe(t, e);
       }),
     Object.defineProperty(P9.prototype, "mKeyframes", { get: P9.prototype.ZKa, set: P9.prototype.hPa }),
     (P9.prototype.__destroy__ = function () {
       lAe(this.RDa);
-    }));
+    });
   function F9() {
-    ((this.RDa = uAe()), (d(F9)[this.RDa] = this));
+    (this.RDa = uAe()), (d(F9)[this.RDa] = this);
   }
-  ((F9.prototype = Object.create(u.prototype)),
+  (F9.prototype = Object.create(u.prototype)),
     (F9.prototype.constructor = F9),
     (F9.prototype.SDa = F9),
     (F9.TDa = {}),
@@ -34725,20 +34711,20 @@ async function Ir(e = {}) {
     (F9.prototype.at = F9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(pAe(t, e), P9));
+        return e && typeof e == `object` && (e = e.RDa), f(pAe(t, e), P9);
       }),
     (F9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), mAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), mAe(t, e);
     }),
     (F9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), hAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), hAe(t, e);
     }),
     (F9.prototype.resize = F9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), gAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), gAe(t, e);
       }),
     (F9.prototype.clear = F9.prototype.clear =
       function () {
@@ -34746,18 +34732,18 @@ async function Ir(e = {}) {
       }),
     (F9.prototype.__destroy__ = function () {
       vAe(this.RDa);
-    }));
+    });
   function I9() {
-    ((this.RDa = yAe()), (d(I9)[this.RDa] = this));
+    (this.RDa = yAe()), (d(I9)[this.RDa] = this);
   }
-  ((I9.prototype = Object.create(u.prototype)),
+  (I9.prototype = Object.create(u.prototype)),
     (I9.prototype.constructor = I9),
     (I9.prototype.SDa = I9),
     (I9.TDa = {}),
     (t.SkeletalAnimation = I9),
     (I9.prototype.SetIsLooping = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), bAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), bAe(t, e);
     }),
     (I9.prototype.IsLooping = function () {
       return !!xAe(this.RDa);
@@ -34767,36 +34753,36 @@ async function Ir(e = {}) {
     }),
     (I9.prototype.ScaleJoints = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), CAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), CAe(t, e);
     }),
     (I9.prototype.Sample = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wAe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wAe(n, e, t);
     }),
     (I9.prototype.GetAnimatedJoints = function () {
       return f(TAe(this.RDa), F9);
     }),
     (I9.prototype.__destroy__ = function () {
       EAe(this.RDa);
-    }));
+    });
   function L9() {
-    ((this.RDa = DAe()), (d(L9)[this.RDa] = this));
+    (this.RDa = DAe()), (d(L9)[this.RDa] = this);
   }
-  ((L9.prototype = Object.create(u.prototype)),
+  (L9.prototype = Object.create(u.prototype)),
     (L9.prototype.constructor = L9),
     (L9.prototype.SDa = L9),
     (L9.TDa = {}),
     (t.SkeletonPose = L9),
     (L9.prototype.SetSkeleton = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), OAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), OAe(t, e);
     }),
     (L9.prototype.GetSkeleton = function () {
       return f(kAe(this.RDa), j9);
     }),
     (L9.prototype.SetRootOffset = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), AAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), AAe(t, e);
     }),
     (L9.prototype.GetRootOffset = function () {
       return f(jAe(this.RDa), y);
@@ -34806,14 +34792,14 @@ async function Ir(e = {}) {
     }),
     (L9.prototype.GetJoint = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(NAe(t, e), P6));
+      return e && typeof e == `object` && (e = e.RDa), f(NAe(t, e), P6);
     }),
     (L9.prototype.GetJointMatrices = function () {
       return f(PAe(this.RDa), V6);
     }),
     (L9.prototype.GetJointMatrix = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(FAe(t, e), S));
+      return e && typeof e == `object` && (e = e.RDa), f(FAe(t, e), S);
     }),
     (L9.prototype.CalculateJointMatrices = function () {
       IAe(this.RDa);
@@ -34823,11 +34809,11 @@ async function Ir(e = {}) {
     }),
     (L9.prototype.__destroy__ = function () {
       RAe(this.RDa);
-    }));
+    });
   function $() {
     throw `cannot construct a RagdollPart, no constructor in IDL`;
   }
-  (($.prototype = Object.create(h.prototype)),
+  ($.prototype = Object.create(h.prototype)),
     ($.prototype.constructor = $),
     ($.prototype.SDa = $),
     ($.TDa = {}),
@@ -34837,7 +34823,7 @@ async function Ir(e = {}) {
     }),
     ($.prototype.SetShapeSettings = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), BAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), BAe(t, e);
     }),
     ($.prototype.ConvertShapeSettings = function () {
       return f(VAe(this.RDa), h8);
@@ -34847,7 +34833,7 @@ async function Ir(e = {}) {
     }),
     ($.prototype.SetShape = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), UAe(t, e));
+      e && typeof e == `object` && (e = e.RDa), UAe(t, e);
     }),
     ($.prototype.HasMassProperties = function () {
       return !!WAe(this.RDa);
@@ -34862,7 +34848,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mToParent = $.prototype.rRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), qAe(t, e);
       }),
     Object.defineProperty($.prototype, "mToParent", { get: $.prototype.kNa, set: $.prototype.rRa }),
     ($.prototype.get_mPosition = $.prototype.eEa =
@@ -34872,7 +34858,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mPosition = $.prototype.gEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), YAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), YAe(t, e);
       }),
     Object.defineProperty($.prototype, "mPosition", { get: $.prototype.eEa, set: $.prototype.gEa }),
     ($.prototype.get_mRotation = $.prototype.uEa =
@@ -34882,7 +34868,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mRotation = $.prototype.BEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), ZAe(t, e));
+        e && typeof e == `object` && (e = e.RDa), ZAe(t, e);
       }),
     Object.defineProperty($.prototype, "mRotation", { get: $.prototype.uEa, set: $.prototype.BEa }),
     ($.prototype.get_mLinearVelocity = $.prototype.nFa =
@@ -34892,7 +34878,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mLinearVelocity = $.prototype.cGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), $Ae(t, e));
+        e && typeof e == `object` && (e = e.RDa), $Ae(t, e);
       }),
     Object.defineProperty($.prototype, "mLinearVelocity", { get: $.prototype.nFa, set: $.prototype.cGa }),
     ($.prototype.get_mAngularVelocity = $.prototype.cFa =
@@ -34902,7 +34888,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mAngularVelocity = $.prototype.RFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), tje(t, e));
+        e && typeof e == `object` && (e = e.RDa), tje(t, e);
       }),
     Object.defineProperty($.prototype, "mAngularVelocity", { get: $.prototype.cFa, set: $.prototype.RFa }),
     ($.prototype.get_mUserData = $.prototype.UDa =
@@ -34912,7 +34898,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mUserData = $.prototype.VDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), rje(t, e));
+        e && typeof e == `object` && (e = e.RDa), rje(t, e);
       }),
     Object.defineProperty($.prototype, "mUserData", { get: $.prototype.UDa, set: $.prototype.VDa }),
     ($.prototype.get_mObjectLayer = $.prototype.vFa =
@@ -34922,7 +34908,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mObjectLayer = $.prototype.kGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aje(t, e));
+        e && typeof e == `object` && (e = e.RDa), aje(t, e);
       }),
     Object.defineProperty($.prototype, "mObjectLayer", { get: $.prototype.vFa, set: $.prototype.kGa }),
     ($.prototype.get_mCollisionGroup = $.prototype.eFa =
@@ -34932,7 +34918,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mCollisionGroup = $.prototype.TFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sje(t, e));
+        e && typeof e == `object` && (e = e.RDa), sje(t, e);
       }),
     Object.defineProperty($.prototype, "mCollisionGroup", { get: $.prototype.eFa, set: $.prototype.TFa }),
     ($.prototype.get_mMotionType = $.prototype.EHa =
@@ -34942,7 +34928,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mMotionType = $.prototype.bJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lje(t, e));
+        e && typeof e == `object` && (e = e.RDa), lje(t, e);
       }),
     Object.defineProperty($.prototype, "mMotionType", { get: $.prototype.EHa, set: $.prototype.bJa }),
     ($.prototype.get_mAllowedDOFs = $.prototype.HGa =
@@ -34952,7 +34938,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mAllowedDOFs = $.prototype.fIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dje(t, e));
+        e && typeof e == `object` && (e = e.RDa), dje(t, e);
       }),
     Object.defineProperty($.prototype, "mAllowedDOFs", { get: $.prototype.HGa, set: $.prototype.fIa }),
     ($.prototype.get_mAllowDynamicOrKinematic = $.prototype.GGa =
@@ -34962,7 +34948,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mAllowDynamicOrKinematic = $.prototype.eIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pje(t, e));
+        e && typeof e == `object` && (e = e.RDa), pje(t, e);
       }),
     Object.defineProperty($.prototype, "mAllowDynamicOrKinematic", { get: $.prototype.GGa, set: $.prototype.eIa }),
     ($.prototype.get_mIsSensor = $.prototype.OEa =
@@ -34972,7 +34958,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mIsSensor = $.prototype.XEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hje(t, e));
+        e && typeof e == `object` && (e = e.RDa), hje(t, e);
       }),
     Object.defineProperty($.prototype, "mIsSensor", { get: $.prototype.OEa, set: $.prototype.XEa }),
     ($.prototype.get_mUseManifoldReduction = $.prototype.KFa =
@@ -34982,7 +34968,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mUseManifoldReduction = $.prototype.zGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _je(t, e));
+        e && typeof e == `object` && (e = e.RDa), _je(t, e);
       }),
     Object.defineProperty($.prototype, "mUseManifoldReduction", { get: $.prototype.KFa, set: $.prototype.zGa }),
     ($.prototype.get_mCollideKinematicVsNonDynamic = $.prototype.YGa =
@@ -34992,7 +34978,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mCollideKinematicVsNonDynamic = $.prototype.vIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yje(t, e));
+        e && typeof e == `object` && (e = e.RDa), yje(t, e);
       }),
     Object.defineProperty($.prototype, "mCollideKinematicVsNonDynamic", { get: $.prototype.YGa, set: $.prototype.vIa }),
     ($.prototype.get_mApplyGyroscopicForce = $.prototype.IGa =
@@ -35002,7 +34988,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mApplyGyroscopicForce = $.prototype.gIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xje(t, e));
+        e && typeof e == `object` && (e = e.RDa), xje(t, e);
       }),
     Object.defineProperty($.prototype, "mApplyGyroscopicForce", { get: $.prototype.IGa, set: $.prototype.gIa }),
     ($.prototype.get_mMotionQuality = $.prototype.DHa =
@@ -35012,7 +34998,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mMotionQuality = $.prototype.aJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Cje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Cje(t, e);
       }),
     Object.defineProperty($.prototype, "mMotionQuality", { get: $.prototype.DHa, set: $.prototype.aJa }),
     ($.prototype.get_mEnhancedInternalEdgeRemoval = $.prototype.LEa =
@@ -35022,7 +35008,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mEnhancedInternalEdgeRemoval = $.prototype.UEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Tje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Tje(t, e);
       }),
     Object.defineProperty($.prototype, "mEnhancedInternalEdgeRemoval", { get: $.prototype.LEa, set: $.prototype.UEa }),
     ($.prototype.get_mAllowSleeping = $.prototype.IEa =
@@ -35032,7 +35018,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mAllowSleeping = $.prototype.REa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Dje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Dje(t, e);
       }),
     Object.defineProperty($.prototype, "mAllowSleeping", { get: $.prototype.IEa, set: $.prototype.REa }),
     ($.prototype.get_mFriction = $.prototype.jFa =
@@ -35042,7 +35028,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mFriction = $.prototype.ZFa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), kje(t, e));
+        e && typeof e == `object` && (e = e.RDa), kje(t, e);
       }),
     Object.defineProperty($.prototype, "mFriction", { get: $.prototype.jFa, set: $.prototype.ZFa }),
     ($.prototype.get_mRestitution = $.prototype.zFa =
@@ -35052,7 +35038,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mRestitution = $.prototype.oGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), jje(t, e));
+        e && typeof e == `object` && (e = e.RDa), jje(t, e);
       }),
     Object.defineProperty($.prototype, "mRestitution", { get: $.prototype.zFa, set: $.prototype.oGa }),
     ($.prototype.get_mLinearDamping = $.prototype.mFa =
@@ -35062,7 +35048,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mLinearDamping = $.prototype.bGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Nje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Nje(t, e);
       }),
     Object.defineProperty($.prototype, "mLinearDamping", { get: $.prototype.mFa, set: $.prototype.bGa }),
     ($.prototype.get_mAngularDamping = $.prototype.lEa =
@@ -35072,7 +35058,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mAngularDamping = $.prototype.nEa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Fje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Fje(t, e);
       }),
     Object.defineProperty($.prototype, "mAngularDamping", { get: $.prototype.lEa, set: $.prototype.nEa }),
     ($.prototype.get_mMaxLinearVelocity = $.prototype.sFa =
@@ -35082,7 +35068,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mMaxLinearVelocity = $.prototype.hGa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Lje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Lje(t, e);
       }),
     Object.defineProperty($.prototype, "mMaxLinearVelocity", { get: $.prototype.sFa, set: $.prototype.hGa }),
     ($.prototype.get_mMaxAngularVelocity = $.prototype.wHa =
@@ -35092,7 +35078,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mMaxAngularVelocity = $.prototype.UIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), zje(t, e));
+        e && typeof e == `object` && (e = e.RDa), zje(t, e);
       }),
     Object.defineProperty($.prototype, "mMaxAngularVelocity", { get: $.prototype.wHa, set: $.prototype.UIa }),
     ($.prototype.get_mGravityFactor = $.prototype.kFa =
@@ -35102,7 +35088,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mGravityFactor = $.prototype.$Fa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Vje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Vje(t, e);
       }),
     Object.defineProperty($.prototype, "mGravityFactor", { get: $.prototype.kFa, set: $.prototype.$Fa }),
     ($.prototype.get_mNumVelocityStepsOverride = $.prototype.XDa =
@@ -35112,7 +35098,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mNumVelocityStepsOverride = $.prototype.ZDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Uje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Uje(t, e);
       }),
     Object.defineProperty($.prototype, "mNumVelocityStepsOverride", { get: $.prototype.XDa, set: $.prototype.ZDa }),
     ($.prototype.get_mNumPositionStepsOverride = $.prototype.WDa =
@@ -35122,7 +35108,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mNumPositionStepsOverride = $.prototype.YDa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Gje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Gje(t, e);
       }),
     Object.defineProperty($.prototype, "mNumPositionStepsOverride", { get: $.prototype.WDa, set: $.prototype.YDa }),
     ($.prototype.get_mOverrideMassProperties = $.prototype.KHa =
@@ -35132,7 +35118,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mOverrideMassProperties = $.prototype.hJa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), qje(t, e));
+        e && typeof e == `object` && (e = e.RDa), qje(t, e);
       }),
     Object.defineProperty($.prototype, "mOverrideMassProperties", { get: $.prototype.KHa, set: $.prototype.hJa }),
     ($.prototype.get_mInertiaMultiplier = $.prototype.kHa =
@@ -35142,7 +35128,7 @@ async function Ir(e = {}) {
     ($.prototype.set_mInertiaMultiplier = $.prototype.IIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Yje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Yje(t, e);
       }),
     Object.defineProperty($.prototype, "mInertiaMultiplier", { get: $.prototype.kHa, set: $.prototype.IIa }),
     ($.prototype.get_mMassPropertiesOverride = $.prototype.vHa =
@@ -35152,16 +35138,16 @@ async function Ir(e = {}) {
     ($.prototype.set_mMassPropertiesOverride = $.prototype.TIa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), Zje(t, e));
+        e && typeof e == `object` && (e = e.RDa), Zje(t, e);
       }),
     Object.defineProperty($.prototype, "mMassPropertiesOverride", { get: $.prototype.vHa, set: $.prototype.TIa }),
     ($.prototype.__destroy__ = function () {
       Qje(this.RDa);
-    }));
+    });
   function R9() {
-    ((this.RDa = $je()), (d(R9)[this.RDa] = this));
+    (this.RDa = $je()), (d(R9)[this.RDa] = this);
   }
-  ((R9.prototype = Object.create(u.prototype)),
+  (R9.prototype = Object.create(u.prototype)),
     (R9.prototype.constructor = R9),
     (R9.prototype.SDa = R9),
     (R9.TDa = {}),
@@ -35177,20 +35163,20 @@ async function Ir(e = {}) {
     (R9.prototype.at = R9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(nMe(t, e), $));
+        return e && typeof e == `object` && (e = e.RDa), f(nMe(t, e), $);
       }),
     (R9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), rMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), rMe(t, e);
     }),
     (R9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), iMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), iMe(t, e);
     }),
     (R9.prototype.resize = R9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), aMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), aMe(t, e);
       }),
     (R9.prototype.clear = R9.prototype.clear =
       function () {
@@ -35198,11 +35184,11 @@ async function Ir(e = {}) {
       }),
     (R9.prototype.__destroy__ = function () {
       sMe(this.RDa);
-    }));
+    });
   function z9() {
     throw `cannot construct a RagdollAdditionalConstraint, no constructor in IDL`;
   }
-  ((z9.prototype = Object.create(u.prototype)),
+  (z9.prototype = Object.create(u.prototype)),
     (z9.prototype.constructor = z9),
     (z9.prototype.SDa = z9),
     (z9.TDa = {}),
@@ -35210,12 +35196,12 @@ async function Ir(e = {}) {
     (z9.prototype.get_mBodyIdx = z9.prototype.QJa =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), cMe(t, e));
+        return e && typeof e == `object` && (e = e.RDa), cMe(t, e);
       }),
     (z9.prototype.set_mBodyIdx = z9.prototype.ZNa =
       function (e, t) {
         var n = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lMe(n, e, t));
+        e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), lMe(n, e, t);
       }),
     Object.defineProperty(z9.prototype, "mBodyIdx", { get: z9.prototype.QJa, set: z9.prototype.ZNa }),
     (z9.prototype.get_mConstraint = z9.prototype.fKa =
@@ -35225,16 +35211,16 @@ async function Ir(e = {}) {
     (z9.prototype.set_mConstraint = z9.prototype.oOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dMe(t, e);
       }),
     Object.defineProperty(z9.prototype, "mConstraint", { get: z9.prototype.fKa, set: z9.prototype.oOa }),
     (z9.prototype.__destroy__ = function () {
       fMe(this.RDa);
-    }));
+    });
   function B9() {
-    ((this.RDa = pMe()), (d(B9)[this.RDa] = this));
+    (this.RDa = pMe()), (d(B9)[this.RDa] = this);
   }
-  ((B9.prototype = Object.create(u.prototype)),
+  (B9.prototype = Object.create(u.prototype)),
     (B9.prototype.constructor = B9),
     (B9.prototype.SDa = B9),
     (B9.TDa = {}),
@@ -35250,20 +35236,20 @@ async function Ir(e = {}) {
     (B9.prototype.at = B9.prototype.at =
       function (e) {
         var t = this.RDa;
-        return (e && typeof e == `object` && (e = e.RDa), f(gMe(t, e), z9));
+        return e && typeof e == `object` && (e = e.RDa), f(gMe(t, e), z9);
       }),
     (B9.prototype.push_back = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), _Me(t, e));
+      e && typeof e == `object` && (e = e.RDa), _Me(t, e);
     }),
     (B9.prototype.reserve = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), vMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), vMe(t, e);
     }),
     (B9.prototype.resize = B9.prototype.resize =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), yMe(t, e);
       }),
     (B9.prototype.clear = B9.prototype.clear =
       function () {
@@ -35271,11 +35257,11 @@ async function Ir(e = {}) {
       }),
     (B9.prototype.__destroy__ = function () {
       xMe(this.RDa);
-    }));
+    });
   function V9() {
-    ((this.RDa = SMe()), (d(V9)[this.RDa] = this));
+    (this.RDa = SMe()), (d(V9)[this.RDa] = this);
   }
-  ((V9.prototype = Object.create(u.prototype)),
+  (V9.prototype = Object.create(u.prototype)),
     (V9.prototype.constructor = V9),
     (V9.prototype.SDa = V9),
     (V9.TDa = {}),
@@ -35297,13 +35283,13 @@ async function Ir(e = {}) {
     }),
     (V9.prototype.DisableParentChildCollisions = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
-        e === void 0 ? EMe(n) : t === void 0 ? DMe(n, e) : OMe(n, e, t));
+        e === void 0 ? EMe(n) : t === void 0 ? DMe(n, e) : OMe(n, e, t);
     }),
     (V9.prototype.CalculateConstraintPriorities = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? kMe(t) : AMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? kMe(t) : AMe(t, e);
     }),
     (V9.prototype.CalculateBodyIndexToConstraintIndex = function () {
       jMe(this.RDa);
@@ -35318,7 +35304,7 @@ async function Ir(e = {}) {
     (V9.prototype.set_mSkeleton = V9.prototype.cRa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), PMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), PMe(t, e);
       }),
     Object.defineProperty(V9.prototype, "mSkeleton", { get: V9.prototype.WMa, set: V9.prototype.cRa }),
     (V9.prototype.get_mParts = V9.prototype.kMa =
@@ -35328,7 +35314,7 @@ async function Ir(e = {}) {
     (V9.prototype.set_mParts = V9.prototype.tQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), IMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), IMe(t, e);
       }),
     Object.defineProperty(V9.prototype, "mParts", { get: V9.prototype.kMa, set: V9.prototype.tQa }),
     (V9.prototype.get_mAdditionalConstraints = V9.prototype.EJa =
@@ -35338,97 +35324,97 @@ async function Ir(e = {}) {
     (V9.prototype.set_mAdditionalConstraints = V9.prototype.NNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), RMe(t, e));
+        e && typeof e == `object` && (e = e.RDa), RMe(t, e);
       }),
     Object.defineProperty(V9.prototype, "mAdditionalConstraints", { get: V9.prototype.EJa, set: V9.prototype.NNa }),
     (V9.prototype.__destroy__ = function () {
       zMe(this.RDa);
-    }));
+    });
   function H9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = BMe(e)), (d(H9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = BMe(e)), (d(H9)[this.RDa] = this);
   }
-  ((H9.prototype = Object.create(u.prototype)),
+  (H9.prototype = Object.create(u.prototype)),
     (H9.prototype.constructor = H9),
     (H9.prototype.SDa = H9),
     (H9.TDa = {}),
     (t.Ragdoll = H9),
     (H9.prototype.AddToPhysicsSystem = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? VMe(n, e) : HMe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? VMe(n, e) : HMe(n, e, t);
     }),
     (H9.prototype.RemoveFromPhysicsSystem = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? UMe(t) : WMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? UMe(t) : WMe(t, e);
     }),
     (H9.prototype.Activate = function (e) {
       var t = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), e === void 0 ? GMe(t) : KMe(t, e));
+      e && typeof e == `object` && (e = e.RDa), e === void 0 ? GMe(t) : KMe(t, e);
     }),
     (H9.prototype.IsActive = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!qMe(t) : !!JMe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), e === void 0 ? !!qMe(t) : !!JMe(t, e);
     }),
     (H9.prototype.SetGroupID = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? YMe(n, e) : XMe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? YMe(n, e) : XMe(n, e, t);
     }),
     (H9.prototype.SetPose = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? ZMe(n, e) : QMe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? ZMe(n, e) : QMe(n, e, t);
     }),
     (H9.prototype.GetPose = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? $Me(n, e) : eNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? $Me(n, e) : eNe(n, e, t);
     }),
     (H9.prototype.ResetWarmStart = function () {
       tNe(this.RDa);
     }),
     (H9.prototype.DriveToPoseUsingKinematics = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        n === void 0 ? nNe(r, e, t) : rNe(r, e, t, n));
+        n === void 0 ? nNe(r, e, t) : rNe(r, e, t, n);
     }),
     (H9.prototype.DriveToPoseUsingMotors = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        t === void 0 ? iNe(r, e) : n === void 0 ? _emscripten_bind_Ragdoll_DriveToPoseUsingMotors_2(r, e, t) : aNe(r, e, t, n));
+        t === void 0 ? iNe(r, e) : n === void 0 ? _emscripten_bind_Ragdoll_DriveToPoseUsingMotors_2(r, e, t) : aNe(r, e, t, n);
     }),
     (H9.prototype.SetLinearAndAngularVelocity = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        n === void 0 ? oNe(r, e, t) : sNe(r, e, t, n));
+        n === void 0 ? oNe(r, e, t) : sNe(r, e, t, n);
     }),
     (H9.prototype.SetLinearVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? cNe(n, e) : lNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? cNe(n, e) : lNe(n, e, t);
     }),
     (H9.prototype.AddLinearVelocity = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? uNe(n, e) : dNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? uNe(n, e) : dNe(n, e, t);
     }),
     (H9.prototype.AddImpulse = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? fNe(n, e) : pNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), t === void 0 ? fNe(n, e) : pNe(n, e, t);
     }),
     (H9.prototype.GetRootTransform = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa),
+      e && typeof e == `object` && (e = e.RDa),
         t && typeof t == `object` && (t = t.RDa),
         n && typeof n == `object` && (n = n.RDa),
-        n === void 0 ? mNe(r, e, t) : hNe(r, e, t, n));
+        n === void 0 ? mNe(r, e, t) : hNe(r, e, t, n);
     }),
     (H9.prototype.GetBodyCount = function () {
       return gNe(this.RDa);
     }),
     (H9.prototype.GetBodyID = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(_Ne(t, e), m5));
+      return e && typeof e == `object` && (e = e.RDa), f(_Ne(t, e), m5);
     }),
     (H9.prototype.GetBodyIDs = function () {
       return f(vNe(this.RDa), d7);
@@ -35438,22 +35424,22 @@ async function Ir(e = {}) {
     }),
     (H9.prototype.GetWorldSpaceBounds = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(e === void 0 ? bNe(t) : xNe(t, e), w));
+      return e && typeof e == `object` && (e = e.RDa), f(e === void 0 ? bNe(t) : xNe(t, e), w);
     }),
     (H9.prototype.GetConstraint = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), f(SNe(t, e), Y3));
+      return e && typeof e == `object` && (e = e.RDa), f(SNe(t, e), Y3);
     }),
     (H9.prototype.GetRagdollSettings = function () {
       return f(CNe(this.RDa), V9);
     }),
     (H9.prototype.__destroy__ = function () {
       wNe(this.RDa);
-    }));
+    });
   function U9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = TNe(e)), (d(U9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = TNe(e)), (d(U9)[this.RDa] = this);
   }
-  ((U9.prototype = Object.create(u.prototype)),
+  (U9.prototype = Object.create(u.prototype)),
     (U9.prototype.constructor = U9),
     (U9.prototype.SDa = U9),
     (U9.TDa = {}),
@@ -35463,11 +35449,11 @@ async function Ir(e = {}) {
     }),
     (U9.prototype.__destroy__ = function () {
       DNe(this.RDa);
-    }));
+    });
   function W9() {
-    ((this.RDa = ONe()), (d(W9)[this.RDa] = this));
+    (this.RDa = ONe()), (d(W9)[this.RDa] = this);
   }
-  ((W9.prototype = Object.create(F6.prototype)),
+  (W9.prototype = Object.create(F6.prototype)),
     (W9.prototype.constructor = W9),
     (W9.prototype.SDa = W9),
     (W9.TDa = {}),
@@ -35477,49 +35463,49 @@ async function Ir(e = {}) {
     }),
     (W9.prototype.GetBPLayer = function (e) {
       var t = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), ANe(t, e));
+      return e && typeof e == `object` && (e = e.RDa), ANe(t, e);
     }),
     (W9.prototype.__destroy__ = function () {
       jNe(this.RDa);
-    }));
+    });
   function G9(e, t) {
-    (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = MNe(e, t)), (d(G9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), (this.RDa = MNe(e, t)), (d(G9)[this.RDa] = this);
   }
-  ((G9.prototype = Object.create(B3.prototype)),
+  (G9.prototype = Object.create(B3.prototype)),
     (G9.prototype.constructor = G9),
     (G9.prototype.SDa = G9),
     (G9.TDa = {}),
     (t.BroadPhaseLayerInterfaceTable = G9),
     (G9.prototype.MapObjectToBroadPhaseLayer = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), NNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), NNe(n, e, t);
     }),
     (G9.prototype.GetNumBroadPhaseLayers = function () {
       return PNe(this.RDa);
     }),
     (G9.prototype.__destroy__ = function () {
       FNe(this.RDa);
-    }));
+    });
   function K9(e, t, n, r) {
-    (e && typeof e == `object` && (e = e.RDa),
+    e && typeof e == `object` && (e = e.RDa),
       t && typeof t == `object` && (t = t.RDa),
       n && typeof n == `object` && (n = n.RDa),
       r && typeof r == `object` && (r = r.RDa),
       (this.RDa = INe(e, t, n, r)),
-      (d(K9)[this.RDa] = this));
+      (d(K9)[this.RDa] = this);
   }
-  ((K9.prototype = Object.create(L3.prototype)),
+  (K9.prototype = Object.create(L3.prototype)),
     (K9.prototype.constructor = K9),
     (K9.prototype.SDa = K9),
     (K9.TDa = {}),
     (t.ObjectVsBroadPhaseLayerFilterTable = K9),
     (K9.prototype.__destroy__ = function () {
       LNe(this.RDa);
-    }));
+    });
   function q9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = RNe(e)), (d(q9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = RNe(e)), (d(q9)[this.RDa] = this);
   }
-  ((q9.prototype = Object.create(x6.prototype)),
+  (q9.prototype = Object.create(x6.prototype)),
     (q9.prototype.constructor = q9),
     (q9.prototype.SDa = q9),
     (q9.TDa = {}),
@@ -35529,96 +35515,96 @@ async function Ir(e = {}) {
     }),
     (q9.prototype.DisableCollision = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), BNe(n, e, t);
     }),
     (q9.prototype.EnableCollision = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), VNe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), VNe(n, e, t);
     }),
     (q9.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!HNe(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!HNe(n, e, t);
     }),
     (q9.prototype.__destroy__ = function () {
       UNe(this.RDa);
-    }));
+    });
   function J9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = WNe(e)), (d(J9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = WNe(e)), (d(J9)[this.RDa] = this);
   }
-  ((J9.prototype = Object.create(B3.prototype)),
+  (J9.prototype = Object.create(B3.prototype)),
     (J9.prototype.constructor = J9),
     (J9.prototype.SDa = J9),
     (J9.TDa = {}),
     (t.BroadPhaseLayerInterfaceMask = J9),
     (J9.prototype.ConfigureLayer = function (e, t, n) {
       var r = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), GNe(r, e, t, n));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), n && typeof n == `object` && (n = n.RDa), GNe(r, e, t, n);
     }),
     (J9.prototype.GetNumBroadPhaseLayers = function () {
       return KNe(this.RDa);
     }),
     (J9.prototype.__destroy__ = function () {
       qNe(this.RDa);
-    }));
+    });
   function Y9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = JNe(e)), (d(Y9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = JNe(e)), (d(Y9)[this.RDa] = this);
   }
-  ((Y9.prototype = Object.create(L3.prototype)),
+  (Y9.prototype = Object.create(L3.prototype)),
     (Y9.prototype.constructor = Y9),
     (Y9.prototype.SDa = Y9),
     (Y9.TDa = {}),
     (t.ObjectVsBroadPhaseLayerFilterMask = Y9),
     (Y9.prototype.__destroy__ = function () {
       YNe(this.RDa);
-    }));
+    });
   function X9() {
-    ((this.RDa = XNe()), (d(X9)[this.RDa] = this));
+    (this.RDa = XNe()), (d(X9)[this.RDa] = this);
   }
-  ((X9.prototype = Object.create(x6.prototype)),
+  (X9.prototype = Object.create(x6.prototype)),
     (X9.prototype.constructor = X9),
     (X9.prototype.SDa = X9),
     (X9.TDa = {}),
     (t.ObjectLayerPairFilterMask = X9),
     (X9.prototype.sGetObjectLayer = function (e, t) {
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), ZNe(e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), ZNe(e, t);
     }),
     (X9.prototype.sGetGroup = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), QNe(e));
+      return e && typeof e == `object` && (e = e.RDa), QNe(e);
     }),
     (X9.prototype.sGetMask = function (e) {
-      return (e && typeof e == `object` && (e = e.RDa), $Ne(e));
+      return e && typeof e == `object` && (e = e.RDa), $Ne(e);
     }),
     (X9.prototype.ShouldCollide = function (e, t) {
       var n = this.RDa;
-      return (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!ePe(n, e, t));
+      return e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), !!ePe(n, e, t);
     }),
     (X9.prototype.__destroy__ = function () {
       tPe(this.RDa);
-    }));
+    });
   function Z9() {
-    ((this.RDa = nPe()), (d(Z9)[this.RDa] = this));
+    (this.RDa = nPe()), (d(Z9)[this.RDa] = this);
   }
-  ((Z9.prototype = Object.create(I6.prototype)),
+  (Z9.prototype = Object.create(I6.prototype)),
     (Z9.prototype.constructor = Z9),
     (Z9.prototype.SDa = Z9),
     (Z9.TDa = {}),
     (t.AssertFailedHandlerJS = Z9),
     (Z9.prototype.OnAssertFailed = function (e, t, n, r) {
       var i = this.RDa;
-      (UIe(),
+      UIe(),
         (e = e && typeof e == `object` ? e.RDa : D3(e)),
         (t = t && typeof t == `object` ? t.RDa : D3(t)),
         (n = n && typeof n == `object` ? n.RDa : D3(n)),
         r && typeof r == `object` && (r = r.RDa),
-        rPe(i, e, t, n, r));
+        rPe(i, e, t, n, r);
     }),
     (Z9.prototype.__destroy__ = function () {
       iPe(this.RDa);
-    }));
+    });
   function Q9() {
-    ((this.RDa = aPe()), (d(Q9)[this.RDa] = this));
+    (this.RDa = aPe()), (d(Q9)[this.RDa] = this);
   }
-  ((Q9.prototype = Object.create(u.prototype)),
+  (Q9.prototype = Object.create(u.prototype)),
     (Q9.prototype.constructor = Q9),
     (Q9.prototype.SDa = Q9),
     (Q9.TDa = {}),
@@ -35630,7 +35616,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mMaxBodies = Q9.prototype.GPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), sPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), sPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mMaxBodies", { get: Q9.prototype.xLa, set: Q9.prototype.GPa }),
     (Q9.prototype.get_mMaxBodyPairs = Q9.prototype.yLa =
@@ -35640,7 +35626,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mMaxBodyPairs = Q9.prototype.HPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), lPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), lPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mMaxBodyPairs", { get: Q9.prototype.yLa, set: Q9.prototype.HPa }),
     (Q9.prototype.get_mMaxContactConstraints = Q9.prototype.BLa =
@@ -35650,7 +35636,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mMaxContactConstraints = Q9.prototype.KPa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), dPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), dPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mMaxContactConstraints", { get: Q9.prototype.BLa, set: Q9.prototype.KPa }),
     (Q9.prototype.get_mMaxWorkerThreads = Q9.prototype.TLa =
@@ -35660,7 +35646,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mMaxWorkerThreads = Q9.prototype.bQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), pPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), pPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mMaxWorkerThreads", { get: Q9.prototype.TLa, set: Q9.prototype.bQa }),
     (Q9.prototype.get_mBroadPhaseLayerInterface = Q9.prototype.WJa =
@@ -35670,7 +35656,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mBroadPhaseLayerInterface = Q9.prototype.eOa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), hPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), hPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mBroadPhaseLayerInterface", { get: Q9.prototype.WJa, set: Q9.prototype.eOa }),
     (Q9.prototype.get_mObjectVsBroadPhaseLayerFilter = Q9.prototype.hMa =
@@ -35680,7 +35666,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mObjectVsBroadPhaseLayerFilter = Q9.prototype.qQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), _Pe(t, e));
+        e && typeof e == `object` && (e = e.RDa), _Pe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mObjectVsBroadPhaseLayerFilter", { get: Q9.prototype.hMa, set: Q9.prototype.qQa }),
     (Q9.prototype.get_mObjectLayerPairFilter = Q9.prototype.gMa =
@@ -35690,7 +35676,7 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mObjectLayerPairFilter = Q9.prototype.pQa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), yPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), yPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mObjectLayerPairFilter", { get: Q9.prototype.gMa, set: Q9.prototype.pQa }),
     (Q9.prototype.get_mAssertFailedHandler = Q9.prototype.GJa =
@@ -35700,14 +35686,14 @@ async function Ir(e = {}) {
     (Q9.prototype.set_mAssertFailedHandler = Q9.prototype.PNa =
       function (e) {
         var t = this.RDa;
-        (e && typeof e == `object` && (e = e.RDa), xPe(t, e));
+        e && typeof e == `object` && (e = e.RDa), xPe(t, e);
       }),
     Object.defineProperty(Q9.prototype, "mAssertFailedHandler", { get: Q9.prototype.GJa, set: Q9.prototype.PNa }),
     (Q9.prototype.__destroy__ = function () {
       SPe(this.RDa);
-    }));
+    });
   function $9(e) {
-    (e && typeof e == `object` && (e = e.RDa), (this.RDa = CPe(e)), (d($9)[this.RDa] = this));
+    e && typeof e == `object` && (e = e.RDa), (this.RDa = CPe(e)), (d($9)[this.RDa] = this);
   }
   return (
     ($9.prototype = Object.create(u.prototype)),
@@ -35717,7 +35703,7 @@ async function Ir(e = {}) {
     (t.JoltInterface = $9),
     ($9.prototype.Step = function (e, t) {
       var n = this.RDa;
-      (e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wPe(n, e, t));
+      e && typeof e == `object` && (e = e.RDa), t && typeof t == `object` && (t = t.RDa), wPe(n, e, t);
     }),
     ($9.prototype.GetPhysicsSystem = function () {
       return f(TPe(this.RDa), f7);
@@ -35748,7 +35734,7 @@ async function Ir(e = {}) {
     }),
     (function () {
       function e() {
-        ((t.EBodyType_RigidBody = PPe()),
+        (t.EBodyType_RigidBody = PPe()),
           (t.EBodyType_SoftBody = FPe()),
           (t.EMotionType_Static = IPe()),
           (t.EMotionType_Kinematic = LPe()),
@@ -35862,7 +35848,7 @@ async function Ir(e = {}) {
           (t.SoftBodySharedSettings_ELRAType_EuclideanDistance = LIe()),
           (t.SoftBodySharedSettings_ELRAType_GeodesicDistance = RIe()),
           (t.MeshShapeSettings_EBuildQuality_FavorRuntimePerformance = zIe()),
-          (t.MeshShapeSettings_EBuildQuality_FavorBuildSpeed = BIe()));
+          (t.MeshShapeSettings_EBuildQuality_FavorBuildSpeed = BIe());
       }
       se ? e() : Pe.push(e);
     })(),
@@ -36003,7 +35989,7 @@ function Qr(e, t, n) {
     o = new e.Vec3(...(n.targetAngularVelocity ?? [0, 0, 0])),
     s = new e.Quat(...(n.targetRotation ?? [0, 0, 0, 1]));
   try {
-    (r.SetTargetPositionCS(i),
+    r.SetTargetPositionCS(i),
       r.SetTargetVelocityCS(a),
       r.SetTargetAngularVelocityCS(o),
       r.SetTargetOrientationCS(s),
@@ -36014,16 +36000,16 @@ function Qr(e, t, n) {
           return;
         }
         let o = r.GetMotorSettings(i);
-        ((o.mMinForceLimit = o.mMinTorqueLimit = -a.maxEffort),
+        (o.mMinForceLimit = o.mMinTorqueLimit = -a.maxEffort),
           (o.mMaxForceLimit = o.mMaxTorqueLimit = a.maxEffort),
           a.mode === `position` &&
             ((o.mSpringSettings.mMode = e.ESpringMode_FrequencyAndDamping),
             (o.mSpringSettings.mFrequency = a.frequencyHz),
             (o.mSpringSettings.mDamping = a.dampingRatio)),
-          r.SetMotorState(i, a.mode === `position` ? e.EMotorState_Position : e.EMotorState_Velocity));
-      }));
+          r.SetMotorState(i, a.mode === `position` ? e.EMotorState_Position : e.EMotorState_Velocity);
+      });
   } finally {
-    (e.destroy(i), e.destroy(a), e.destroy(o), e.destroy(s));
+    e.destroy(i), e.destroy(a), e.destroy(o), e.destroy(s);
   }
 }
 function $r(e, t, n, r, i, a, o, s) {
@@ -36084,7 +36070,7 @@ var ti = class {
   #_ = 0;
   #v = 0;
   constructor(e, t, n, r, i) {
-    ((this.#e = e),
+    (this.#e = e),
       (this.#t = t),
       (this.#n = t.GetBodyInterface()),
       (this.#r = n),
@@ -36099,20 +36085,20 @@ var ti = class {
           let a = new e.RVec3(...n.position),
             o = new e.Quat(...n.rotation);
           try {
-            (this.#n.SetPositionAndRotation(i.id, a, o, e.EActivation_Activate),
+            this.#n.SetPositionAndRotation(i.id, a, o, e.EActivation_Activate),
               i.motion !== `static` && r?.resetVelocity !== !1 && this.#S(t, [0, 0, 0], [0, 0, 0]),
-              this.#n.InvalidateContactCache(i.id));
+              this.#n.InvalidateContactCache(i.id);
           } finally {
-            (e.destroy(a), e.destroy(o));
+            e.destroy(a), e.destroy(o);
           }
         },
         setVelocity: (e, t) => {
-          (this.#l.delete(e), this.#S(e, t.linear, t.angular));
+          this.#l.delete(e), this.#S(e, t.linear, t.angular);
         },
         wake: (e) => this.#b(e),
         setKinematicTarget: (e, t) => {
           if ((Se(t), this.#y(e).motion !== `kinematic`)) throw Error(`Kinematic target requires a kinematic body`);
-          (this.#l.set(e, Jr(t)), this.#b(e));
+          this.#l.set(e, Jr(t)), this.#b(e);
         },
         applyImpulse: (e, t, n) => this.#C(e, t, n, `impulse`),
         applyForce: (e, t, n) => this.#C(e, t, n, `force`),
@@ -36132,14 +36118,14 @@ var ti = class {
           let r = this.#u.get(e),
             i = this.#u.get(t);
           n ? this.#f.EnableCollision(r, i) : this.#f.DisableCollision(r, i);
-          for (let n of [e, t]) (this.#n.InvalidateContactCache(this.#y(n).id), this.#b(n));
+          for (let n of [e, t]) this.#n.InvalidateContactCache(this.#y(n).id), this.#b(n);
         },
         isEnabled: (e, t) => (this.#y(e), this.#y(t), e !== t && (!this.#f || this.#f.IsCollisionEnabled(this.#u.get(e), this.#u.get(t)))),
       }),
       (this.contacts = {
         configure: (e) => this.#M(e),
         read: () => ({ enabled: !!this.#p, tick: this.#_, contacts: [...this.#m], truncated: this.#g > 0, dropped: this.#g }),
-      }));
+      });
   }
   bodyCreated(e) {
     if (!this.#f) return;
@@ -36147,36 +36133,36 @@ var ti = class {
     if (t === void 0) throw Error(`Collision filter body capacity exhausted`);
     let n = new this.#e.CollisionGroup(this.#f, 1, t);
     try {
-      (this.#n.SetCollisionGroup(this.#y(e).id, n), this.#u.set(e, t));
+      this.#n.SetCollisionGroup(this.#y(e).id, n), this.#u.set(e, t);
     } finally {
       this.#e.destroy(n);
     }
   }
   bodyRemoving(e) {
     for (let t of [...(this.#c.get(e) ?? [])]) this.#T(t);
-    (this.#l.delete(e), (this.#m = this.#m.filter((t) => t.bodyA !== e && t.bodyB !== e)));
+    this.#l.delete(e), (this.#m = this.#m.filter((t) => t.bodyA !== e && t.bodyB !== e));
     let t = this.#u.get(e);
     if (t !== void 0) {
       for (let e of this.#u.values()) t !== e && this.#f.EnableCollision(t, e);
-      (this.#u.delete(e), this.#d.push(t));
+      this.#u.delete(e), this.#d.push(t);
     }
   }
   beforeStep(e) {
     if (!Number.isFinite(e) || e <= 0) throw Error(`Physics step must be positive and finite`);
-    (this.#_++, (this.#m = []), (this.#g = 0));
+    this.#_++, (this.#m = []), (this.#g = 0);
     for (let [t, n] of this.#l) {
       let r = new this.#e.RVec3(...n.position),
         i = new this.#e.Quat(...n.rotation);
       try {
         this.#n.MoveKinematic(this.#y(t).id, r, i, e);
       } finally {
-        (this.#e.destroy(r), this.#e.destroy(i));
+        this.#e.destroy(r), this.#e.destroy(i);
       }
     }
   }
   dispose() {
     for (let e of [...this.#o.keys()]) this.#T(e);
-    (this.#M({ enabled: !1 }), this.#f?.Release(), (this.#f = void 0), this.#l.clear(), this.#u.clear(), (this.#d = []));
+    this.#M({ enabled: !1 }), this.#f?.Release(), (this.#f = void 0), this.#l.clear(), this.#u.clear(), (this.#d = []);
   }
   #y(e) {
     let t = this.#r.get(e);
@@ -36208,23 +36194,23 @@ var ti = class {
         }
       );
     } finally {
-      (n.destroy(r), n.destroy(i), n.destroy(a), n.destroy(o));
+      n.destroy(r), n.destroy(i), n.destroy(a), n.destroy(o);
     }
   }
   #S(e, t, n) {
-    (xe(t), xe(n));
+    xe(t), xe(n);
     let r = this.#y(e);
     if (r.motion === `static`) throw Error(`Static bodies do not have velocity`);
     let i = new this.#e.Vec3(...t),
       a = new this.#e.Vec3(...n);
     try {
-      (this.#n.SetLinearAndAngularVelocity(r.id, i, a), this.#b(e));
+      this.#n.SetLinearAndAngularVelocity(r.id, i, a), this.#b(e);
     } finally {
-      (this.#e.destroy(i), this.#e.destroy(a));
+      this.#e.destroy(i), this.#e.destroy(a);
     }
   }
   #C(e, t, n, r) {
-    (xe(t), n && xe(n));
+    xe(t), n && xe(n);
     let i = this.#y(e);
     if (i.motion !== `dynamic`) throw Error(`Forces and impulses require a dynamic body`);
     let a = this.#e,
@@ -36241,11 +36227,11 @@ var ti = class {
             : this.#n.AddForce(i.id, o, a.EActivation_Activate)
           : this.#n.AddTorque(i.id, o, a.EActivation_Activate);
     } finally {
-      (a.destroy(o), s && a.destroy(s));
+      a.destroy(o), s && a.destroy(s);
     }
   }
   #w(e) {
-    (we(e), this.#A(e));
+    we(e), this.#A(e);
     let t = this.#y(e.bodyA),
       n = this.#y(e.bodyB);
     if (t.motion !== `dynamic` && n.motion !== `dynamic`) throw Error(`A joint needs at least one dynamic body`);
@@ -36258,23 +36244,23 @@ var ti = class {
       l = !1;
     try {
       if (((c = this.#n.CreateConstraint(s, t.id, n.id)), !c || o.getPointer(c) === 0)) throw ((c = void 0), Error(`Jolt could not create joint`));
-      (c.AddRef(),
+      c.AddRef(),
         (e.kind === `gear` || e.kind === `rack-and-pinion`) &&
           (e.kind === `gear` ? o.castObject(c, o.GearConstraint) : o.castObject(c, o.RackAndPinionConstraint)).SetConstraints(
             this.#o.get(e.jointA).native,
             this.#o.get(e.jointB).native
           ),
         this.#t.AddConstraint(c),
-        (l = !0));
+        (l = !0);
       let i = ee(this.#v++);
       this.#o.set(i, { native: c, descriptor: r, motor: { mode: `off` } });
       for (let t of Ee(e)) {
         let e = this.#s.get(t);
-        (e || this.#s.set(t, (e = /* @__PURE__ */ new Set())), e.add(i));
+        e || this.#s.set(t, (e = /* @__PURE__ */ new Set())), e.add(i);
       }
       for (let t of [e.bodyA, e.bodyB]) {
         let e = this.#c.get(t);
-        (e || this.#c.set(t, (e = /* @__PURE__ */ new Set())), e.add(i));
+        e || this.#c.set(t, (e = /* @__PURE__ */ new Set())), e.add(i);
       }
       return (
         (e.kind === `hinge` || e.kind === `slider`) && e.motor && this.#E(i, e.motor),
@@ -36303,24 +36289,24 @@ var ti = class {
       this.#s.delete(e);
       for (let n of Ee(t.descriptor)) {
         let t = this.#s.get(n);
-        (t?.delete(e), t?.size || this.#s.delete(n));
+        t?.delete(e), t?.size || this.#s.delete(n);
       }
-      (this.#t.RemoveConstraint(t.native), t.native.Release(), this.#o.delete(e));
+      this.#t.RemoveConstraint(t.native), t.native.Release(), this.#o.delete(e);
       for (let n of [t.descriptor.bodyA, t.descriptor.bodyB]) {
         let t = this.#c.get(n);
-        (t?.delete(e), t?.size === 0 && this.#c.delete(n));
+        t?.delete(e), t?.size === 0 && this.#c.delete(n);
       }
     }
   }
   #E(e, t) {
     let n = this.#o.get(e);
     if (!n) throw Error(`Unknown physics joint: ${e}`);
-    (Ce(t), Te(n.descriptor.kind, t));
+    Ce(t), Te(n.descriptor.kind, t);
     let r = this.#e,
       i = n.descriptor.kind === `hinge` ? r.castObject(n.native, r.HingeConstraint) : r.castObject(n.native, r.SliderConstraint);
     if (t.mode !== `off`) {
       let e = i.GetMotorSettings();
-      ((e.mMinTorqueLimit = -t.maxEffort),
+      (e.mMinTorqueLimit = -t.maxEffort),
         (e.mMaxTorqueLimit = t.maxEffort),
         (e.mMinForceLimit = -t.maxEffort),
         (e.mMaxForceLimit = t.maxEffort),
@@ -36331,12 +36317,12 @@ var ti = class {
             i instanceof r.HingeConstraint ? i.SetTargetAngle(t.target) : i.SetTargetPosition(t.target))
           : i instanceof r.HingeConstraint
             ? i.SetTargetAngularVelocity(t.target)
-            : i.SetTargetVelocity(t.target));
+            : i.SetTargetVelocity(t.target);
     }
-    (i.SetMotorState(t.mode === `off` ? r.EMotorState_Off : t.mode === `position` ? r.EMotorState_Position : r.EMotorState_Velocity),
+    i.SetMotorState(t.mode === `off` ? r.EMotorState_Off : t.mode === `position` ? r.EMotorState_Position : r.EMotorState_Velocity),
       (n.motor = { ...t }),
       this.#b(n.descriptor.bodyA),
-      this.#b(n.descriptor.bodyB));
+      this.#b(n.descriptor.bodyB);
   }
   #D(e) {
     let t = this.#o.get(e);
@@ -36369,7 +36355,7 @@ var ti = class {
     if (n.kind === `fixed`) return { ...l, positionError: Hr(c), rotationError: qr(a.rotation, o.rotation) };
     let ee, te;
     if (n.kind === `hinge`)
-      ((ee = this.#e.castObject(t.native, this.#e.HingeConstraint).GetCurrentAngle()), (te = Br(Rr(i.angularVelocity, r.angularVelocity), s)));
+      (ee = this.#e.castObject(t.native, this.#e.HingeConstraint).GetCurrentAngle()), (te = Br(Rr(i.angularVelocity, r.angularVelocity), s));
     else {
       ee = this.#e.castObject(t.native, this.#e.SliderConstraint).GetCurrentPosition();
       let e = new this.#e.RVec3(...a.position),
@@ -36379,7 +36365,7 @@ var ti = class {
           a = ei(this.#n.GetPointVelocity(this.#y(n.bodyB).id, i));
         te = Br(Rr(a, t), s) + Br(c, Vr(r.angularVelocity, s));
       } finally {
-        (this.#e.destroy(e), this.#e.destroy(i));
+        this.#e.destroy(e), this.#e.destroy(i);
       }
     }
     return {
@@ -36403,7 +36389,7 @@ var ti = class {
   #k(e, t) {
     let n = this.#o.get(e);
     if (n?.descriptor.kind !== `six-dof`) throw Error(`SixDOF motor requires a six-dof joint`);
-    (De(t, n.descriptor.axes), Qr(this.#e, n.native, t), (n.sixMotor = structuredClone(t)), this.#b(n.descriptor.bodyA), this.#b(n.descriptor.bodyB));
+    De(t, n.descriptor.axes), Qr(this.#e, n.native, t), (n.sixMotor = structuredClone(t)), this.#b(n.descriptor.bodyA), this.#b(n.descriptor.bodyB);
   }
   #A(e) {
     if (e.kind !== `gear` && e.kind !== `rack-and-pinion`) return;
@@ -36429,7 +36415,7 @@ var ti = class {
   }
   #j() {
     if (!this.#f) {
-      ((this.#f = new this.#e.GroupFilterTable(this.#a)), this.#f.AddRef(), (this.#d = Array.from({ length: this.#a }, (e, t) => this.#a - t - 1)));
+      (this.#f = new this.#e.GroupFilterTable(this.#a)), this.#f.AddRef(), (this.#d = Array.from({ length: this.#a }, (e, t) => this.#a - t - 1));
       for (let e of this.#r.keys()) this.bodyCreated(e);
     }
   }
@@ -36443,12 +36429,12 @@ var ti = class {
     if (this.#p) return;
     let n = this.#e,
       r = new n.ContactListenerJS();
-    ((r.OnContactValidate = () => n.ValidateResult_AcceptAllContactsForThisBodyPair),
+    (r.OnContactValidate = () => n.ValidateResult_AcceptAllContactsForThisBodyPair),
       (r.OnContactAdded = (e, t, n) => this.#N(e, t, n, `added`)),
       (r.OnContactPersisted = (e, t, n) => this.#N(e, t, n, `persisted`)),
       (r.OnContactRemoved = () => {}),
       (this.#p = r),
-      this.#t.SetContactListener(r));
+      this.#t.SetContactListener(r);
   }
   #N(e, t, n, r) {
     let i = this.#e,
@@ -36521,14 +36507,14 @@ var ri = class {
   constructor(e, t, n, r) {
     this.#t = e;
     let i = new e.ObjectLayerPairFilterTable(2);
-    (i.EnableCollision(0, 1), i.EnableCollision(1, 1));
+    i.EnableCollision(0, 1), i.EnableCollision(1, 1);
     let a = new e.BroadPhaseLayerInterfaceTable(2, 2),
       o = new e.BroadPhaseLayer(0),
       s = new e.BroadPhaseLayer(1);
-    (a.MapObjectToBroadPhaseLayer(0, o), a.MapObjectToBroadPhaseLayer(1, s), e.destroy(o), e.destroy(s));
+    a.MapObjectToBroadPhaseLayer(0, o), a.MapObjectToBroadPhaseLayer(1, s), e.destroy(o), e.destroy(s);
     let c = new e.ObjectVsBroadPhaseLayerFilterTable(a, 2, i, 2),
       l = new e.JoltSettings();
-    ((l.mMaxBodies = t),
+    (l.mMaxBodies = t),
       (l.mMaxBodyPairs = t * 8),
       (l.mMaxContactConstraints = t * 8),
       (l.mMaxWorkerThreads = 0),
@@ -36536,13 +36522,13 @@ var ri = class {
       (l.mBroadPhaseLayerInterface = a),
       (l.mObjectVsBroadPhaseLayerFilter = c),
       (this.#n = new e.JoltInterface(l)),
-      e.destroy(l));
+      e.destroy(l);
     let ee = this.#n.GetPhysicsSystem();
     if (r !== void 0) {
       let e = ee.GetPhysicsSettings();
-      ((e.mPenetrationSlop = r), ee.SetPhysicsSettings(e));
+      (e.mPenetrationSlop = r), ee.SetPhysicsSettings(e);
     }
-    ((this.#r = ee.GetBodyInterface()),
+    (this.#r = ee.GetBodyInterface()),
       (this.#e = new ti(e, ee, this.#v, this.#y, t)),
       (this.#i = ee.GetNarrowPhaseQuery()),
       (this.#a = new li(e)),
@@ -36557,7 +36543,7 @@ var ri = class {
       (this.#m = this.#a.own(new e.DefaultBroadPhaseLayerFilter(this.#n.GetObjectVsBroadPhaseLayerFilter(), 1))),
       (this.#h = this.#a.own(new e.DefaultObjectLayerFilter(this.#n.GetObjectLayerPairFilter(), 1))),
       (this.#g = this.#a.own(new e.BodyFilter())),
-      (this.#_ = this.#a.own(new e.ShapeFilter())));
+      (this.#_ = this.#a.own(new e.ShapeFilter()));
     let te = {
       attach: (e) => this.#D(e),
       detach: (e) => this.#O(e),
@@ -36580,7 +36566,7 @@ var ri = class {
   }
   createBody(e) {
     if ((this.#M(), ![`static`, `dynamic`, `kinematic`].includes(e.motion))) throw Error(`Unsupported body motion`);
-    (si(e.shape), oi(e.pose, `Body pose`), e.motion === `dynamic` && e.mass !== void 0 && ii(e.mass, `Dynamic rigid body mass`));
+    si(e.shape), oi(e.pose, `Body pose`), e.motion === `dynamic` && e.mass !== void 0 && ii(e.mass, `Dynamic rigid body mass`);
     let t = this.#T(e.shape),
       n,
       r,
@@ -36613,12 +36599,12 @@ var ri = class {
         !a || this.#t.getPointer(a) === 0)
       )
         throw ((a = void 0), Error(`Jolt could not create body: body capacity exhausted`));
-      ((o = new this.#t.BodyID(a.GetID().GetIndexAndSequenceNumber())),
+      (o = new this.#t.BodyID(a.GetID().GetIndexAndSequenceNumber())),
         this.#r.AddBody(o, e.motion === `static` ? this.#t.EActivation_DontActivate : this.#t.EActivation_Activate),
-        (s = !0));
+        (s = !0);
       let c = ie(this.#S++),
         l = o.GetIndexAndSequenceNumber();
-      (this.#v.set(c, { id: o, idValue: l, motion: e.motion }), this.#y.set(l, c));
+      this.#v.set(c, { id: o, idValue: l, motion: e.motion }), this.#y.set(l, c);
       try {
         this.#e.bodyCreated(c);
       } catch (e) {
@@ -36628,11 +36614,11 @@ var ri = class {
     } catch (e) {
       if (a) {
         let e = o ?? a.GetID();
-        (s && this.#r.RemoveBody(e), this.#r.DestroyBody(e));
+        s && this.#r.RemoveBody(e), this.#r.DestroyBody(e);
       }
       throw (o && this.#t.destroy(o), e);
     } finally {
-      (i && this.#t.destroy(i), n && this.#t.destroy(n), r && this.#t.destroy(r), t.Release());
+      i && this.#t.destroy(i), n && this.#t.destroy(n), r && this.#t.destroy(r), t.Release();
     }
   }
   destroyBody(e) {
@@ -36660,7 +36646,7 @@ var ri = class {
     let t = Math.hypot(...e.direction);
     if (t <= 2 ** -52 || e.maxDistance <= 0) return;
     let n = e.maxDistance / t;
-    (this.#c.Set(...e.origin), this.#l.Set(e.direction[0] * n, e.direction[1] * n, e.direction[2] * n));
+    this.#c.Set(...e.origin), this.#l.Set(e.direction[0] * n, e.direction[1] * n, e.direction[2] * n);
     let r = new this.#t.RRayCast(this.#c, this.#l);
     try {
       if ((this.#d.Reset(), this.#i.CastRay(r, this.#u, this.#d, this.#m, this.#h, this.#g, this.#_), !this.#d.HadHit())) return;
@@ -36686,7 +36672,7 @@ var ri = class {
     if (!t) return;
     let n = this.#d.mHit,
       r = this.#n.GetPhysicsSystem().GetBodyLockInterfaceNoLock().TryGetBody(n.mBodyID);
-    ((this.#p ??= this.#a.own(new this.#t.RVec3())), this.#p.Set(...t.point));
+    (this.#p ??= this.#a.own(new this.#t.RVec3())), this.#p.Set(...t.point);
     let i = r.GetWorldSpaceSurfaceNormal(n.mSubShapeID2, this.#p);
     try {
       let e = i.GetX(),
@@ -36716,7 +36702,7 @@ var ri = class {
     if (!this.#f) {
       let e = (e) => this.#a.own(e),
         t = e(new this.#t.ShapeCastSettings());
-      ((t.mExtraConvexRadius = 0),
+      (t.mExtraConvexRadius = 0),
         (this.#f = {
           shapes: /* @__PURE__ */ new Map(),
           settings: t,
@@ -36726,14 +36712,14 @@ var ri = class {
           scale: e(new this.#t.Vec3(1, 1, 1)),
           rotation: e(new this.#t.Quat(0, 0, 0, 1)),
           base: e(new this.#t.RVec3()),
-        }));
+        });
     }
     let t = this.#f,
       n = `${e.radius}/${e.halfHeight}`,
       r = t.shapes.get(n);
-    (r || ((r = this.#a.own(new this.#t.CapsuleShape(e.halfHeight, e.radius))), t.shapes.set(n, r)),
+    r || ((r = this.#a.own(new this.#t.CapsuleShape(e.halfHeight, e.radius))), t.shapes.set(n, r)),
       t.center.Set(e.position[0], e.position[1] + e.halfHeight + e.radius, e.position[2]),
-      t.direction.Set(...e.displacement));
+      t.direction.Set(...e.displacement);
     let i = this.#t.RMat44.prototype.sRotationTranslation(t.rotation, t.center),
       a = new this.#t.RShapeCast(r, t.scale, i, t.direction);
     try {
@@ -36761,11 +36747,11 @@ var ri = class {
             initialOverlap: e.mFraction === 0 && e.mPenetrationDepth > 1e-5,
           };
     } finally {
-      (this.#t.destroy(a), this.#t.destroy(i));
+      this.#t.destroy(a), this.#t.destroy(i);
     }
   }
   step(e) {
-    (this.#M(), this.#e.beforeStep(e), this.#n.Step(e, 1));
+    this.#M(), this.#e.beforeStep(e), this.#n.Step(e, 1);
   }
   readTransform(e, t) {
     let n = this.#v.get(e);
@@ -36785,7 +36771,7 @@ var ri = class {
     if (!this.#w) {
       for (let e of [...this.#b.keys()]) this.#O(e);
       for (let e of [...this.#v.keys()]) this.destroyBody(e);
-      (this.#e.dispose(), (this.#w = !0), this.#x?.dispose(), this.#a.destroyAll());
+      this.#e.dispose(), (this.#w = !0), this.#x?.dispose(), this.#a.destroyAll();
     }
   }
   #T(e) {
@@ -36794,28 +36780,28 @@ var ri = class {
         let t = new this.#t.Vec3(...e.halfExtents);
         try {
           let n = new this.#t.BoxShape(t, Math.min(0.02, ...e.halfExtents));
-          return (n.AddRef(), n);
+          return n.AddRef(), n;
         } finally {
           this.#t.destroy(t);
         }
       }
       case `sphere`: {
         let t = new this.#t.SphereShape(e.radius);
-        return (t.AddRef(), t);
+        return t.AddRef(), t;
       }
       case `capsule`: {
         let t = new this.#t.CapsuleShape(e.halfHeight, e.radius);
-        return (t.AddRef(), t);
+        return t.AddRef(), t;
       }
       case `convex-hull`: {
         let t = new this.#t.ConvexHullShapeSettings(),
           n;
         try {
-          ((t.mMaxConvexRadius = 0), (n = new this.#t.Vec3()));
-          for (let r = 0; r < e.points.length; r += 3) (n.Set(e.points[r], e.points[r + 1], e.points[r + 2]), t.mPoints.push_back(n));
+          (t.mMaxConvexRadius = 0), (n = new this.#t.Vec3());
+          for (let r = 0; r < e.points.length; r += 3) n.Set(e.points[r], e.points[r + 1], e.points[r + 2]), t.mPoints.push_back(n);
           return this.#E(t, `convex hull`);
         } finally {
-          (n && this.#t.destroy(n), this.#t.destroy(t));
+          n && this.#t.destroy(n), this.#t.destroy(t);
         }
       }
       case `compound`: {
@@ -36826,9 +36812,9 @@ var ri = class {
               r,
               i;
             try {
-              ((r = new this.#t.Vec3(...n.pose.position)), (i = new this.#t.Quat(...n.pose.rotation)), t.AddShapeShape(r, i, e, 0));
+              (r = new this.#t.Vec3(...n.pose.position)), (i = new this.#t.Quat(...n.pose.rotation)), t.AddShapeShape(r, i, e, 0);
             } finally {
-              (r && this.#t.destroy(r), i && this.#t.destroy(i), e.Release());
+              r && this.#t.destroy(r), i && this.#t.destroy(i), e.Release();
             }
           }
           return this.#E(t, `compound`);
@@ -36843,18 +36829,18 @@ var ri = class {
     try {
       if (n.HasError() || !n.IsValid()) throw Error(`Jolt ${t} creation failed: ${n.HasError() ? n.GetError().c_str() : `invalid shape`}`);
       let e = n.Get();
-      return (e.AddRef(), e);
+      return e.AddRef(), e;
     } finally {
       this.#t.destroy(n);
     }
   }
   #D(e) {
-    (this.#M(),
+    this.#M(),
       ii(e.radius, `Character radius`),
       ai(e.halfHeight, `Character half height`),
       ii(e.maxSlopeAngleRadians, `Character max slope angle`),
       ai(e.maxStepHeight, `Character max step height`),
-      ai(e.stickToFloorDistance, `Character stick-to-floor distance`));
+      ai(e.stickToFloorDistance, `Character stick-to-floor distance`);
     let t = new this.#t.CapsuleShape(e.halfHeight, e.radius),
       n = new this.#t.CharacterVirtualSettings(),
       r = new this.#t.Vec3(0, 1, 0),
@@ -36864,7 +36850,7 @@ var ri = class {
       s = new this.#t.Quat(...e.pose.rotation),
       c;
     try {
-      ((n.mShape = t),
+      (n.mShape = t),
         (n.mUp = r),
         (n.mShapeOffset = i),
         (n.mSupportingVolume = a),
@@ -36873,21 +36859,21 @@ var ri = class {
         (n.mMaxStrength = e.maxStrength ?? 100),
         (c = new this.#t.CharacterVirtual(n, o, s, this.#n.GetPhysicsSystem())),
         c.AddRef(),
-        c.SetUserData(e.userData ?? 0));
+        c.SetUserData(e.userData ?? 0);
       let l = new this.#t.ExtendedUpdateSettings(),
         ee = new this.#t.Vec3(0, -e.stickToFloorDistance, 0),
         te = new this.#t.Vec3(0, e.maxStepHeight, 0);
       try {
-        ((l.mStickToFloorStepDown = ee), (l.mWalkStairsStepUp = te), (l.mWalkStairsStepDownExtra = ee));
+        (l.mStickToFloorStepDown = ee), (l.mWalkStairsStepUp = te), (l.mWalkStairsStepDownExtra = ee);
       } finally {
-        (this.#t.destroy(ee), this.#t.destroy(te));
+        this.#t.destroy(ee), this.#t.destroy(te);
       }
       let ne = ae(this.#C++);
-      return (this.#x?.attach(c), this.#b.set(ne, { character: c, updateSettings: l }), ne);
+      return this.#x?.attach(c), this.#b.set(ne, { character: c, updateSettings: l }), ne;
     } catch (e) {
       throw (c?.Release(), e);
     } finally {
-      (this.#t.destroy(n), this.#t.destroy(o), this.#t.destroy(s), this.#t.destroy(a), this.#t.destroy(i), this.#t.destroy(r));
+      this.#t.destroy(n), this.#t.destroy(o), this.#t.destroy(s), this.#t.destroy(a), this.#t.destroy(i), this.#t.destroy(r);
     }
   }
   #O(e) {
@@ -36899,12 +36885,12 @@ var ri = class {
     let n = this.#b.get(e);
     if (!n) return;
     if (!Number.isFinite(t.deltaSeconds) || t.deltaSeconds < 0) throw RangeError(`Character deltaSeconds must be non-negative`);
-    (this.#l.Set(...t.linearVelocity), this.#s.Set(...t.rotation));
+    this.#l.Set(...t.linearVelocity), this.#s.Set(...t.rotation);
     let r = new this.#t.Vec3(...t.gravity);
     try {
-      (n.character.SetLinearVelocity(this.#l),
+      n.character.SetLinearVelocity(this.#l),
         n.character.SetRotation(this.#s),
-        n.character.ExtendedUpdate(t.deltaSeconds, r, n.updateSettings, this.#m, this.#h, this.#g, this.#_, this.#n.GetTempAllocator()));
+        n.character.ExtendedUpdate(t.deltaSeconds, r, n.updateSettings, this.#m, this.#h, this.#g, this.#_, this.#n.GetTempAllocator());
     } finally {
       this.#t.destroy(r);
     }
@@ -36981,7 +36967,7 @@ function si(e, t = !0) {
       ii(Math.fround(e.radius), `Sphere radius`);
       return;
     case `capsule`:
-      (ii(Math.fround(e.radius), `Capsule radius`), ai(Math.fround(e.halfHeight), `Capsule half height`));
+      ii(Math.fround(e.radius), `Capsule radius`), ai(Math.fround(e.halfHeight), `Capsule half height`);
       return;
     case `convex-hull`:
       ci(e.points);
@@ -36991,7 +36977,7 @@ function si(e, t = !0) {
       if (!Array.isArray(e.children) || e.children.length === 0) throw RangeError(`Compound shape requires at least one child`);
       for (let t of e.children) {
         if (!t) throw RangeError(`Compound child is required`);
-        (oi(t.pose, `Compound child pose`), si(t.shape, !1));
+        oi(t.pose, `Compound child pose`), si(t.shape, !1);
       }
       return;
     default:
@@ -37047,7 +37033,7 @@ var li = class {
     this.#e = e;
   }
   own(e) {
-    return (this.#t.push(e), e);
+    return this.#t.push(e), e;
   }
   destroyAll() {
     for (let e = this.#t.length - 1; e >= 0; --e) {
@@ -37123,7 +37109,7 @@ const Ti = st({ id: `engine.physics.control-commands`, phase: bi })
     .run((e, t, n, r) => {
       for (let t of e)
         try {
-          (Si(t.requestId), r.results.push({ requestId: t.requestId, receipt: n.submit(t.operations) }));
+          Si(t.requestId), r.results.push({ requestId: t.requestId, receipt: n.submit(t.operations) });
         } catch (e) {
           r.results.push({
             requestId: t?.requestId,
@@ -37132,19 +37118,19 @@ const Ti = st({ id: `engine.physics.control-commands`, phase: bi })
         }
       for (let e of t)
         try {
-          (Si(e.requestId), e.selection && Ci(e.selection));
+          Si(e.requestId), e.selection && Ci(e.selection);
           let t = e.everyTicks ?? 6;
           if (!Number.isSafeInteger(t) || t < 1) throw Error(`everyTicks must be a positive integer`);
           if (e.selection?.bodies.length && !n.capabilities.bodyControl) throw Error(`Body state unsupported`);
           if (e.selection?.contacts && !n.capabilities.contacts) throw Error(`Contacts unsupported`);
-          ((r.selection = e.selection ? structuredClone(e.selection) : null),
+          (r.selection = e.selection ? structuredClone(e.selection) : null),
             (r.everyTicks = t),
             r.results.push({
               requestId: e.requestId,
               receipt: n.capabilities.contacts
                 ? n.submit([{ kind: `contacts`, options: { enabled: e.selection?.contacts ?? !1 } }])
                 : { status: `applied`, appliedCount: 0 },
-            }));
+            });
         } catch (t) {
           r.results.push({
             requestId: e?.requestId,
@@ -37168,7 +37154,7 @@ const Ti = st({ id: `engine.physics.control-commands`, phase: bi })
       e.results = [];
       for (let e of r)
         try {
-          (Si(e.requestId), Ci(e.selection), a.emit({ requestId: e.requestId, tick: s.tick, state: wi(e.selection, t, n, s.tick) }));
+          Si(e.requestId), Ci(e.selection), a.emit({ requestId: e.requestId, tick: s.tick, state: wi(e.selection, t, n, s.tick) });
         } catch (t) {
           a.emit({ requestId: e?.requestId, tick: s.tick, error: t instanceof Error ? t.message : String(t) });
         }
@@ -37182,7 +37168,7 @@ const Ti = st({ id: `engine.physics.control-commands`, phase: bi })
   Di = ct({
     id: `engine.physics.controls`,
     install(e) {
-      (e.addPhase(bi), e.addResource(xi), e.addSystem(Ti), e.addSystem(Ei));
+      e.addPhase(bi), e.addResource(xi), e.addSystem(Ti), e.addSystem(Ei);
     },
   }),
   Oi = (e) => typeof e == `string` && !!e.trim(),
@@ -37210,7 +37196,7 @@ function Mi(e) {
     };
   for (let i of e.joints ?? []) {
     if (!i || !Oi(i.id) || t.has(i.id) || n.has(i.id)) throw Error(`Room joint id is empty or duplicated: ${i?.id}`);
-    (we(i.descriptor), r(i.descriptor.bodyA), r(i.descriptor.bodyB), n.set(i.id, i));
+    we(i.descriptor), r(i.descriptor.bodyA), r(i.descriptor.bodyB), n.set(i.id, i);
   }
   let i = (e) => {
     let t = n.get(e)?.descriptor;
@@ -37236,12 +37222,12 @@ function Mi(e) {
     let e = i(t.joint);
     if (e.kind !== (t.kind === `button` ? `slider` : `hinge`) || (t.kind === `knob` && !(`limits` in e && e.limits)))
       throw Error(`Buttons require sliders; knobs require limited hinges`);
-    (ji(t.range, e), Ai(t.drive), t.returnDrive && Ai(t.returnDrive), ki(t.enabled));
+    ji(t.range, e), Ai(t.drive), t.returnDrive && Ai(t.returnDrive), ki(t.enabled);
     let n = t.pressThreshold ?? 0.8,
       r = t.releaseThreshold ?? 0.2;
     if (!Number.isFinite(n) || !Number.isFinite(r) || r < 0 || n > 1 || r >= n) throw Error(`Invalid control thresholds`);
     if (o.has(t.joint)) throw Error(`Control joint already occupied`);
-    (o.add(t.joint), a.set(t.id, t));
+    o.add(t.joint), a.set(t.id, t);
   }
   let s = /* @__PURE__ */ new Set();
   for (let t of e.controlBindings ?? []) {
@@ -37260,23 +37246,23 @@ function Mi(e) {
       } else if (e.kind !== `pulley` || t.kind !== `slider` || ![t.bodyA, t.bodyB].some((t) => t === e.bodyA || t === e.bodyB))
         throw Error(`Invalid mechanism driver`);
     }
-    if (!n || n.kind === `mechanism-drive`) (ji(t.range, i(r)), Ai(t.drive));
+    if (!n || n.kind === `mechanism-drive`) ji(t.range, i(r)), Ai(t.drive);
     else if (n.kind === `six-dof-translation` || n.kind === `six-dof-pose`) {
       if (e.kind !== `six-dof`) throw Error(`SixDOF output needs a SixDOF target`);
       if (n.kind === `six-dof-translation`) {
         if (![`x`, `y`, `z`].includes(n.axis)) throw Error(`Invalid translation axis`);
-        (ji(t.range), Ai(t.drive));
+        ji(t.range), Ai(t.drive);
         let r = `translation${n.axis.toUpperCase()}`;
         if ((e.axes?.[r]?.mode ?? `locked`) === `locked`) throw Error(`Cannot drive a locked axis`);
         for (let r of t.range) {
           let t = [0, 0, 0];
-          ((t[{ x: 0, y: 1, z: 2 }[n.axis]] = r), ke({ position: t, rotation: [0, 0, 0, 1] }, e.axes ?? {}));
+          (t[{ x: 0, y: 1, z: 2 }[n.axis]] = r), ke({ position: t, rotation: [0, 0, 0, 1] }, e.axes ?? {});
         }
       } else {
         if (t.range !== void 0 || t.drive !== void 0) throw Error(`Pose output must use drives, not range/drive`);
         if (!n.drives || typeof n.drives != `object` || Array.isArray(n.drives) || !Object.keys(n.drives).length)
           throw Error(`Pose output requires at least one unlocked driven axis`);
-        (ke(n.from, e.axes ?? {}), ke(n.to, e.axes ?? {}));
+        ke(n.from, e.axes ?? {}), ke(n.to, e.axes ?? {});
         for (let t of be) {
           if (((e.axes?.[t]?.mode ?? `locked`) !== `locked`) != !!n.drives?.[t]) throw Error(`Pose drives must match every unlocked axis`);
           n.drives?.[t] && Ai(n.drives[t]);
@@ -37293,7 +37279,7 @@ function Mi(e) {
   let c = /* @__PURE__ */ new Set();
   for (let t of e.collisionPairs ?? []) {
     if (!t || typeof t.enabled != `boolean` || t.bodyA === t.bodyB) throw Error(`Invalid collision pair`);
-    (r(t.bodyA), r(t.bodyB));
+    r(t.bodyA), r(t.bodyB);
     let e = JSON.stringify([t.bodyA, t.bodyB].sort());
     if (c.has(e)) throw Error(`Duplicate collision pair`);
     c.add(e);
@@ -37412,7 +37398,7 @@ const Vi = ce()(`room.load`),
           continue;
         }
         l = !0;
-        for (let e of t.bindings) (a.detach(e.entity), i.destroy(e.entity));
+        for (let e of t.bindings) a.detach(e.entity), i.destroy(e.entity);
         for (let e of t.joints) i.destroy(e.entity);
         let e = [],
           ne = [],
@@ -37422,17 +37408,17 @@ const Vi = ce()(`room.load`),
             a = n.next++;
           re.set(t.id, r);
           let { position: o, rotation: s } = t.pose;
-          (i.add(r, ut, (e, t) => {
-            (([e.px[t], e.py[t], e.pz[t]] = o), ([e.qx[t], e.qy[t], e.qz[t], e.qw[t]] = s));
+          i.add(r, ut, (e, t) => {
+            ([e.px[t], e.py[t], e.pz[t]] = o), ([e.qx[t], e.qy[t], e.qz[t], e.qw[t]] = s);
           }),
             i.add(r, ft, (e, t) => {
               e.proxyId[t] = a;
             }),
-            e.push({ objectId: t.id, entity: r, proxyId: a }));
+            e.push({ objectId: t.id, entity: r, proxyId: a });
         }
         for (let e of te.joints ?? []) {
           let t = i.create();
-          (re.set(e.id, t), ne.push({ jointId: e.id, entity: t }));
+          re.set(e.id, t), ne.push({ jointId: e.id, entity: t });
         }
         let ie = [
             {
@@ -37444,9 +37430,9 @@ const Vi = ce()(`room.load`),
           ],
           ae = [];
         for (let e = 0; e < ie.length; e += 256) ae.push(o.submit(ie.slice(e, e + 256)));
-        ((t.bindings = e),
+        (t.bindings = e),
           (t.joints = ne),
-          (t.pending = { receipts: ae, payload: { requestId: ee, roomId: te.id, revision: te.revision, bindings: e, joints: ne, tick: c.tick } }));
+          (t.pending = { receipts: ae, payload: { requestId: ee, roomId: te.id, revision: te.revision, bindings: e, joints: ne, tick: c.tick } });
       }
     }),
   Ki = We({ id: `room.phase.load-results`, schedule: `tick`, after: [qe], before: [Je] }),
@@ -37459,11 +37445,11 @@ const Vi = ce()(`room.load`),
       let o = a.receipts.find((e) => e.status !== `applied`);
       if (!o) t.emit(a.payload);
       else {
-        for (let t of e.bindings) (i.detach(t.entity), r.destroy(t.entity));
+        for (let t of e.bindings) i.detach(t.entity), r.destroy(t.entity);
         for (let t of e.joints) r.destroy(t.entity);
-        ((e.bindings = []),
+        (e.bindings = []),
           (e.joints = []),
-          n.emit({ requestId: a.payload.requestId, message: o.error?.message ?? `Room physics creation failed`, unloaded: !0 }));
+          n.emit({ requestId: a.payload.requestId, message: o.error?.message ?? `Room physics creation failed`, unloaded: !0 });
       }
     });
 function Ji(e, t) {
@@ -37473,7 +37459,7 @@ function Ji(e, t) {
 const Yi = ct({
   id: `room.simulation`,
   install(e) {
-    (e.addPhase(Ki), e.addResource(Wi), e.addSystem(Gi), e.addSystem(qi));
+    e.addPhase(Ki), e.addResource(Wi), e.addSystem(Gi), e.addSystem(qi);
   },
 });
 jr(self, lt({ id: `das.ego.full-room-physics`, version: 1, plugins: [di({ penetrationSlop: 0.001 }), Di, Yi, ht] }));

@@ -12,15 +12,13 @@ var e = Uint8Array,
   s = o(r, 2),
   c = s.b,
   l = s.r;
-((c[28] = 258), (l[258] = 28));
+(c[28] = 258), (l[258] = 28);
 var u = o(i, 0),
   d = u.b;
 u.r;
 for (var f = new t(32768), p = 0; p < 32768; ++p) {
   var m = ((p & 43690) >> 1) | ((p & 21845) << 1);
-  ((m = ((m & 52428) >> 2) | ((m & 13107) << 2)),
-    (m = ((m & 61680) >> 4) | ((m & 3855) << 4)),
-    (f[p] = (((m & 65280) >> 8) | ((m & 255) << 8)) >> 1));
+  (m = ((m & 52428) >> 2) | ((m & 13107) << 2)), (m = ((m & 61680) >> 4) | ((m & 3855) << 4)), (f[p] = (((m & 65280) >> 8) | ((m & 255) << 8)) >> 1);
 }
 for (
   var h = function (e, n, r) {
@@ -64,7 +62,7 @@ var v = h(g, 9, 1),
     return ((e + 7) / 8) | 0;
   },
   ne = function (t, n, r) {
-    return ((n == null || n < 0) && (n = 0), (r == null || r > t.length) && (r = t.length), new e(t.subarray(n, r)));
+    return (n == null || n < 0) && (n = 0), (r == null || r > t.length) && (r = t.length), new e(t.subarray(n, r));
   },
   S = [
     `unexpected EOF`,
@@ -99,7 +97,7 @@ var v = h(g, 9, 1),
         var n = o.length;
         if (t > n) {
           var r = new e(Math.max(n * 2, t));
-          (r.set(o), (o = r));
+          r.set(o), (o = r);
         }
       },
       _ = n.f || 0,
@@ -122,10 +120,10 @@ var v = h(g, 9, 1),
             m && C(0);
             break;
           }
-          (p && g(w + M), o.set(t.subarray(j, N), w), (n.b = w += M), (n.p = S = N * 8), (n.f = _));
+          p && g(w + M), o.set(t.subarray(j, N), w), (n.b = w += M), (n.p = S = N * 8), (n.f = _);
           continue;
         }
-        if (A == 1) ((T = v), (E = ee), (D = 9), (O = 5));
+        if (A == 1) (T = v), (E = ee), (D = 9), (O = 5);
         else if (A == 2) {
           var P = b(t, S, 31) + 257,
             F = b(t, S + 10, 15) + 4,
@@ -133,7 +131,7 @@ var v = h(g, 9, 1),
           S += 14;
           for (var L = new e(I), R = new e(19), z = 0; z < F; ++z) R[a[z]] = b(t, S + z * 3, 7);
           S += F * 3;
-          for (var B = y(R), re = (1 << B) - 1, ie = h(R, B, 1), z = 0; z < I;) {
+          for (var B = y(R), re = (1 << B) - 1, ie = h(R, B, 1), z = 0; z < I; ) {
             var V = ie[b(t, S, re)];
             S += V & 15;
             var j = V >> 4;
@@ -148,13 +146,14 @@ var v = h(g, 9, 1),
                     ? ((U = 3 + b(t, S, 7)), (S += 3))
                     : j == 18 && ((U = 11 + b(t, S, 127)), (S += 7));
                 U--;
+
               )
                 L[z++] = H;
             }
           }
           var W = L.subarray(0, P),
             G = L.subarray(P);
-          ((D = y(W)), (O = y(G)), (T = h(W, D, 1)), (E = h(G, O, 1)));
+          (D = y(W)), (O = y(G)), (T = h(W, D, 1)), (E = h(G, O, 1));
         } else C(1);
         if (S > k) {
           m && C(0);
@@ -171,22 +170,22 @@ var v = h(g, 9, 1),
         }
         if ((H || C(2), q < 256)) o[w++] = q;
         else if (q == 256) {
-          ((K = S), (T = null));
+          (K = S), (T = null);
           break;
         } else {
           var J = q - 254;
           if (q > 264) {
             var z = q - 257,
               Y = r[z];
-            ((J = b(t, S, (1 << Y) - 1) + c[z]), (S += Y));
+            (J = b(t, S, (1 << Y) - 1) + c[z]), (S += Y);
           }
           var X = E[x(t, S) & oe],
             Z = X >> 4;
-          (X || C(3), (S += X & 15));
+          X || C(3), (S += X & 15);
           var G = d[Z];
           if (Z > 3) {
             var Y = i[Z];
-            ((G += x(t, S) & ((1 << Y) - 1)), (S += Y));
+            (G += x(t, S) & ((1 << Y) - 1)), (S += Y);
           }
           if (S > k) {
             m && C(0);
@@ -202,7 +201,7 @@ var v = h(g, 9, 1),
           for (; w < Q; ++w) o[w] = o[w - G];
         }
       }
-      ((n.l = T), (n.p = K), (n.b = w), (n.f = _), T && ((_ = 1), (n.m = D), (n.d = E), (n.n = O)));
+      (n.l = T), (n.p = K), (n.b = w), (n.f = _), T && ((_ = 1), (n.m = D), (n.d = E), (n.n = O));
     } while (!_);
     return w != o.length && f ? ne(o, 0, w) : o.subarray(0, w);
   },
@@ -221,7 +220,7 @@ var v = h(g, 9, 1),
   };
 function O(t, n) {
   var r = E(t);
-  return (r + 8 > t.length && C(6, `invalid gzip data`), w(t.subarray(r, -8), { i: 2 }, (n && n.out) || new e(D(t)), n && n.dictionary));
+  return r + 8 > t.length && C(6, `invalid gzip data`), w(t.subarray(r, -8), { i: 2 }, (n && n.out) || new e(D(t)), n && n.dictionary);
 }
 var k = typeof TextDecoder < `u` && new TextDecoder();
 try {
