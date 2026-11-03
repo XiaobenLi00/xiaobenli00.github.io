@@ -108,7 +108,7 @@ var e = `modulepreload`,
       return a().catch(l);
     });
   };
-a(() => import(`./main-D3ZxSKTg.js`), [], import.meta.url).catch((e) => {
+a(() => import(`./main-BID5EZEC.js`), [], import.meta.url).catch((e) => {
   console.error(e), (document.getElementById(`loading`).hidden = !0);
   let t = document.getElementById(`error`);
   (t.textContent = /WebGL|context/i.test(String(e)) ? `浏览器未能启动3D显示，请启用硬件加速后刷新。` : `页面资源加载失败，请刷新重试。`),

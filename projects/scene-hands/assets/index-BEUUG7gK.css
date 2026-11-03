@@ -166,17 +166,17 @@ figcaption {
   font-size: 10px;
   line-height: 1.3;
 }
-.device-preview-panel {
+.camera2-preview-panel {
   margin-top: 12px;
 }
-#device-preview {
-  aspect-ratio: 4/3;
+#camera2-preview {
+  aspect-ratio: 16/13;
   background: #111a21;
   width: 100%;
   height: auto;
   display: block;
 }
-.device-preview-panel figcaption {
+.camera2-preview-panel figcaption {
   padding: 8px 10px;
   font-size: 11px;
 }
@@ -308,7 +308,7 @@ footer {
     padding: 4px 5px;
     font-size: 9px;
   }
-  .device-preview-panel {
+  .camera2-preview-panel {
     margin-top: 10px;
   }
   footer {
@@ -378,7 +378,7 @@ footer {
     padding: 2px 4px;
     font-size: 8px;
   }
-  .device-preview-panel {
+  .camera2-preview-panel {
     margin-top: 8px;
   }
   .view-controls {

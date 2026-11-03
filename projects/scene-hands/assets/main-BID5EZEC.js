@@ -1,4 +1,4 @@
-import { t as e } from "./index-CcF8uMgg.js";
+import { t as e } from "./index-Bt1fwmEy.js";
 var t = { LEFT: 0, MIDDLE: 1, RIGHT: 2, ROTATE: 0, DOLLY: 1, PAN: 2 },
   n = { ROTATE: 0, PAN: 1, DOLLY_PAN: 2, DOLLY_ROTATE: 3 },
   r = `attached`,
@@ -29509,109 +29509,49 @@ var Th = (e, t, n, r = 2e4) =>
     }
   },
   Oh = class {
-    constructor(e, { renderer: t, mobile: n = !1 } = {}) {
+    constructor(e) {
       (this.canvas = e),
-        (this.renderer = t),
         (this.context = e.getContext(`2d`, { alpha: !1 })),
-        (this.camera = new Vs(70, 4 / 3, 0.015, 100)),
-        (this.focalScale = 0.8),
-        (this.pixelRatio = Math.min(devicePixelRatio, n ? 1 : 1.5)),
-        (this.interval = 1e3 / (n ? 15 : 24)),
-        (this.lastRender = -1 / 0),
-        (this.dirty = !0),
         (this.frames = 0),
-        (this.inView = !0),
-        (this.resizeObserver = new ResizeObserver(() => this.resize())),
-        this.resizeObserver.observe(e),
-        (this.visibilityObserver = new IntersectionObserver(([e]) => {
-          (this.inView = e.isIntersecting), (this.dirty = !0);
-        })),
-        this.visibilityObserver.observe(e),
-        (this.onRestore = () => this.invalidate()),
-        t.domElement.addEventListener(`webglcontextrestored`, this.onRestore),
-        this.resize();
+        (this.onFrame = (e, t) => {
+          this.draw(t.mediaTime), (this.callback = this.video.requestVideoFrameCallback(this.onFrame));
+        }),
+        (this.onReady = () => this.draw());
     }
-    resize() {
-      let e = Math.round(this.canvas.clientWidth),
-        t = Math.round(this.canvas.clientHeight);
-      if (!e || !t) return;
-      let n = Math.round(e * this.pixelRatio),
-        r = Math.round(t * this.pixelRatio);
-      (this.canvas.width !== n || this.canvas.height !== r) && ((this.canvas.width = n), (this.canvas.height = r)),
-        (this.camera.aspect = e / t),
-        this.camera.updateProjectionMatrix(),
-        (this.dirty = !0);
+    attach(e, t = 2) {
+      this.dispose(), (this.video = e), (this.cameraIndex = t);
+      for (let t of [`loadeddata`, `seeked`, `timeupdate`]) e.addEventListener(t, this.onReady);
+      e.requestVideoFrameCallback && (this.callback = e.requestVideoFrameCallback(this.onFrame)), this.draw();
     }
-    configure(e) {
-      (this.camera.fov = (2 * Math.atan(960 / (2 * e.poses.K_scene[1][1] * this.focalScale)) * 180) / Math.PI),
-        this.camera.updateProjectionMatrix(),
-        (this.dirty = !0);
-    }
-    invalidate() {
-      this.dirty = !0;
-    }
-    render(e, { scene: t, motion: n, built: r, cutaway: i, active: a = !1 }) {
-      if (!n || !this.inView || document.hidden || (!this.dirty && !a) || e - this.lastRender < this.interval) return;
-      let o = this.renderer,
-        s = o.domElement;
-      if (o.getContext().isContextLost()) return;
-      let c = n.cameraMarker.visible,
-        l = n.trajectory.visible,
-        u = o.getViewport(new qt()),
-        d = o.getScissor(new qt()),
-        f = o.getScissorTest(),
-        p = o.localClippingEnabled,
-        m = Math.min(1, s.width / this.canvas.width, s.height / this.canvas.height),
-        h = Math.max(1, Math.floor(this.canvas.width * m)),
-        g = Math.max(1, Math.floor(this.canvas.height * m)),
-        _ = o.getPixelRatio();
-      try {
-        n.followCamera(this.camera),
-          (n.cameraMarker.visible = !1),
-          (n.trajectory.visible = !1),
-          r?.setCutaway(!1),
-          (o.localClippingEnabled = !1),
-          o.setViewport(0, 0, h / _, g / _),
-          o.setScissor(0, 0, h / _, g / _),
-          o.setScissorTest(!0),
-          o.render(t, this.camera),
-          this.context.drawImage(s, 0, s.height - g, h, g, 0, 0, this.canvas.width, this.canvas.height),
-          (this.renderInfo = { ...o.info.render }),
-          this.frames++,
-          (this.lastRender = e),
-          (this.time = n.time),
-          (this.dirty = !1);
-      } finally {
-        (o.localClippingEnabled = p),
-          o.setViewport(u),
-          o.setScissor(d),
-          o.setScissorTest(f),
-          r?.setCutaway(i),
-          (n.cameraMarker.visible = c),
-          (n.trajectory.visible = l);
-      }
+    draw(e = this.video?.currentTime) {
+      let t = this.video;
+      !t ||
+        t.readyState < 2 ||
+        !t.videoWidth ||
+        !t.videoHeight ||
+        ((this.canvas.width !== t.videoWidth || this.canvas.height !== t.videoHeight) &&
+          ((this.canvas.width = t.videoWidth), (this.canvas.height = t.videoHeight)),
+        this.context.drawImage(t, 0, 0),
+        (this.time = e),
+        this.frames++);
     }
     inspect() {
       return {
-        cameraIndex: 2,
-        extraPitchDegrees: 0,
-        fullRoom: !0,
+        cameraIndex: this.cameraIndex,
+        kind: `raw-fisheye-video`,
+        sharedVideo: !0,
         time: this.time,
-        verticalFovDegrees: this.camera.fov,
-        focalScale: this.focalScale,
-        width: this.canvas.clientWidth,
-        height: this.canvas.clientHeight,
         frames: this.frames,
-        inView: this.inView,
-        fpsLimit: 1e3 / this.interval,
-        sharedWebGLContext: !0,
-        render: this.renderInfo,
+        width: this.canvas.width,
+        height: this.canvas.height,
       };
     }
     dispose() {
-      this.resizeObserver.disconnect(),
-        this.visibilityObserver.disconnect(),
-        this.renderer.domElement.removeEventListener(`webglcontextrestored`, this.onRestore);
+      if (this.video) {
+        this.callback !== void 0 && this.video.cancelVideoFrameCallback(this.callback);
+        for (let e of [`loadeddata`, `seeked`, `timeupdate`]) this.video.removeEventListener(e, this.onReady);
+        (this.video = null), (this.callback = void 0);
+      }
     }
   },
   kh = (e) => ({ position: [...e.position], rotation: [...e.rotation] }),
@@ -29848,7 +29788,7 @@ var Kh = new Vs(50, 1, 0.015, 100),
   qh = new Yd(Kh, Wh.domElement);
 (qh.enableDamping = !0), (qh.dampingFactor = 0.2), (qh.minDistance = 0.08), (qh.maxDistance = 40);
 var Jh = new Fr(new K(0, -1, 0), 1.7),
-  Yh = new Oh(Bh(`device-preview`), { renderer: Wh, mobile: Hh }),
+  Yh = new Oh(Bh(`camera2-preview`)),
   Xh,
   Zh,
   Qh,
@@ -29883,7 +29823,7 @@ Wh.domElement.addEventListener(`webglcontextlost`, (e) => {
   e.preventDefault(), Ag(), bg(Error(`3D显示暂时中断，正在等待显卡恢复；若画面未恢复请刷新。`));
 }),
   Wh.domElement.addEventListener(`webglcontextrestored`, () => {
-    xg(), Yh.invalidate(), Sg();
+    xg(), Sg();
   });
 function Sg() {
   let e = ug || fg || !!eg?.busy;
@@ -29911,7 +29851,6 @@ function Cg() {
 new ResizeObserver(Cg).observe(Vh);
 function wg() {
   $h?.setCutaway(og === `overview`),
-    Yh.invalidate(),
     tg?.traverse((e) => {
       if (e.material)
         for (let t of Array.isArray(e.material) ? e.material : [e.material]) (t.clippingPlanes = og === `overview` ? [Jh] : []), (t.needsUpdate = !0);
@@ -29990,7 +29929,6 @@ function kg(e) {
   (cg = kt.clamp(e, 0, sg)),
     Zh?.update(cg),
     ig?.update(cg),
-    Yh.invalidate(),
     og === `device` && Zh?.followCamera(Kh),
     (Bh(`timeline`).value = String(cg)),
     (Bh(`time`).value = `${Og(cg)} / ${Og(sg)}`);
@@ -29999,7 +29937,7 @@ function Ag() {
   gg++, (lg = !1), Qh?.pause(), Sg();
 }
 async function jg() {
-  (eg?.enabled || eg?.busy) && (await eg.setEnabled(!1)), ig?.setSuspended(!1), ig?.update(cg), Yh.invalidate();
+  (eg?.enabled || eg?.busy) && (await eg.setEnabled(!1)), ig?.setSuspended(!1), ig?.update(cg);
 }
 async function Mg(e) {
   if (eg) {
@@ -30007,7 +29945,7 @@ async function Mg(e) {
     try {
       await eg.setEnabled(e);
     } finally {
-      ig?.setSuspended(!!eg.enabled), Yh.invalidate(), Sg();
+      ig?.setSuspended(!!eg.enabled), Sg();
     }
   }
 }
@@ -30044,6 +29982,9 @@ async function Pg(e) {
     }
   }),
   (Bh(`overview`).onclick = Tg),
+  (Bh(`device-view`).onclick = () => {
+    Zh && Eg();
+  }),
   (Bh(`scene-mode`).onchange = async (e) => {
     try {
       await Dg(e.target.value), og === `overview` && Tg();
@@ -30088,7 +30029,7 @@ async function Fg() {
   Bh(`timeline`).max = String(sg);
   let a = t.timestamps_s.filter((e) => e <= sg).length,
     o = t.camera_timestamps_s.filter((e) => e <= sg).length;
-  (Zh = new Ch(
+  Zh = new Ch(
     Uh,
     {
       ...t,
@@ -30100,8 +30041,7 @@ async function Fg() {
       source_reference_frames: t.source_reference_frames.slice(0, o),
     },
     n
-  )),
-    Yh.configure(Zh);
+  );
   let s = new URLSearchParams(location.search).get(`scene`),
     c = [`overlay`, `dense`, `editable`].includes(Xh.default_scene_mode) ? Xh.default_scene_mode : `overlay`;
   (ag = [`overlay`, `dense`, `editable`].includes(s) ? s : c),
@@ -30112,6 +30052,7 @@ async function Fg() {
     Tg(),
     (Qh = new Eh(Bh(`camera-grid`), r, Xh.raw_fisheye_url, { mobile: Hh })),
     await Qh.ready(),
+    Yh.attach(Qh.master.video, Qh.master.id),
     (dg = !0),
     Sg();
   let l = Number(new URLSearchParams(location.search).get(`t`) || 0);
@@ -30156,7 +30097,7 @@ async function Fg() {
       get controls() {
         return qh;
       },
-      get devicePreview() {
+      get camera2Preview() {
         return Yh;
       },
       seek: Pg,
@@ -30176,7 +30117,7 @@ async function Fg() {
           videos: Qh.inspect(),
           physics: eg?.inspect(),
           overlay: ng?.inspect(),
-          devicePreview: Yh.inspect(),
+          camera2Preview: Yh.inspect(),
           actions: ig?.inspect(),
           mobileProfile: Hh,
           render: Wh.info.render,
@@ -30195,7 +30136,6 @@ function Ig(e) {
     eg?.tick(e, e - mg),
     (mg = e),
     og === `overview` && qh.update(),
-    Yh.render(e, { scene: Uh, motion: Zh, built: $h, cutaway: og === `overview`, active: lg || !!eg?.enabled }),
     Wh.render(Uh, Kh);
 }
 requestAnimationFrame(Ig);
