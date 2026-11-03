@@ -1,0 +1,14 @@
+{
+  "schema": "shared-body-scene-correction/1",
+  "status": "validated_shared_body_reference_alignment",
+  "units": "metres",
+  "coordinate_frame": "20261028_room_floor0",
+  "T_room_from_new_vio": [
+    [0.8131431700435054, 0.5820635432551885, -0.0004654297090903592, -0.7927953927701749],
+    [0.001294489020662648, -0.001008783027804605, 0.9999986533265823, 1.5584932627686234],
+    [0.5820622898880963, -0.8131426774988619, -0.001573759895186988, -3.8257386590085214],
+    [0.0, 0.0, 0.0, 1.0]
+  ],
+  "transform_input": "corrected new VIO world from session_corrected.npz; NOT original world",
+  "transform_input_frame": "corrected_new_vio"
+}
