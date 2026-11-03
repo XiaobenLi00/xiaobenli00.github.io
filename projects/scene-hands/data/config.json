@@ -1,1 +1,13 @@
-{"schema":"das-ego-motion-viewer/2","poses_url":"./poses.json","registration_url":"./registration.json","mano_manifest_url":"./hands/manifest.json","parameters_url":"./scene-parameters.json","dense_scene_glb_url":"../models/dense-web.glb","dense_scene_mobile_url":"../models/dense-mobile.glb","raw_fisheye_url":"./videos.json","default_scene_mode":"editable","playback_end_s":101.399025,"trim_end_seconds":2.0}
+{
+  "schema": "das-ego-motion-viewer/2",
+  "poses_url": "./poses.json",
+  "registration_url": "./registration.json",
+  "mano_manifest_url": "./hands/manifest.json",
+  "parameters_url": "./scene-parameters.json",
+  "dense_scene_glb_url": "../models/dense-web.glb",
+  "dense_scene_mobile_url": "../models/dense-mobile.glb",
+  "raw_fisheye_url": "./videos.json",
+  "default_scene_mode": "editable",
+  "playback_end_s": 101.399025,
+  "trim_end_seconds": 2.0
+}
