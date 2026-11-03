@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>场景与双手</title>
-    <script type="module" crossorigin src="./assets/index-DkZJ8TWf.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CD05NVxf.css" />
+    <script type="module" crossorigin src="./assets/index-CcF8uMgg.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DLjfmOHl.css" />
   </head>
   <body>
     <main>
@@ -13,7 +13,6 @@
         <canvas id="scene" aria-label="可缩放的三维场景"></canvas>
         <nav class="view-controls" aria-label="观察">
           <button id="overview" class="active" aria-pressed="true">全景（可缩放）</button>
-          <button id="device-view" aria-pressed="false">设备视角</button>
         </nav>
         <div id="loading" role="status">正在加载…</div>
       </section>
@@ -22,8 +21,9 @@
           <label class="scene-select" for="scene-mode"
             ><span>场景</span
             ><select id="scene-mode">
+              <option value="overlay" selected>稠密 + 结构线框</option>
               <option value="dense">稠密重建</option>
-              <option value="editable" selected>可编辑结构</option>
+              <option value="editable">可编辑结构</option>
             </select></label
           >
           <div class="visibility-controls">
@@ -31,11 +31,17 @@
             <label><input id="trajectory-visible" type="checkbox" checked />设备轨迹</label>
           </div>
           <div class="physics-controls">
-            <label title="开启后拖动门、柜门或抽屉"><input id="physics-enabled" type="checkbox" disabled />物理交互</label>
+            <label title="暂停回放，从初态拖动门或抽屉；播放或拖进度条可回到录像动作"
+              ><input id="physics-enabled" type="checkbox" disabled />物理交互</label
+            >
             <button id="physics-reset" disabled title="恢复所有部件的初始状态">重置</button>
           </div>
         </div>
         <div id="camera-grid" aria-label="六路原始鱼眼视频"></div>
+        <figure class="device-preview-panel">
+          <canvas id="device-preview" aria-label="相机 2 同步设备视角"></canvas>
+          <figcaption>设备视角 · 相机 2</figcaption>
+        </figure>
         <p id="error" role="alert" hidden></p>
       </aside>
     </main>

@@ -1,11 +1,13 @@
 # Scene and hands replay
 
-Published at https://xiaobenli00.github.io/projects/scene-hands/.
+Capture: DAS-Ego_20261028090054_none_none_7a0d34_c3eee1fe.
 
-Static YEngine/Three.js room and hand replay with six synchronized whole-frame fisheye previews. The final two seconds are excluded; playback ends at101.399025s. The unsupported extra headrest on the opening chair has been removed after source-image review.
+Default view overlays the reused dense room with the editable structure's wireframe. Editable refrigerator and microwave doors follow reviewed event timing from this new capture. Six synchronized fisheye previews and a larger device-camera view share the replay clock.
 
-Phones load smaller videos and a lighter dense mesh automatically. Videos use web compression and resizing, with no crop, rectification, rotation or annotations. Hand reconstruction includes image-constrained and short-gap estimates, not measured3D ground truth.
+Playback ends at 102.071906s. The final two seconds are physically excluded from the distributed videos, trajectory and hand samples because the near-lens hand poses are underconstrained. The original capture is preserved privately. Boundary poses before VIO initialization use explicitly held estimates.
 
-This built static application uses relative URLs and needs no localhost server or machine-specific files. Serve this folder over HTTP(S). Original capture and model-weight files are not distributed here.
+Phones load smaller videos and a lighter dense mesh. Videos preserve the whole original fisheye image with resize/compression only: no crop, warp, rectification, rotation or annotations. Hand reconstruction contains image-constrained and marked prior estimates; neither hand poses nor the approximate door angles are measured 3D ground truth. The reused dense room remains static while the editable doors move.
 
-Third-party notices are in `licenses/`. YEngine Room SDK0.1.1: https://github.com/Endless-AI-Lab/YEngine-Releases.
+Runtime assets use relative URLs and need no local machine files. Serve this directory over HTTP(S). Original MCAPs, model weights, private processing logs and source imagery are not distributed. Capture-specific runtime data and videos use the 20261028090054 subdirectory.
+
+Third-party notices are in `licenses/`. YEngine Room SDK 0.1.1: https://github.com/Endless-AI-Lab/YEngine-Releases.
