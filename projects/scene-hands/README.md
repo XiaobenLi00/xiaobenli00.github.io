@@ -2,7 +2,7 @@
 
 Capture: DAS-Ego_20261028090054_none_none_7a0d34_c3eee1fe.
 
-Default view overlays the reused dense room with the editable structure's wireframe. Editable refrigerator and microwave doors follow reviewed event timing from this new capture. Six synchronized fisheye previews and a larger device-camera view share the replay clock.
+Default view overlays the reused dense room with the editable structure's wireframe. Editable refrigerator and microwave doors follow reviewed event timing from this new capture. Panorama and device views switch in the main 3D panel. Six synchronized fisheye previews and an enlarged original Camera 2 fisheye view share the replay clock.
 
 Playback ends at 102.071906s. The final two seconds are physically excluded from the distributed videos, trajectory and hand samples because the near-lens hand poses are underconstrained. The original capture is preserved privately. Boundary poses before VIO initialization use explicitly held estimates.
 
